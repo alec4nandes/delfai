@@ -1,0 +1,22 @@
+{
+    "name": "delfai",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "serve": "firebase serve --only hosting",
+        "webpack": "npx webpack-cli build"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "firebase": "^10.3.0",
+        "openai": "^4.3.0"
+    },
+    "devDependencies": {
+        "dotenv-webpack": "^8.0.1",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4"
+    }
+}

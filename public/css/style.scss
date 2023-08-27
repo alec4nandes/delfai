@@ -1,0 +1,19 @@
+#spread {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+
+    & > div {
+        border: 1px solid #000;
+        box-sizing: border-box;
+
+        &.timeframe {
+            width: 33.33333%;
+        }
+
+        &#advice {
+            width: 100%;
+        }
+    }
+}

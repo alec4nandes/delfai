@@ -1,0 +1,16 @@
+#spread {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#spread > div {
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+#spread > div.timeframe {
+  width: 33.33333%;
+}
+#spread > div#advice {
+  width: 100%;
+}/*# sourceMappingURL=style.css.map */
