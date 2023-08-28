@@ -1,6 +1,8 @@
-import OpenAI from "openai";
+const OpenAI = require("openai"),
+    { apiKey } = require("./api-key.js");
 
-const majorArcana = [
+const openai = new OpenAI({ apiKey }),
+    majorArcana = [
         "Fool",
         "Magician",
         "High Priestess",
@@ -33,14 +35,12 @@ const majorArcana = [
     minorArcana = suits
         .map((suit) => ranks.map((rank) => `${rank} of ${suit}`))
         .flat(Infinity),
-    deck = [...majorArcana, ...minorArcana],
-    apiKey = process.env.OPENAI_API_KEY,
-    openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true }),
-    singleParagraph = "Please answer with a single, separate paragraph.";
+    deck = [...majorArcana, ...minorArcana];
 
-async function getSpreadData() {
+async function getSpreadData(question) {
     const cards = getRandomCards(3),
-        readings = await getReadings(cards),
+        readings = await getReadings(cards, question),
+        getTimeFromIndex = (i) => (i ? (i > 1 ? "future" : "present") : "past"),
         result = cards.reduce(
             (acc, card, i) => ({
                 ...acc,
@@ -51,7 +51,7 @@ async function getSpreadData() {
             }),
             {}
         );
-    return { ...result, advice: { reading: readings.at(-1) } };
+    return { ...result, advice: { reading: readings.at(-1) }, question };
 }
 
 function getRandomCards(size = 3) {
@@ -68,43 +68,32 @@ function getRandomCard() {
     return deck[~~(Math.random() * deck.length)];
 }
 
-async function getReadings(cards) {
+async function getReadings(cards, question) {
     const completion = await openai.chat.completions.create({
-        messages: getMessages(cards),
+        messages: [
+            {
+                role: "user",
+                content: writeMessage(cards, question),
+            },
+        ],
         model: "gpt-3.5-turbo",
     });
     return completion?.choices?.[0]?.message?.content
         ?.split("\n")
-        .map((str) => str.replaceAll("\n", " ").trim())
+        .map((str) => str.trim())
         .filter(Boolean);
 }
 
-function getMessages(cards) {
-    return [...cards, null].map((card, i) => ({
-        role: "user",
-        content: card ? getMessage(card, i) : getFinalMessage(cards),
-    }));
+function writeMessage(cards, question) {
+    const [past, present, future] = cards;
+    return `
+        Please write four paragraphs separated by the new-line character "\n".
+        If, and only if, the question "${question}" makes sense, please address it in each paragraph.
+        The first paragraph is only about how the tarot card ${past} can relate to someone's past.
+        The second paragraph is only about how the tarot card ${present} can relate to someone's present.
+        The third paragraph is only about how the tarot card ${future} can relate to someone's future.
+        The fourth and final paragraph gives life advice after taking the three previously mentioned tarot cards into consideration.
+    `;
 }
 
-function getMessage(card, i) {
-    const time = getTimeFromIndex(i);
-    return `What does the tarot card ${card} say about a person's ${time}? ${singleParagraph}`;
-}
-
-function getFinalMessage(cards) {
-    const situations = cards
-        .map(
-            (card, i) =>
-                `the ${card} tarot card for their ${getTimeFromIndex(
-                    i
-                )} situation`
-        )
-        .join(" and ");
-    return `What life advice would you give someone who drew ${situations}? ${singleParagraph}`;
-}
-
-function getTimeFromIndex(i) {
-    return i ? (i > 1 ? "future" : "present") : "past";
-}
-
-export default getSpreadData;
+module.exports = { getSpreadData };

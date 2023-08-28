@@ -1,21 +1,24 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const express = require("express"),
+    bodyParser = require("body-parser"),
+    cors = require("cors"),
+    { getSpreadData } = require("./read-cards.js"),
+    functions = require("firebase-functions");
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+const server = express();
 
-// TODO: set up GPT endpoint
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(
+    cors({
+        origin: ["https://delfai.web.app", "http://localhost:5000"],
+    })
+);
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+server.post("/", async function (req, res) {
+    const { question } = req.body;
+    res.send(await getSpreadData(question));
+});
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const api = functions.https.onRequest(server);
+
+module.exports = { api };
