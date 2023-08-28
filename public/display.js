@@ -3,20 +3,45 @@ import getRandomCards from "./deck.js";
 async function handleSubmit(e) {
     e.preventDefault();
     const cards = getRandomCards(),
+        newReadingButton = document.querySelector("button#new-reading"),
+        question = e.target.question.value,
+        customForm = document.querySelector("form#custom"),
+        questionsElem = document.querySelector("#questions"),
+        loadingElem = document.querySelector("#loading"),
         spreadElem = document.querySelector("#spread");
-    e.target.style.display = "none";
-    spreadElem.style.display = "flex";
+    [customForm, questionsElem].forEach(
+        (elem) => (elem.style.display = "none")
+    );
+    newReadingButton.style.display = "inline-block";
+    loadingElem.innerHTML = `
+        Reading cards: ${cards.join(", ")}...
+        ${
+            question
+                ? `
+                    <br/>
+                    Asking: "${question}"
+                `
+                : ""
+        }
+    `;
+    loadingElem.style.display = "block";
     ["past", "present", "future", "advice"].forEach((timeframe, i) =>
-        displayData(timeframe, i, cards, spreadElem)
+        displayData(timeframe, i, cards, question, loadingElem, spreadElem)
     );
 }
 
-async function displayData(timeframe, i, cards, spreadElem) {
+async function displayData(
+    timeframe,
+    i,
+    cards,
+    question,
+    loadingElem,
+    spreadElem
+) {
     try {
         const // endpoint = "http://localhost:5001/delfai/us-central1/api",
             endpoint = "https://us-central1-delfai.cloudfunctions.net/api",
             card = cards[i],
-            question = e.target.question.value,
             response = await fetch(`${endpoint}/${timeframe}`, {
                 method: "POST",
                 headers: {
@@ -24,10 +49,14 @@ async function displayData(timeframe, i, cards, spreadElem) {
                 },
                 body: JSON.stringify({ card, cards, question }),
             });
-        const timeElem = spreadElem.querySelector(`#${timeframe}`),
+        loadingElem.style.display = "none";
+        spreadElem.style.display = "flex";
+        const questionElem = document.querySelector("#question"),
+            timeElem = spreadElem.querySelector(`#${timeframe}`),
             cardElem = timeElem.querySelector(".card"),
             imgElem = timeElem.querySelector("img"),
             readingElem = timeElem.querySelector(".reading");
+        question.trim() && (questionElem.textContent = question);
         cardElem && (cardElem.textContent = card);
         if (imgElem) {
             imgElem.src = `/assets/cards/${card.replace(" reversed", "")}.jpg`;
@@ -36,8 +65,8 @@ async function displayData(timeframe, i, cards, spreadElem) {
         }
         fetchStream(response.body, timeframe, readingElem);
     } catch (err) {
-        spreadElem.innerHTML = `${err.code}: ${err.message}`;
-        spreadElem.classList.add("error");
+        loadingElem.innerHTML = err.message;
+        loadingElem.classList.add("error");
     }
 }
 

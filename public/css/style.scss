@@ -4,7 +4,82 @@ body {
     background-color: #333;
     color: #eee;
     font-family: "PT Sans Narrow";
+    margin: 10px;
     text-align: center;
+}
+
+button,
+input {
+    appearance: none;
+    border: 0;
+    font-weight: normal;
+}
+
+button {
+    background-color: #bbb;
+
+    &:hover {
+        background-color: #000;
+        color: #eee;
+        cursor: pointer;
+    }
+
+    &#new-reading {
+        margin-bottom: 20px;
+    }
+}
+
+input {
+    background-color: #eee;
+}
+
+#custom-input {
+    height: 20px;
+    display: inline-flex;
+    gap: 5px;
+
+    button {
+        width: 45px;
+    }
+}
+
+form#custom {
+    max-width: 400px;
+    margin: auto;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+#questions {
+    gap: 10px;
+
+    &,
+    form button {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form {
+        button {
+            width: 100%;
+            align-items: center;
+            box-sizing: border-box;
+            gap: 5px;
+            font-style: italic;
+            padding: 5px;
+
+            & > * {
+                margin: 0;
+            }
+
+            h3 {
+                font-style: normal;
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 #spread {

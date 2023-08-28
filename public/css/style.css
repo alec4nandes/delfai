@@ -3,7 +3,75 @@ body {
   background-color: #333;
   color: #eee;
   font-family: "PT Sans Narrow";
+  margin: 10px;
   text-align: center;
+}
+
+button,
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  font-weight: normal;
+}
+
+button {
+  background-color: #bbb;
+}
+button:hover {
+  background-color: #000;
+  color: #eee;
+  cursor: pointer;
+}
+button#new-reading {
+  margin-bottom: 20px;
+}
+
+input {
+  background-color: #eee;
+}
+
+#custom-input {
+  height: 20px;
+  display: inline-flex;
+  gap: 5px;
+}
+#custom-input button {
+  width: 45px;
+}
+
+form#custom {
+  max-width: 400px;
+  margin: auto;
+}
+
+#question {
+  margin-bottom: 20px;
+}
+
+#questions {
+  gap: 10px;
+}
+#questions,
+#questions form button {
+  display: flex;
+  flex-direction: column;
+}
+#questions form button {
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 5px;
+  font-style: italic;
+  padding: 5px;
+}
+#questions form button > * {
+  margin: 0;
+}
+#questions form button h3 {
+  font-style: normal;
+  text-decoration: underline;
 }
 
 #spread {
