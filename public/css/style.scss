@@ -7,13 +7,6 @@ body {
     text-align: center;
 }
 
-#loading {
-    &.error {
-        background-color: #eee;
-        color: red;
-    }
-}
-
 #spread {
     max-width: 800px;
     width: 100%;
@@ -21,6 +14,12 @@ body {
     flex-wrap: wrap;
     gap: 5px;
     margin: auto;
+
+    &.error {
+        width: fit-content;
+        background-color: #eee;
+        color: red;
+    }
 
     & > div {
         background-color: #222;

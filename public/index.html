@@ -19,7 +19,6 @@
                 </label>
                 <button type="submit">ask</button>
             </form>
-            <div id="loading" style="display: none">Loading...</div>
             <section id="spread" style="display: none">
                 <div id="past" class="timeframe">
                     <h2>Past</h2>
@@ -47,7 +46,7 @@
         </main>
 
         <script type="module">
-            import displaySpread, {handleSubmit} from "./display.js";
+            import {handleSubmit} from "./display.js";
             const formElem = document.querySelector("form");
             formElem.onsubmit = handleSubmit;
         </script>
