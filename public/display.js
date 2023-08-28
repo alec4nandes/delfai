@@ -13,8 +13,8 @@ async function handleSubmit(e) {
 
 async function displayData(timeframe, i, cards, spreadElem) {
     try {
-        const endpoint = "http://localhost:5001/delfai/us-central1/api",
-            // endpoint = "https://us-central1-delfai.cloudfunctions.net/api",
+        const // endpoint = "http://localhost:5001/delfai/us-central1/api",
+            endpoint = "https://us-central1-delfai.cloudfunctions.net/api",
             card = cards[i],
             question = e.target.question.value,
             response = await fetch(`${endpoint}/${timeframe}`, {
