@@ -3,15 +3,24 @@
 body {
     background-color: #333;
     color: #eee;
-    font-family: "PT Sans Narrow";
     margin: 10px;
     text-align: center;
+
+    &,
+    button,
+    textarea {
+        font-family: "PT Sans Narrow";
+        font-size: 16px;
+    }
 }
 
 button,
-input {
+textarea {
     appearance: none;
     border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #111;
     font-weight: normal;
 }
 
@@ -29,18 +38,25 @@ button {
     }
 }
 
-input {
+button#new-reading,
+#custom-textarea button {
+    height: 30px;
+    min-width: 90px;
+    font-weight: bold;
+}
+
+textarea {
+    height: 80px;
+    width: 100%;
     background-color: #eee;
 }
 
-#custom-input {
-    height: 20px;
-    display: inline-flex;
-    gap: 5px;
-
-    button {
-        width: 45px;
-    }
+#custom-textarea {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 form#custom {
@@ -65,7 +81,6 @@ form#custom {
         button {
             width: 100%;
             align-items: center;
-            box-sizing: border-box;
             gap: 5px;
             font-style: italic;
             padding: 5px;
