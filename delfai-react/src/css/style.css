@@ -170,4 +170,7 @@ main .slide .slide-container > *:is(h1) {
 }
 main .slide .slide-container .card-image {
   height: 200px;
+}
+main .slide .slide-container .card-image.reversed {
+  transform: rotate(180deg);
 }/*# sourceMappingURL=style.css.map */
