@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap");
+body,
+html,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #222;
+  margin: 0;
+}
+body,
+body button,
+body textarea {
+  color: #111;
+  font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.4rem;
+}
+body button,
+body textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  border-radius: 0;
+}
+body textarea {
+  background-color: #eee;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+#custom button,
+.next-button {
+  height: 35px;
+  width: 90px;
+  font-weight: bold;
+}
+
+nav li,
+#questions button,
+.next-button,
+#custom button {
+  background-color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+nav li:hover,
+#questions button:hover,
+.next-button:hover,
+#custom button:hover {
+  background-color: #111;
+  color: #eee;
+  cursor: pointer;
+}
+
+header nav {
+  height: 35px;
+}
+header nav ul {
+  height: 100%;
+  display: flex;
+  list-style-type: none;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+header nav ul li {
+  flex: 1;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1rem;
+}
+header nav ul li.highlighted {
+  background-color: transparent;
+  color: #eee;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+main .slide {
+  height: 100%;
+  min-width: 100vw;
+  box-sizing: border-box;
+  color: #eee;
+  overflow-y: auto;
+  padding: 60px 10px;
+  scroll-snap-align: start;
+}
+main .slide#home #custom {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+main .slide#home #custom textarea {
+  height: 80px;
+  width: 300px;
+}
+main .slide#home #questions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .slide#home #questions,
+main .slide#home #questions button {
+  width: 100%;
+}
+main .slide#home #questions button {
+  box-sizing: border-box;
+  flex-direction: column;
+  font-size: inherit;
+  font-style: italic;
+  padding: 10px;
+}
+main .slide#home #questions button h3 {
+  font-style: initial;
+  margin: 0 0 5px;
+  text-decoration: underline;
+}
+main .slide .slide-container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+}
+main .slide .slide-container > * {
+  margin: 0;
+  text-align: center;
+}
+main .slide .slide-container > *:is(h1) {
+  margin-bottom: 25px;
+}
+main .slide .slide-container .card-image {
+  height: 200px;
+}/*# sourceMappingURL=style.css.map */
