@@ -11,6 +11,7 @@ body {
 }
 body,
 body button,
+body input,
 body textarea {
   color: #111;
   font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
@@ -19,6 +20,7 @@ body textarea {
   line-height: 1.4rem;
 }
 body button,
+body input,
 body textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -26,6 +28,7 @@ body textarea {
   border: 0;
   border-radius: 0;
 }
+body input,
 body textarea {
   background-color: #eee;
 }
@@ -35,27 +38,47 @@ body textarea {
   flex-direction: column;
 }
 
-#custom button,
-.next-button {
+#sign-in {
+  height: 100%;
+  width: 100%;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#sign-in form table {
+  margin: auto;
+}
+#sign-in form table tr td:first-child {
+  text-align: right;
+}
+#sign-in form table tr td button {
+  margin-left: auto;
+}
+#sign-in #sign-in-error {
+  color: red;
+}
+
+.standard-btn {
   height: 35px;
-  width: 90px;
+  min-width: 90px;
   font-weight: bold;
 }
 
+.standard-btn,
 nav li,
-#questions button,
-.next-button,
-#custom button {
+#questions button {
   background-color: #999;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+.standard-btn:hover,
 nav li:hover,
-#questions button:hover,
-.next-button:hover,
-#custom button:hover {
+#questions button:hover {
   background-color: #111;
   color: #eee;
   cursor: pointer;
