@@ -5,7 +5,9 @@
     "private": true,
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "serve": "firebase serve --only hosting,functions"
+        "serve": "firebase serve --only hosting,functions",
+        "build": "rmdir /s /q public && cd delfai-react && npm run build && cd ..",
+        "start": "cd delfai-react && npm start && cd .."
     },
     "author": "",
     "license": "ISC",

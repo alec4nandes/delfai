@@ -12,7 +12,12 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(
     cors({
-        origin: ["https://delfai.web.app", "http://localhost:5000"],
+        // TODO: remove localhost for production
+        origin: [
+            "https://delfai.web.app",
+            "http://localhost:5000",
+            "http://localhost:3000",
+        ],
     })
 );
 
