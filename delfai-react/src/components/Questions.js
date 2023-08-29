@@ -68,7 +68,7 @@ function handleQuestion(e, setCards, setQuestion, setUser, user) {
     e.preventDefault();
     setCards(getRandomCards());
     setQuestion(e.target.question.value);
-    if (!user.paid.active) {
+    if (!user.paid) {
         setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
         updateDoc(doc(db, "users", user.email), {
             free_draws: user.free_draws - 1,

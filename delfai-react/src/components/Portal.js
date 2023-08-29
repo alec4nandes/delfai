@@ -82,7 +82,9 @@ export default function Portal() {
         email = email.value;
         password = password.value;
         createUserWithEmailAndPassword(auth, email, password)
-            .then(() => setDoc(doc(db, "users", email), { free_draws: 5 }))
+            .then(() =>
+                setDoc(doc(db, "users", email), { paid: false, free_draws: 5 })
+            )
             .catch((error) => {
                 const { code, message } = error;
                 console.error(code);

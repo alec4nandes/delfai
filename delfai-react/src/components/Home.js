@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../database.js";
 import Questions, { handleQuestion } from "./Questions";
@@ -8,11 +8,11 @@ export default function Home({ setCards, setQuestion, setUser, user }) {
         <div id="home" className="slide">
             <div className="slide-container">
                 <h1>Delfai</h1>
-                {user.paid.active || user.free_draws > 0 ? (
+                {user.paid || user.free_draws > 0 ? (
                     <>
                         <p id="free-status">
                             Hi, {user.email}!{" "}
-                            {user.paid.active ? (
+                            {user.paid ? (
                                 <>Thanks for being a paid member!</>
                             ) : (
                                 <>
@@ -98,8 +98,8 @@ function CustomQuestion({ setCards, setQuestion, setUser, user }) {
 async function handleRegister(user) {
     if (window.confirm("Are you sure you want to join?")) {
         try {
-            await setDoc(doc(db, "paid", user.email), {
-                active: true,
+            await updateDoc(doc(db, "users", user.email), {
+                paid: true,
             });
             alert("Successfully registered!");
             window.location.reload();

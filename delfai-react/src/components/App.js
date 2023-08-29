@@ -34,10 +34,9 @@ function App() {
 
         async function getUserData(email) {
             try {
-                const paid =
-                        (await getDoc(doc(db, "paid", email))).data() || {},
-                    data = (await getDoc(doc(db, "users", email))).data();
-                return { email, paid, ...data };
+                const data =
+                    (await getDoc(doc(db, "users", email))).data() || {};
+                return { email, ...data };
             } catch (err) {
                 console.error(err);
                 return null;
