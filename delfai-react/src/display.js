@@ -4,7 +4,7 @@ export default async function fillRef(
     question,
     elemRef,
     cards,
-    waitElem
+    waitRef
 ) {
     try {
         const // endpoint = "http://localhost:5001/delfai/us-central1/api",
@@ -18,7 +18,7 @@ export default async function fillRef(
                     cards ? { cards, question } : { card, question }
                 ),
             });
-        waitElem.style.display = "none";
+        waitRef.current.style.display = "none";
         fetchStream(response.body, timeframe, elemRef);
     } catch (err) {
         console.error(err.message);

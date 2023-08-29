@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
+import fillRef from "../display.js";
 import Portal from "./Portal";
 import Home from "./Home";
 import Spread from "./Spread";
@@ -19,7 +20,11 @@ function App() {
         pastRef = useRef(),
         presentRef = useRef(),
         futureRef = useRef(),
-        adviceRef = useRef();
+        adviceRef = useRef(),
+        pastWaitRef = useRef(),
+        presentWaitRef = useRef(),
+        futureWaitRef = useRef(),
+        adviceWaitRef = useRef();
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -40,19 +45,71 @@ function App() {
         }
     }, []);
 
+    useEffect(() => {
+        const refs = {
+                past: pastRef,
+                present: presentRef,
+                future: futureRef,
+                advice: adviceRef,
+            },
+            waitRefs = {
+                past: pastWaitRef,
+                present: presentWaitRef,
+                future: futureWaitRef,
+                advice: adviceWaitRef,
+            };
+        cards.length &&
+            Object.keys(refs).forEach((id, i) => {
+                const isAdvice = id === "advice";
+                fillRef(
+                    id,
+                    !isAdvice && cards[i],
+                    question,
+                    refs[id],
+                    isAdvice && cards,
+                    waitRefs[id]
+                );
+            });
+    }, [cards, question]);
+
     const slides = [
-        <Home {...{ setCards, setQuestion, setUser, user }} key="home" />,
-        <Spread {...{ cards, question }} key="spread" />,
-        <Past {...{ card: cards[0], question, elemRef: pastRef }} key="past" />,
+        <Home {...{ setCards, setQuestion, setUser, user, key: "home" }} />,
+        <Spread {...{ cards, question, key: "spread" }} />,
+        <Past
+            {...{
+                card: cards[0],
+                question,
+                elemRef: pastRef,
+                waitRef: pastWaitRef,
+                key: "past",
+            }}
+        />,
         <Present
-            {...{ card: cards[1], question, elemRef: presentRef }}
-            key="present"
+            {...{
+                card: cards[1],
+                question,
+                elemRef: presentRef,
+                waitRef: presentWaitRef,
+                key: "present",
+            }}
         />,
         <Future
-            {...{ card: cards[2], question, elemRef: futureRef }}
-            key="future"
+            {...{
+                card: cards[2],
+                question,
+                elemRef: futureRef,
+                waitRef: futureWaitRef,
+                key: "future",
+            }}
         />,
-        <Advice {...{ cards, elemRef: adviceRef }} key="advice" />,
+        <Advice
+            {...{
+                cards,
+                elemRef: adviceRef,
+                waitRef: adviceWaitRef,
+                key: "advice",
+            }}
+        />,
     ];
 
     return loaded ? (

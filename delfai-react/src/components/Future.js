@@ -1,14 +1,9 @@
-import { handleJump } from "../display";
 import TimeSlide from "./TimeSlide";
 
-export default function Future({ card, question, elemRef }) {
-    const nextButton = (
-        <button onClick={(e) => handleJump("advice")}>NEXT</button>
-    );
-
+export default function Future({ card, question, elemRef, waitRef }) {
     return (
         <TimeSlide
-            {...{ card, timeframe: "Future", question, elemRef, nextButton }}
+            {...{ card, timeframe: "Future", question, elemRef, waitRef }}
         />
     );
 }
