@@ -1,4 +1,7 @@
+# don't risk leaking development key
 /public/
+# in case 'npm run build' doesn't sucessfully move /build to /public
+/delfai-react/build/
 
 # Logs
 logs
