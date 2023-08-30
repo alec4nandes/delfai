@@ -5,7 +5,8 @@ const OpenAI = require("openai"),
     cors = require("cors"),
     functions = require("firebase-functions");
 
-const openai = new OpenAI({ apiKey }),
+const IS_DEVELOPMENT = false,
+    openai = new OpenAI({ apiKey }),
     server = express();
 
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -13,11 +14,9 @@ server.use(bodyParser.json());
 server.use(
     cors({
         // TODO: remove localhost for production
-        origin: [
-            "https://delfai.web.app",
-            "http://localhost:5000",
-            "http://localhost:3000",
-        ],
+        origin: IS_DEVELOPMENT
+            ? ["http://localhost:5000", "http://localhost:3000"]
+            : ["https://delfai.web.app"],
     })
 );
 
