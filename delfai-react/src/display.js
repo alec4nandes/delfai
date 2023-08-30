@@ -1,3 +1,5 @@
+import { endpoint } from "./database.js";
+
 export default async function fillRef(
     timeframe,
     card,
@@ -7,17 +9,15 @@ export default async function fillRef(
     waitRef
 ) {
     try {
-        const // endpoint = "http://localhost:5001/delfai/us-central1/api",
-            endpoint = "https://us-central1-delfai.cloudfunctions.net/api",
-            response = await fetch(`${endpoint}/${timeframe}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(
-                    cards ? { cards, question } : { card, question }
-                ),
-            });
+        const response = await fetch(`${endpoint}/${timeframe}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                cards ? { cards, question } : { card, question }
+            ),
+        });
         waitRef.current.style.display = "none";
         fetchStream(response.body, timeframe, elemRef);
     } catch (err) {
