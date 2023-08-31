@@ -1,8 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 .env
-api-key.js
-db-info.js
+/functions/openai-api-key.js
+/src/db-info.js
 
 # dependencies
 /node_modules
