@@ -1,30 +1,37 @@
+// Replace if using a different env file or config
+require("dotenv").config({ path: "./.env" });
 const OpenAI = require("openai"),
-    { apiKey } = require("./api-key.js"),
+    { openAiApiKey } = require("./openai-api-key.js"),
     express = require("express"),
     bodyParser = require("body-parser"),
     cors = require("cors"),
-    functions = require("firebase-functions");
+    functions = require("firebase-functions"),
+    stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+// CARD READING
 
 const IS_DEVELOPMENT = false,
-    openai = new OpenAI({ apiKey }),
-    server = express();
+    getCors = () =>
+        cors({
+            origin: IS_DEVELOPMENT
+                ? ["http://localhost:5000", "http://localhost:3000"]
+                : ["https://delfai.web.app"],
+        }),
+    setUpServer = (server) => {
+        server.use(bodyParser.json());
+        server.use(bodyParser.urlencoded({ extended: true }));
+        server.use(getCors());
+    },
+    openai = new OpenAI({ apiKey: openAiApiKey }),
+    readingServer = express();
 
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(bodyParser.json());
-server.use(
-    cors({
-        // TODO: remove localhost for production
-        origin: IS_DEVELOPMENT
-            ? ["http://localhost:5000", "http://localhost:3000"]
-            : ["https://delfai.web.app"],
-    })
-);
+setUpServer(readingServer);
 
 ["past", "present", "future", "advice"].forEach(createRoute);
 
 function createRoute(timeframe) {
     const isAdvice = timeframe === "advice";
-    server.post(`/${timeframe}`, async function (req, res) {
+    readingServer.post(`/${timeframe}`, async function (req, res) {
         const { card, cards, question } = req.body,
             content = isAdvice
                 ? getAdviceContent(cards, question)
@@ -66,6 +73,69 @@ async function getStream(content) {
     });
 }
 
-const api = functions.https.onRequest(server);
+module.exports.reading = functions.https.onRequest(readingServer);
 
-module.exports = { api };
+// PAYMENT
+
+const paymentServer = express();
+
+setUpServer(paymentServer);
+
+paymentServer.post("/subscribe", async (req, res) => {
+    res.send(await createSubscription(req.body));
+
+    async function createSubscription(subReq) {
+        const {
+            name,
+            email,
+            paymentMethod: payment_method,
+            priceId: price,
+        } = subReq;
+        // create a stripe customer
+        const customer = await stripe.customers.create({
+            name,
+            email,
+            payment_method,
+            invoice_settings: {
+                default_payment_method: payment_method,
+            },
+        });
+
+        // create a stripe subscription
+        const subscription = await stripe.subscriptions.create({
+            customer: customer.id,
+            items: [{ price }],
+            payment_settings: {
+                payment_method_options: {
+                    card: {
+                        request_three_d_secure: "any",
+                    },
+                },
+                payment_method_types: ["card"],
+                save_default_payment_method: "on_subscription",
+            },
+            expand: ["latest_invoice.payment_intent"],
+            metadata: { customerEmail: email },
+        });
+
+        // return the client secret and subscription id
+        return {
+            clientSecret:
+                subscription.latest_invoice.payment_intent.client_secret,
+            subscriptionId: subscription.id,
+        };
+    }
+});
+
+paymentServer.post("/unsubscribe", async (req, res) => {
+    try {
+        await stripe.subscriptions.update(req.body.subscriptionId, {
+            cancel_at_period_end: true,
+        });
+        res.send({ confirm: true });
+    } catch (err) {
+        res.send({ confirm: false });
+    }
+});
+
+module.exports.payment = functions.https.onRequest(paymentServer);

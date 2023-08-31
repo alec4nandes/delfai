@@ -121,6 +121,10 @@ main .slide {
   padding: 60px 10px;
   scroll-snap-align: start;
 }
+main .slide#home #user-options {
+  display: flex;
+  gap: 10px;
+}
 main .slide#home #custom {
   display: flex;
   align-items: center;

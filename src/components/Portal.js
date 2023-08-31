@@ -81,7 +81,7 @@ export default function Portal() {
         let { email, password } = e.target;
         email = email.value;
         password = password.value;
-        createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
             .then(() =>
                 setDoc(doc(db, "users", email), { paid: false, free_draws: 5 })
             )

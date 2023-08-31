@@ -1,7 +1,8 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { signOut } from "firebase/auth";
-import { auth, db } from "../database.js";
+import { db, apiRoot } from "../database.js";
 import Questions, { handleQuestion } from "./Questions";
+import Subscribe from "./Stripe/Subscribe";
+import SignOut from "./SignOut";
 
 export default function Home({ setCards, setQuestion, setUser, user }) {
     return (
@@ -21,7 +22,10 @@ export default function Home({ setCards, setQuestion, setUser, user }) {
                                 </>
                             )}
                         </p>
-                        <SignOut />
+                        <div id="user-options">
+                            <Unsubscribe {...{ user }} />
+                            <SignOut />
+                        </div>
                         <CustomQuestion
                             {...{ setCards, setQuestion, setUser, user }}
                         />
@@ -36,13 +40,7 @@ export default function Home({ setCards, setQuestion, setUser, user }) {
                             registering for a paid account for only $2.99 a
                             month!
                         </p>
-                        <button
-                            id="register-button"
-                            className="standard-btn"
-                            onClick={() => handleRegister(user)}
-                        >
-                            REGISTER NOW
-                        </button>
+                        <Subscribe {...{ user }} />
                     </>
                 )}
             </div>
@@ -50,23 +48,16 @@ export default function Home({ setCards, setQuestion, setUser, user }) {
     );
 }
 
-function SignOut() {
-    return (
+function Unsubscribe({ user }) {
+    return user.paid ? (
         <button
             className="standard-btn"
-            onClick={() => {
-                signOut(auth)
-                    .then(() => {
-                        window.location.reload();
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        alert(err.message);
-                    });
-            }}
+            onClick={() => handleUnsubscribe(user)}
         >
-            sign out
+            unsubscribe
         </button>
+    ) : (
+        <></>
     );
 }
 
@@ -95,16 +86,36 @@ function CustomQuestion({ setCards, setQuestion, setUser, user }) {
     );
 }
 
-async function handleRegister(user) {
-    if (window.confirm("Are you sure you want to join?")) {
-        try {
-            await updateDoc(doc(db, "users", user.email), {
-                paid: true,
+function handleUnsubscribe(user) {
+    if (
+        window.confirm(
+            "Are you sure you want to unsubscribe? This takes effect immediately."
+        )
+    ) {
+        const { subscriptionId } = user;
+        fetch(`${apiRoot}/payment/unsubscribe`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ subscriptionId }),
+        })
+            .then((resp) => resp.json())
+            .then(async ({ confirm }) => {
+                if (confirm) {
+                    try {
+                        await updateDoc(doc(db, "users", user.email), {
+                            free_draws: 5,
+                            paid: false,
+                        });
+                        alert("Successfully unsubscribed.");
+                        window.location.reload();
+                        return;
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+                alert("Error unsubscribing. Please try again.");
             });
-            alert("Successfully registered!");
-            window.location.reload();
-        } catch (err) {
-            alert(err.message);
-        }
     }
 }

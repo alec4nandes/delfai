@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "delfai"
-  }
+    "default": "stripe-test-dc62a",
+    "delfai": "delfai"
+  },
+  "targets": {},
+  "etags": {}
 }

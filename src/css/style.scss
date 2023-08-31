@@ -138,6 +138,11 @@ main {
         scroll-snap-align: start;
 
         &#home {
+            #user-options {
+                display: flex;
+                gap: 10px;
+            }
+
             #custom {
                 display: flex;
                 align-items: center;

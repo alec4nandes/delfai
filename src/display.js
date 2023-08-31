@@ -1,4 +1,4 @@
-import { endpoint } from "./database.js";
+import { apiRoot } from "./database.js";
 
 export default async function fillRef(
     timeframe,
@@ -9,7 +9,7 @@ export default async function fillRef(
     waitRef
 ) {
     try {
-        const response = await fetch(`${endpoint}/${timeframe}`, {
+        const response = await fetch(`${apiRoot}/reading/${timeframe}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
