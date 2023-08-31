@@ -102,18 +102,18 @@ function handleUnsubscribe(user) {
         })
             .then((resp) => resp.json())
             .then(async ({ confirm }) => {
-                if (confirm) {
-                    try {
-                        await updateDoc(doc(db, "users", user.email), {
-                            free_draws: 5,
-                            paid: false,
-                        });
+                try {
+                    await updateDoc(doc(db, "users", user.email), {
+                        free_draws: 5,
+                        paid: false,
+                    });
+                    if (confirm) {
                         alert("Successfully unsubscribed.");
                         window.location.reload();
                         return;
-                    } catch (err) {
-                        console.error(err);
                     }
+                } catch (err) {
+                    console.error(err);
                 }
                 alert("Error unsubscribing. Please try again.");
             });
