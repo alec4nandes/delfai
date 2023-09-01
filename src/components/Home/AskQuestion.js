@@ -2,6 +2,7 @@ import { doc, updateDoc } from "@firebase/firestore";
 import { db, apiRoot } from "../../database.js";
 import SignOut from "../SignOut.js";
 import Questions, { handleQuestion } from "./Questions";
+import ResetPassword from "../ResetPassword.js";
 
 export default function AskQuestion({ user, setCards, setQuestion, setUser }) {
     return (
@@ -19,6 +20,7 @@ export default function AskQuestion({ user, setCards, setQuestion, setUser }) {
             </p>
             <div id="user-options">
                 <Unsubscribe {...{ user }} />
+                <ResetPassword email={user.email} />
                 <SignOut />
             </div>
             <CustomQuestion {...{ setCards, setQuestion, setUser, user }} />

@@ -6,10 +6,12 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
+import ResetPassword from "./ResetPassword.js";
 
 export default function Portal() {
     const [hasAccount, setHasAccount] = useState(false),
-        [errorMessage, setErrorMessage] = useState("");
+        [errorMessage, setErrorMessage] = useState(""),
+        [loginEmail, setLoginEmail] = useState("");
 
     return (
         <div id="sign-in">
@@ -26,6 +28,9 @@ export default function Portal() {
                                     name="email"
                                     type="email"
                                     id="email"
+                                    onChange={(e) =>
+                                        setLoginEmail(e.target.value)
+                                    }
                                     required
                                 />
                             </td>
@@ -44,7 +49,8 @@ export default function Portal() {
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan="2">
+                            <td></td>
+                            <td>
                                 <button className="standard-btn">
                                     sign {hasAccount ? "in" : "up"}
                                 </button>
@@ -54,12 +60,15 @@ export default function Portal() {
                 </table>
                 <p id="sign-in-error">{errorMessage}</p>
             </form>
-            <button
-                className="standard-btn"
-                onClick={() => setHasAccount((bool) => !bool)}
-            >
-                sign {hasAccount ? "up" : "in"} instead
-            </button>
+            <div id="user-options">
+                {hasAccount ? <ResetPassword email={loginEmail} /> : <></>}
+                <button
+                    className="standard-btn"
+                    onClick={() => setHasAccount((bool) => !bool)}
+                >
+                    sign {hasAccount ? "up" : "in"} instead
+                </button>
+            </div>
         </div>
     );
 

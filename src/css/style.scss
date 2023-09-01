@@ -59,10 +59,6 @@ body {
                     &:first-child {
                         text-align: right;
                     }
-
-                    button {
-                        margin-left: auto;
-                    }
                 }
             }
         }
@@ -93,6 +89,13 @@ nav li,
         color: #eee;
         cursor: pointer;
     }
+}
+
+#user-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 header {
@@ -138,13 +141,6 @@ main {
         scroll-snap-align: start;
 
         &#home {
-            #user-options {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: center;
-            }
-
             #custom {
                 display: flex;
                 align-items: center;

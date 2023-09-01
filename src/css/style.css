@@ -54,9 +54,6 @@ body textarea {
 #sign-in form table tr td:first-child {
   text-align: right;
 }
-#sign-in form table tr td button {
-  margin-left: auto;
-}
 #sign-in #sign-in-error {
   color: red;
 }
@@ -82,6 +79,13 @@ nav li:hover,
   background-color: #111;
   color: #eee;
   cursor: pointer;
+}
+
+#user-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 header nav {
@@ -120,12 +124,6 @@ main .slide {
   overflow-y: auto;
   padding: 60px 10px;
   scroll-snap-align: start;
-}
-main .slide#home #user-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
 }
 main .slide#home #custom {
   display: flex;
