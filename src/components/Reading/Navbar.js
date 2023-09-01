@@ -1,4 +1,4 @@
-import { handleJump } from "../display.js";
+import { handleJump } from "../../display.js";
 
 export default function NavBar() {
     return (

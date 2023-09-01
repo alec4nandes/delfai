@@ -4,15 +4,15 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
-import Home from "./Home";
-import Spread from "./Spread";
-import Past from "./Past";
-import Present from "./Present";
-import Future from "./Future";
-import Advice from "./Advice";
-import NavBar from "./Navbar";
+import Home from "./Home/Home.js";
+import Spread from "./Reading/Spread.js";
+import Past from "./Reading/TimeSlide/Past.js";
+import Present from "./Reading/TimeSlide/Present.js";
+import Future from "./Reading/TimeSlide/Future.js";
+import Advice from "./Reading/Advice";
+import NavBar from "./Reading/Navbar";
 
-function App() {
+export default function App() {
     const [loaded, setLoaded] = useState(false),
         [user, setUser] = useState(null),
         [cards, setCards] = useState([]),
@@ -28,15 +28,16 @@ function App() {
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
-            setUser(await getUserData(user?.email));
+            user && setUser(await getUserData(user));
             setLoaded(true);
         });
 
-        async function getUserData(email) {
+        async function getUserData(user) {
+            const { email, emailVerified } = user || {};
             try {
                 const data =
                     (await getDoc(doc(db, "users", email))).data() || {};
-                return { email, ...data };
+                return { email, emailVerified, ...data };
             } catch (err) {
                 console.error(err);
                 return null;
@@ -145,5 +146,3 @@ function handleScroll(e) {
         }
     });
 }
-
-export default App;

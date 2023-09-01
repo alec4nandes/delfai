@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
     createUserWithEmailAndPassword,
+    sendEmailVerification,
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -81,14 +82,21 @@ export default function Portal() {
         let { email, password } = e.target;
         email = email.value;
         password = password.value;
-        await createUserWithEmailAndPassword(auth, email, password)
-            .then(() =>
-                setDoc(doc(db, "users", email), { paid: false, free_draws: 5 })
-            )
-            .catch((error) => {
-                const { code, message } = error;
-                console.error(code);
-                setErrorMessage(message);
+        try {
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            await sendEmailVerification(user);
+            await setDoc(doc(db, "users", email), {
+                paid: false,
+                free_draws: 5,
             });
+        } catch (error) {
+            const { message } = error;
+            console.error(error);
+            setErrorMessage(message);
+        }
     }
 }

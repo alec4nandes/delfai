@@ -123,7 +123,9 @@ main .slide {
 }
 main .slide#home #user-options {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
 }
 main .slide#home #custom {
   display: flex;

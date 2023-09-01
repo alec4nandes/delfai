@@ -1,5 +1,5 @@
-import CardImage from "./CardImage";
-import NextButton from "./NextButton";
+import CardImage from "../CardImage";
+import NextButton from "../NextButton";
 
 export default function TimeSlide({ card, timeframe, elemRef, waitRef }) {
     return (

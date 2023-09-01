@@ -1,6 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../database.js";
-import getRandomCards from "../deck.js";
+import { db } from "../../database.js";
+import getRandomCards from "../../deck.js";
 
 export default function Questions({ setCards, setQuestion, setUser, user }) {
     const questions = {

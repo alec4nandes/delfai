@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { apiRoot, db } from "../../database.js";
-import SignOut from "../SignOut.js";
+import { apiRoot, db } from "../../../database.js";
+import SignOut from "../../SignOut.js";
 
 function CheckoutForm({ user }) {
     // collect data from the user
