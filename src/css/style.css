@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap");
+body,
+html,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #222;
+  margin: 0;
+}
+body,
+body button,
+body input,
+body textarea {
+  color: #111;
+  font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.4rem;
+}
+body button,
+body input,
+body textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  border-radius: 0;
+}
+body input,
+body textarea {
+  background-color: #eee;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+#sign-in {
+  height: 100%;
+  width: 100%;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#sign-in form table {
+  margin: auto;
+}
+#sign-in form table tr td:first-child {
+  text-align: right;
+}
+#sign-in #sign-in-error {
+  color: red;
+}
+
+.standard-btn {
+  height: 35px;
+  min-width: 90px;
+  font-weight: bold;
+}
+
+.standard-btn,
+nav li,
+#questions button {
+  background-color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.standard-btn:hover,
+nav li:hover,
+#questions button:hover {
+  background-color: #111;
+  color: #eee;
+  cursor: pointer;
+}
+
+#user-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+header nav {
+  height: 35px;
+}
+header nav ul {
+  height: 100%;
+  display: flex;
+  list-style-type: none;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+header nav ul li {
+  flex: 1;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1rem;
+}
+header nav ul li.highlighted {
+  background-color: transparent;
+  color: #eee;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+main .slide {
+  height: 100%;
+  min-width: 100vw;
+  box-sizing: border-box;
+  color: #eee;
+  overflow-y: auto;
+  padding: 60px 10px;
+  scroll-snap-align: start;
+}
+main .slide#home #custom {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+main .slide#home #custom textarea {
+  height: 80px;
+  width: 300px;
+}
+main .slide#home #questions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .slide#home #questions,
+main .slide#home #questions button {
+  width: 100%;
+}
+main .slide#home #questions button {
+  box-sizing: border-box;
+  flex-direction: column;
+  font-size: inherit;
+  font-style: italic;
+  padding: 10px;
+}
+main .slide#home #questions button h3 {
+  font-style: initial;
+  margin: 0 0 5px;
+  text-decoration: underline;
+}
+main .slide#home .payment-input-wrapper {
+  border-bottom: 2px solid #333;
+  margin-bottom: 12.5px;
+}
+main .slide#home .payment-input-wrapper input {
+  width: 100%;
+  color: #eee;
+  background-color: transparent;
+  font-size: 16px;
+  font-family: "Courier New";
+  text-align: center;
+}
+main .slide#home .payment-input-wrapper input::-moz-placeholder {
+  color: #888;
+}
+main .slide#home .payment-input-wrapper input::placeholder {
+  color: #888;
+}
+main .slide .slide-container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+}
+main .slide .slide-container > * {
+  margin: 0;
+  text-align: center;
+}
+main .slide .slide-container > *:is(h1) {
+  margin-bottom: 25px;
+}
+main .slide .slide-container .card-image {
+  height: 200px;
+}
+main .slide .slide-container .card-image.reversed {
+  transform: rotate(180deg);
+}/*# sourceMappingURL=style.css.map */
