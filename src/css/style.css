@@ -160,6 +160,13 @@ main .slide#home .payment-input-wrapper {
   border-bottom: 2px solid #333;
   margin-bottom: 12.5px;
 }
+main .slide#home .payment-input-wrapper:first-child input {
+  height: 19.2px;
+  padding: 0;
+}
+main .slide#home .payment-input-wrapper:first-child input:focus {
+  outline: none;
+}
 main .slide#home .payment-input-wrapper input {
   width: 100%;
   color: #eee;
