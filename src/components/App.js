@@ -16,6 +16,7 @@ export default function App() {
     const [loaded, setLoaded] = useState(false),
         [user, setUser] = useState(null),
         [cards, setCards] = useState([]),
+        [matching, setMatching] = useState(),
         [question, setQuestion] = useState(),
         pastRef = useRef(),
         presentRef = useRef(),
@@ -73,8 +74,17 @@ export default function App() {
     }, [cards, question]);
 
     const slides = [
-        <Home {...{ setCards, setQuestion, setUser, user, key: "home" }} />,
-        <Spread {...{ cards, question, key: "spread" }} />,
+        <Home
+            {...{
+                setCards,
+                setMatching,
+                setQuestion,
+                setUser,
+                user,
+                key: "home",
+            }}
+        />,
+        <Spread {...{ cards, matching, question, key: "spread" }} />,
         <Past
             {...{
                 card: cards[0],

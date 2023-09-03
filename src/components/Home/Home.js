@@ -4,7 +4,13 @@ import AskQuestion from "./AskQuestion";
 import Subscribe from "./Stripe/Subscribe.js";
 import SignOut from "../SignOut.js";
 
-export default function Home({ setCards, setQuestion, setUser, user }) {
+export default function Home({
+    setCards,
+    setMatching,
+    setQuestion,
+    setUser,
+    user,
+}) {
     return (
         <div id="home" className="slide">
             <div className="slide-container">
@@ -12,7 +18,13 @@ export default function Home({ setCards, setQuestion, setUser, user }) {
                 {user.emailVerified ? (
                     user.paid || user.free_draws > 0 ? (
                         <AskQuestion
-                            {...{ user, setCards, setQuestion, setUser }}
+                            {...{
+                                user,
+                                setCards,
+                                setMatching,
+                                setQuestion,
+                                setUser,
+                            }}
                         />
                     ) : (
                         <FreeTrialOver {...{ user }} />

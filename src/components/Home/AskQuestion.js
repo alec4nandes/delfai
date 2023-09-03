@@ -4,7 +4,13 @@ import SignOut from "../SignOut.js";
 import Questions, { handleQuestion } from "./Questions";
 import ResetPassword from "../ResetPassword.js";
 
-export default function AskQuestion({ user, setCards, setQuestion, setUser }) {
+export default function AskQuestion({
+    user,
+    setCards,
+    setMatching,
+    setQuestion,
+    setUser,
+}) {
     return (
         <>
             <p id="free-status">
@@ -23,8 +29,12 @@ export default function AskQuestion({ user, setCards, setQuestion, setUser }) {
                 <ResetPassword email={user.email} />
                 <SignOut />
             </div>
-            <CustomQuestion {...{ setCards, setQuestion, setUser, user }} />
-            <Questions {...{ setCards, setQuestion, setUser, user }} />
+            <CustomQuestion
+                {...{ setCards, setMatching, setQuestion, setUser, user }}
+            />
+            <Questions
+                {...{ setCards, setMatching, setQuestion, setUser, user }}
+            />
         </>
     );
 }
@@ -76,7 +86,7 @@ function Unsubscribe({ user }) {
     }
 }
 
-function CustomQuestion({ setCards, setQuestion, setUser, user }) {
+function CustomQuestion({ setCards, setMatching, setQuestion, setUser, user }) {
     return (
         <>
             <h2>Ask the Tarot cards a question:</h2>
@@ -89,7 +99,14 @@ function CustomQuestion({ setCards, setQuestion, setUser, user }) {
             <form
                 id="custom"
                 onSubmit={(e) =>
-                    handleQuestion(e, setCards, setQuestion, setUser, user)
+                    handleQuestion(
+                        e,
+                        setCards,
+                        setMatching,
+                        setQuestion,
+                        setUser,
+                        user
+                    )
                 }
             >
                 <textarea name="question"></textarea>

@@ -1,7 +1,7 @@
 import CardImage from "./CardImage";
 import NextButton from "./NextButton";
 
-export default function Spread({ cards, question }) {
+export default function Spread({ cards, matching, question }) {
     return (
         <div id="spread" className="slide">
             <div className="slide-container">
@@ -17,6 +17,7 @@ export default function Spread({ cards, question }) {
                         <p>Reading: {cards.join(", ")}</p>
                         {question ? <p>Asking: "{question}"</p> : <></>}
                         <NextButton />
+                        <pre>{JSON.stringify(matching, null, 4)}</pre>
                     </>
                 ) : (
                     <p>Nothing loaded yet...</p>
