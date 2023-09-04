@@ -17,7 +17,7 @@ export default function Spread({ cards, matching, question }) {
                         <p>Reading: {cards.join(", ")}</p>
                         {question ? <p>Asking: "{question}"</p> : <></>}
                         <NextButton />
-                        <pre>{JSON.stringify(matching, null, 4)}</pre>
+                        {JSON.stringify(matching, null, 4)}
                     </>
                 ) : (
                     <p>Nothing loaded yet...</p>

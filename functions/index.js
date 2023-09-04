@@ -32,11 +32,13 @@ setUpServer(readingServer);
 function createRoute(timeframe) {
     const isAdvice = timeframe === "advice";
     readingServer.post(`/${timeframe}`, async function (req, res) {
-        const { card, cards, question } = req.body,
+        const { card, cards, question, prompts } = req.body,
             content = isAdvice
-                ? getAdviceContent(cards, question)
-                : getContent(card, timeframe, question),
+                ? getAdviceContent(cards, question, prompts)
+                : getContent(card, timeframe, question, prompts),
             stream = await getStream(content);
+        console.log(prompts);
+        console.log(content);
         for await (const part of stream) {
             const moreText = part.choices[0]?.delta?.content || "";
             res.write(moreText);
@@ -45,20 +47,22 @@ function createRoute(timeframe) {
     });
 }
 
-function getAdviceContent(cards, question) {
+function getAdviceContent(cards, question, prompts) {
     return `What life advice would you give me if I drew the following tarot cards: ${cards
         .map(
             (card, i) =>
                 `${card} for my ${i ? (i > 1 ? "future" : "present") : "past"}`
         )
         .join(", ")
-        .trim()}. Please write only one paragraph. ${askQuestion(question)}`;
+        .trim()}. Please write only one paragraph. ${askQuestion(question)} ${
+        prompts?.join(" ") || ""
+    }`;
 }
 
-function getContent(card, timeframe, question) {
+function getContent(card, timeframe, question, prompts) {
     return `Please write only one paragraph about the tarot card ${card} and how it can relate to my ${timeframe}. ${askQuestion(
         question
-    )}`;
+    )} ${prompts?.join(" ") || ""}`;
 }
 
 function askQuestion(question) {

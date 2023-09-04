@@ -6,7 +6,8 @@ export default async function fillRef(
     question,
     elemRef,
     cards,
-    waitRef
+    waitRef,
+    matching
 ) {
     try {
         const response = await fetch(`${apiRoot}/reading/${timeframe}`, {
@@ -14,9 +15,11 @@ export default async function fillRef(
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                cards ? { cards, question } : { card, question }
-            ),
+            body: JSON.stringify({
+                ...(cards ? { cards } : { card }),
+                question,
+                prompts: matching[cards ? "advice" : card],
+            }),
         });
         waitRef.current.style.display = "none";
         fetchStream(response.body, timeframe, elemRef);

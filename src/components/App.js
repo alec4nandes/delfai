@@ -61,17 +61,20 @@ export default function App() {
             };
         cards.length &&
             Object.keys(refs).forEach((id, i) => {
-                const isAdvice = id === "advice";
-                fillRef(
-                    id,
-                    !isAdvice && cards[i],
-                    question,
-                    refs[id],
-                    isAdvice && cards,
-                    waitRefs[id]
-                );
-            });
-    }, [cards, question]);
+                setTimeout(() => {
+                    const isAdvice = id === "advice";
+                    fillRef(
+                        id,
+                        !isAdvice && cards[i],
+                        question,
+                        refs[id],
+                        isAdvice && cards,
+                        waitRefs[id],
+                        matching
+                    );
+                });
+            }, 200);
+    }, [cards, matching, question]);
 
     const slides = [
         <Home

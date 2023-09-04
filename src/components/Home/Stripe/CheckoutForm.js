@@ -129,7 +129,7 @@ function CheckoutForm({ user }) {
                 }
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             alert(
                 "There was an error submitting your payment. Please make sure your information is correct."
             );

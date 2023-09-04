@@ -82,7 +82,6 @@ function handleQuestion(e, setCards, setMatching, setQuestion, setUser, user) {
     e.preventDefault();
     const spread = getSpread(),
         matching = getMatching(spread);
-    console.log(spread);
     console.log(matching);
     setCards(
         spread.map(
