@@ -45,7 +45,8 @@ function getCardOpposites(name) {
 function getOppositeWords(word) {
     return opposites
         .filter((pair) => pair.includes(word))
-        .map((pair) => pair[pair.indexOf(word) ? 0 : 1]);
+        .map((pair) => pair[pair.indexOf(word) ? 0 : 1])
+        .filter(Boolean); // in case empty string in pair
 }
 
 export { getSpread, getTestSpread, getOppositeWords };

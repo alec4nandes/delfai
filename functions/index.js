@@ -27,20 +27,16 @@ const IS_DEVELOPMENT = false,
 
 setUpServer(readingServer);
 
-["past", "present", "future", "advice"].forEach(createRoute);
-
-function createRoute(timeframe) {
-    readingServer.post(`/${timeframe}`, async function (req, res) {
-        const { prompt } = req.body,
-            stream = await getStream(prompt);
-        console.log(prompt);
-        for await (const part of stream) {
-            const moreText = part.choices[0]?.delta?.content || "";
-            res.write(moreText);
-        }
-        res.end();
-    });
-}
+readingServer.post("/", async function (req, res) {
+    const { prompt } = req.body,
+        stream = await getStream(prompt);
+    IS_DEVELOPMENT && console.log(prompt);
+    for await (const part of stream) {
+        const moreText = part.choices[0]?.delta?.content || "";
+        res.write(moreText);
+    }
+    res.end();
+});
 
 async function getStream(content) {
     return await openai.chat.completions.create({

@@ -45,7 +45,7 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        const refs = {
+        const elemRefs = {
                 past: pastRef,
                 present: presentRef,
                 future: futureRef,
@@ -58,13 +58,17 @@ export default function App() {
                 advice: adviceWaitRef,
             };
         cards &&
-            Object.keys(refs).forEach((timeframe) =>
-                fillRef(timeframe, cards, refs[timeframe], waitRefs[timeframe])
+            Object.keys(elemRefs).forEach((timeframe) =>
+                fillRef(
+                    cards,
+                    timeframe,
+                    waitRefs[timeframe],
+                    elemRefs[timeframe]
+                )
             );
     }, [cards]);
 
     const slides = [
-        <Home {...{ setCards, setUser, user, key: "home" }} />,
         <Spread {...{ cards, key: "spread" }} />,
         <Past
             {...{
@@ -104,7 +108,11 @@ export default function App() {
             <>
                 {cards ? <NavBar /> : <></>}
                 <main onScroll={(e) => handleScroll(e)}>
-                    {cards ? slides.slice(1) : slides[0]}
+                    {cards ? (
+                        slides
+                    ) : (
+                        <Home {...{ setCards, setUser, user, key: "home" }} />
+                    )}
                 </main>
             </>
         ) : (

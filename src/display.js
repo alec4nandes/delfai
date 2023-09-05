@@ -1,8 +1,8 @@
 import { apiRoot } from "./database.js";
 
-export default async function fillRef(timeframe, cards, elemRef, waitRef) {
+export default async function fillRef(cards, timeframe, waitRef, elemRef) {
     try {
-        const response = await fetch(`${apiRoot}/reading/${timeframe}`, {
+        const response = await fetch(`${apiRoot}/reading`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
