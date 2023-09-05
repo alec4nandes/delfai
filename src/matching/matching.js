@@ -10,22 +10,27 @@ function getMatching(spread) {
         card.words.forEach((word) => {
             acc[word]?.matching.push(card) ||
                 (acc[word] = { matching: [card] });
-            acc[word].opposites = opposites[word].reduce(
-                (acc, oppo) => ({
-                    ...acc,
-                    [oppo]: spread.filter((card) => card.words.includes(oppo)),
-                }),
-                {}
-            );
+            if (acc[word].opposites) {
+                acc[word].opposites = opposites[word].reduce(
+                    (acc, oppo) => ({
+                        ...acc,
+                        [oppo]: spread.filter((card) =>
+                            card.words.includes(oppo)
+                        ),
+                    }),
+                    {}
+                );
+            }
         });
         return acc;
     }, {});
     Object.entries(result).forEach(([word, { matching, opposites }]) => {
-        Object.entries(opposites).forEach(
-            ([oppo, cards]) => !cards.length && delete opposites[oppo]
-        );
+        opposites &&
+            Object.entries(opposites).forEach(
+                ([oppo, cards]) => !cards.length && delete opposites[oppo]
+            );
         matching.length < 2 &&
-            !Object.keys(opposites).length &&
+            (!opposites || !Object.keys(opposites).length) &&
             delete result[word];
     });
 
@@ -49,16 +54,19 @@ function getMatching(spread) {
                                 )}. Please emphasize this in your response.`
                             );
                     }
-                    Object.entries(opposites)
-                        .filter(([_, oppoCards]) => oppoCards.includes(card))
-                        .forEach(([oppo]) =>
-                            result.push(
-                                `This card means "${oppo}," which contrasts with ${helper(
-                                    matching,
-                                    spread
-                                )} representing the word "${word}." How could you explain this contrast in the reading?`
+                    opposites &&
+                        Object.entries(opposites)
+                            .filter(([_, oppoCards]) =>
+                                oppoCards.includes(card)
                             )
-                        );
+                            .forEach(([oppo]) =>
+                                result.push(
+                                    `This card means "${oppo}," which contrasts with ${helper(
+                                        matching,
+                                        spread
+                                    )} representing the word "${word}." How could you explain this contrast in the reading?`
+                                )
+                            );
                     return result;
                 })
                 .flat(Infinity),
@@ -71,10 +79,10 @@ function getMatching(spread) {
             const cardNames = matching
                     .map((card) => `"${getCardName(card)}"`)
                     .join(", "),
-                oppositeWords = Object.entries(opposites);
+                oppositeWords = opposites && Object.entries(opposites);
             return (
                 `Keep in mind ${cardNames} and their connection to the word "${word}"` +
-                (oppositeWords.length
+                (oppositeWords?.length
                     ? `, which contrasts with the word${
                           oppositeWords.length > 1 ? "s" : ""
                       } ${oppositeWords

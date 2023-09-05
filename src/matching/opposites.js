@@ -1,24 +1,100 @@
-import openAi from "./open-ai.js";
-
-function getAllOpposites() {
-    const result = {};
-    Object.values(openAi).forEach((value) =>
-        Object.entries(value).forEach(([word, { opposite_meaning: oppo }]) => {
-            helper(word, oppo);
-            helper(oppo, word);
-        })
-    );
-    return result;
-
-    function helper(word, oppo) {
-        word = word.toLowerCase();
-        result[word]?.push(oppo) || (result[word] = [oppo]);
-        result[word] = [
-            ...new Set(result[word].map((w) => w.toLowerCase())),
-        ].sort();
-    }
-}
-
-const opposites = getAllOpposites();
+const opposites = {
+    light: ["darkness"],
+    darkness: ["light"],
+    day: ["night"],
+    night: ["day"],
+    sun: ["moon"],
+    moon: ["sun"],
+    strength: ["weakness"],
+    weakness: ["strength"],
+    victory: ["defeat"],
+    defeat: ["victory"],
+    life: ["death"],
+    death: ["life"],
+    beginnings: ["endings"],
+    endings: ["beginnings"],
+    love: ["hate"],
+    hate: ["love"],
+    joy: ["sorrow"],
+    sorrow: ["joy"],
+    hope: ["despair"],
+    despair: ["hope"],
+    knowledge: ["ignorance"],
+    ignorance: ["knowledge"],
+    prosperity: ["poverty"],
+    poverty: ["prosperity"],
+    abundance: ["scarcity"],
+    scarcity: ["abundance"],
+    growth: ["decay"],
+    decay: ["growth"],
+    pleasure: ["pain"],
+    pain: ["pleasure"],
+    harmony: ["conflict"],
+    conflict: ["harmony"],
+    success: ["failure"],
+    failure: ["success"],
+    health: ["illness"],
+    illness: ["health"],
+    beauty: ["ugliness"],
+    ugliness: ["beauty"],
+    clarity: ["confusion"],
+    confusion: ["clarity"],
+    truth: ["deception"],
+    deception: ["truth"],
+    trust: ["betrayal"],
+    betrayal: ["trust"],
+    peace: ["chaos"],
+    chaos: ["peace"],
+    creativity: ["stagnation"],
+    stagnation: ["creativity"],
+    freedom: ["imprisonment"],
+    imprisonment: ["freedom"],
+    opportunity: ["obstacles"],
+    obstacles: ["opportunity"],
+    fortune: ["misfortune"],
+    misfortune: ["fortune"],
+    order: ["disorder"],
+    disorder: ["order"],
+    justice: ["injustice"],
+    injustice: ["justice"],
+    wisdom: ["foolishness"],
+    foolishness: ["wisdom"],
+    balance: ["imbalance"],
+    imbalance: ["balance"],
+    resolution: ["hesitation"],
+    hesitation: ["resolution"],
+    recovery: ["relapse"],
+    relapse: ["recovery"],
+    serenity: ["turmoil"],
+    turmoil: ["serenity"],
+    revelation: ["secrecy"],
+    secrecy: ["revelation"],
+    ascension: ["descension"],
+    descension: ["ascension"],
+    enlightenment: ["ignorance"],
+    ignorance: ["enlightenment"],
+    insight: ["blindness"],
+    blindness: ["insight"],
+    redemption: ["damnation"],
+    damnation: ["redemption"],
+    acceptance: ["rejection"],
+    rejection: ["acceptance"],
+    tranquility: ["disturbance"],
+    disturbance: ["tranquility"],
+    inspiration: ["desperation"],
+    desperation: ["inspiration"],
+    innocence: ["guilt"],
+    guilt: ["innocence"],
+    certainty: ["doubt"],
+    doubt: ["certainty"],
+    progress: ["regression"],
+    regression: ["progress"],
+    faith: ["doubt"],
+    doubt: ["faith"],
+    guidance: ["misguidance"],
+    misguidance: ["guidance"],
+    courage: ["cowardice"],
+    cowardice: ["courage"],
+};
 
 export default opposites;
