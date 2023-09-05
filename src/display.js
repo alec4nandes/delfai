@@ -1,22 +1,13 @@
 import { apiRoot } from "./database.js";
 
-export default async function fillRef(
-    timeframe,
-    card,
-    question,
-    elemRef,
-    cards,
-    waitRef
-) {
+export default async function fillRef(timeframe, cards, elemRef, waitRef) {
     try {
         const response = await fetch(`${apiRoot}/reading/${timeframe}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                cards ? { cards, question } : { card, question }
-            ),
+            body: JSON.stringify({ prompt: cards.spread[timeframe].prompt }),
         });
         waitRef.current.style.display = "none";
         fetchStream(response.body, timeframe, elemRef);

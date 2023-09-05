@@ -15,8 +15,7 @@ import NavBar from "./Reading/Navbar";
 export default function App() {
     const [loaded, setLoaded] = useState(false),
         [user, setUser] = useState(null),
-        [cards, setCards] = useState([]),
-        [question, setQuestion] = useState(),
+        [cards, setCards] = useState(),
         pastRef = useRef(),
         presentRef = useRef(),
         futureRef = useRef(),
@@ -58,27 +57,18 @@ export default function App() {
                 future: futureWaitRef,
                 advice: adviceWaitRef,
             };
-        cards.length &&
-            Object.keys(refs).forEach((id, i) => {
-                const isAdvice = id === "advice";
-                fillRef(
-                    id,
-                    !isAdvice && cards[i],
-                    question,
-                    refs[id],
-                    isAdvice && cards,
-                    waitRefs[id]
-                );
-            });
-    }, [cards, question]);
+        cards &&
+            Object.keys(refs).forEach((timeframe) =>
+                fillRef(timeframe, cards, refs[timeframe], waitRefs[timeframe])
+            );
+    }, [cards]);
 
     const slides = [
-        <Home {...{ setCards, setQuestion, setUser, user, key: "home" }} />,
-        <Spread {...{ cards, question, key: "spread" }} />,
+        <Home {...{ setCards, setUser, user, key: "home" }} />,
+        <Spread {...{ cards, key: "spread" }} />,
         <Past
             {...{
-                card: cards[0],
-                question,
+                card: cards?.spread.past,
                 elemRef: pastRef,
                 waitRef: pastWaitRef,
                 key: "past",
@@ -86,8 +76,7 @@ export default function App() {
         />,
         <Present
             {...{
-                card: cards[1],
-                question,
+                card: cards?.spread.present,
                 elemRef: presentRef,
                 waitRef: presentWaitRef,
                 key: "present",
@@ -95,8 +84,7 @@ export default function App() {
         />,
         <Future
             {...{
-                card: cards[2],
-                question,
+                card: cards?.spread.future,
                 elemRef: futureRef,
                 waitRef: futureWaitRef,
                 key: "future",
@@ -104,7 +92,6 @@ export default function App() {
         />,
         <Advice
             {...{
-                cards,
                 elemRef: adviceRef,
                 waitRef: adviceWaitRef,
                 key: "advice",
@@ -115,9 +102,9 @@ export default function App() {
     return loaded ? (
         user ? (
             <>
-                {cards.length ? <NavBar /> : <></>}
+                {cards ? <NavBar /> : <></>}
                 <main onScroll={(e) => handleScroll(e)}>
-                    {cards.length ? slides.slice(1) : slides[0]}
+                    {cards ? slides.slice(1) : slides[0]}
                 </main>
             </>
         ) : (

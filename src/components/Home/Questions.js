@@ -1,8 +1,9 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../database.js";
-import getRandomCards from "../../deck.js";
+import { compareCards } from "../../compare/compare.js";
+import { getSpread } from "../../compare/spread.js";
 
-export default function Questions({ setCards, setQuestion, setUser, user }) {
+export default function Questions({ setCards, setUser, user }) {
     const questions = {
         "Self-Discovery":
             "What aspects of myself should I focus on to better understand who I am?",
@@ -44,9 +45,7 @@ export default function Questions({ setCards, setQuestion, setUser, user }) {
 
     const buttons = Object.entries(questions).map(([key, value], i) => (
         <form
-            onSubmit={(e) =>
-                handleQuestion(e, setCards, setQuestion, setUser, user)
-            }
+            onSubmit={(e) => handleQuestion(e, setCards, setUser, user)}
             key={`question-${i + 1}`}
         >
             <button name="question" type="submit" value={value}>
@@ -64,10 +63,10 @@ export default function Questions({ setCards, setQuestion, setUser, user }) {
     );
 }
 
-function handleQuestion(e, setCards, setQuestion, setUser, user) {
+function handleQuestion(e, setCards, setUser, user) {
     e.preventDefault();
-    setCards(getRandomCards());
-    setQuestion(e.target.question.value);
+    const question = e.target.question.value;
+    setCards(compareCards(getSpread(), question));
     if (!user.paid) {
         setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
         updateDoc(doc(db, "users", user.email), {
