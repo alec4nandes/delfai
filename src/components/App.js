@@ -122,7 +122,8 @@ function handleScroll(e) {
         const elem = getElem(id),
             left = elem.offsetLeft - e.target.scrollLeft,
             screenWidth = window.innerWidth,
-            isShowing = -1 <= left && left < screenWidth;
+            // 20px buffer
+            isShowing = -20 <= left && left < screenWidth - 20;
         if (isShowing) {
             const getNavItem = (id) => getElem(`nav-${id}`),
                 navItems = ids.map(getNavItem),

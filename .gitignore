@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+/.firebase
+firebase-debug.log
+
 .env
 /functions/openai-api-key.js
 /src/db-info.js
