@@ -1,7 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../database.js";
 import { compareCards } from "../../compare/compare.js";
-import { getSpread } from "../../compare/spread.js";
+import { getSpread, getTestSpread } from "../../compare/spread.js";
 
 export default function Questions({ setCards, setUser, user }) {
     const questions = {
@@ -65,8 +65,10 @@ export default function Questions({ setCards, setUser, user }) {
 
 function handleQuestion(e, setCards, setUser, user) {
     e.preventDefault();
-    const question = e.target.question.value;
-    setCards(compareCards(getSpread(), question));
+    const question = e.target.question.value,
+        compare = compareCards(getTestSpread(), question);
+    setCards(compare);
+    console.log(compare);
     if (!user.paid) {
         setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
         updateDoc(doc(db, "users", user.email), {

@@ -1,5 +1,7 @@
 import TimeSlide from "./TimeSlide";
 
-export default function Past({ card, elemRef, waitRef }) {
-    return <TimeSlide {...{ card, timeframe: "Past", elemRef, waitRef }} />;
+export default function Past({ cards, card, elemRef, waitRef }) {
+    return (
+        <TimeSlide {...{ cards, card, timeframe: "Past", elemRef, waitRef }} />
+    );
 }

@@ -1,18 +1,47 @@
 import CardImage from "../CardImage";
+import Compare from "../Compare/Compare";
 import NextButton from "../NextButton";
 
-export default function TimeSlide({ card, timeframe, elemRef, waitRef }) {
+export default function TimeSlide({
+    cards,
+    card,
+    timeframe,
+    elemRef,
+    waitRef,
+}) {
+    function getMatchingForCard() {
+        const result = Object.entries(cards.matching).filter(([_, cardNames]) =>
+            cardNames.includes(card.name)
+        );
+        return Object.fromEntries(result);
+    }
+
+    function getOppositesForCard() {
+        const result = Object.entries(cards.opposites).filter(
+            ([_, info]) =>
+                info.cards.includes(card.name) ||
+                Object.values(info).filter((oppoCards) =>
+                    oppoCards.includes(card.name)
+                ).length
+        );
+        return Object.fromEntries(result);
+    }
+
+    const matching = getMatchingForCard(),
+        opposites = getOppositesForCard();
+
     return (
         <div id={timeframe.toLowerCase()} className="slide">
             <div className="slide-container">
                 <h2>{timeframe}</h2>
                 <h3>{card.name}</h3>
                 <CardImage card={card.name} />
-                <ul>
+                <ul className="words-list">
                     {card.words.map((word) => (
                         <li key={`${card.name}-${word}`}>{word}</li>
                     ))}
                 </ul>
+                <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
                 </div>

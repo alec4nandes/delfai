@@ -72,6 +72,7 @@ export default function App() {
         <Spread {...{ cards, key: "spread" }} />,
         <Past
             {...{
+                cards,
                 card: cards?.spread.past,
                 elemRef: pastRef,
                 waitRef: pastWaitRef,
@@ -80,6 +81,7 @@ export default function App() {
         />,
         <Present
             {...{
+                cards,
                 card: cards?.spread.present,
                 elemRef: presentRef,
                 waitRef: presentWaitRef,
@@ -88,6 +90,7 @@ export default function App() {
         />,
         <Future
             {...{
+                cards,
                 card: cards?.spread.future,
                 elemRef: futureRef,
                 waitRef: futureWaitRef,

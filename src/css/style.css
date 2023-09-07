@@ -33,6 +33,28 @@ body textarea {
   background-color: #eee;
 }
 
+.compare {
+  max-width: 320px;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+.compare h3 {
+  margin: 0;
+}
+.compare td {
+  background-color: #444;
+  padding: 2px 5px;
+}
+.compare td.unlike-row {
+  background-color: #333;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 100;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -202,4 +224,17 @@ main .slide .slide-container .card-image {
 }
 main .slide .slide-container .card-image.reversed {
   transform: rotate(180deg);
+}
+
+ul.words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+ul.words-list li {
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 5px 10px;
 }/*# sourceMappingURL=style.css.map */

@@ -44,7 +44,7 @@ const opposites = [
     ["ambition", "complacency"],
     ["anxiety", "contentment"],
     ["balance", "imbalance"],
-    ["beginning", "endings"],
+    ["beginnings", "endings"],
     ["betrayal", "loyalty"],
     ["bondage", "freedom"],
     ["boundaries", "unrestricted"],
@@ -87,7 +87,6 @@ const opposites = [
     ["effort", "ease"],
     ["emotion", "apathy"],
     ["emotional", "unemotional"],
-    ["endings", "beginnings"],
     ["equity", "injustice"],
     ["expansion", "contraction"],
     ["fairness", "unfairness"],
@@ -170,7 +169,7 @@ const opposites = [
 
 const cards = {
     Fool: [
-        "beginning",
+        "beginnings",
         "creativity",
         "curiosity",
         "innovation",
@@ -367,7 +366,7 @@ const cards = {
         "integration",
     ],
     "Ace of Wands": [
-        "beginning",
+        "beginnings",
         "creativity",
         "inspiration",
         "passion",
@@ -494,7 +493,7 @@ const cards = {
     ],
     "Ace of Cups": [
         "emotional",
-        "beginning",
+        "beginnings",
         "love",
         "compassion",
         "intuition",
@@ -621,7 +620,7 @@ const cards = {
     "Ace of Swords": [
         "clarity",
         "mental",
-        "beginning",
+        "beginnings",
         "truth",
         "intellect",
         "insight",
@@ -747,7 +746,7 @@ const cards = {
     "Ace of Pentacles": [
         "prosperity",
         "abundance",
-        "beginning",
+        "beginnings",
         "material",
         "opportunity",
         "manifestation",

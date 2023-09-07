@@ -1,5 +1,9 @@
 import TimeSlide from "./TimeSlide";
 
-export default function Future({ card, elemRef, waitRef }) {
-    return <TimeSlide {...{ card, timeframe: "Future", elemRef, waitRef }} />;
+export default function Future({ cards, card, elemRef, waitRef }) {
+    return (
+        <TimeSlide
+            {...{ cards, card, timeframe: "Future", elemRef, waitRef }}
+        />
+    );
 }

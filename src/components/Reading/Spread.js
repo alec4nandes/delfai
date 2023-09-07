@@ -1,4 +1,5 @@
 import CardImage from "./CardImage";
+import Compare from "./Compare/Compare";
 import NextButton from "./NextButton";
 
 export default function Spread({ cards }) {
@@ -24,9 +25,8 @@ export default function Spread({ cards }) {
                         ) : (
                             <></>
                         )}
+                        <Compare {...cards} />
                         <NextButton />
-                        <pre>{JSON.stringify(cards.matching, null, 4)}</pre>
-                        <pre>{JSON.stringify(cards.opposites, null, 4)}</pre>
                     </>
                 ) : (
                     <p>Nothing loaded yet...</p>
