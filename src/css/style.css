@@ -36,7 +36,9 @@ body textarea {
 
 .compare {
   max-width: 320px;
+  min-width: 160px;
   width: 100%;
+  box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
   gap: 15px;
