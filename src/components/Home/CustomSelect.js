@@ -4,7 +4,7 @@ import { getSpread } from "../../compare/spread.js";
 import { cards } from "../../compare/data.js";
 import { compareCards } from "../../compare/compare.js";
 
-export default function CustomSpread({
+export default function CustomSelect({
     custom,
     setCustom,
     setCards,

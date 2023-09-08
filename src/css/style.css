@@ -243,6 +243,13 @@ main .slide .slide-container > *:is(h1) {
   transform: rotate(180deg);
 }
 
+details:hover {
+  cursor: pointer;
+}
+details:hover summary {
+  font-weight: bold;
+}
+
 textarea {
   height: 80px;
   width: 300px;

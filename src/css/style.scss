@@ -279,6 +279,16 @@ main {
     }
 }
 
+details {
+    &:hover {
+        cursor: pointer;
+
+        summary {
+            font-weight: bold;
+        }
+    }
+}
+
 textarea {
     height: 80px;
     width: 300px;

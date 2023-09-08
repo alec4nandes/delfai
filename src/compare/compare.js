@@ -1,4 +1,4 @@
-import { getCustomSpreadPrompt, writeComparePrompts } from "./prompts.js";
+import { getCustomPrompt, getStandardPrompts } from "./prompts.js";
 import { getOppositeWords } from "./spread.js";
 
 function compareCards(spread, question, isCustom) {
@@ -16,8 +16,8 @@ function compareCards(spread, question, isCustom) {
     // group opposites keys
     condense(opposites);
     const prompts = isCustom
-            ? getCustomSpreadPrompt({ spread, matching, opposites, question })
-            : writeComparePrompts({
+            ? getCustomPrompt({ spread, matching, opposites, question })
+            : getStandardPrompts({
                   spread,
                   matching,
                   opposites,

@@ -1,9 +1,9 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
-import CustomSpread from "./CustomSpread.js";
+import CustomSelect from "./CustomSelect";
 import AskQuestion from "./AskQuestion";
-import Subscribe from "./Stripe/Subscribe.js";
-import SignOut from "../SignOut.js";
+import Subscribe from "./Stripe/Subscribe";
+import SignOut from "../SignOut";
 
 export default function Home({
     custom,
@@ -34,7 +34,7 @@ export default function Home({
                             <details>
                                 <summary>Custom Spread</summary>
                                 {user.paid ? (
-                                    <CustomSpread
+                                    <CustomSelect
                                         {...{
                                             custom,
                                             setCustom,

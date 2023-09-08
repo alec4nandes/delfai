@@ -13,10 +13,11 @@ export default function Spread({ cards }) {
                 {cards ? (
                     <>
                         <CardImages {...{ spread }} />
-                        {cards.question ? (
-                            <p>Asking: "{cards.question}"</p>
-                        ) : (
-                            <></>
+                        {cards.question && (
+                            <p>
+                                <br />
+                                Asking: "{cards.question}"
+                            </p>
                         )}
                         <Compare {...cards} />
                         <NextButton />

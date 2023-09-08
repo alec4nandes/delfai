@@ -1,8 +1,8 @@
 import { doc, updateDoc } from "@firebase/firestore";
 import { db, apiRoot } from "../../database.js";
-import SignOut from "../SignOut.js";
+import ResetPassword from "../ResetPassword";
 import Questions, { handleQuestion } from "./Questions";
-import ResetPassword from "../ResetPassword.js";
+import SignOut from "../SignOut";
 
 export default function AskQuestion({ user, setCards, setUser }) {
     return (

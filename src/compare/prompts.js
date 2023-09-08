@@ -1,4 +1,25 @@
-function getCustomSpreadPrompt({ spread, matching, opposites, question }) {
+function getStandardPrompts({
+    spread,
+    matching,
+    opposites,
+    question,
+    isCustom,
+}) {
+    const spreadCards = spread.map(({ name }) => name),
+        prompts = getComparePrompts({
+            spreadCards,
+            matching,
+            opposites,
+            isCustom,
+        }),
+        [past, present, future] = spread.map((card) =>
+            getTimePrompt(card, spreadCards, prompts, question)
+        ),
+        advice = getAdvicePrompt(spreadCards, prompts, question);
+    return { past, present, future, advice };
+}
+
+function getCustomPrompt({ spread, matching, opposites, question }) {
     const spreadCards = spread.map(({ name }) => name);
     return `Please analyze the following code representing a tarot card reading:\n\n${JSON.stringify(
         spread,
@@ -47,27 +68,6 @@ function getComparePrompts({ spreadCards, matching, opposites, isCustom }) {
     return [...match, ...oppos];
 }
 
-function writeComparePrompts({
-    spread,
-    matching,
-    opposites,
-    question,
-    isCustom,
-}) {
-    const spreadCards = spread.map(({ name }) => name),
-        prompts = getComparePrompts({
-            spreadCards,
-            matching,
-            opposites,
-            isCustom,
-        }),
-        [past, present, future] = spread.map((card) =>
-            getTimePrompt(card, spreadCards, prompts, question)
-        ),
-        advice = getAdvicePrompt(spreadCards, prompts, question);
-    return { past, present, future, advice };
-}
-
 function listCards(cards, spreadCards) {
     return cards
         .map((name) => {
@@ -110,4 +110,4 @@ function askQuestion(question) {
         : "";
 }
 
-export { getCustomSpreadPrompt, writeComparePrompts };
+export { getStandardPrompts, getCustomPrompt };

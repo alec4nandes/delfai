@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
+import { getSpread } from "../compare/spread.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
-import Home from "./Home/Home.js";
-import Spread from "./Reading/Spread.js";
-import Past from "./Reading/TimeSlide/Past.js";
-import Present from "./Reading/TimeSlide/Present.js";
-import Future from "./Reading/TimeSlide/Future.js";
+import Home from "./Home/Home";
+import CustomReading from "./CustomReading";
+import Spread from "./Reading/Spread";
+import Past from "./Reading/TimeSlide/Past";
+import Present from "./Reading/TimeSlide/Present";
+import Future from "./Reading/TimeSlide/Future";
 import Advice from "./Reading/Advice";
 import NavBar from "./Reading/Navbar";
-import Custom from "./Custom";
-import { getSpread } from "../compare/spread.js";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
@@ -81,7 +81,7 @@ export default function App() {
     }, [cards, isCustom]);
 
     const slides = isCustom ? (
-        <Custom {...{ cards, customWaitRef, customRef }} />
+        <CustomReading {...{ cards, customWaitRef, customRef }} />
     ) : (
         [
             <Spread {...{ cards, key: "spread" }} />,
