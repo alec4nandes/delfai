@@ -1,7 +1,7 @@
-import { writeComparePrompts } from "./prompts.js";
+import { getCustomSpreadPrompt, writeComparePrompts } from "./prompts.js";
 import { getOppositeWords } from "./spread.js";
 
-function compareCards(spread, question) {
+function compareCards(spread, question, isCustom) {
     question = question.trim();
     const matching = {},
         opposites = {},
@@ -15,23 +15,29 @@ function compareCards(spread, question) {
     Object.values(opposites).forEach(condense);
     // group opposites keys
     condense(opposites);
-    const prompts = writeComparePrompts({
-            spread,
-            matching,
-            opposites,
-            question,
-        }),
+    const prompts = isCustom
+            ? getCustomSpreadPrompt({ spread, matching, opposites, question })
+            : writeComparePrompts({
+                  spread,
+                  matching,
+                  opposites,
+                  question,
+              }),
         [past, present, future] = spread;
     return {
         matching,
         opposites,
         question,
-        spread: {
-            past: { ...past, prompt: prompts.past },
-            present: { ...present, prompt: prompts.present },
-            future: { ...future, prompt: prompts.future },
-            advice: { prompt: prompts.advice },
-        },
+        ...(isCustom
+            ? { prompt: prompts, spread }
+            : {
+                  spread: {
+                      past: { ...past, prompt: prompts.past },
+                      present: { ...present, prompt: prompts.present },
+                      future: { ...future, prompt: prompts.future },
+                      advice: { prompt: prompts.advice },
+                  },
+              }),
     };
 }
 

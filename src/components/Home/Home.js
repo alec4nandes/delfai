@@ -1,17 +1,61 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
+import CustomSpread from "./CustomSpread.js";
 import AskQuestion from "./AskQuestion";
 import Subscribe from "./Stripe/Subscribe.js";
 import SignOut from "../SignOut.js";
 
-export default function Home({ setCards, setUser, user }) {
+export default function Home({
+    custom,
+    setCustom,
+    setCards,
+    setIsCustom,
+    setUser,
+    user,
+}) {
     return (
         <div id="home" className="slide">
             <div className="slide-container">
                 <h1>Delfai Oracle</h1>
+                <p id="free-status">
+                    Hi, {user.email}!{" "}
+                    {user.paid ? (
+                        <>Thanks for being a paid member!</>
+                    ) : (
+                        <>
+                            You have {user.free_draws} free reading
+                            {user.free_draws === 1 ? "" : "s"} left.
+                        </>
+                    )}
+                </p>
                 {user.emailVerified ? (
                     user.paid || user.free_draws > 0 ? (
-                        <AskQuestion {...{ user, setCards, setUser }} />
+                        <>
+                            <details>
+                                <summary>Custom Spread</summary>
+                                {user.paid ? (
+                                    <CustomSpread
+                                        {...{
+                                            custom,
+                                            setCustom,
+                                            setCards,
+                                            setIsCustom,
+                                        }}
+                                    />
+                                ) : (
+                                    <>
+                                        <p>
+                                            Only paid users can enter custom
+                                            spreads.
+                                        </p>
+                                        <Subscribe
+                                            {...{ user, hideSignOut: true }}
+                                        />
+                                    </>
+                                )}
+                            </details>
+                            <AskQuestion {...{ user, setCards, setUser }} />
+                        </>
                     ) : (
                         <FreeTrialOver {...{ user }} />
                     )

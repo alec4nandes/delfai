@@ -1,4 +1,4 @@
-import CardImage from "../CardImage";
+import CardImage from "../../CardImage";
 import Compare from "../Compare/Compare";
 import NextButton from "../NextButton";
 

@@ -10,7 +10,7 @@ import {
 import { apiRoot, db } from "../../../database.js";
 import SignOut from "../../SignOut.js";
 
-function CheckoutForm({ user }) {
+function CheckoutForm({ user, hideSignOut }) {
     // collect data from the user
     const [name, setName] = useState(""),
         // Delfai Subscription product ID
@@ -69,7 +69,7 @@ function CheckoutForm({ user }) {
                         >
                             subscribe
                         </button>
-                        <SignOut />
+                        {!hideSignOut && <SignOut />}
                     </div>
                 </>
             )}

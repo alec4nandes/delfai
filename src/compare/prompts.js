@@ -1,30 +1,66 @@
-function writeComparePrompts({ spread, matching, opposites, question }) {
-    const spreadCards = spread.map(({ name }) => name),
-        match = Object.entries(matching).map(
+function getCustomSpreadPrompt({ spread, matching, opposites, question }) {
+    const spreadCards = spread.map(({ name }) => name);
+    return `Please analyze the following code representing a tarot card reading:\n\n${JSON.stringify(
+        spread,
+        null,
+        2
+    )}.\n\nGiven this data, what tarot reading would you give me? ${getComparePrompts(
+        {
+            spreadCards,
+            matching,
+            opposites,
+            isCustom: true,
+        }
+    ).join(" ")} ${askQuestion(
+        question
+    )} Please respond with a direct and familiar tone, and don't thank me for any input or for providing you with raw data.`;
+}
+
+function getComparePrompts({ spreadCards, matching, opposites, isCustom }) {
+    const match = Object.entries(matching).map(
             ([words, cards]) =>
-                `Please focus on "${words}" in your answer, as it relates to ${listCards(
-                    cards,
-                    spreadCards
-                )}.`
+                `Please focus on "${words}" in your answer, as it relates to ${
+                    isCustom
+                        ? cards.join(" and ")
+                        : listCards(cards, spreadCards)
+                }.`
         ),
         oppos = Object.entries(opposites).map(
             ([words, info]) =>
-                `Please focus on how the meaning of "${words}" for ${listCards(
-                    info.cards,
-                    spreadCards
-                )} contrasts with ${Object.entries(info)
+                `Please focus on how the meaning of "${words}" for ${
+                    isCustom
+                        ? info.cards.join(" and ")
+                        : listCards(info.cards, spreadCards)
+                } contrasts with ${Object.entries(info)
                     .map(
                         ([oppos, cards]) =>
                             oppos !== "cards" &&
-                            `the meaning of "${oppos}" for ${listCards(
-                                cards,
-                                spreadCards
-                            )}`
+                            `the meaning of "${oppos}" for ${
+                                isCustom
+                                    ? cards.join(" and ")
+                                    : listCards(cards, spreadCards)
+                            }`
                     )
                     .filter(Boolean)
                     .join(", ")}.`
         );
-    const prompts = [...match, ...oppos],
+    return [...match, ...oppos];
+}
+
+function writeComparePrompts({
+    spread,
+    matching,
+    opposites,
+    question,
+    isCustom,
+}) {
+    const spreadCards = spread.map(({ name }) => name),
+        prompts = getComparePrompts({
+            spreadCards,
+            matching,
+            opposites,
+            isCustom,
+        }),
         [past, present, future] = spread.map((card) =>
             getTimePrompt(card, spreadCards, prompts, question)
         ),
@@ -74,4 +110,4 @@ function askQuestion(question) {
         : "";
 }
 
-export { writeComparePrompts };
+export { getCustomSpreadPrompt, writeComparePrompts };

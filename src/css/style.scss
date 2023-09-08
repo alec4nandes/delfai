@@ -13,6 +13,7 @@ body {
     &,
     button,
     input,
+    select,
     textarea {
         color: #111;
         font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
@@ -171,11 +172,6 @@ main {
                 align-items: center;
                 flex-direction: column;
                 gap: 10px;
-
-                textarea {
-                    height: 80px;
-                    width: 300px;
-                }
             }
 
             #questions {
@@ -250,22 +246,49 @@ main {
                     margin-bottom: 25px;
                 }
             }
-
-            .card-image {
-                height: 200px;
-
-                &.reversed {
-                    transform: rotate(180deg);
-                }
-            }
         }
     }
+}
+
+#card-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    .card-info {
+        width: 120px;
+        background-color: #444;
+        font-size: 14px;
+        line-height: 18px;
+        padding: 5px;
+
+        .card-name {
+            font-weight: bold;
+        }
+    }
+}
+
+.card-image {
+    height: 200px;
+    max-width: 120px;
+    width: 100%;
+
+    &.reversed {
+        transform: rotate(180deg);
+    }
+}
+
+textarea {
+    height: 80px;
+    width: 300px;
 }
 
 ul.words-list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
     list-style-type: none;
     padding: 0;
 

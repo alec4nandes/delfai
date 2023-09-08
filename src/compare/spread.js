@@ -19,15 +19,21 @@ function getTestSpread() {
     );
 }
 
-function getSpread(size = 3) {
-    const getRandom = (arr) => arr[~~(Math.random() * arr.length)],
-        getRandomCard = () => getRandom(Object.keys(cards)),
-        getIsReversed = () => Math.random() < 0.5,
+function getSpread(size = 3, names) {
+    if (names) {
+        return names.map((name) =>
+            getCard(name.replace(" reversed", ""), name.includes(" reversed"))
+        );
+    } else {
+        const getRandom = (arr) => arr[~~(Math.random() * arr.length)],
+            getRandomCard = () => getRandom(Object.keys(cards)),
+            getIsReversed = () => Math.random() < 0.5;
         names = new Set();
-    while (names.size < size) {
-        names.add(getRandomCard());
+        while (names.size < size) {
+            names.add(getRandomCard());
+        }
+        return [...names].map((name) => getCard(name, getIsReversed()));
     }
-    return [...names].map((name) => getCard(name, getIsReversed()));
 }
 
 function getCard(name, isReversed) {

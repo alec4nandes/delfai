@@ -1,0 +1,77 @@
+#custom-spread {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    form {
+        flex-direction: column;
+
+        &,
+        .custom-card-select {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .custom-card-select {
+            input,
+            select {
+                background-color: #eee;
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            label,
+            select {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                line-height: 0;
+
+                input[type="checkbox"] {
+                    height: 15px;
+                    width: 15px;
+                    border-radius: 5px;
+
+                    &:checked {
+                        background-color: #aaa;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &::before {
+                            content: "✓";
+                            font-weight: bold;
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+
+            select {
+                height: 25px;
+                padding-left: 5px;
+            }
+        }
+    }
+}
+
+#custom-spread-reading {
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    padding: 40px 15px;
+    text-align: center;
+}

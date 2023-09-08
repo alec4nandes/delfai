@@ -7,17 +7,6 @@ import ResetPassword from "../ResetPassword.js";
 export default function AskQuestion({ user, setCards, setUser }) {
     return (
         <>
-            <p id="free-status">
-                Hi, {user.email}!{" "}
-                {user.paid ? (
-                    <>Thanks for being a paid member!</>
-                ) : (
-                    <>
-                        You have {user.free_draws} free reading
-                        {user.free_draws === 1 ? "" : "s"} left.
-                    </>
-                )}
-            </p>
             <div id="user-options">
                 <Unsubscribe {...{ user }} />
                 <ResetPassword email={user.email} />
@@ -90,7 +79,10 @@ function CustomQuestion({ setCards, setUser, user }) {
                 id="custom"
                 onSubmit={(e) => handleQuestion(e, setCards, setUser, user)}
             >
-                <textarea name="question"></textarea>
+                <textarea
+                    name="question"
+                    placeholder="Ask a question (optional)..."
+                ></textarea>
                 <button className="standard-btn" type="submit">
                     ask
                 </button>

@@ -12,6 +12,7 @@ body {
 body,
 body button,
 body input,
+body select,
 body textarea {
   color: #111;
   font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
@@ -153,10 +154,6 @@ main .slide#home #custom {
   flex-direction: column;
   gap: 10px;
 }
-main .slide#home #custom textarea {
-  height: 80px;
-  width: 300px;
-}
 main .slide#home #questions {
   display: flex;
   flex-direction: column;
@@ -219,17 +216,43 @@ main .slide .slide-container > * {
 main .slide .slide-container > *:is(h1) {
   margin-bottom: 25px;
 }
-main .slide .slide-container .card-image {
-  height: 200px;
+
+#card-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
-main .slide .slide-container .card-image.reversed {
+#card-images .card-info {
+  width: 120px;
+  background-color: #444;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 5px;
+}
+#card-images .card-info .card-name {
+  font-weight: bold;
+}
+
+.card-image {
+  height: 200px;
+  max-width: 120px;
+  width: 100%;
+}
+.card-image.reversed {
   transform: rotate(180deg);
+}
+
+textarea {
+  height: 80px;
+  width: 300px;
 }
 
 ul.words-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
   list-style-type: none;
   padding: 0;
 }

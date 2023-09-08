@@ -347,7 +347,7 @@ const cards = {
         "celebration",
         "positivity",
     ],
-    Judgment: [
+    Judgement: [
         "reflection",
         "renewal",
         "transformation",

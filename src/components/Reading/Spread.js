@@ -1,10 +1,10 @@
-import CardImage from "./CardImage";
+import CardImages from "../CardImages";
 import Compare from "./Compare/Compare";
 import NextButton from "./NextButton";
 
 export default function Spread({ cards }) {
-    const cardNames = ["past", "present", "future"].map(
-        (timeframe) => cards?.spread[timeframe].name
+    const spread = ["past", "present", "future"].map(
+        (timeframe) => cards?.spread[timeframe]
     );
 
     return (
@@ -12,14 +12,7 @@ export default function Spread({ cards }) {
             <div className="slide-container">
                 {cards ? (
                     <>
-                        <div id="spread-images">
-                            {cardNames.map((card) => (
-                                <CardImage
-                                    {...{ card, key: `card-image-${card}` }}
-                                />
-                            ))}
-                        </div>
-                        <p>Reading: {cardNames.join(", ")}</p>
+                        <CardImages {...{ spread }} />
                         {cards.question ? (
                             <p>Asking: "{cards.question}"</p>
                         ) : (
