@@ -17,7 +17,7 @@ export default function CustomSelect({
         <div id="custom-spread">
             <br />
             <label>
-                set size:{" "}
+                spread size:{" "}
                 <select
                     defaultValue={size}
                     onChange={(e) => setSize(+e.target.value)}
@@ -45,7 +45,6 @@ export default function CustomSelect({
                     read cards
                 </button>
             </form>
-            <br />
         </div>
     );
 

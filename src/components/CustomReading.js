@@ -3,7 +3,7 @@ import Compare from "./Reading/Compare/Compare";
 
 export default function CustomReading({ cards, customWaitRef, customRef }) {
     return (
-        <div id="custom-spread-reading">
+        <div id="alternative-page">
             <h1>Delfai Oracle</h1>
             <h2>Custom Spread</h2>
             <CardImages spread={cards.spread} />

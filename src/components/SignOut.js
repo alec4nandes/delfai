@@ -3,7 +3,7 @@ import { auth } from "../database.js";
 
 export default function SignOut() {
     return (
-        <button className="standard-btn" onClick={handleSignOut}>
+        <button className="link-btn" onClick={handleSignOut}>
             sign out
         </button>
     );

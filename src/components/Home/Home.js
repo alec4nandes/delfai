@@ -1,12 +1,13 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
-import CustomSelect from "./CustomSelect";
 import AskQuestion from "./AskQuestion";
 import Subscribe from "./Stripe/Subscribe";
 import SignOut from "../SignOut";
+import MemberBanner from "../MemberBanner.js";
 
 export default function Home({
     custom,
+    setIsSettings,
     setCustom,
     setCards,
     setIsCustom,
@@ -17,48 +18,24 @@ export default function Home({
         <div id="home" className="slide">
             <div className="slide-container">
                 <h1>Delfai Oracle</h1>
-                <p id="free-status">
-                    Hi, {user.email}!{" "}
-                    {user.paid ? (
-                        <>Thanks for being a paid member!</>
-                    ) : (
-                        <>
-                            You have {user.free_draws} free reading
-                            {user.free_draws === 1 ? "" : "s"} left.
-                        </>
-                    )}
-                </p>
                 {user.emailVerified ? (
-                    user.paid || user.free_draws > 0 ? (
-                        <>
-                            <details>
-                                <summary>Custom Spread</summary>
-                                {user.paid ? (
-                                    <CustomSelect
-                                        {...{
-                                            custom,
-                                            setCustom,
-                                            setCards,
-                                            setIsCustom,
-                                        }}
-                                    />
-                                ) : (
-                                    <>
-                                        <p>
-                                            Only paid users can enter custom
-                                            spreads.
-                                        </p>
-                                        <Subscribe
-                                            {...{ user, hideSignOut: true }}
-                                        />
-                                    </>
-                                )}
-                            </details>
+                    <>
+                        <MemberBanner
+                            {...{
+                                user,
+                                custom,
+                                setIsSettings,
+                                setIsCustom,
+                                setCustom,
+                                setCards,
+                            }}
+                        />
+                        {user.paid || user.free_draws > 0 ? (
                             <AskQuestion {...{ user, setCards, setUser }} />
-                        </>
-                    ) : (
-                        <FreeTrialOver {...{ user }} />
-                    )
+                        ) : (
+                            <FreeTrialOver {...{ user }} />
+                        )}
+                    </>
                 ) : (
                     <Unverified {...{ user }} />
                 )}

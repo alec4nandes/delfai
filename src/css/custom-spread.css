@@ -49,17 +49,4 @@
 #custom-spread form .custom-card-select select {
   height: 25px;
   padding-left: 5px;
-}
-
-#custom-spread-reading {
-  max-width: 800px;
-  width: 100%;
-  box-sizing: border-box;
-  color: #eee;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: auto;
-  padding: 40px 15px;
-  text-align: center;
 }/*# sourceMappingURL=custom-spread.css.map */

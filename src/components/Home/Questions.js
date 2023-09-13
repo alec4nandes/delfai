@@ -49,7 +49,7 @@ export default function Questions({ setCards, setUser, user }) {
             key={`question-${i + 1}`}
         >
             <button name="question" type="submit" value={value}>
-                <h3>{key}</h3>
+                <h3 className="link-btn">{key}</h3>
                 {value}
             </button>
         </form>
@@ -57,6 +57,11 @@ export default function Questions({ setCards, setUser, user }) {
 
     return (
         <div id="questions">
+            <img
+                className="separator"
+                src="/assets/separator.png"
+                alt="decorative dividing line made up of square swirls in the Greek style."
+            />
             <h2>Or choose one of these questions:</h2>
             {buttons}
         </div>

@@ -1,8 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap");
+@font-face {
+  font-family: "Norse Bold";
+  src: url("./fonts/Norsebold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+h1,
+h2 {
+  font-family: "Norse Bold", "Times New Roman", Times, serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
 body,
 html,
 #root {
   height: 100%;
+}
+
+a,
+.link-btn {
+  background-color: transparent;
+  color: skyblue;
+  text-decoration: underline;
+  padding: 0;
+}
+a:hover,
+.link-btn:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+#alternative-page {
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  padding: 40px 15px;
+  text-align: center;
+}
+#alternative-page.settings {
+  gap: 20px;
+}
+#alternative-page.settings h1 {
+  margin: 0;
+}
+#alternative-page.settings button {
+  width: 110px;
 }
 
 body {
@@ -33,6 +83,9 @@ body input,
 body textarea {
   background-color: #eee;
 }
+body button {
+  text-align: center;
+}
 
 .compare {
   max-width: 320px;
@@ -56,6 +109,13 @@ body textarea {
   font-size: 0.85rem;
   font-style: italic;
   font-weight: 100;
+}
+
+img.separator {
+  height: auto;
+  width: 150px;
+  margin: auto;
+  padding: 40px 0;
 }
 
 #root {
@@ -83,6 +143,12 @@ body textarea {
   color: red;
 }
 
+summary.standard-btn {
+  width: 150px;
+  color: #111;
+  margin: auto;
+}
+
 .standard-btn {
   height: 35px;
   min-width: 90px;
@@ -90,8 +156,7 @@ body textarea {
 }
 
 .standard-btn,
-nav li,
-#questions button {
+nav li {
   background-color: #999;
   display: flex;
   align-items: center;
@@ -99,8 +164,7 @@ nav li,
   text-align: center;
 }
 .standard-btn:hover,
-nav li:hover,
-#questions button:hover {
+nav li:hover {
   background-color: #111;
   color: #eee;
   cursor: pointer;
@@ -165,12 +229,25 @@ main .slide#home #questions,
 main .slide#home #questions button {
   width: 100%;
 }
+main .slide#home #questions h2 {
+  margin-top: 0;
+}
 main .slide#home #questions button {
+  background-color: rgba(100, 100, 100, 0.2);
   box-sizing: border-box;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   font-size: inherit;
   font-style: italic;
   padding: 10px;
+}
+main .slide#home #questions button:hover {
+  background-color: #111;
+  color: #eee;
+  cursor: pointer;
 }
 main .slide#home #questions button h3 {
   font-style: initial;
@@ -245,11 +322,8 @@ main .slide .slide-container > *:is(h1) {
   transform: rotate(180deg);
 }
 
-details:hover {
-  cursor: pointer;
-}
-details:hover summary {
-  font-weight: bold;
+details[open] summary {
+  display: none;
 }
 
 textarea {

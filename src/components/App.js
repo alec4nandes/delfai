@@ -5,6 +5,7 @@ import { auth, db } from "../database.js";
 import { getSpread } from "../compare/spread.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
+import Settings from "./Settings";
 import Home from "./Home/Home";
 import CustomReading from "./CustomReading";
 import Spread from "./Reading/Spread";
@@ -18,6 +19,7 @@ export default function App() {
     const [loaded, setLoaded] = useState(false),
         [user, setUser] = useState(null),
         [cards, setCards] = useState(),
+        [isSettings, setIsSettings] = useState(false),
         [isCustom, setIsCustom] = useState(false),
         [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
         pastRef = useRef(),
@@ -125,7 +127,9 @@ export default function App() {
     return loaded ? (
         user ? (
             <>
-                {isCustom ? (
+                {isSettings ? (
+                    <Settings {...{ user }} />
+                ) : isCustom ? (
                     slides
                 ) : (
                     <>
@@ -137,6 +141,7 @@ export default function App() {
                                 <Home
                                     {...{
                                         custom,
+                                        setIsSettings,
                                         setCustom,
                                         setCards,
                                         setIsCustom,
