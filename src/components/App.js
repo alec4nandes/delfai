@@ -84,7 +84,18 @@ export default function App() {
     }, [cards, isCustom]);
 
     const slides = isCustom ? (
-        <CustomReading {...{ cards, customWaitRef, customRef }} />
+        <CustomReading
+            {...{
+                cards,
+                customWaitRef,
+                customRef,
+                custom,
+                setCustom,
+                setCards,
+                setIsCustom,
+                user,
+            }}
+        />
     ) : (
         [
             <Spread {...{ cards, key: "spread" }} />,
@@ -119,6 +130,7 @@ export default function App() {
                 {...{
                     elemRef: adviceRef,
                     waitRef: adviceWaitRef,
+                    cards,
                     key: "advice",
                 }}
             />,

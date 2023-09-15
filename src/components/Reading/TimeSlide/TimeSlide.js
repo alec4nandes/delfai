@@ -1,4 +1,5 @@
 import CardImage from "../../CardImage";
+import { getCardsId } from "../../CustomReading";
 import Compare from "../Compare/Compare";
 import NextButton from "../NextButton";
 
@@ -45,7 +46,11 @@ export default function TimeSlide({
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
                 </div>
-                <div className="reading" ref={elemRef}></div>
+                <div
+                    id={getCardsId(cards)}
+                    className="reading"
+                    ref={elemRef}
+                ></div>
                 <NextButton />
             </div>
         </div>

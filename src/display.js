@@ -1,4 +1,5 @@
 import { apiRoot } from "./database.js";
+import { getCardsId } from "./components/CustomReading.js";
 
 export default async function fillRef(
     cards,
@@ -20,13 +21,13 @@ export default async function fillRef(
             }),
         });
         waitRef.current.style.display = "none";
-        fetchStream(response.body, timeframe, elemRef);
+        fetchStream(cards, response.body, timeframe, elemRef);
     } catch (err) {
         console.error(err.message);
     }
 }
 
-function fetchStream(stream, timeframe, elemRef) {
+function fetchStream(cards, stream, timeframe, elemRef) {
     const reader = stream.getReader();
     // read() returns a promise that fulfills
     // when a value has been received
@@ -38,9 +39,12 @@ function fetchStream(stream, timeframe, elemRef) {
             console.log(`${timeframe} stream complete!`);
             return;
         }
-        elemRef?.current &&
-            (elemRef.current.textContent += new TextDecoder().decode(value));
-        // Read some more, and call this function again
+        // check current id against cards. Sometimes a user might select a
+        // new custom spread before the old one finishes reading.
+        if (elemRef?.current.id === getCardsId(cards)) {
+            elemRef.current.textContent += new TextDecoder().decode(value);
+            // Read some more, and call this function again
+        }
         return reader.read().then(processText);
     });
 }

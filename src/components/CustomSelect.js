@@ -1,10 +1,12 @@
-import "../../css/custom-spread.css";
+import "../css/custom-spread.css";
 import { useRef, useState } from "react";
-import { getSpread } from "../../compare/spread.js";
-import { cards } from "../../compare/data.js";
-import { compareCards } from "../../compare/compare.js";
+import { getSpread } from "../compare/spread.js";
+import { cards } from "../compare/data.js";
+import { compareCards } from "../compare/compare.js";
+import Subscribe from "./Home/Subscribe/Subscribe";
 
 export default function CustomSelect({
+    user,
     custom,
     setCustom,
     setCards,
@@ -14,38 +16,54 @@ export default function CustomSelect({
         formRef = useRef();
 
     return (
-        <div id="custom-spread">
-            <br />
-            <label>
-                spread size:{" "}
-                <select
-                    defaultValue={size}
-                    onChange={(e) => setSize(+e.target.value)}
-                >
-                    {new Array(10).fill(0).map((_, i) => (
-                        <option value={i + 1} key={`spread-size-${i + 1}`}>
-                            {i + 1}
-                        </option>
-                    ))}
-                </select>
-            </label>
-            <form
-                ref={formRef}
-                onChange={() => setCustom(getCardNames())}
-                onSubmit={handleFormSubmit}
-            >
-                {new Array(size).fill(0).map((_, i) => (
-                    <SelectCard {...{ i, key: `select-${i + 1}` }} />
-                ))}
-                <textarea
-                    name="question"
-                    placeholder="Ask a question (optional)..."
-                ></textarea>
-                <button className="standard-btn" type="submit">
-                    read cards
-                </button>
-            </form>
-        </div>
+        <details>
+            <summary className="standard-btn">Enter a Custom Spread</summary>
+            {user.paid ? (
+                <div id="custom-spread">
+                    <br />
+                    <label>
+                        spread size:{" "}
+                        <select
+                            defaultValue={size}
+                            onChange={(e) => setSize(+e.target.value)}
+                        >
+                            {new Array(10).fill(0).map((_, i) => (
+                                <option
+                                    value={i + 1}
+                                    key={`spread-size-${i + 1}`}
+                                >
+                                    {i + 1}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                    <form
+                        ref={formRef}
+                        onChange={() => setCustom(getCardNames())}
+                        onSubmit={handleFormSubmit}
+                    >
+                        {new Array(size).fill(0).map((_, i) => (
+                            <SelectCard {...{ i, key: `select-${i + 1}` }} />
+                        ))}
+                        <textarea
+                            name="question"
+                            placeholder="Ask a question (optional)..."
+                        ></textarea>
+                        <button className="standard-btn" type="submit">
+                            read cards
+                        </button>
+                    </form>
+                </div>
+            ) : (
+                <>
+                    <p>
+                        Only paid members can enter custom spreads. Please
+                        consider joining for only $2.99 a month.
+                    </p>
+                    <Subscribe {...{ user }} />
+                </>
+            )}
+        </details>
     );
 
     function handleFormSubmit(e) {

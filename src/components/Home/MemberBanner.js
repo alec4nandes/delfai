@@ -1,5 +1,4 @@
-import CustomSelect from "./CustomSelect";
-import Subscribe from "./Subscribe/Subscribe";
+import CustomSelect from "../CustomSelect";
 import SignOut from "../SignOut";
 
 export default function MemberBanner({
@@ -39,29 +38,15 @@ export default function MemberBanner({
                 )}
             </p>
             {user.paid || user.free_draws > 0 ? (
-                <details>
-                    <summary className="standard-btn">
-                        Enter a Custom Spread
-                    </summary>
-                    {user.paid ? (
-                        <CustomSelect
-                            {...{
-                                custom,
-                                setCustom,
-                                setCards,
-                                setIsCustom,
-                            }}
-                        />
-                    ) : (
-                        <>
-                            <p>
-                                Only paid members can enter custom spreads.
-                                Please consider joining for only $2.99 a month.
-                            </p>
-                            <Subscribe {...{ user }} />
-                        </>
-                    )}
-                </details>
+                <CustomSelect
+                    {...{
+                        user,
+                        custom,
+                        setCustom,
+                        setCards,
+                        setIsCustom,
+                    }}
+                />
             ) : (
                 <></>
             )}

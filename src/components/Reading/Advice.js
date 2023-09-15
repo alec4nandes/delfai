@@ -1,4 +1,6 @@
-export default function Advice({ elemRef, waitRef }) {
+import { getCardsId } from "../CustomReading";
+
+export default function Advice({ elemRef, waitRef, cards }) {
     return (
         <div id="advice" className="slide">
             <div className="slide-container">
@@ -6,7 +8,11 @@ export default function Advice({ elemRef, waitRef }) {
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
                 </div>
-                <div className="reading" ref={elemRef}></div>
+                <div
+                    id={getCardsId(cards)}
+                    className="reading"
+                    ref={elemRef}
+                ></div>
             </div>
         </div>
     );
