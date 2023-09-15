@@ -63,7 +63,7 @@ body .link-btn {
 }
 body a:hover,
 body .link-btn:hover {
-  color: var(--text-color);
+  color: var(--accent-color-2);
   cursor: pointer;
 }
 body .standard-btn {
@@ -88,8 +88,7 @@ body nav li {
 }
 body .standard-btn:hover,
 body nav li:hover {
-  background-color: var(--text-color);
-  color: var(--accent-color);
+  background-color: var(--accent-color-2);
   cursor: pointer;
 }
 body textarea {
@@ -105,15 +104,13 @@ body textarea {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: auto;
-  padding: 40px 15px;
+  margin: 0 auto;
+  padding: 60px 10px;
   text-align: center;
 }
 #alternative-page.settings {
   gap: 20px;
-}
-#alternative-page.settings h1 {
-  margin: 0;
+  margin: auto;
 }
 #alternative-page.settings h2 {
   margin-bottom: 0;
@@ -130,12 +127,16 @@ body textarea {
 }
 h1,
 h2 {
-  color: var(--accent-color);
   font-family: "Norse Bold", "Times New Roman", Times, serif;
 }
 
 h1 {
+  color: var(--accent-color-2);
   font-size: 3rem;
+}
+
+h2 {
+  color: var(--accent-color);
 }
 
 #card-images {
