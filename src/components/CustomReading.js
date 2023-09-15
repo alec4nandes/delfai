@@ -46,7 +46,7 @@ export default function CustomReading({
                     className="standard-btn"
                     onClick={() => window.location.reload()}
                 >
-                    new spread
+                    go home
                 </button>
                 <br />
             </div>
