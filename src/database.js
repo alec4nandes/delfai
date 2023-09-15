@@ -11,7 +11,7 @@ import {
 } from "./db-info.js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const IS_DEVELOPMENT = true,
+const IS_DEVELOPMENT = false,
     apiRoot = IS_DEVELOPMENT ? devRoot : productionRoot,
     app = initializeApp(IS_DEVELOPMENT ? devConfig : productionConfig),
     auth = getAuth(app),

@@ -14,8 +14,9 @@ export default function CustomReading({
     user,
 }) {
     useEffect(() => {
+        customWaitRef.current.style.display = "block";
         customRef.current.innerHTML = "";
-    }, [customRef, cards]);
+    }, [customRef, customWaitRef, cards]);
 
     return (
         <div id="alternative-page">
