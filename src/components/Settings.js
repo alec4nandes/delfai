@@ -5,7 +5,7 @@ import ResetPassword from "./ResetPassword";
 
 export default function Settings({ user }) {
     return (
-        <div id="alternative-page" class="settings">
+        <div id="alternative-page" className="settings">
             <h1>Delfai Oracle</h1>
             <h2>User Settings</h2>
             <ResetPassword email={user.email} />
