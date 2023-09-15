@@ -62,7 +62,7 @@ export default function Questions({ setCards, setUser, user }) {
                 src="/assets/separator.png"
                 alt="decorative dividing line made up of square swirls in the Greek style."
             />
-            <h2>Or choose one of these questions:</h2>
+            <h2>Or choose one of these questions about...</h2>
             {buttons}
         </div>
     );

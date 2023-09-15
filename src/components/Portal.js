@@ -1,3 +1,4 @@
+import "../css/sign-in.css";
 import { useState } from "react";
 import {
     createUserWithEmailAndPassword,

@@ -33,7 +33,7 @@ export default function TimeSlide({
     return (
         <div id={timeframe.toLowerCase()} className="slide">
             <div className="slide-container">
-                <h2>{timeframe}</h2>
+                <h2 className="bigger-header">{timeframe}</h2>
                 <h3>{card.name}</h3>
                 <CardImage card={card.name} />
                 <ul className="words-list">

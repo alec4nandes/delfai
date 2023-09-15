@@ -1,0 +1,30 @@
+@import url("./colors.css");
+
+#sign-in {
+    height: 100%;
+    width: 100%;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    form {
+        table {
+            margin: auto;
+
+            tr {
+                td {
+                    &:first-child {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    #sign-in-error {
+        color: red;
+    }
+}

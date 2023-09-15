@@ -1,0 +1,20 @@
+@import url("./colors.css");
+#sign-in {
+  height: 100%;
+  width: 100%;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#sign-in form table {
+  margin: auto;
+}
+#sign-in form table tr td:first-child {
+  text-align: right;
+}
+#sign-in #sign-in-error {
+  color: red;
+}/*# sourceMappingURL=sign-in.css.map */

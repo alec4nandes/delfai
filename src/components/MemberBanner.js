@@ -1,6 +1,6 @@
 import CustomSelect from "./Home/CustomSelect";
+import Subscribe from "./Home/Subscribe/Subscribe";
 import SignOut from "./SignOut";
-import Subscribe from "./Home/Stripe/Subscribe";
 
 export default function MemberBanner({
     user,
@@ -33,26 +33,33 @@ export default function MemberBanner({
                     </>
                 )}
             </p>
-            <details>
-                <summary className="standard-btn">
-                    Enter a Custom Spread
-                </summary>
-                {user.paid ? (
-                    <CustomSelect
-                        {...{
-                            custom,
-                            setCustom,
-                            setCards,
-                            setIsCustom,
-                        }}
-                    />
-                ) : (
-                    <>
-                        <p>Only paid users can enter custom spreads.</p>
-                        <Subscribe {...{ user, hideSignOut: true }} />
-                    </>
-                )}
-            </details>
+            {user.paid || user.free_draws > 0 ? (
+                <details>
+                    <summary className="standard-btn">
+                        Enter a Custom Spread
+                    </summary>
+                    {user.paid ? (
+                        <CustomSelect
+                            {...{
+                                custom,
+                                setCustom,
+                                setCards,
+                                setIsCustom,
+                            }}
+                        />
+                    ) : (
+                        <>
+                            <p>
+                                Only paid members can enter custom spreads.
+                                Please consider joining for only $2.99 a month.
+                            </p>
+                            <Subscribe {...{ user }} />
+                        </>
+                    )}
+                </details>
+            ) : (
+                <></>
+            )}
         </>
     );
 }

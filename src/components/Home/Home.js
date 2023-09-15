@@ -1,7 +1,7 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
 import AskQuestion from "./AskQuestion";
-import Subscribe from "./Stripe/Subscribe";
+import Subscribe from "./Subscribe/Subscribe";
 import SignOut from "../SignOut";
 import MemberBanner from "../MemberBanner.js";
 
@@ -48,8 +48,8 @@ function FreeTrialOver({ user }) {
     return (
         <>
             <p>
-                Oh no! You're out of free readings. Please consider registering
-                for a paid account for only $2.99 a month!
+                Oh no! You're out of free readings. Please consider joining for
+                only $2.99 a month.
             </p>
             <Subscribe {...{ user }} />
         </>

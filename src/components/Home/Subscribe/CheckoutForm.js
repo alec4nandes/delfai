@@ -8,9 +8,8 @@ import {
     useStripe,
 } from "@stripe/react-stripe-js";
 import { apiRoot, db } from "../../../database.js";
-import SignOut from "../../SignOut.js";
 
-function CheckoutForm({ user, hideSignOut }) {
+function CheckoutForm({ user }) {
     // collect data from the user
     const [name, setName] = useState(""),
         // Delfai Subscription product ID
@@ -69,7 +68,6 @@ function CheckoutForm({ user, hideSignOut }) {
                         >
                             subscribe
                         </button>
-                        {!hideSignOut && <SignOut />}
                     </div>
                 </>
             )}
