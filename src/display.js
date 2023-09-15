@@ -20,14 +20,13 @@ export default async function fillRef(
                     : cards.spread[timeframe].prompt,
             }),
         });
-        waitRef.current.style.display = "none";
-        fetchStream(cards, response.body, timeframe, elemRef);
+        fetchStream(cards, response.body, timeframe, elemRef, waitRef);
     } catch (err) {
         console.error(err.message);
     }
 }
 
-function fetchStream(cards, stream, timeframe, elemRef) {
+function fetchStream(cards, stream, timeframe, elemRef, waitRef) {
     const reader = stream.getReader();
     // read() returns a promise that fulfills
     // when a value has been received
@@ -35,17 +34,18 @@ function fetchStream(cards, stream, timeframe, elemRef) {
         // Result objects contain two properties:
         // done  - true if the stream has already given you all its data.
         // value - some data. Always undefined when done is true.
-        if (done) {
-            console.log(`${timeframe} stream complete!`);
-            return;
-        }
-        // check current id against cards. Sometimes a user might select a
-        // new custom spread before the old one finishes reading.
         if (elemRef?.current.id === getCardsId(cards)) {
-            elemRef.current.textContent += new TextDecoder().decode(value);
-            // Read some more, and call this function again
+            // check current id against cards. Sometimes a user might select a
+            // new custom spread before the old one finishes reading.
+            if (done) {
+                console.log(`${timeframe} stream complete!`);
+                waitRef.current.style.display = "none";
+            } else {
+                elemRef.current.textContent += new TextDecoder().decode(value);
+            }
         }
-        return reader.read().then(processText);
+        // Read some more, and call this function again
+        return !done && reader.read().then(processText);
     });
 }
 
