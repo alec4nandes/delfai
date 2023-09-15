@@ -12,6 +12,7 @@
 
     form {
         table {
+            border-spacing: 8px;
             margin: auto;
 
             tr {
@@ -22,9 +23,24 @@
                 }
             }
         }
+
+        #sign-in-btn {
+            background-color: var(--text-color);
+        }
     }
 
     #sign-in-error {
-        color: red;
+        color: lightcoral;
+    }
+
+    #reset-pw-btn {
+        background-color: transparent;
+        color: var(--accent-color);
+        font-weight: normal;
+        text-decoration: underline;
+
+        &:hover {
+            color: var(--text-color);
+        }
     }
 }

@@ -4,6 +4,7 @@ import { auth } from "../database.js";
 export default function ResetPassword({ email }) {
     return (
         <button
+            id="reset-pw-btn"
             className="standard-btn"
             onClick={() => handleResetPassword(email)}
         >

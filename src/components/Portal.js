@@ -1,5 +1,5 @@
 import "../css/sign-in.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
     createUserWithEmailAndPassword,
     sendEmailVerification,
@@ -7,17 +7,72 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
-import ResetPassword from "./ResetPassword.js";
+import ResetPassword from "./ResetPassword";
 
 export default function Portal() {
-    const [hasAccount, setHasAccount] = useState(false),
-        [errorMessage, setErrorMessage] = useState(""),
-        [loginEmail, setLoginEmail] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""),
+        [loginEmail, setLoginEmail] = useState(""),
+        formRef = useRef();
+
+    document.addEventListener("click", async (e) => {
+        const { id } = e.target;
+        if (id === "sign-in-btn") {
+            await handleSignIn(e);
+        } else if (id === "sign-up-btn") {
+            await handleSignUp(e);
+        }
+    });
+
+    function getFormData() {
+        return Object.fromEntries(new FormData(formRef.current));
+    }
+
+    async function handleSignIn(e) {
+        e.preventDefault();
+        const { email, password } = getFormData();
+        return signInWithEmailAndPassword(auth, email, password)
+            .then((result) => result)
+            .catch((error) => {
+                const { code, message } = error;
+                console.error(code);
+                setErrorMessage(
+                    message.includes("auth/wrong-password")
+                        ? "That password is incorrect."
+                        : message
+                );
+            });
+    }
+
+    async function handleSignUp(e) {
+        e.preventDefault();
+        const { email, password } = getFormData();
+        try {
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            await sendEmailVerification(user);
+            await setDoc(doc(db, "users", email), {
+                paid: false,
+                free_draws: 5,
+            });
+        } catch (error) {
+            const { message } = error;
+            console.error(error);
+            setErrorMessage(
+                message.includes("auth/email-already-in-use")
+                    ? "That email already has an account. Try signing in instead."
+                    : message
+            );
+        }
+    }
 
     return (
         <div id="sign-in">
-            <form onSubmit={hasAccount ? handleSignIn : handleSignUp}>
-                <h1>Sign {hasAccount ? "In" : "Up"}</h1>
+            <h1>Delfai Oracle</h1>
+            <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
+                <h2>Enter</h2>
                 <table>
                     <tbody>
                         <tr>
@@ -50,63 +105,28 @@ export default function Portal() {
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>
-                                <button className="standard-btn">
-                                    sign {hasAccount ? "in" : "up"}
-                                </button>
+                            <td colSpan={2}>
+                                <div id="user-options">
+                                    <button
+                                        id="sign-up-btn"
+                                        className="standard-btn"
+                                    >
+                                        sign up
+                                    </button>
+                                    <button
+                                        id="sign-in-btn"
+                                        className="standard-btn"
+                                    >
+                                        sign in instead
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <p id="sign-in-error">{errorMessage}</p>
             </form>
-            <div id="user-options">
-                {hasAccount ? <ResetPassword email={loginEmail} /> : <></>}
-                <button
-                    className="standard-btn"
-                    onClick={() => setHasAccount((bool) => !bool)}
-                >
-                    sign {hasAccount ? "up" : "in"} instead
-                </button>
-            </div>
+            <ResetPassword email={loginEmail} />
         </div>
     );
-
-    function handleSignIn(e) {
-        e.preventDefault();
-        let { email, password } = e.target;
-        email = email.value;
-        password = password.value;
-        signInWithEmailAndPassword(auth, email, password)
-            .then()
-            .catch((error) => {
-                const { code, message } = error;
-                console.error(code);
-                setErrorMessage(message);
-            });
-    }
-
-    async function handleSignUp(e) {
-        e.preventDefault();
-        let { email, password } = e.target;
-        email = email.value;
-        password = password.value;
-        try {
-            const { user } = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            await sendEmailVerification(user);
-            await setDoc(doc(db, "users", email), {
-                paid: false,
-                free_draws: 5,
-            });
-        } catch (error) {
-            const { message } = error;
-            console.error(error);
-            setErrorMessage(message);
-        }
-    }
 }

@@ -1,5 +1,6 @@
 import { doc, updateDoc } from "@firebase/firestore";
 import { db, apiRoot } from "../database.js";
+import SignOut from "./SignOut";
 import ResetPassword from "./ResetPassword";
 
 export default function Settings({ user }) {
@@ -15,6 +16,7 @@ export default function Settings({ user }) {
             >
                 go home
             </button>
+            <SignOut />
         </div>
     );
 }

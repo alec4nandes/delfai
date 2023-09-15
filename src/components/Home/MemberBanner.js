@@ -1,6 +1,6 @@
-import CustomSelect from "./Home/CustomSelect";
-import Subscribe from "./Home/Subscribe/Subscribe";
-import SignOut from "./SignOut";
+import CustomSelect from "./CustomSelect";
+import Subscribe from "./Subscribe/Subscribe";
+import SignOut from "../SignOut";
 
 export default function MemberBanner({
     user,

@@ -62,7 +62,9 @@ body .link-btn:hover {
 body .standard-btn {
   height: 35px;
   min-width: 90px;
+  box-sizing: border-box;
   font-weight: bold;
+  padding: 0 12px;
 }
 body summary.standard-btn {
   width: 150px;
@@ -105,6 +107,9 @@ body textarea {
 }
 #alternative-page.settings h1 {
   margin: 0;
+}
+#alternative-page.settings h2 {
+  margin-bottom: 0;
 }
 #alternative-page.settings button {
   width: 110px;

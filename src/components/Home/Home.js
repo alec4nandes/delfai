@@ -3,7 +3,7 @@ import { auth } from "../../database.js";
 import AskQuestion from "./AskQuestion";
 import Subscribe from "./Subscribe/Subscribe";
 import SignOut from "../SignOut";
-import MemberBanner from "../MemberBanner.js";
+import MemberBanner from "./MemberBanner";
 
 export default function Home({
     custom,
@@ -71,8 +71,8 @@ function Unverified({ user }) {
                 >
                     refresh page
                 </button>
-                <SignOut />
             </div>
+            <SignOut />
         </>
     );
 

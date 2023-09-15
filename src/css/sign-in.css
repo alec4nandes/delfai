@@ -10,11 +10,24 @@
   text-align: center;
 }
 #sign-in form table {
+  border-spacing: 8px;
   margin: auto;
 }
 #sign-in form table tr td:first-child {
   text-align: right;
 }
+#sign-in form #sign-in-btn {
+  background-color: var(--text-color);
+}
 #sign-in #sign-in-error {
-  color: red;
+  color: lightcoral;
+}
+#sign-in #reset-pw-btn {
+  background-color: transparent;
+  color: var(--accent-color);
+  font-weight: normal;
+  text-decoration: underline;
+}
+#sign-in #reset-pw-btn:hover {
+  color: var(--text-color);
 }/*# sourceMappingURL=sign-in.css.map */
