@@ -13,6 +13,7 @@ export default function Home({
     setIsCustom,
     setUser,
     user,
+    cards,
 }) {
     return (
         <div
@@ -31,6 +32,7 @@ export default function Home({
                                 setIsCustom,
                                 setCustom,
                                 setCards,
+                                cards,
                             }}
                         />
                         {user.paid || user.free_draws > 0 ? (

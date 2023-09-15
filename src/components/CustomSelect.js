@@ -7,9 +7,10 @@ import Subscribe from "./Home/Subscribe/Subscribe";
 
 export default function CustomSelect({
     user,
+    currentCards,
+    setCards,
     custom,
     setCustom,
-    setCards,
     setIsCustom,
 }) {
     const [size, setSize] = useState(3),
@@ -87,12 +88,20 @@ export default function CustomSelect({
                     cardNames.map((cardName) =>
                         cardName.replace(" reversed", "")
                     )
-                ).size === size;
-        if (isValid) {
+                ).size === size,
+            isSameAsCurrent = currentCards?.every((card) =>
+                cardNames.includes(card)
+            );
+        if (isValid && !isSameAsCurrent) {
             setCards(
                 compareCards(getSpread(null, cardNames), data.question, true)
             );
             setIsCustom(true);
+        } else if (isSameAsCurrent) {
+            alert(
+                "This spread already has a reading that's loading below. Please explore other spreads before coming back to this one."
+            );
+            return;
         } else {
             alert("Your custom spread has repeating cards. Please fix.");
             return;

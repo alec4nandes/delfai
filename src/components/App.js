@@ -83,59 +83,44 @@ export default function App() {
         }
     }, [cards, isCustom]);
 
-    const slides = isCustom ? (
-        <CustomReading
+    const slides = [
+        <Spread {...{ cards, key: "spread" }} />,
+        <Past
             {...{
                 cards,
-                customWaitRef,
-                customRef,
-                custom,
-                setCustom,
-                setCards,
-                setIsCustom,
-                user,
+                card: cards?.spread.past,
+                elemRef: pastRef,
+                waitRef: pastWaitRef,
+                key: "past",
             }}
-        />
-    ) : (
-        [
-            <Spread {...{ cards, key: "spread" }} />,
-            <Past
-                {...{
-                    cards,
-                    card: cards?.spread.past,
-                    elemRef: pastRef,
-                    waitRef: pastWaitRef,
-                    key: "past",
-                }}
-            />,
-            <Present
-                {...{
-                    cards,
-                    card: cards?.spread.present,
-                    elemRef: presentRef,
-                    waitRef: presentWaitRef,
-                    key: "present",
-                }}
-            />,
-            <Future
-                {...{
-                    cards,
-                    card: cards?.spread.future,
-                    elemRef: futureRef,
-                    waitRef: futureWaitRef,
-                    key: "future",
-                }}
-            />,
-            <Advice
-                {...{
-                    elemRef: adviceRef,
-                    waitRef: adviceWaitRef,
-                    cards,
-                    key: "advice",
-                }}
-            />,
-        ]
-    );
+        />,
+        <Present
+            {...{
+                cards,
+                card: cards?.spread.present,
+                elemRef: presentRef,
+                waitRef: presentWaitRef,
+                key: "present",
+            }}
+        />,
+        <Future
+            {...{
+                cards,
+                card: cards?.spread.future,
+                elemRef: futureRef,
+                waitRef: futureWaitRef,
+                key: "future",
+            }}
+        />,
+        <Advice
+            {...{
+                elemRef: adviceRef,
+                waitRef: adviceWaitRef,
+                cards,
+                key: "advice",
+            }}
+        />,
+    ];
 
     return loaded ? (
         user ? (
@@ -143,7 +128,18 @@ export default function App() {
                 {isSettings ? (
                     <Settings {...{ user }} />
                 ) : isCustom ? (
-                    slides
+                    <CustomReading
+                        {...{
+                            cards,
+                            customWaitRef,
+                            customRef,
+                            custom,
+                            setCustom,
+                            setCards,
+                            setIsCustom,
+                            user,
+                        }}
+                    />
                 ) : (
                     <>
                         {cards ? <NavBar /> : <></>}
@@ -160,6 +156,7 @@ export default function App() {
                                         setIsCustom,
                                         setUser,
                                         user,
+                                        cards,
                                         key: "home",
                                     }}
                                 />

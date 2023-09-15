@@ -24,7 +24,14 @@ export default function CustomReading({
                 <h1>Delfai Oracle</h1>
                 <h2>Custom Spread</h2>
                 <CustomSelect
-                    {...{ user, custom, setCustom, setCards, setIsCustom }}
+                    {...{
+                        user,
+                        currentCards: cards?.spread.map(({ name }) => name),
+                        setCards,
+                        custom,
+                        setCustom,
+                        setIsCustom,
+                    }}
                 />
                 <br />
                 <CardImages spread={cards.spread} />
