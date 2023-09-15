@@ -36,7 +36,10 @@ function CheckoutForm({ user }) {
         };
 
     return (
-        <div className="grid gap-4 m-auto" style={{ width: "320px" }}>
+        <div
+            className="grid gap-4 m-auto"
+            style={{ maxWidth: "320px", width: "100%" }}
+        >
             {user.paid ? (
                 <p>Already subscribed!</p>
             ) : (

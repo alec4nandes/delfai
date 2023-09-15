@@ -109,7 +109,9 @@ body {
 
     textarea {
         height: 80px;
-        width: 300px;
+        max-width: 320px;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -163,6 +165,8 @@ h2 {
 h1 {
     color: var(--accent-color-2);
     font-size: 3rem;
+    line-height: 3rem;
+    text-align: center;
 }
 
 h2 {
@@ -210,6 +214,8 @@ img.separator {
 // MISC
 
 details {
+    width: 100%;
+
     &[open] {
         summary {
             display: none;
@@ -257,8 +263,8 @@ details {
 }
 
 .subscribe-form {
-    width: fit-content;
-    margin: auto;
+    display: flex;
+    justify-content: center;
 }
 
 #user-options {

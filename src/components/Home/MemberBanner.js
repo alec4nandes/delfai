@@ -12,6 +12,11 @@ export default function MemberBanner({
 }) {
     return (
         <>
+            <p className="description">
+                Explore how Tarot cards relate to each other. Delfai Oracle
+                answers questions with three-card readings. Users can also enter
+                their own spreads for deeper insight.
+            </p>
             <div id="user-options">
                 <button
                     className="link-btn"

@@ -19,13 +19,11 @@ function CustomQuestion({ setCards, setUser, user }) {
             />
             <h2>Ask the Tarot cards a question:</h2>
             <p>
-                <em>Please keep in mind while writing your question:</em>
-                <br />
-                These cards serve as a wellspring for personal introspection,
-                rather than a means to definitively ascertain outcomes.
+                <u>Please note</u>: These cards are primarily for personal
+                reflection, rather than for providing definitive answers.
             </p>
             <form
-                id="custom"
+                id="custom-question"
                 onSubmit={(e) => handleQuestion(e, setCards, setUser, user)}
             >
                 <textarea
