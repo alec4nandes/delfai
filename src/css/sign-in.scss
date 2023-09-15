@@ -1,48 +1,53 @@
 @import url("./colors.css");
 
 #sign-in {
+    height: 100%;
     width: 100%;
-    box-sizing: border-box;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    flex-direction: column;
-    padding: 60px 10px;
-    text-align: center;
+    overflow: auto;
 
-    form {
-        table {
-            border-spacing: 8px;
-            margin: auto;
+    .container {
+        min-height: 100%;
+        color: var(--text-color);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 60px 10px;
+        text-align: center;
 
-            tr {
-                td {
-                    &:first-child {
-                        text-align: right;
+        form {
+            table {
+                border-spacing: 8px;
+                margin: auto;
+
+                tr {
+                    td {
+                        &:first-child {
+                            text-align: right;
+                        }
                     }
                 }
             }
+
+            #sign-in-btn {
+                background-color: var(--text-color);
+            }
         }
 
-        #sign-in-btn {
-            background-color: var(--text-color);
+        #sign-in-error {
+            color: lightcoral;
         }
-    }
 
-    #sign-in-error {
-        color: lightcoral;
-    }
+        #reset-pw-btn {
+            background-color: transparent;
+            color: var(--accent-color);
+            font-weight: normal;
+            text-decoration: underline;
 
-    #reset-pw-btn {
-        background-color: transparent;
-        color: var(--accent-color);
-        font-weight: normal;
-        text-decoration: underline;
-
-        &:hover {
-            color: var(--text-color);
+            &:hover {
+                color: var(--text-color);
+            }
         }
     }
 }

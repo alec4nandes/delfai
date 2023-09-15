@@ -1,35 +1,39 @@
 @import url("./colors.css");
 #sign-in {
+  height: 100%;
   width: 100%;
-  box-sizing: border-box;
+  overflow: auto;
+}
+#sign-in .container {
+  min-height: 100%;
   color: var(--text-color);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   flex-direction: column;
   padding: 60px 10px;
   text-align: center;
 }
-#sign-in form table {
+#sign-in .container form table {
   border-spacing: 8px;
   margin: auto;
 }
-#sign-in form table tr td:first-child {
+#sign-in .container form table tr td:first-child {
   text-align: right;
 }
-#sign-in form #sign-in-btn {
+#sign-in .container form #sign-in-btn {
   background-color: var(--text-color);
 }
-#sign-in #sign-in-error {
+#sign-in .container #sign-in-error {
   color: lightcoral;
 }
-#sign-in #reset-pw-btn {
+#sign-in .container #reset-pw-btn {
   background-color: transparent;
   color: var(--accent-color);
   font-weight: normal;
   text-decoration: underline;
 }
-#sign-in #reset-pw-btn:hover {
+#sign-in .container #reset-pw-btn:hover {
   color: var(--text-color);
 }/*# sourceMappingURL=sign-in.css.map */

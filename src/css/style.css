@@ -13,6 +13,7 @@ html,
 }
 
 body {
+  background-attachment: fixed;
   background-color: var(--bg-color);
   background-image: url("./assets/pythia-bg2.png"), url("./assets/pythia-bg.png");
   background-position: center left 6vw, center right 6vw;
@@ -67,7 +68,7 @@ body .link-btn:hover {
   cursor: pointer;
 }
 body .standard-btn {
-  height: 35px;
+  min-height: 35px;
   min-width: 90px;
   box-sizing: border-box;
   font-weight: 700;
@@ -97,25 +98,31 @@ body textarea {
 }
 
 #alternative-page {
-  max-width: 800px;
+  height: 100%;
   width: 100%;
+  overflow: auto;
+}
+#alternative-page .container {
+  max-width: 800px;
+  min-height: 100%;
   box-sizing: border-box;
   color: var(--text-color);
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   margin: 0 auto;
   padding: 60px 10px;
   text-align: center;
 }
-#alternative-page.settings {
+#alternative-page .container.settings {
   gap: 20px;
   margin: auto;
 }
-#alternative-page.settings h2 {
+#alternative-page .container.settings h2 {
   margin-bottom: 0;
 }
-#alternative-page.settings button {
+#alternative-page .container.settings button {
   width: 150px;
 }
 

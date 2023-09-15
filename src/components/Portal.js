@@ -81,63 +81,65 @@ export default function Portal() {
 
     return (
         <div id="sign-in">
-            <h1>Delfai Oracle</h1>
-            <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
-                <h2>Enter</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label htmlFor="email">email:</label>
-                            </td>
-                            <td>
-                                <input
-                                    name="email"
-                                    type="email"
-                                    id="email"
-                                    onChange={(e) =>
-                                        setLoginEmail(e.target.value)
-                                    }
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label htmlFor="password">password:</label>
-                            </td>
-                            <td>
-                                <input
-                                    name="password"
-                                    type="password"
-                                    id="password"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2}>
-                                <div id="user-options">
-                                    <button
-                                        id="sign-up-btn"
-                                        className="standard-btn"
-                                    >
-                                        sign up
-                                    </button>
-                                    <button
-                                        id="sign-in-btn"
-                                        className="standard-btn"
-                                    >
-                                        sign in instead
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p id="sign-in-error">{errorMessage}</p>
-            </form>
-            <ResetPassword email={loginEmail} />
+            <div className="container">
+                <h1>Delfai Oracle</h1>
+                <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
+                    <h2>Enter</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label htmlFor="email">email:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        id="email"
+                                        onChange={(e) =>
+                                            setLoginEmail(e.target.value)
+                                        }
+                                        required
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="password">password:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        name="password"
+                                        type="password"
+                                        id="password"
+                                        required
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2}>
+                                    <div id="user-options">
+                                        <button
+                                            id="sign-up-btn"
+                                            className="standard-btn"
+                                        >
+                                            sign up
+                                        </button>
+                                        <button
+                                            id="sign-in-btn"
+                                            className="standard-btn"
+                                        >
+                                            sign in instead
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="sign-in-error">{errorMessage}</p>
+                </form>
+                <ResetPassword email={loginEmail} />
+            </div>
         </div>
     );
 }

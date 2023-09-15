@@ -5,18 +5,20 @@ import ResetPassword from "./ResetPassword";
 
 export default function Settings({ user }) {
     return (
-        <div id="alternative-page" className="settings">
-            <h1>Delfai Oracle</h1>
-            <h2>User Settings</h2>
-            <ResetPassword email={user.email} />
-            <Unsubscribe {...{ user }} />
-            <button
-                className="standard-btn"
-                onClick={() => window.location.reload()}
-            >
-                go home
-            </button>
-            <SignOut />
+        <div id="alternative-page">
+            <div className="container settings">
+                <h1>Delfai Oracle</h1>
+                <h2>User Settings</h2>
+                <ResetPassword email={user.email} />
+                <Unsubscribe {...{ user }} />
+                <button
+                    className="standard-btn"
+                    onClick={() => window.location.reload()}
+                >
+                    go home
+                </button>
+                <SignOut />
+            </div>
         </div>
     );
 }
