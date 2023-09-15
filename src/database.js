@@ -11,7 +11,7 @@ import {
 } from "./db-info.js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const IS_DEVELOPMENT = true,
+const IS_DEVELOPMENT = false,
     apiRoot = IS_DEVELOPMENT ? devRoot : productionRoot,
     app = initializeApp(IS_DEVELOPMENT ? devConfig : productionConfig),
     auth = getAuth(app),
@@ -21,4 +21,4 @@ const IS_DEVELOPMENT = true,
         "pk_test_51NkqsAIqFJteETEQYpW5MiSPJwYnYUJD64Ruj6alMHmX83hELPfACDnOu8mKPgB8hvDhzvANH26gsjIpb3JOMg3500I8ocfYtY",
     stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
-export { apiRoot, auth, db, analytics, stripePromise };
+export { IS_DEVELOPMENT, apiRoot, auth, db, analytics, stripePromise };

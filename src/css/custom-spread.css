@@ -45,7 +45,7 @@
 }
 #custom-spread label input[type=checkbox]:checked::before {
   content: "✓";
-  font-weight: bold;
+  font-weight: 700;
   font-size: 15px;
 }
 #custom-spread select {

@@ -13,7 +13,7 @@ header {
             li {
                 flex: 1;
                 font-size: 15px;
-                font-weight: bold;
+                font-weight: 700;
                 line-height: 1rem;
 
                 &.highlighted {
@@ -41,6 +41,10 @@ main {
         scroll-snap-align: start;
 
         &#home {
+            &.unverified {
+                display: flex;
+            }
+
             #custom {
                 display: flex;
                 align-items: center;

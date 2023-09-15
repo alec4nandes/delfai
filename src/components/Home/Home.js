@@ -15,7 +15,10 @@ export default function Home({
     user,
 }) {
     return (
-        <div id="home" className="slide">
+        <div
+            id="home"
+            className={`slide${user.emailVerified ? "" : " unverified"}`}
+        >
             <div className="slide-container">
                 <h1>Delfai Oracle</h1>
                 {user.emailVerified ? (
