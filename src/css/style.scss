@@ -153,6 +153,10 @@ body {
         background-position: center left, center right;
         background-size: auto clamp(350px, 50vh, 500px);
     }
+
+    #compare-tables {
+        max-width: 320px;
+    }
 }
 
 // HEADINGS
@@ -231,33 +235,44 @@ details {
     }
 }
 
-.compare {
-    max-width: 320px;
-    min-width: 160px;
-    width: 100%;
-    box-sizing: border-box;
-    display: inline-flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px;
+#compare-tables {
+    display: flex;
+    flex-wrap: wrap;
 
-    h3 {
-        margin: 0;
-    }
+    .compare {
+        min-width: 250px;
+        box-sizing: border-box;
+        display: inline-flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
 
-    td {
-        background-color: var(--box-bg-color);
-        padding: 2px 5px;
-
-        &:first-child {
-            font-weight: 700;
+        &#opposites {
+            .spacer-row {
+                height: 8px;
+                background-color: transparent;
+            }
         }
 
-        &.unlike-row {
-            background-color: rgba(250, 250, 250, 0.6);
-            color: var(--bg-color);
-            font-size: 0.85rem;
-            font-weight: 700;
+        h3 {
+            margin: 0;
+        }
+
+        td {
+            background-color: var(--box-bg-color);
+            padding: 2px 5px;
+
+            &:first-child {
+                font-weight: 700;
+            }
+
+            &.unlike-row {
+                background-color: rgba(250, 250, 250, 0.6);
+                color: var(--bg-color);
+                font-size: 0.85rem;
+                font-weight: 700;
+            }
         }
     }
 }

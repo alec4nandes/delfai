@@ -13,7 +13,7 @@ export default function CustomSelect({
     setCustom,
     setIsCustom,
 }) {
-    const [size, setSize] = useState(3),
+    const [size, setSize] = useState(currentCards?.length || 3),
         formRef = useRef();
 
     return (
@@ -40,7 +40,13 @@ export default function CustomSelect({
                     </label>
                     <form
                         ref={formRef}
-                        onChange={() => setCustom(getCardNames())}
+                        onChange={() => {
+                            const cardNames = getCardNames().map(
+                                (name, i) =>
+                                    name || custom[i] || currentCards?.[i] || ""
+                            );
+                            setCustom(cardNames);
+                        }}
                         onSubmit={handleFormSubmit}
                     >
                         {new Array(size).fill(0).map((_, i) => (
@@ -67,63 +73,50 @@ export default function CustomSelect({
         </details>
     );
 
+    function getCardNames() {
+        const data = getFormData(),
+            cardNames = new Array(10).fill(0).map((_, i) => {
+                const cardName = data[`card_${i + 1}`];
+                if (cardName) {
+                    const is_reversed = data[`reversed_${i + 1}`];
+                    return cardName + (is_reversed ? " reversed" : "");
+                }
+                return "";
+            });
+        return cardNames;
+    }
+
+    function getFormData() {
+        const formEl = formRef.current,
+            formData = new FormData(formEl);
+        return Object.fromEntries(formData);
+    }
+
     function handleFormSubmit(e) {
         e.preventDefault();
-        const formEl = e.target,
-            formData = new FormData(formEl),
-            data = Object.fromEntries(formData),
-            cardNames = new Array(10)
-                .fill(0)
-                .map((_, i) => {
-                    const cardName = data[`card_${i + 1}`];
-                    if (cardName) {
-                        const is_reversed = data[`reversed_${i + 1}`];
-                        return cardName + (is_reversed ? " reversed" : "");
-                    }
-                    return null;
-                })
-                .filter(Boolean),
+        const cardNames = getCardNames().filter(Boolean),
+            { question } = getFormData(),
             isValid =
                 new Set(
                     cardNames.map((cardName) =>
                         cardName.replace(" reversed", "")
                     )
                 ).size === size,
-            isSameAsCurrent = currentCards?.every((card) =>
-                cardNames.includes(card)
-            );
+            isSameAsCurrent =
+                cardNames.length === currentCards?.length &&
+                cardNames.every((card) => currentCards?.includes(card));
         if (isValid && !isSameAsCurrent) {
-            setCards(
-                compareCards(getSpread(null, cardNames), data.question, true)
-            );
+            setCards(compareCards(getSpread(null, cardNames), question, true));
             setIsCustom(true);
+        } else if (!isValid) {
+            alert(
+                "Your custom spread has either missing or repeating cards. Please fix."
+            );
         } else if (isSameAsCurrent) {
             alert(
                 "This spread already has a reading that's loading below. Please explore other spreads before coming back to this one."
             );
-            return;
-        } else {
-            alert("Your custom spread has repeating cards. Please fix.");
-            return;
         }
-    }
-
-    function getCardNames() {
-        const formEl = formRef.current,
-            formData = new FormData(formEl),
-            data = Object.fromEntries(formData),
-            cardNames = new Array(10)
-                .fill(0)
-                .map((_, i) => {
-                    const cardName = data[`card_${i + 1}`];
-                    if (cardName) {
-                        const is_reversed = data[`reversed_${i + 1}`];
-                        return cardName + (is_reversed ? " reversed" : "");
-                    }
-                    return null;
-                })
-                .filter(Boolean);
-        return cardNames;
     }
 
     function SelectCard({ i }) {
@@ -131,8 +124,11 @@ export default function CustomSelect({
             <div className="custom-card-select">
                 <select
                     name={`card_${i + 1}`}
-                    defaultValue={custom[i]?.replace(" reversed", "")}
+                    defaultValue={custom[i]?.replace(" reversed", "") || ""}
                 >
+                    <option value="" disabled>
+                        ---
+                    </option>
                     {Object.keys(cards).map((cardName) => (
                         <option value={cardName} key={`${cardName}-${i + 1}`}>
                             {cardName}

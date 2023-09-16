@@ -133,6 +133,9 @@ body textarea {
     background-position: center left, center right;
     background-size: auto clamp(350px, 50vh, 500px);
   }
+  #compare-tables {
+    max-width: 320px;
+  }
 }
 h1,
 h2 {
@@ -196,27 +199,34 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
-.compare {
-  max-width: 320px;
-  min-width: 160px;
-  width: 100%;
+#compare-tables {
+  display: flex;
+  flex-wrap: wrap;
+}
+#compare-tables .compare {
+  min-width: 250px;
   box-sizing: border-box;
   display: inline-flex;
+  flex: 1;
   flex-direction: column;
   gap: 15px;
   padding: 10px;
 }
-.compare h3 {
+#compare-tables .compare#opposites .spacer-row {
+  height: 8px;
+  background-color: transparent;
+}
+#compare-tables .compare h3 {
   margin: 0;
 }
-.compare td {
+#compare-tables .compare td {
   background-color: var(--box-bg-color);
   padding: 2px 5px;
 }
-.compare td:first-child {
+#compare-tables .compare td:first-child {
   font-weight: 700;
 }
-.compare td.unlike-row {
+#compare-tables .compare td.unlike-row {
   background-color: rgba(250, 250, 250, 0.6);
   color: var(--bg-color);
   font-size: 0.85rem;

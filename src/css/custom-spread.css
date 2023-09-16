@@ -21,6 +21,7 @@
   box-sizing: border-box;
   margin: 0;
 }
+#custom-spread input[type=checkbox]:hover,
 #custom-spread label:hover,
 #custom-spread select:hover {
   cursor: pointer;
