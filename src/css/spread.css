@@ -122,11 +122,7 @@ main .slide .slide-container {
   gap: 20px;
   margin: auto;
 }
-main .slide .slide-container > *:not(h1) {
+main .slide .slide-container > *:not(h1):not(h2.bigger-header) {
   margin: 0;
   text-align: center;
-}
-main .slide .slide-container h2.bigger-header {
-  font-size: 2.4rem;
-  margin-bottom: 15px;
 }/*# sourceMappingURL=spread.css.map */

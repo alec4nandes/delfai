@@ -1,4 +1,4 @@
-import { cards, opposites } from "./data.js";
+import { allCards, opposites } from "./data.js";
 
 function getTestSpread() {
     const names1 = [
@@ -26,7 +26,7 @@ function getSpread(size = 3, names) {
         );
     } else {
         const getRandom = (arr) => arr[~~(Math.random() * arr.length)],
-            getRandomCard = () => getRandom(Object.keys(cards)),
+            getRandomCard = () => getRandom(Object.keys(allCards)),
             getIsReversed = () => Math.random() < 0.5;
         names = new Set();
         while (names.size < size) {
@@ -37,14 +37,14 @@ function getSpread(size = 3, names) {
 }
 
 function getCard(name, isReversed) {
-    const words = isReversed ? getCardOpposites(name) : cards[name];
+    const words = isReversed ? getCardOpposites(name) : allCards[name];
     name = `${name}${isReversed ? " reversed" : ""}`;
     return { name, words };
 }
 
 function getCardOpposites(name) {
     return [
-        ...new Set(cards[name].map(getOppositeWords).flat(Infinity)),
+        ...new Set(allCards[name].map(getOppositeWords).flat(Infinity)),
     ].sort();
 }
 

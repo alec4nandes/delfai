@@ -33,11 +33,13 @@
     }
 
     label {
+        width: fit-content;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 5px;
         line-height: 0;
+        margin: auto;
 
         input[type="checkbox"] {
             height: 15px;

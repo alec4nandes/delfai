@@ -143,14 +143,9 @@ main {
             gap: 20px;
             margin: auto;
 
-            & > *:not(h1) {
+            & > *:not(h1):not(h2.bigger-header) {
                 margin: 0;
                 text-align: center;
-            }
-
-            h2.bigger-header {
-                font-size: 2.4rem;
-                margin-bottom: 15px;
             }
         }
     }

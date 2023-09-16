@@ -1,19 +1,21 @@
 import "../css/custom-spread.css";
 import { useRef, useState } from "react";
 import { getSpread } from "../compare/spread.js";
-import { cards } from "../compare/data.js";
+import { allCards } from "../compare/data.js";
 import { compareCards } from "../compare/compare.js";
 import Subscribe from "./Home/Subscribe/Subscribe";
 
 export default function CustomSelect({
     user,
-    currentCards,
+    cards,
     setCards,
     custom,
     setCustom,
     setIsCustom,
 }) {
-    const [size, setSize] = useState(currentCards?.length || 3),
+    const currentCards = cards?.spread.map(({ name }) => name) || [],
+        question = cards?.question || "",
+        [size, setSize] = useState(currentCards.length || 3),
         formRef = useRef();
 
     return (
@@ -43,7 +45,7 @@ export default function CustomSelect({
                         onChange={() => {
                             const cardNames = getCardNames().map(
                                 (name, i) =>
-                                    name || custom[i] || currentCards?.[i] || ""
+                                    name || custom[i] || currentCards[i] || ""
                             );
                             setCustom(cardNames);
                         }}
@@ -55,7 +57,9 @@ export default function CustomSelect({
                         <textarea
                             name="question"
                             placeholder="Ask a question (optional)..."
-                        ></textarea>
+                        >
+                            {question}
+                        </textarea>
                         <button className="standard-btn" type="submit">
                             read cards
                         </button>
@@ -95,7 +99,7 @@ export default function CustomSelect({
     function handleFormSubmit(e) {
         e.preventDefault();
         const cardNames = getCardNames().filter(Boolean),
-            { question } = getFormData(),
+            data = getFormData(),
             isValid =
                 new Set(
                     cardNames.map((cardName) =>
@@ -103,10 +107,13 @@ export default function CustomSelect({
                     )
                 ).size === size,
             isSameAsCurrent =
-                cardNames.length === currentCards?.length &&
-                cardNames.every((card) => currentCards?.includes(card));
+                data.question.trim() === question.trim() &&
+                cardNames.length === currentCards.length &&
+                cardNames.every((card) => currentCards.includes(card));
         if (isValid && !isSameAsCurrent) {
-            setCards(compareCards(getSpread(null, cardNames), question, true));
+            setCards(
+                compareCards(getSpread(null, cardNames), data.question, true)
+            );
             setIsCustom(true);
         } else if (!isValid) {
             alert(
@@ -129,7 +136,7 @@ export default function CustomSelect({
                     <option value="" disabled>
                         ---
                     </option>
-                    {Object.keys(cards).map((cardName) => (
+                    {Object.keys(allCards).map((cardName) => (
                         <option value={cardName} key={`${cardName}-${i + 1}`}>
                             {cardName}
                         </option>

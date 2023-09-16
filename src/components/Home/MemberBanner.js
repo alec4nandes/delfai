@@ -42,7 +42,7 @@ export default function MemberBanner({
                 <CustomSelect
                     {...{
                         user,
-                        currentCards: cards?.spread.map(({ name }) => name),
+                        cards,
                         setCards,
                         custom,
                         setCustom,

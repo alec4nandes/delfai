@@ -27,11 +27,14 @@
   cursor: pointer;
 }
 #custom-spread label {
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   line-height: 0;
+  margin: auto;
 }
 #custom-spread label input[type=checkbox] {
   height: 15px;

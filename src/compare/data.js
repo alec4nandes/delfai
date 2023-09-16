@@ -167,7 +167,7 @@ const opposites = [
     ["worry", "tranquility"],
 ];
 
-const cards = {
+const allCards = {
     Fool: [
         "beginnings",
         "creativity",
@@ -871,4 +871,4 @@ const cards = {
     ],
 };
 
-export { cards, opposites };
+export { allCards, opposites };

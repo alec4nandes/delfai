@@ -10,21 +10,13 @@ export default function Spread({ cards }) {
     return (
         <div id="spread" className="slide">
             <div className="slide-container">
-                {cards ? (
-                    <>
-                        <CardImages {...{ spread }} />
-                        {cards.question && (
-                            <p>
-                                <br />
-                                Asking: "{cards.question}"
-                            </p>
-                        )}
-                        <Compare {...cards} />
-                        <NextButton />
-                    </>
-                ) : (
-                    <p>Nothing loaded yet...</p>
-                )}
+                <>
+                    <h2 className="bigger-header">3-Card Spread</h2>
+                    {cards.question && <h3>Asking: "{cards.question}"</h3>}
+                    <CardImages {...{ spread }} />
+                    <Compare {...cards} />
+                    <NextButton />
+                </>
             </div>
         </div>
     );

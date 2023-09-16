@@ -22,11 +22,12 @@ export default function CustomReading({
         <div id="alternative-page">
             <div className="container">
                 <h1>Delfai Oracle</h1>
-                <h2>Custom Spread</h2>
+                <h2 className="bigger-header">Custom Spread</h2>
+                {cards.question ? <h3>Asking: "{cards.question}"</h3> : <br />}
                 <CustomSelect
                     {...{
                         user,
-                        currentCards: cards?.spread.map(({ name }) => name),
+                        cards,
                         setCards,
                         custom,
                         setCustom,
@@ -36,7 +37,6 @@ export default function CustomReading({
                 <br />
                 <CardImages spread={cards.spread} />
                 <br />
-                {cards.question && <p>Asking: "{cards.question}"</p>}
                 <Compare {...cards} />
                 <div className="wait" ref={customWaitRef}>
                     <br />
@@ -67,7 +67,11 @@ function getCardsId(cards) {
         : ["past", "present", "future"].map(
               (timeframe) => cards.spread[timeframe]
           );
-    return spread.map(({ name }) => name.replaceAll(" ", "-")).join("-");
+    return (
+        spread.map(({ name }) => name.replaceAll(" ", "-")).join("-") +
+        "-" +
+        cards.question
+    );
 }
 
 export { getCardsId };

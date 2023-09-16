@@ -143,6 +143,10 @@ h1 {
 h2 {
   color: var(--accent-color);
 }
+h2.bigger-header {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
 
 #card-images {
   display: flex;
@@ -235,6 +239,10 @@ details > summary::-webkit-details-marker {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+}
+
+.wait {
+  font-style: italic;
 }
 
 ul.words-list {
