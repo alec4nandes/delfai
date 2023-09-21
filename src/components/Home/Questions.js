@@ -64,6 +64,7 @@ export default function Questions({ setCards, setUser, user }) {
             />
             <h2>Or choose one of these questions about...</h2>
             {buttons}
+            <br />
         </div>
     );
 }

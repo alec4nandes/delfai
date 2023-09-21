@@ -8,6 +8,7 @@ export default function Advice({ elemRef, waitRef, cards }) {
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
                 </div>
+                <br />
                 <div
                     id={getCardsId(cards)}
                     className="reading"

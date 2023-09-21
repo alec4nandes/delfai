@@ -1,6 +1,6 @@
 import { getCardsId } from "../../CustomReading";
 import CardImage from "../../CardImage";
-import Compare from "../Compare/Compare";
+import Compare from "../../Compare/Compare";
 import NextButton from "../NextButton";
 import Rank from "../../Rank";
 import Suit from "../../Suit";
@@ -60,6 +60,7 @@ export default function TimeSlide({
                 <br />
                 <NextButton />
             </div>
+            <br />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import CardImages from "./CardImages";
 import CustomSelect from "./CustomSelect";
-import Compare from "./Reading/Compare/Compare";
+import Compare from "./Compare/Compare";
 
 export default function CustomReading({
     cards,
@@ -37,17 +37,20 @@ export default function CustomReading({
                 <br />
                 <CardImages spread={cards.spread} />
                 <br />
+                <br />
                 <Compare {...cards} />
                 <div className="wait" ref={customWaitRef}>
                     <br />
                     Reading... Please wait...
                 </div>
                 <br />
+                <br />
                 <div
                     id={getCardsId(cards)}
                     className="reading"
                     ref={customRef}
                 ></div>
+                <br />
                 <br />
                 <button
                     className="standard-btn"
