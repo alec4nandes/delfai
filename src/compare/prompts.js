@@ -1,3 +1,5 @@
+import { getRankAndSuit } from "./data.js";
+
 // TIME FRAME QUERY
 
 import { getRankWords, allSuitWords } from "./data.js";
@@ -43,7 +45,7 @@ function getTimeframeQuery(card, timeframe, question, matching, opposites) {
         let [rank, suit] = card.name.split(" of ");
         suit = suit.replace(" reversed", "");
         const isCourt = ["Page", "Knight", "Queen", "King"].includes(rank),
-            rankWords = getRankWords(rank, card.name.includes(" reversed")),
+            // rankWords = getRankWords(rank, card.name.includes(" reversed")),
             suitWords = allSuitWords[suit];
         return (
             intro +
@@ -54,9 +56,9 @@ function getTimeframeQuery(card, timeframe, question, matching, opposites) {
                   `What does this card represent about me in the ${timeframe}? ` +
                   `Who else could this card represent in my ${timeframe}? `
                 : getWordsLine(card.words)) +
-            getRankLine(rank, rankWords) +
+            // getRankLine(rank, rankWords) +
             getSuitLine(suit, suitWords) +
-            `How do these meanings relate to my ${timeframe}? ` +
+            `How do these meanings relate to my ${timeframe} situation? ` +
             ending
         );
     } else {
@@ -81,15 +83,15 @@ function getWordsLine(words) {
     return `This card represents the qualities of "${words.join(", ")}." `;
 }
 
-function getRankLine(rank, rankWords) {
-    return `This card has a rank of ${rank}, which represents ${rankWords.join(
-        ", "
-    )}. `;
-}
+// function getRankLine(rank, rankWords) {
+//     return `This card has a rank of ${rank}, which represents ${rankWords.join(
+//         ", "
+//     )}. `;
+// }
 
 function getSuitLine(suit, suitWords) {
     return `This card also has a suit of ${suit}, which represents ${suitWords.join(
-        ", "
+        " and "
     )}. `;
 }
 
@@ -98,6 +100,7 @@ function getAdviceQuery(spread, question, matching, opposites) {
         getAllWordsLine(spread) +
         askQuestion(question) +
         `How could these cards represent my past, present, and future respectively? ` +
+        getMultiRankAndSuit(spread) +
         getEnding(matching, opposites, 20)
     );
 }
@@ -108,6 +111,7 @@ function getCustomSpreadQuery(spread, question, matching, opposites) {
     return (
         getAllWordsLine(spread) +
         askQuestion(question) +
+        getMultiRankAndSuit(spread) +
         getEnding(matching, opposites, 20)
     );
 }
@@ -122,6 +126,38 @@ function askQuestion(question) {
         : "";
 }
 
+function getMultiRankAndSuit(spread) {
+    const hasRanksOrSuits =
+        spread.filter(({ name }) => {
+            const { rank, suit } = getRankAndSuit(name);
+            return rank || suit;
+        }).length > 1;
+    return (
+        spread
+            .map(({ name }) => {
+                let { rank, suit } = getRankAndSuit(name);
+                if (rank && suit) {
+                    suit = suit.replace(" reversed");
+                    const isReversed = name.includes(" reversed");
+                    return `The card ${name} has the rank of ${rank}${
+                        isReversed ? " reversed" : ""
+                    } with the meaning "${getRankWords(rank, isReversed).join(
+                        ", "
+                    )}," and it has the suit of ${suit}, which represents ${allSuitWords[
+                        suit
+                    ].join(" and ")}. `;
+                } else {
+                    return "";
+                }
+            })
+            .join("") +
+        (hasRanksOrSuits
+            ? "If there are any repeating ranks or suits, or multiple reversed cards, " +
+              "point them out and their overlapping meanings. "
+            : "")
+    );
+}
+
 function getMatchingLines(matching, cardName, timeframe) {
     const { entries, moreThan1 } = matchingOppositesHelper(matching);
     return entries.length
@@ -130,7 +166,7 @@ function getMatchingLines(matching, cardName, timeframe) {
                   ([word, cards]) =>
                       `The cards ${cards.join(", ")} all represent "${word}." `
               )
-              .join(" ") +
+              .join("") +
               `Please emphasize the importance of ${
                   moreThan1 ? "these" : "this"
               } connection${moreThan1 ? "s" : ""}${
@@ -190,7 +226,8 @@ function getEnding(
         `Please respond with no more than ${sentenceCount} sentences. ` +
         "The tone of your response should be wise yet friendly, " +
         "like a professional Tarot card reader in an intimate setting. " +
-        'Please address the "seeker" directly without welcoming them.'
+        'Please address the "seeker" directly without welcoming them, ' +
+        "and don't bother signing off."
     );
 }
 

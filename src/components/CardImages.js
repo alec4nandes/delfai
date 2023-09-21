@@ -21,14 +21,3 @@ export default function CardImages({ spread }) {
         </div>
     );
 }
-
-function getRankAndSuit(cardName) {
-    let [rank, suit] =
-        cardName.includes(" of ") && !cardName.includes("Wheel")
-            ? cardName.split(" of ")
-            : [];
-    suit = suit?.replace(" reversed", "");
-    return { rank, suit };
-}
-
-export { getRankAndSuit };

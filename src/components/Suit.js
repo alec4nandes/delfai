@@ -1,5 +1,4 @@
-import { allSuitWords } from "../compare/data.js";
-import { getRankAndSuit } from "./CardImages";
+import { allSuitWords, getRankAndSuit } from "../compare/data.js";
 
 export default function Suit({ card }) {
     const { suit } = getRankAndSuit(card.name);

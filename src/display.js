@@ -51,7 +51,9 @@ function fetchStream(cards, stream, timeframe, elemRef, waitRef) {
 
 function handleJump(id) {
     if (id) {
-        document.querySelector(`#${id}`).scrollIntoView({ behavior: "smooth" });
+        const elem = document.querySelector(`#${id}`);
+        elem.scrollTo({ top: 0 });
+        elem.scrollIntoView({ behavior: "smooth" });
     } else {
         const scrollElem = document.querySelector("main");
         scrollElem.scrollTo({
