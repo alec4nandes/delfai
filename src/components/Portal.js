@@ -27,17 +27,7 @@ export default function Portal() {
                 const { email, password } = getFormData();
                 return signInWithEmailAndPassword(auth, email, password)
                     .then((result) => result)
-                    .catch((error) => {
-                        const { code, message } = error;
-                        console.error(code);
-                        setErrorMessage(
-                            message.includes("auth/wrong-password")
-                                ? "That password is incorrect."
-                                : message.includes("auth/user-not-found")
-                                ? "That email doesn't have an account. Please try signing up."
-                                : message
-                        );
-                    });
+                    .catch((error) => errorHelper(error));
             }
 
             async function handleSignUp(e) {
@@ -59,14 +49,26 @@ export default function Portal() {
                         free_draws: 5,
                     });
                 } catch (error) {
-                    const { message } = error;
-                    console.error(error);
-                    setErrorMessage(
-                        message.includes("auth/email-already-in-use")
-                            ? "That email already has an account. Try signing in instead."
-                            : message
-                    );
+                    errorHelper(error);
                 }
+            }
+
+            function errorHelper(error) {
+                const ERROR_MESSAGES = {
+                        "auth/email-already-in-use":
+                            "That email already has an account. Try signing in instead.",
+                        "auth/user-not-found":
+                            "That email doesn't have an account. Please try signing up.",
+                        "auth/invalid-email": "Please enter a valid email.",
+                        "auth/wrong-password": "That password is incorrect.",
+                        "auth/missing-password":
+                            "Please enter a valid password.",
+                        "auth/weak-password":
+                            "That password is too weak. It must be at least 6 characters.",
+                    },
+                    { code } = error;
+                console.error(error);
+                setErrorMessage(ERROR_MESSAGES[code] || code);
             }
         }, []);
 
