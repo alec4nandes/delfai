@@ -14,6 +14,8 @@ export default function Advice({ elemRef, waitRef, cards }) {
                     ref={elemRef}
                 ></div>
             </div>
+            <br />
+            <br />
         </div>
     );
 }

@@ -56,10 +56,9 @@ export default function CustomSelect({
                         ))}
                         <textarea
                             name="question"
+                            defaultValue={question}
                             placeholder="Ask a question (optional)..."
-                        >
-                            {question}
-                        </textarea>
+                        ></textarea>
                         <button className="standard-btn" type="submit">
                             read cards
                         </button>

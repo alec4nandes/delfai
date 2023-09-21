@@ -1,5 +1,5 @@
-import { getCustomPrompt, getStandardPrompts } from "./prompts.js";
-import { getOppositeWords } from "./spread.js";
+import { getTimeframeQueries, getCustomSpreadQuery } from "./prompts.js";
+import { getOppositeWords } from "./data.js";
 
 function compareCards(spread, question, isCustom) {
     question = question.trim();
@@ -16,13 +16,8 @@ function compareCards(spread, question, isCustom) {
     // group opposites keys
     condense(opposites);
     const prompts = isCustom
-            ? getCustomPrompt({ spread, matching, opposites, question })
-            : getStandardPrompts({
-                  spread,
-                  matching,
-                  opposites,
-                  question,
-              }),
+            ? getCustomSpreadQuery(spread, question, matching, opposites)
+            : getTimeframeQueries(spread, question, matching, opposites),
         [past, present, future] = spread;
     return {
         matching,
@@ -72,7 +67,7 @@ function getRelated(word, spread) {
 }
 
 function condense(obj) {
-    let entries = Object.entries(obj);
+    let entries = Object.entries(obj).filter(([key]) => key !== "cards");
     entries.forEach(([outerKey, outerVal]) => {
         const keys = entries
             .filter(

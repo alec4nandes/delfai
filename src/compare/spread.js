@@ -1,4 +1,4 @@
-import { allCards, opposites } from "./data.js";
+import { allCards, getCardOpposites } from "./data.js";
 
 function getTestSpread() {
     const names1 = [
@@ -7,12 +7,12 @@ function getTestSpread() {
             "6 of Pentacles reversed",
             "Devil reversed",
         ],
-        names2 = [
-            // test matching grouping:
-            "Sun reversed",
-            "Queen of Cups reversed",
-            "Page of Cups reversed",
-        ],
+        // names2 = [
+        //     // test matching grouping:
+        //     "Sun reversed",
+        //     "Queen of Cups reversed",
+        //     "Page of Cups reversed",
+        // ],
         rev = " reversed";
     return [...names1].map((name) =>
         getCard(name.replace(rev, ""), name.includes(rev))
@@ -42,17 +42,4 @@ function getCard(name, isReversed) {
     return { name, words };
 }
 
-function getCardOpposites(name) {
-    return [
-        ...new Set(allCards[name].map(getOppositeWords).flat(Infinity)),
-    ].sort();
-}
-
-function getOppositeWords(word) {
-    return opposites
-        .filter((pair) => pair.includes(word))
-        .map((pair) => pair[pair.indexOf(word) ? 0 : 1])
-        .filter(Boolean); // in case empty string in pair
-}
-
-export { getSpread, getTestSpread, getOppositeWords };
+export { getSpread, getTestSpread };

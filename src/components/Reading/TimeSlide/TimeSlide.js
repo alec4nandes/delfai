@@ -1,7 +1,9 @@
-import CardImage from "../../CardImage";
 import { getCardsId } from "../../CustomReading";
+import CardImage from "../../CardImage";
 import Compare from "../Compare/Compare";
 import NextButton from "../NextButton";
+import Rank from "../../Rank";
+import Suit from "../../Suit";
 
 export default function TimeSlide({
     cards,
@@ -42,15 +44,20 @@ export default function TimeSlide({
                         <li key={`${card.name}-${word}`}>{word}</li>
                     ))}
                 </ul>
+                <Rank {...{ card }} />
+                <Suit {...{ card }} />
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
+                    <br />
                     Reading... Please wait...
                 </div>
+                <br />
                 <div
                     id={getCardsId(cards)}
                     className="reading"
                     ref={elemRef}
                 ></div>
+                <br />
                 <NextButton />
             </div>
         </div>
