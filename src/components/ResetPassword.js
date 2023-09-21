@@ -13,6 +13,10 @@ export default function ResetPassword({ email }) {
     );
 
     async function handleResetPassword(email) {
+        if (!email.trim()) {
+            alert("Please enter a registered email address.");
+            return;
+        }
         try {
             await sendPasswordResetEmail(auth, email);
             alert(`Password reset email sent to ${email}`);
