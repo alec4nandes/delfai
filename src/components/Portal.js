@@ -60,6 +60,7 @@ export default function Portal() {
                         "auth/user-not-found":
                             "That email doesn't have an account. Please try signing up.",
                         "auth/invalid-email": "Please enter a valid email.",
+                        "auth/missing-email": "Please enter a valid email.",
                         "auth/wrong-password": "That password is incorrect.",
                         "auth/missing-password":
                             "Please enter a valid password.",
