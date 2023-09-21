@@ -74,7 +74,7 @@ function getTimeframeQuery(card, timeframe, question, matching, opposites) {
 
 function getIntro(cardName, timeframe, question) {
     return (
-        `You are my Tarot card reader, and I drew the card ${cardName} for my ${timeframe} situation. ` +
+        `I drew the card ${cardName} for my ${timeframe} situation. ` +
         askQuestion(question)
     );
 }
@@ -122,7 +122,7 @@ function askQuestion(question) {
     question = question.trim();
     return question
         ? `If the question "${question}" makes sense, ` +
-              "please answer it in your reading. "
+              "answer it in your reading. "
         : "";
 }
 
@@ -167,7 +167,7 @@ function getMatchingLines(matching, cardName, timeframe) {
                       `The cards ${cards.join(", ")} all represent "${word}." `
               )
               .join("") +
-              `Please emphasize the importance of ${
+              `Emphasize the importance of ${
                   moreThan1 ? "these" : "this"
               } connection${moreThan1 ? "s" : ""}${
                   cardName
@@ -223,19 +223,17 @@ function getEnding(
     return (
         getMatchingLines(matching, cardName, timeframe) +
         getOppositeLines(opposites, cardName, timeframe) +
-        `Please respond with no more than ${sentenceCount} sentences. ` +
+        `Respond with no more than ${sentenceCount} sentences. ` +
         "The tone of your response should be wise yet friendly, " +
         "like a professional Tarot card reader in an intimate setting. " +
-        'Please address the "seeker" directly without welcoming them, ' +
+        'Address the "seeker" directly without welcoming them, ' +
         "and don't bother signing off."
     );
 }
 
 function getAllWordsLine(spread) {
     const isSingle = spread.length === 1;
-    return `You are my Tarot card reader, and I drew the card${
-        isSingle ? "" : "s"
-    } ${spread
+    return `I drew the card${isSingle ? "" : "s"} ${spread
         .map(
             ({ name, words }) =>
                 `${name} with the meaning "${words.join(", ")}"`

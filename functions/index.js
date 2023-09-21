@@ -10,7 +10,7 @@ const OpenAI = require("openai"),
 
 // CARD READING
 
-const IS_DEVELOPMENT = false,
+const IS_DEVELOPMENT = true,
     getCors = () =>
         cors({
             origin: IS_DEVELOPMENT
@@ -40,9 +40,17 @@ readingServer.post("/", async function (req, res) {
 
 async function getStream(content) {
     return await openai.chat.completions.create({
-        messages: [{ role: "user", content }],
+        messages: [
+            {
+                role: "system",
+                content:
+                    "You are a wise yet friendly Tarot card reader explaining my cards in an intimate setting.",
+            },
+            { role: "user", content },
+        ],
         model: "gpt-3.5-turbo",
         stream: true,
+        temperature: 0.7,
     });
 }
 

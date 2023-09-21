@@ -2,7 +2,7 @@
 
 OPENAI CHATGPT PROMPTS:
 
-Please flatten and alphabetize the following array, then display it
+Flatten and alphabetize the following array, then display it
 in plain text:
 * flatten opposites, then in new chat window paste flat list
 
@@ -13,20 +13,20 @@ Using ONLY the provided list, go through each word and filter out any
 that do not apply to the current card. Take the remaining words and
 assign them as an array to the card's name in a JSON object. Do not
 use the word "The" or any numbers in the card's name. It is important
-that each array only has words from the provided list. Please do not
+that each array only has words from the provided list. Do not
 provide any synonyms, do not change the word's grammar or tense, and
 do not draw words for the cards from other sources.
 
 ...
 
 Remember, by provided list I mean the list I first pasted into the chat.
-You seem to be straying from the list. Please only use those words, and
+You seem to be straying from the list. Only use those words, and
 no synonyms. Give it another try.
 
 ...
 
 Can you do the same thing for the [SUIT] suit of the minor arcana?
-Please write the card names with digits instead of spelling out numbers.
+Write the card names with digits instead of spelling out numbers.
 
 ...
 
