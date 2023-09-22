@@ -86,8 +86,8 @@ export default function Portal() {
         <div id="sign-in">
             <div className="container">
                 <h1>Delfai Oracle</h1>
+                <h2>Tarot Card Readings</h2>
                 <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
-                    <h2>Tarot Card Readings</h2>
                     <table>
                         <tbody>
                             <tr>

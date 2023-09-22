@@ -5,7 +5,7 @@ export default function Compare({ matching, opposites }) {
     return (
         hasEntries({ ...matching, ...opposites }) && (
             <>
-                <br />
+                
                 <div id="compare-tables">
                     {hasEntries(matching) && (
                         <MatchingTables {...{ matching }} />
@@ -14,7 +14,7 @@ export default function Compare({ matching, opposites }) {
                         <OppositesTables {...{ opposites }} />
                     )}
                 </div>
-                <br />
+                
             </>
         )
     );

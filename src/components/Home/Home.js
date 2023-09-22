@@ -1,9 +1,9 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
-import AskQuestion from "./AskQuestion";
-import Subscribe from "./Subscribe/Subscribe";
-import SignOut from "../SignOut";
+import AskQuestion, { Separator } from "./AskQuestion";
 import MemberBanner from "./MemberBanner";
+import SignOut from "../SignOut";
+import Subscribe from "./Subscribe/Subscribe";
 
 export default function Home({
     custom,
@@ -35,6 +35,7 @@ export default function Home({
                                 cards,
                             }}
                         />
+                        <Separator />
                         {user.paid || user.free_draws > 0 ? (
                             <AskQuestion {...{ user, setCards, setUser }} />
                         ) : (

@@ -13,11 +13,9 @@ export default function Spread({ cards }) {
                 <h2 className="bigger-header">3-Card Spread</h2>
                 {cards.question && <h3>Asking: "{cards.question}"</h3>}
                 <CardImages {...{ spread }} />
-                <br />
                 <Compare {...cards} />
                 <NextButton />
             </div>
-            <br />
         </div>
     );
 }

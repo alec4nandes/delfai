@@ -4,6 +4,7 @@ export default function AskQuestion({ user, setCards, setUser }) {
     return (
         <>
             <CustomQuestion {...{ setCards, setUser, user }} />
+            <Separator />
             <Questions {...{ setCards, setUser, user }} />
         </>
     );
@@ -12,11 +13,6 @@ export default function AskQuestion({ user, setCards, setUser }) {
 function CustomQuestion({ setCards, setUser, user }) {
     return (
         <>
-            <img
-                className="separator"
-                src="/assets/separator.png"
-                alt="decorative dividing line made up of square swirls in the Greek style."
-            />
             <h2>Ask the Tarot cards a question:</h2>
             <p>
                 <u>Please note</u>: These cards are primarily for personal
@@ -44,3 +40,15 @@ function CustomQuestion({ setCards, setUser, user }) {
         </>
     );
 }
+
+function Separator() {
+    return (
+        <img
+            className="separator"
+            src="/assets/separator.png"
+            alt="decorative dividing line made up of square swirls in the Greek style."
+        />
+    );
+}
+
+export { Separator };

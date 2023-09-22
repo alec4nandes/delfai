@@ -12,6 +12,7 @@ export default function CustomSelect({
     custom,
     setCustom,
     setIsCustom,
+    waitRef,
 }) {
     const currentCards = cards?.spread.map(({ name }) => name) || [],
         question = cards?.question || "",
@@ -23,7 +24,6 @@ export default function CustomSelect({
             <summary className="standard-btn">Enter a Custom Spread</summary>
             {user.paid ? (
                 <div id="custom-spread">
-                    <br />
                     <label>
                         spread size:{" "}
                         <select
@@ -97,6 +97,7 @@ export default function CustomSelect({
 
     function handleFormSubmit(e) {
         e.preventDefault();
+        waitRef && (waitRef.current.style.visibility = "visible");
         const cardNames = getCardNames().filter(Boolean),
             data = getFormData(),
             isValid =

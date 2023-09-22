@@ -48,19 +48,15 @@ export default function TimeSlide({
                 <Suit {...{ card }} />
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
-                    <br />
                     Reading... Please wait...
                 </div>
-                <br />
                 <div
                     id={getCardsId(cards)}
                     className="reading"
                     ref={elemRef}
                 ></div>
-                <br />
                 <NextButton />
             </div>
-            <br />
         </div>
     );
 }

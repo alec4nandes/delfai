@@ -57,6 +57,7 @@ body main #container > * {
 h1,
 h2 {
   font-family: "Norse Bold", "Times New Roman", Times, serif;
+  margin: 0;
 }
 
 h1 {
@@ -75,11 +76,6 @@ h2.bigger-header {
   font-size: 2.4rem;
   line-height: 2.7rem;
   margin-bottom: 15px;
-}
-
-h2,
-nav {
-  margin: 10px auto !important;
 }
 
 a {
@@ -103,7 +99,6 @@ blockquote:before, blockquote:after {
   font-family: "Times New Roman", Times, serif;
   font-size: 6em;
   line-height: 0.1em;
-  margin-right: 0.25em;
   position: absolute;
 }
 blockquote:before {
@@ -124,6 +119,13 @@ blockquote p {
 
 #copyright {
   color: var(--accent-color-2);
+}
+
+img.separator {
+  height: auto;
+  width: 150px;
+  margin: auto;
+  padding: 20px 0;
 }
 
 @media only screen and (max-width: 600px) {

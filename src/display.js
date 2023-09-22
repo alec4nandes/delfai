@@ -39,7 +39,7 @@ function fetchStream(cards, stream, timeframe, elemRef, waitRef) {
             // new custom spread before the old one finishes reading.
             if (done) {
                 console.log(`${timeframe} stream complete!`);
-                waitRef.current.style.display = "none";
+                waitRef.current.style.visibility = "hidden";
             } else {
                 elemRef.current.textContent += new TextDecoder().decode(value);
             }

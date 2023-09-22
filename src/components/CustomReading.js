@@ -20,10 +20,10 @@ export default function CustomReading({
 
     return (
         <div id="alternative-page">
-            <div className="container">
+            <div id="custom-spread" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Custom Spread</h2>
-                {cards.question ? <h3>Asking: "{cards.question}"</h3> : <br />}
+                {cards.question && <h3>Asking: "{cards.question}"</h3>}
                 <CustomSelect
                     {...{
                         user,
@@ -32,33 +32,25 @@ export default function CustomReading({
                         custom,
                         setCustom,
                         setIsCustom,
+                        waitRef: customWaitRef,
                     }}
                 />
-                <br />
                 <CardImages spread={cards.spread} />
-                <br />
-                <br />
                 <Compare {...cards} />
                 <div className="wait" ref={customWaitRef}>
-                    <br />
                     Reading... Please wait...
                 </div>
-                <br />
-                <br />
                 <div
                     id={getCardsId(cards)}
                     className="reading"
                     ref={customRef}
                 ></div>
-                <br />
-                <br />
                 <button
                     className="standard-btn"
                     onClick={() => window.location.reload()}
                 >
                     go home
                 </button>
-                <br />
             </div>
         </div>
     );
