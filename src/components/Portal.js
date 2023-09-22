@@ -141,7 +141,11 @@ export default function Portal() {
                     </table>
                     <p id="sign-in-error">{errorMessage}</p>
                 </form>
-                <ResetPassword email={loginEmail} />
+                <div>
+                    <a href="/about">about</a>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <ResetPassword email={loginEmail} />
+                </div>
             </div>
         </div>
     );

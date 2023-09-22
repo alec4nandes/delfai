@@ -16,6 +16,10 @@
         padding: 60px 10px;
         text-align: center;
 
+        h1 {
+            margin: 0;
+        }
+
         form {
             table {
                 border-spacing: 8px;
@@ -42,7 +46,9 @@
         #reset-pw-btn {
             background-color: transparent;
             color: var(--accent-color);
+            display: inline;
             font-weight: normal;
+            padding: 0;
             text-decoration: underline;
 
             &:hover {
