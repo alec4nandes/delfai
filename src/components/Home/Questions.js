@@ -5,54 +5,51 @@ import { getSpread } from "../../compare/spread.js";
 
 export default function Questions({ setCards, setUser, user }) {
     const questions = {
-        "Self-Discovery":
-            "What aspects of myself should I focus on to better understand who I am?",
-        Embracing:
-            "How can I welcome and adapt to life's changes with a positive mindset?",
-        Overcoming:
-            "What strengths can I harness to navigate challenges and emerge stronger?",
-        Inner: "What steps can I take to facilitate emotional healing and well-being?",
-        Cultivating:
-            "What steps can I take to develop a more compassionate and understanding nature?",
-        Empowering:
-            "What qualities should I nurture to pursue my goals with determination?",
-        Balancing:
-            "What areas of my life need more balance to enhance my overall harmony?",
-        Building:
-            "How can I improve my connections with others and create deeper bonds?",
-        Fostering:
-            "What can I do to stimulate and express my creative potential more fully?",
-        Mindful:
-            "What practices can help me stay present and make the most of each moment?",
-        Strengthening:
-            "How can I boost my self-confidence and believe in my abilities?",
-        Finding:
-            "What strategies will aid me in finding tranquility amidst life's hustle and bustle?",
-        Emotional:
-            "How can I delve into my emotions to gain deeper insights into my feelings?",
-        Nurturing:
-            "What actions can I take to cultivate a stronger sense of self-love and acceptance?",
-        Letting:
-            "What aspects of my life should I consider releasing in order to move forward?",
-        Practicing:
-            "How can I develop a habit of appreciating the positive aspects of my life?",
-        Enhancing:
-            "What methods can I use to connect more strongly with my inner intuition?",
-        Focusing:
-            "What can I do to shift my perspective towards a more positive outlook?",
-        Living: "How can I align my actions and choices with my true, authentic self?",
+        Love: [
+            "What do the Tarot cards reveal about the current state of my romantic relationship?",
+            "Can you provide insight into what I need to work on to improve my love life?",
+            "Are there any potential romantic opportunities or challenges on the horizon?",
+            "What lessons can I learn from past relationships to enhance my future ones?",
+            "How can I bring more love and harmony into my life right now?",
+        ],
+        Career: [
+            "What does the Tarot suggest about my current career path and job satisfaction?",
+            "Can you offer guidance on potential career changes or opportunities I should consider?",
+            "What strengths or skills should I focus on to advance in my career?",
+            "Are there any obstacles or challenges I should be aware of in my professional life?",
+            "How can I achieve a better work-life balance and overall career success?",
+        ],
+        Health: [
+            "What insights can the Tarot provide regarding my current health and well-being?",
+            "Are there any specific lifestyle changes or habits I should prioritize for better health?",
+            "Can you offer guidance on managing any existing health issues or concerns?",
+            "What should I know about my mental and emotional health at this time?",
+            "How can I maintain a healthier, more balanced lifestyle going forward?",
+        ],
+        "Social Life": [
+            "What do the Tarot cards reveal about my current social connections and friendships?",
+            "Can you offer insights into how I can improve my social interactions and relationships?",
+            "Are there any upcoming social events or gatherings I should be aware of?",
+            "What should I know about the dynamics within my social circle?",
+            "How can I expand my social horizons and make new connections in my life?",
+        ],
     };
 
-    const buttons = Object.entries(questions).map(([key, value], i) => (
-        <form
-            onSubmit={(e) => handleQuestion(e, setCards, setUser, user)}
-            key={`question-${i + 1}`}
-        >
-            <button name="question" type="submit" value={value}>
-                <h3 className="link-btn">{key}</h3>
-                {value}
-            </button>
-        </form>
+    const buttons = Object.entries(questions).map(([section, lines], i) => (
+        <div className="question-section" key={`${section}-questions`}>
+            <h2>{section}</h2>
+            {lines.map((question) => (
+                <button
+                    name="question"
+                    onClick={(e) => handleQuestion(e, setCards, setUser, user)}
+                    type="submit"
+                    value={question}
+                    key={question}
+                >
+                    {question}
+                </button>
+            ))}
+        </div>
     ));
 
     return (
@@ -64,14 +61,12 @@ export default function Questions({ setCards, setUser, user }) {
             />
             <h2>Or choose one of these questions about...</h2>
             {buttons}
-            <br />
         </div>
     );
 }
 
 function handleQuestion(e, setCards, setUser, user) {
-    e.preventDefault();
-    const question = e.target.question.value,
+    const question = e.target.value,
         compare = compareCards(getSpread(), question);
     setCards(compare);
     console.log(compare);

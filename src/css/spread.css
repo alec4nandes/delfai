@@ -40,8 +40,9 @@ main .slide#home.unverified {
   display: flex;
 }
 main .slide#home .description {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5rem;
   max-width: 650px;
 }
 main .slide#home #custom-question {
@@ -52,7 +53,8 @@ main .slide#home #custom-question {
   flex-direction: column;
   gap: 10px;
 }
-main .slide#home #questions {
+main .slide#home #questions,
+main .slide#home #questions .question-section {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -61,10 +63,11 @@ main .slide#home #questions,
 main .slide#home #questions button {
   width: 100%;
 }
-main .slide#home #questions h2 {
-  margin-top: 10px;
+main .slide#home #questions .question-section {
+  margin-bottom: 30px;
 }
-main .slide#home #questions button {
+main .slide#home #questions .question-section button {
+  height: 60px;
   background-color: rgba(100, 100, 100, 0.2);
   box-sizing: border-box;
   color: var(--text-color);
@@ -76,17 +79,13 @@ main .slide#home #questions button {
   font-style: italic;
   padding: 10px;
 }
-main .slide#home #questions button:hover {
+main .slide#home #questions .question-section button:hover {
   background-color: #111;
   color: var(--text-color);
   cursor: pointer;
 }
-main .slide#home #questions button:hover h3 {
+main .slide#home #questions .question-section button:hover h3 {
   color: var(--accent-color-2);
-}
-main .slide#home #questions button h3 {
-  font-style: initial;
-  margin: 0 0 5px;
 }
 main .slide#home .payment-input-wrapper {
   border-bottom: 2px solid #333;

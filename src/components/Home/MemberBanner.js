@@ -24,7 +24,7 @@ export default function MemberBanner({
                 >
                     settings
                 </button>
-                |
+                | <a href="/about">about</a> |
                 <SignOut />
             </div>
             <p id="free-status">

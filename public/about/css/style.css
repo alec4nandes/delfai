@@ -1,0 +1,121 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
+@font-face {
+  font-family: "Norse Bold";
+  src: url("/fonts/Norsebold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+:root {
+  --bg-color: #111328;
+  --box-bg-color: rgba(250, 250, 250, 0.25);
+  --text-color: #f6ecdb;
+  --accent-color: #cf9a4a;
+  --accent-color-2: #96afb3;
+}
+
+body {
+  background-attachment: fixed;
+  background-color: var(--bg-color);
+  background-image: url("/assets/pythia-bg2.png"), url("/assets/pythia-bg.png");
+  background-position: center left 6vw, center right 6vw;
+  background-repeat: no-repeat;
+  background-size: auto clamp(400px, 60vh, 800px);
+  color: var(--text-color);
+  font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.5rem;
+  margin: 0;
+}
+body main {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+  overflow: auto;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 90px 0;
+  padding: 0px 15px;
+}
+body main > * {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1,
+h2 {
+  font-family: "Norse Bold", "Times New Roman", Times, serif;
+}
+
+h1 {
+  color: var(--accent-color-2);
+  font-size: 3rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
+h2 {
+  color: var(--accent-color);
+  font-size: 1.7rem;
+  line-height: 2rem;
+}
+h2.bigger-header {
+  font-size: 2.4rem;
+  line-height: 2.7rem;
+  margin-bottom: 15px;
+}
+
+h2,
+nav {
+  margin: 10px auto !important;
+}
+
+a {
+  color: var(--accent-color);
+  font-weight: 700;
+  text-decoration: underline;
+}
+a:hover {
+  color: var(--accent-color-2);
+}
+
+blockquote {
+  background-color: var(--box-bg-color);
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  position: relative;
+  quotes: "“" "”" "‘" "’";
+}
+blockquote:before, blockquote:after {
+  color: #ccc;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 6em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  position: absolute;
+}
+blockquote:before {
+  content: open-quote;
+  top: 15px;
+  left: 0;
+}
+blockquote:after {
+  content: close-quote;
+  bottom: -35px;
+  right: 0;
+}
+blockquote p {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  margin: 10px 25px;
+}
+
+#copyright {
+  color: var(--accent-color-2);
+}/*# sourceMappingURL=style.css.map */

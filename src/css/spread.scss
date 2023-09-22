@@ -47,8 +47,9 @@ main {
             }
 
             .description {
-                font-size: 1.1rem;
-                font-weight: bold;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 1.5rem;
                 max-width: 650px;
             }
 
@@ -62,44 +63,43 @@ main {
             }
 
             #questions {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
+                &,
+                .question-section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
 
                 &,
                 button {
                     width: 100%;
                 }
 
-                h2 {
-                    margin-top: 10px;
-                }
+                .question-section {
+                    margin-bottom: 30px;
 
-                button {
-                    background-color: rgba(100, 100, 100, 0.2);
-                    box-sizing: border-box;
-                    color: var(--text-color);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-direction: column;
-                    font-size: inherit;
-                    font-style: italic;
-                    padding: 10px;
-
-                    &:hover {
-                        background-color: #111;
+                    button {
+                        height: 60px;
+                        background-color: rgba(100, 100, 100, 0.2);
+                        box-sizing: border-box;
                         color: var(--text-color);
-                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        font-size: inherit;
+                        font-style: italic;
+                        padding: 10px;
 
-                        h3 {
-                            color: var(--accent-color-2);
+                        &:hover {
+                            background-color: #111;
+                            color: var(--text-color);
+                            cursor: pointer;
+
+                            h3 {
+                                color: var(--accent-color-2);
+                            }
                         }
-                    }
-
-                    h3 {
-                        font-style: initial;
-                        margin: 0 0 5px;
                     }
                 }
             }

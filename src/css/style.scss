@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: "Norse Bold";
-    src: url("./fonts/Norsebold.otf") format("opentype");
+    src: url("../../public/fonts/Norsebold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
 }
@@ -19,8 +19,8 @@ html,
 body {
     background-attachment: fixed;
     background-color: var(--bg-color);
-    background-image: url("./assets/pythia-bg2.png"),
-        url("./assets/pythia-bg.png");
+    background-image: url("../../public/assets/pythia-bg2.png"),
+        url("../../public/assets/pythia-bg.png");
     background-position: center left 6vw, center right 6vw;
     background-repeat: no-repeat;
     background-size: auto clamp(400px, 60vh, 800px);
@@ -40,9 +40,9 @@ body {
     textarea {
         color: var(--bg-color);
         font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: normal;
-        line-height: 1.4rem;
+        line-height: 1.5rem;
     }
 
     button,
@@ -70,6 +70,7 @@ body {
     .link-btn {
         background-color: transparent;
         color: var(--accent-color);
+        font-weight: 700;
         text-decoration: underline;
         padding: 0;
 
@@ -164,9 +165,12 @@ h1 {
 
 h2 {
     color: var(--accent-color);
+    font-size: 1.7rem;
+    line-height: 2rem;
 
     &.bigger-header {
         font-size: 2.4rem;
+        line-height: 2.7rem;
         margin-bottom: 15px;
     }
 }
