@@ -125,7 +125,7 @@ img.separator {
   height: auto;
   width: 150px;
   margin: auto;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 @media only screen and (max-width: 600px) {
