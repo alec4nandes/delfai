@@ -41,7 +41,9 @@ export default function Questions({ setCards, setUser, user }) {
             {lines.map((question) => (
                 <button
                     name="question"
-                    onClick={(e) => handleQuestion(e, setCards, setUser, user)}
+                    onClick={(e) =>
+                        handleQuestion(e.target.value, setCards, setUser, user)
+                    }
                     type="submit"
                     value={question}
                     key={question}
@@ -65,9 +67,8 @@ export default function Questions({ setCards, setUser, user }) {
     );
 }
 
-function handleQuestion(e, setCards, setUser, user) {
-    const question = e.target.value,
-        compare = compareCards(getSpread(), question);
+function handleQuestion(question, setCards, setUser, user) {
+    const compare = compareCards(getSpread(), question);
     setCards(compare);
     console.log(compare);
     if (!user.paid) {

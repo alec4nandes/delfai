@@ -14,6 +14,11 @@
   --accent-color-2: #96afb3;
 }
 
+body,
+html {
+  height: 100%;
+}
+
 body {
   background-attachment: fixed;
   background-color: var(--bg-color);
@@ -31,19 +36,20 @@ body {
 body main {
   height: 100%;
   width: 100%;
+  overflow: auto;
+}
+body main #container {
+  min-height: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 25px;
-  overflow: auto;
+  padding: 90px 15px;
   text-align: center;
-  box-sizing: border-box;
-  margin: 90px 0;
-  padding: 0px 15px;
 }
-body main > * {
+body main #container > * {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -118,4 +124,11 @@ blockquote p {
 
 #copyright {
   color: var(--accent-color-2);
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-position: center left, center right;
+    background-size: auto clamp(350px, 50vh, 500px);
+  }
 }/*# sourceMappingURL=style.css.map */

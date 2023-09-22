@@ -24,7 +24,14 @@ function CustomQuestion({ setCards, setUser, user }) {
             </p>
             <form
                 id="custom-question"
-                onSubmit={(e) => handleQuestion(e, setCards, setUser, user)}
+                onSubmit={(e) =>
+                    handleQuestion(
+                        e.target.question.value,
+                        setCards,
+                        setUser,
+                        user
+                    )
+                }
             >
                 <textarea
                     name="question"

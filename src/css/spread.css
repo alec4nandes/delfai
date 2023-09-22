@@ -23,7 +23,7 @@ header nav ul li.highlighted {
 main {
   display: flex;
   flex: 1;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
 }
@@ -35,6 +35,10 @@ main .slide {
   overflow-y: auto;
   padding: 60px 10px;
   scroll-snap-align: start;
+}
+main .slide#home .slide-container {
+  min-height: 100%;
+  justify-content: center;
 }
 main .slide#home.unverified {
   display: flex;

@@ -28,7 +28,7 @@ header {
 main {
     display: flex;
     flex: 1;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     scroll-snap-type: x mandatory;
 
@@ -42,6 +42,11 @@ main {
         scroll-snap-align: start;
 
         &#home {
+            .slide-container {
+                min-height: 100%;
+                justify-content: center;
+            }
+
             &.unverified {
                 display: flex;
             }
