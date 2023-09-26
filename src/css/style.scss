@@ -280,6 +280,11 @@ details {
 .subscribe-form {
     display: flex;
     justify-content: center;
+
+    img.stripe-logo {
+        width: 125px;
+        margin-top: 20px;
+    }
 }
 
 #user-options {

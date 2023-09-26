@@ -18,7 +18,7 @@ const IS_DEVELOPMENT = false,
     db = getFirestore(app),
     analytics = getAnalytics(app),
     STRIPE_PUBLISHABLE_KEY = // starts with pk_
-        "pk_test_51NkqsAIqFJteETEQYpW5MiSPJwYnYUJD64Ruj6alMHmX83hELPfACDnOu8mKPgB8hvDhzvANH26gsjIpb3JOMg3500I8ocfYtY",
+        "pk_live_51NkqsAIqFJteETEQERqhFTfbQgmgbaa4DW9KDN4Ho7p502UpB7dcLQzT6hde2eSbZ4nsI9Ec7KfNUxWzTYyHEjmu00COsdM6o4",
     stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 export { IS_DEVELOPMENT, apiRoot, auth, db, analytics, stripePromise };

@@ -13,7 +13,7 @@ function CheckoutForm({ user }) {
     // collect data from the user
     const [name, setName] = useState(""),
         // Delfai Subscription product ID
-        priceId = "price_1NkyTGIqFJteETEQIt6tjy2I";
+        priceId = "price_1Nug4sIqFJteETEQ0RNjwLYZ";
 
     // stripe items
     const stripe = useStripe(),
@@ -72,6 +72,11 @@ function CheckoutForm({ user }) {
                             subscribe
                         </button>
                     </div>
+                    <img
+                        src="/assets/stripe.png"
+                        className="stripe-logo"
+                        alt="payments powered by Stripe"
+                    />
                 </>
             )}
         </div>

@@ -236,6 +236,10 @@ details > summary::-webkit-details-marker {
   display: flex;
   justify-content: center;
 }
+.subscribe-form img.stripe-logo {
+  width: 125px;
+  margin-top: 20px;
+}
 
 #user-options {
   display: flex;
