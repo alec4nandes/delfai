@@ -4,6 +4,7 @@ function getPrompt(info) {
             Timeframe: `${minor.start_date} — ${minor.end_date}`,
             Card: minor.card_name,
             "Zodiac Sign": zodiac.sign,
+            "Major Arcana": zodiac.card_name,
             Celestial: minor.planet,
             "Court Card": court.card_name,
             Page: `Page of ${ap.suit}`,
@@ -12,14 +13,15 @@ function getPrompt(info) {
     return (
         "Start the post by displaying each key and value pair of this information: " +
         JSON.stringify(summary) +
-        ". Then Write a paragraph explaining what advice the " +
+        ". Then write a paragraph explaining what advice the " +
         minor.card_name +
         " tarot card can give someone for the calendar days " +
         `between ${minor.start_date} and ${minor.end_date}. ` +
-        `How can the astrological meanings for the planet ${minor.planet} ` +
+        `How can the astrological meanings for the celestial body "${minor.planet}" ` +
         "apply to this time period? " +
         `Mention the date range and the zodiac sign ${zodiac.sign} ` +
-        "in this first paragraph. " +
+        "in this first paragraph. When talking about the zodiac sign, " +
+        `connect it to the major arcana card "${zodiac.card_name}". ` +
         "Then, in a second paragraph, briefly mention how the cards " +
         `${summary.Ace}, ${summary.Page}, and ${summary["Court Card"]} ` +
         "could also influence this timeframe. " +

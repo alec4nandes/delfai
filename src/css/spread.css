@@ -47,11 +47,13 @@ main .slide#home .slide-container {
   justify-content: center;
 }
 main .slide#home .description {
+  max-width: 650px;
+  background-color: rgba(100, 100, 100, 0.3);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.5rem;
-  max-width: 650px;
-  padding: 30px 0;
+  margin: 15px auto;
+  padding: 15px 10px;
 }
 main .slide#home #custom-question {
   max-width: 320px;
