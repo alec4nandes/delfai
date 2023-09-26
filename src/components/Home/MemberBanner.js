@@ -28,7 +28,7 @@ export default function MemberBanner({
                 <SignOut />
             </div>
             <p id="free-status">
-                Hi, {user.email}!{" "}
+                Hi, {user.email}! <br />
                 {user.paid ? (
                     <>Thanks for being a paid member!</>
                 ) : (

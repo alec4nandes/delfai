@@ -72,11 +72,13 @@ function CheckoutForm({ user }) {
                             subscribe
                         </button>
                     </div>
-                    <img
-                        src="/assets/stripe.png"
-                        className="stripe-logo"
-                        alt="payments powered by Stripe"
-                    />
+                    <a href="https://stripe.com" target="_blank" rel="noopener">
+                        <img
+                            src="/assets/stripe.png"
+                            className="stripe-logo"
+                            alt="payments powered by Stripe"
+                        />
+                    </a>
                 </>
             )}
         </div>
