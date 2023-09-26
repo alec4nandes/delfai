@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Decan Post</title>
+        <style>
+            body {
+                background-color: #111;
+                color: #eee;
+            }
+
+            #preview {
+                max-width: 100%;
+                width: 600px;
+                margin: auto;
+            }
+
+            #preview img {
+                width: 100%;
+            }
+
+            #prompt {
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="800" height="800" style="display: none"></canvas>
+        <div id="preview"></div>
+        <button id="redraw">redraw</button>
+        <pre></pre>
+        <p id="prompt"></p>
+        <hr/>
+        <div id="response">
+            <em>Loading response...</em>
+        </div>
+        <script type="module">
+            import {getDay, getToday} from "./decan.js";
+            import {askPrompt, getPrompt} from "./prompt.js";
+            import drawCanvas from "./canvas.js";
+
+            const infoElem = document.querySelector("pre"),
+                promptElem = document.querySelector("#prompt"),
+                canvasElem = document.querySelector("#canvas"),
+                previewElem = document.querySelector("#preview"),
+                respElem = document.querySelector("#response"),
+                info = getToday(),
+                json = JSON.stringify(info, null, 4),
+                prompt = getPrompt(info);
+            infoElem.textContent = json;
+            promptElem.textContent = prompt;
+            drawCanvas(canvasElem, info, previewElem);
+            const response = await(await askPrompt(prompt)).json();
+            respElem.innerHTML = response
+                .choices[0]
+                .message
+                .content
+                .replaceAll("\n", "<br/>");
+            document
+                .querySelector("button#redraw")
+                .onclick = () => drawCanvas(canvasElem, info, previewElem);
+        </script>
+    </body>
+</html>

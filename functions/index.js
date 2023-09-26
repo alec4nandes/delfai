@@ -38,6 +38,13 @@ readingServer.post("/", async function (req, res) {
     res.end();
 });
 
+readingServer.post("/decan", async function (req, res) {
+    const { prompt } = req.body,
+        result = await getDecan(prompt);
+    IS_DEVELOPMENT && console.log(prompt);
+    res.send(result);
+});
+
 async function getStream(content) {
     return await openai.chat.completions.create({
         messages: [
@@ -50,6 +57,21 @@ async function getStream(content) {
         ],
         model: "gpt-3.5-turbo",
         stream: true,
+        temperature: 0.7,
+    });
+}
+
+async function getDecan(content) {
+    return await openai.chat.completions.create({
+        messages: [
+            {
+                role: "system",
+                content:
+                    "You are a tarot card reader writing a social media post.",
+            },
+            { role: "user", content },
+        ],
+        model: "gpt-3.5-turbo",
         temperature: 0.7,
     });
 }
