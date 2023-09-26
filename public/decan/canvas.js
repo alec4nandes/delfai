@@ -18,18 +18,29 @@ export default function drawCanvas(canvas, info, previewElem) {
     context.fillStyle = grd;
     context.fillRect(0, 0, 800, 800);
 
+    context.globalAlpha = 0.15;
+    const image = new Image();
+    image.src = "/assets/wheel.png";
+    context.drawImage(image, 0, 0, 800, 800);
+    context.globalAlpha = 1;
+
     drawImage(context, minor.card_name, { top: 90, left: 90 });
     drawImage(context, zodiac.card_name, { top: 90, left: 400 - 80 });
     drawImage(context, court.card_name, { top: 90, left: 550 });
     drawImage(context, `Page of ${ap.suit}`, { top: 430, left: 90 });
     drawImage(context, `Ace of ${ap.suit}`, { top: 430, left: 550 });
 
-    context.font = "bold 60px 'Courier New'";
+    context.globalAlpha = 0.7;
+    context.fillStyle = "lightblue";
+    context.fillRect(400 - 80, 430, 160, 280);
+    context.globalAlpha = 1;
+
+    context.font = "bold 45px 'Georgia'";
     context.textAlign = "center";
-    context.fillStyle = "black";
-    context.fillText(minor.start_date, 400, 510);
-    context.fillText("—", 400, 590);
-    context.fillText(minor.end_date, 400, 670);
+    context.fillStyle = "#333";
+    context.fillText(minor.start_date, 400, 515);
+    context.fillText("—", 400, 585);
+    context.fillText(minor.end_date, 400, 650);
 
     const prev = new Image();
     prev.src = canvas.toDataURL("image/png");
@@ -41,6 +52,5 @@ function drawImage(context, cardName, position) {
     const image = new Image(),
         { top, left } = position;
     image.src = `/assets/cards/${cardName}.jpg`;
-    image.style.height = "300px";
     context.drawImage(image, left, top, 160, 280);
 }
