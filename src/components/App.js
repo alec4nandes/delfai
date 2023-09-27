@@ -71,7 +71,7 @@ export default function App() {
             setTimeout(() => {
                 setIsTransition(false);
                 getReading();
-            }, 1500);
+            }, 1950);
         }
     }, [getReading, isTransition]);
 
@@ -134,56 +134,55 @@ export default function App() {
     ];
 
     return loaded ? (
-        user ? (
-            isTransition ? (
-                <Transition />
+        <>
+            <Transition {...{ isTransition }} />
+            {user ? (
+                isTransition ? (
+                    <></>
+                ) : isSettings ? (
+                    <Settings {...{ user }} />
+                ) : isCustom ? (
+                    <CustomReading
+                        {...{
+                            cards,
+                            customWaitRef,
+                            customRef,
+                            custom,
+                            setCustom,
+                            setCards,
+                            setIsCustom,
+                            user,
+                            setIsTransition,
+                        }}
+                    />
+                ) : (
+                    <>
+                        {cards ? <NavBar /> : <></>}
+                        <main onScroll={(e) => handleScroll(e)}>
+                            {cards ? (
+                                slides
+                            ) : (
+                                <Home
+                                    {...{
+                                        custom,
+                                        setIsSettings,
+                                        setCustom,
+                                        setCards,
+                                        setIsCustom,
+                                        setUser,
+                                        user,
+                                        cards,
+                                        setIsTransition,
+                                    }}
+                                />
+                            )}
+                        </main>
+                    </>
+                )
             ) : (
-                <>
-                    {isSettings ? (
-                        <Settings {...{ user }} />
-                    ) : isCustom ? (
-                        <CustomReading
-                            {...{
-                                cards,
-                                customWaitRef,
-                                customRef,
-                                custom,
-                                setCustom,
-                                setCards,
-                                setIsCustom,
-                                user,
-                                setIsTransition,
-                            }}
-                        />
-                    ) : (
-                        <>
-                            {cards ? <NavBar /> : <></>}
-                            <main onScroll={(e) => handleScroll(e)}>
-                                {cards ? (
-                                    slides
-                                ) : (
-                                    <Home
-                                        {...{
-                                            custom,
-                                            setIsSettings,
-                                            setCustom,
-                                            setCards,
-                                            setIsCustom,
-                                            setUser,
-                                            user,
-                                            cards,
-                                            setIsTransition,
-                                        }}
-                                    />
-                                )}
-                            </main>
-                        </>
-                    )}
-                </>
-            )
-        ) : (
-            <Portal />
-        )
+                <Portal />
+            )}
+        </>
     ) : (
         <></>
     );

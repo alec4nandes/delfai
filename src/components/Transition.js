@@ -1,7 +1,13 @@
-export default function Transition() {
+import "../css/loading.css";
+
+export default function Transition({ isTransition }) {
     return (
-        <div style={{ height: "100%", width: "100%" }}>
-            <h1>Loading!</h1>
-        </div>
+        <div
+            id="loading"
+            style={{
+                opacity: isTransition ? 1 : 0,
+                zIndex: isTransition ? 2 : -1,
+            }}
+        ></div>
     );
 }
