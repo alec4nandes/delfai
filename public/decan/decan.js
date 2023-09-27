@@ -290,7 +290,7 @@ const zodiacSigns = [
     },
     {
         sign: "Sagittarius",
-        card_name: "",
+        card_name: "Temperance",
         start_date: "11/23",
         end_date: "12/21",
     },

@@ -1,14 +1,48 @@
 function getPrompt(info) {
-    const { minor, court, ace_and_page: ap, zodiac } = info,
+    const { minor, zodiac, court, ace_and_page: ap } = info,
+        sign = zodiac.sign,
+        zodiacEmojis = {
+            Aries: "♈",
+            Taurus: "♉",
+            Gemini: "♊",
+            Cancer: "♋",
+            Leo: "♌",
+            Virgo: "♍",
+            Libra: "♎",
+            Scorpio: "♏",
+            Sagittarius: "♐",
+            Capricorn: "♑",
+            Aquarius: "♒",
+            Pisces: "♓",
+        },
+        major = zodiac.card_name,
+        majorEmojis = {
+            Emperor: "💎",
+            Hierophant: "⛪",
+            Lovers: "💞",
+            Chariot: "🚘",
+            Strength: "🦁",
+            Hermit: "🕯️",
+            Justice: "⚖️",
+            Death: "☠️",
+            Temperance: "☯️",
+            Devil: "😈",
+            Star: "🌟",
+            Moon: "🌔",
+        },
+        courtCard = court.card_name,
+        courtEmoji = courtCard.includes("Knight") ? "⚔️" : "👑",
+        page = `Page of ${ap.suit}`,
+        ace = `Ace of ${ap.suit}`,
         summary = {
-            Timeframe: `${minor.start_date} — ${minor.end_date}`,
-            Card: minor.card_name,
-            "Zodiac Sign": zodiac.sign,
-            "Major Arcana": zodiac.card_name,
-            Celestial: minor.planet,
-            "Court Card": court.card_name,
-            Page: `Page of ${ap.suit}`,
-            Ace: `Ace of ${ap.suit}`,
+            "📅 Days": `${minor.start_date} — ${minor.end_date}`,
+            "🃏 Card": minor.card_name,
+            [`${zodiacEmojis[sign]} Zodiac Sign`]: sign,
+            [`${majorEmojis[major]} Major Arcana`]: major,
+            "🔭 Celestial": minor.planet,
+            [`${courtEmoji} Court Card`]: courtCard,
+            "📄 Page": page,
+            "🏆 Ace": ace,
         };
     return (
         "Start the post by displaying each key and value pair of this information: " +
@@ -23,8 +57,7 @@ function getPrompt(info) {
         "in this first paragraph. When talking about the zodiac sign, " +
         `connect it to the major arcana card "${zodiac.card_name}". ` +
         "Then, in a second paragraph, briefly mention how the cards " +
-        `${summary.Ace}, ${summary.Page}, and ${summary["Court Card"]} ` +
-        "could also influence this timeframe. " +
+        `${courtCard}, ${page}, and ${ace} could also influence this timeframe. ` +
         "Finally, on a new line, add five to ten hashtags that only contain single words, " +
         "not joined words. The hashtags must all be lowercase and about tarot, and should include #tarot and #tarotreading."
     );
