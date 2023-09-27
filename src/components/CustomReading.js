@@ -12,6 +12,7 @@ export default function CustomReading({
     setCards,
     setIsCustom,
     user,
+    setIsTransition,
 }) {
     useEffect(() => {
         customWaitRef.current.style.display = "block";
@@ -33,6 +34,7 @@ export default function CustomReading({
                         setCustom,
                         setIsCustom,
                         waitRef: customWaitRef,
+                        setIsTransition,
                     }}
                 />
                 <CardImages spread={cards.spread} />

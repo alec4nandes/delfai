@@ -14,6 +14,7 @@ export default function Home({
     setUser,
     user,
     cards,
+    setIsTransition,
 }) {
     return (
         <div
@@ -33,11 +34,19 @@ export default function Home({
                                 setCustom,
                                 setCards,
                                 cards,
+                                setIsTransition,
                             }}
                         />
                         <Separator />
                         {user.paid || user.free_draws > 0 ? (
-                            <AskQuestion {...{ user, setCards, setUser }} />
+                            <AskQuestion
+                                {...{
+                                    user,
+                                    setCards,
+                                    setUser,
+                                    setIsTransition,
+                                }}
+                            />
                         ) : (
                             <FreeTrialOver {...{ user }} />
                         )}

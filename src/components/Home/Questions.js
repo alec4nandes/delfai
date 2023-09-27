@@ -3,7 +3,12 @@ import { db } from "../../database.js";
 import { compareCards } from "../../compare/compare.js";
 import { getSpread } from "../../compare/spread.js";
 
-export default function Questions({ setCards, setUser, user }) {
+export default function Questions({
+    setCards,
+    setUser,
+    user,
+    setIsTransition,
+}) {
     const questions = {
         Love: [
             "What do the Tarot cards reveal about the current state of my romantic relationship?",
@@ -42,7 +47,13 @@ export default function Questions({ setCards, setUser, user }) {
                 <button
                     name="question"
                     onClick={(e) =>
-                        handleQuestion(e.target.value, setCards, setUser, user)
+                        handleQuestion(
+                            e.target.value,
+                            setCards,
+                            setUser,
+                            user,
+                            setIsTransition
+                        )
                     }
                     type="submit"
                     value={question}
@@ -62,9 +73,10 @@ export default function Questions({ setCards, setUser, user }) {
     );
 }
 
-function handleQuestion(question, setCards, setUser, user) {
+function handleQuestion(question, setCards, setUser, user, setIsTransition) {
     const compare = compareCards(getSpread(), question);
     setCards(compare);
+    setIsTransition(true);
     console.log(compare);
     if (!user.paid) {
         setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));

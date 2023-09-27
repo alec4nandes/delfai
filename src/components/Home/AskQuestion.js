@@ -1,16 +1,21 @@
 import Questions, { handleQuestion } from "./Questions";
 
-export default function AskQuestion({ user, setCards, setUser }) {
+export default function AskQuestion({
+    user,
+    setCards,
+    setUser,
+    setIsTransition,
+}) {
     return (
         <>
-            <CustomQuestion {...{ setCards, setUser, user }} />
+            <CustomQuestion {...{ setCards, setUser, user, setIsTransition }} />
             <Separator />
-            <Questions {...{ setCards, setUser, user }} />
+            <Questions {...{ setCards, setUser, user, setIsTransition }} />
         </>
     );
 }
 
-function CustomQuestion({ setCards, setUser, user }) {
+function CustomQuestion({ setCards, setUser, user, setIsTransition }) {
     return (
         <>
             <h2>Ask the Tarot cards a question:</h2>
@@ -25,7 +30,8 @@ function CustomQuestion({ setCards, setUser, user }) {
                         e.target.question.value,
                         setCards,
                         setUser,
-                        user
+                        user,
+                        setIsTransition
                     )
                 }
             >

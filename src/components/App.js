@@ -1,5 +1,5 @@
 import "../css/spread.css";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
@@ -15,6 +15,7 @@ import Present from "./Reading/TimeSlide/Present";
 import Future from "./Reading/TimeSlide/Future";
 import Advice from "./Reading/Advice";
 import NavBar from "./Reading/Navbar";
+import Transition from "./Transition";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
@@ -23,6 +24,7 @@ export default function App() {
         [isSettings, setIsSettings] = useState(false),
         [isCustom, setIsCustom] = useState(false),
         [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
+        [isTransition, setIsTransition] = useState(false),
         pastRef = useRef(),
         presentRef = useRef(),
         futureRef = useRef(),
@@ -34,26 +36,7 @@ export default function App() {
         adviceWaitRef = useRef(),
         customWaitRef = useRef();
 
-    useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
-            user && setUser(await getUserData(user));
-            setLoaded(true);
-        });
-
-        async function getUserData(user) {
-            const { email, emailVerified } = user || {};
-            try {
-                const data =
-                    (await getDoc(doc(db, "users", email))).data() || {};
-                return { email, emailVerified, ...data };
-            } catch (err) {
-                console.error(err);
-                return null;
-            }
-        }
-    }, []);
-
-    useEffect(() => {
+    const getReading = useCallback(() => {
         if (!cards) {
             return;
         }
@@ -82,6 +65,34 @@ export default function App() {
             );
         }
     }, [cards, isCustom]);
+
+    useEffect(() => {
+        if (isTransition) {
+            setTimeout(() => {
+                setIsTransition(false);
+                getReading();
+            }, 1500);
+        }
+    }, [getReading, isTransition]);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            user && setUser(await getUserData(user));
+            setLoaded(true);
+        });
+
+        async function getUserData(user) {
+            const { email, emailVerified } = user || {};
+            try {
+                const data =
+                    (await getDoc(doc(db, "users", email))).data() || {};
+                return { email, emailVerified, ...data };
+            } catch (err) {
+                console.error(err);
+                return null;
+            }
+        }
+    }, []);
 
     const slides = [
         <Spread {...{ cards, key: "spread" }} />,
@@ -124,47 +135,52 @@ export default function App() {
 
     return loaded ? (
         user ? (
-            <>
-                {isSettings ? (
-                    <Settings {...{ user }} />
-                ) : isCustom ? (
-                    <CustomReading
-                        {...{
-                            cards,
-                            customWaitRef,
-                            customRef,
-                            custom,
-                            setCustom,
-                            setCards,
-                            setIsCustom,
-                            user,
-                        }}
-                    />
-                ) : (
-                    <>
-                        {cards ? <NavBar /> : <></>}
-                        <main onScroll={(e) => handleScroll(e)}>
-                            {cards ? (
-                                slides
-                            ) : (
-                                <Home
-                                    {...{
-                                        custom,
-                                        setIsSettings,
-                                        setCustom,
-                                        setCards,
-                                        setIsCustom,
-                                        setUser,
-                                        user,
-                                        cards,
-                                        key: "home",
-                                    }}
-                                />
-                            )}
-                        </main>
-                    </>
-                )}
-            </>
+            isTransition ? (
+                <Transition />
+            ) : (
+                <>
+                    {isSettings ? (
+                        <Settings {...{ user }} />
+                    ) : isCustom ? (
+                        <CustomReading
+                            {...{
+                                cards,
+                                customWaitRef,
+                                customRef,
+                                custom,
+                                setCustom,
+                                setCards,
+                                setIsCustom,
+                                user,
+                                setIsTransition,
+                            }}
+                        />
+                    ) : (
+                        <>
+                            {cards ? <NavBar /> : <></>}
+                            <main onScroll={(e) => handleScroll(e)}>
+                                {cards ? (
+                                    slides
+                                ) : (
+                                    <Home
+                                        {...{
+                                            custom,
+                                            setIsSettings,
+                                            setCustom,
+                                            setCards,
+                                            setIsCustom,
+                                            setUser,
+                                            user,
+                                            cards,
+                                            setIsTransition,
+                                        }}
+                                    />
+                                )}
+                            </main>
+                        </>
+                    )}
+                </>
+            )
         ) : (
             <Portal />
         )

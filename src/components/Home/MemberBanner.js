@@ -9,6 +9,7 @@ export default function MemberBanner({
     setCustom,
     setCards,
     cards,
+    setIsTransition,
 }) {
     return (
         <>
@@ -47,6 +48,7 @@ export default function MemberBanner({
                         custom,
                         setCustom,
                         setIsCustom,
+                        setIsTransition,
                     }}
                 />
             ) : (

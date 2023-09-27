@@ -13,6 +13,7 @@ export default function CustomSelect({
     setCustom,
     setIsCustom,
     waitRef,
+    setIsTransition,
 }) {
     const currentCards = cards?.spread.map(({ name }) => name) || [],
         question = cards?.question || "",
@@ -115,6 +116,7 @@ export default function CustomSelect({
                 compareCards(getSpread(null, cardNames), data.question, true)
             );
             setIsCustom(true);
+            setIsTransition(true);
         } else if (!isValid) {
             alert(
                 "Your custom spread has either missing or repeating cards. Please fix."
