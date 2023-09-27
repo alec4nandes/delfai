@@ -149,6 +149,43 @@ body {
     }
 }
 
+// HEADER & MAIN
+
+header {
+    nav {
+        height: 35px;
+
+        ul {
+            height: 100%;
+            display: flex;
+            list-style-type: none;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+
+            li {
+                flex: 1;
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1rem;
+
+                &.highlighted {
+                    background-color: transparent;
+                    color: var(--text-color);
+                }
+            }
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex: 1;
+    overflow: auto;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+}
+
 // HEADINGS
 
 h1,
@@ -172,6 +209,33 @@ h2 {
     &.bigger-header {
         font-size: 2.4rem;
         line-height: 2.7rem;
+    }
+}
+
+// SLIDES (default reading: Reading.js)
+
+.slide {
+    height: 100%;
+    min-width: 100vw;
+    box-sizing: border-box;
+    color: var(--text-color);
+    overflow-y: auto;
+    padding: 60px 15px 80px;
+    scroll-snap-align: start;
+
+    .slide-container {
+        max-width: 800px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+        margin: auto;
+
+        & > *:not(h1):not(h2.bigger-header) {
+            margin: 0;
+            text-align: center;
+        }
     }
 }
 
@@ -214,24 +278,6 @@ img.separator {
 }
 
 // MISC
-
-details {
-    width: 100%;
-
-    &[open] {
-        summary {
-            display: none;
-        }
-    }
-
-    & > summary {
-        list-style: none;
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-    }
-}
 
 #compare-tables {
     width: 100%;
@@ -277,6 +323,24 @@ details {
     }
 }
 
+details {
+    width: 100%;
+
+    &[open] {
+        summary {
+            display: none;
+        }
+    }
+
+    & > summary {
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+    }
+}
+
 .subscribe-form {
     display: flex;
     justify-content: center;
@@ -285,17 +349,6 @@ details {
         width: 125px;
         margin-top: 20px;
     }
-}
-
-#user-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.wait {
-    font-style: italic;
 }
 
 ul.words-list {
@@ -313,6 +366,17 @@ ul.words-list {
         font-weight: 700;
         padding: 5px 10px;
     }
+}
+
+#user-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.wait {
+    font-style: italic;
 }
 
 // RESPONSIVE

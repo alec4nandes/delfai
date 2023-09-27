@@ -1,0 +1,103 @@
+#home {
+    padding-top: 90px;
+
+    &.unverified {
+        display: flex;
+    }
+
+    .slide-container {
+        min-height: 100%;
+        justify-content: center;
+    }
+
+    .description {
+        max-width: 650px;
+        background-color: rgba(100, 100, 100, 0.3);
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.5rem;
+        margin: 15px auto;
+        padding: 15px 10px;
+    }
+
+    #custom-question {
+        max-width: 320px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #questions {
+        gap: 35px;
+
+        &,
+        .question-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &,
+        button {
+            width: 100%;
+        }
+
+        .question-section {
+            gap: 10px;
+
+            button {
+                min-height: 60px;
+                background-color: rgba(100, 100, 100, 0.2);
+                box-sizing: border-box;
+                color: var(--text-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                font-size: inherit;
+                font-style: italic;
+                padding: 10px;
+
+                &:hover {
+                    background-color: #111;
+                    color: var(--text-color);
+                    cursor: pointer;
+
+                    h3 {
+                        color: var(--accent-color-2);
+                    }
+                }
+            }
+        }
+    }
+
+    .payment-input-wrapper {
+        border-bottom: 2px solid #333;
+        margin-bottom: 12.5px;
+
+        &:first-child {
+            input {
+                height: 19.2px;
+                padding: 0;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        input {
+            width: 100%;
+            color: var(--text-color);
+            background-color: transparent;
+            font-size: 16px;
+            font-family: "Courier New";
+            text-align: center;
+
+            &::placeholder {
+                color: #888;
+            }
+        }
+    }
+}

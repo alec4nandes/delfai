@@ -1,3 +1,4 @@
+import "../../css/home.css";
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
 import AskQuestion, { Separator } from "./AskQuestion";

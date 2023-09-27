@@ -1,8 +1,8 @@
-import "../css/spread.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
+import { allCards } from "../compare/data.js";
 import { getSpread } from "../compare/spread.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
@@ -15,7 +15,7 @@ import Present from "./Reading/TimeSlide/Present";
 import Future from "./Reading/TimeSlide/Future";
 import Advice from "./Reading/Advice";
 import NavBar from "./Reading/Navbar";
-import Transition from "./Transition";
+import Loading from "./Loading.js";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
@@ -81,6 +81,8 @@ export default function App() {
             setLoaded(true);
         });
 
+        preloadCardImages();
+
         async function getUserData(user) {
             const { email, emailVerified } = user || {};
             try {
@@ -91,6 +93,12 @@ export default function App() {
                 console.error(err);
                 return null;
             }
+        }
+
+        function preloadCardImages() {
+            Object.keys(allCards).forEach(
+                (cardName) => new Image(`/assets/cards/${cardName}.jpg`)
+            );
         }
     }, []);
 
@@ -135,7 +143,7 @@ export default function App() {
 
     return loaded ? (
         <>
-            <Transition {...{ isTransition }} />
+            <Loading {...{ loaded, isTransition }} />
             {user ? (
                 isTransition ? (
                     <></>
