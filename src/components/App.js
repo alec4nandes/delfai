@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
-import { allCards } from "../compare/data.js";
 import { getSpread } from "../compare/spread.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
@@ -16,6 +15,7 @@ import Future from "./Reading/TimeSlide/Future";
 import Advice from "./Reading/Advice";
 import NavBar from "./Reading/Navbar";
 import Loading from "./Loading.js";
+import { allCards } from "../compare/data.js";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
@@ -67,13 +67,12 @@ export default function App() {
     }, [cards, isCustom]);
 
     useEffect(() => {
-        if (isTransition) {
+        isTransition &&
             setTimeout(() => {
                 setIsTransition(false);
                 getReading();
             }, 1950);
-        }
-    }, [getReading, isTransition]);
+    }, [isTransition, getReading]);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -96,9 +95,10 @@ export default function App() {
         }
 
         function preloadCardImages() {
-            Object.keys(allCards).forEach(
-                (cardName) => new Image(`/assets/cards/${cardName}.jpg`)
-            );
+            Object.keys(allCards).forEach((cardName) => {
+                const img = new Image();
+                img.src = `/assets/cards/${cardName}.jpg`;
+            });
         }
     }, []);
 
@@ -143,7 +143,7 @@ export default function App() {
 
     return loaded ? (
         <>
-            <Loading {...{ loaded, isTransition }} />
+            <Loading {...{ isTransition }} />
             {user ? (
                 isTransition ? (
                     <></>
