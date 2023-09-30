@@ -1,5 +1,5 @@
 function getPrompt(info) {
-    const { minor, zodiac, court, ace_and_page: ap } = info,
+    const { minor, zodiac, court, suit } = info,
         sign = zodiac.sign,
         zodiacEmojis = {
             Aries: "♈",
@@ -32,14 +32,14 @@ function getPrompt(info) {
         },
         courtCard = court.card_name,
         courtEmoji = courtCard.includes("Knight") ? "⚔️" : "👑",
-        page = `Page of ${ap.suit}`,
-        ace = `Ace of ${ap.suit}`,
+        page = `Page of ${suit.name}`,
+        ace = `Ace of ${suit.name}`,
         summary = {
             "📅 Days": `${minor.start_date} — ${minor.end_date}`,
             "🃏 Card": minor.card_name,
             [`${zodiacEmojis[sign]} Zodiac Sign`]: sign,
             [`${majorEmojis[major]} Major Arcana`]: major,
-            "🔭 Celestial": minor.planet,
+            "🔭 Celestial": minor.astro,
             [`${courtEmoji} Court Card`]: courtCard,
             "📄 Page": page,
             "🏆 Ace": ace,
@@ -51,13 +51,16 @@ function getPrompt(info) {
         minor.card_name +
         " tarot card can give someone for the calendar days " +
         `between ${minor.start_date} and ${minor.end_date}. ` +
-        `How can the astrological meanings for the celestial body "${minor.planet}" ` +
+        `How can the astrological meanings for the celestial body "${minor.astro.name}" ` +
+        `and its card "${minor.astro.card_name}" ` +
         "apply to this time period? " +
         `Mention the date range and the zodiac sign ${zodiac.sign} ` +
         "in this first paragraph. When talking about the zodiac sign, " +
         `connect it to the major arcana card "${zodiac.card_name}". ` +
         "Then, in a second paragraph, briefly mention how the cards " +
         `${courtCard}, ${page}, and ${ace} could also influence this timeframe. ` +
+        `This time period falls under the suit of ${suit.name}, which is ruled by the element of ${suit.element} ` +
+        `and the card "${suit.card_name}". How do these tie in? ` +
         "Finally, on a new line, add five to ten hashtags that only contain single words, " +
         "not joined words. The hashtags must all be lowercase and about tarot, and should include #tarot and #tarotreading."
     );

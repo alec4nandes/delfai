@@ -1,5 +1,5 @@
 export default function drawCanvas(canvas, info, previewElem) {
-    const { minor, court, ace_and_page: ap, zodiac } = info,
+    const { minor, zodiac, court, suit } = info,
         context = canvas.getContext("2d"),
         grd = context.createLinearGradient(0, 0, 0, 800),
         randomColors = new Array(3)
@@ -26,21 +26,22 @@ export default function drawCanvas(canvas, info, previewElem) {
 
     drawImage(context, minor.card_name, { top: 90, left: 90 });
     drawImage(context, zodiac.card_name, { top: 90, left: 400 - 80 });
+    drawImage(context, minor.astro.card_name, { top: 430, left: 400 - 80 });
     drawImage(context, court.card_name, { top: 90, left: 550 });
-    drawImage(context, `Page of ${ap.suit}`, { top: 430, left: 90 });
-    drawImage(context, `Ace of ${ap.suit}`, { top: 430, left: 550 });
+    drawImage(context, `Page of ${suit.name}`, { top: 430, left: 90 });
+    drawImage(context, `Ace of ${suit.name}`, { top: 430, left: 550 });
 
-    context.globalAlpha = 0.7;
+    context.globalAlpha = 0.65;
     context.fillStyle = "lightblue";
-    context.fillRect(400 - 80, 430, 160, 280);
+    context.fillRect(400 - 80, 90, 160, 280);
     context.globalAlpha = 1;
 
     context.font = "bold 45px 'Georgia'";
     context.textAlign = "center";
     context.fillStyle = "#333";
-    context.fillText(minor.start_date, 400, 515);
-    context.fillText("—", 400, 585);
-    context.fillText(minor.end_date, 400, 650);
+    context.fillText(minor.start_date, 400, 175);
+    context.fillText("—", 400, 245);
+    context.fillText(minor.end_date, 400, 310);
 
     const prev = new Image();
     prev.src = canvas.toDataURL("image/png");
