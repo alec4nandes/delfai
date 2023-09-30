@@ -26,9 +26,9 @@ export default function drawCanvas(canvas, info, previewElem) {
 
     drawImage(context, minor.card_name, { top: 90, left: 90 });
     drawImage(context, zodiac.card_name, { top: 90, left: 400 - 80 });
-    drawImage(context, minor.astro.card_name, { top: 430, left: 400 - 80 });
-    drawImage(context, court.card_name, { top: 90, left: 550 });
-    drawImage(context, `Page of ${suit.name}`, { top: 430, left: 90 });
+    drawImage(context, minor.astro.card_name, { top: 90, left: 550 });
+    drawImage(context, court.card_name, { top: 430, left: 90 });
+    drawImage(context, `Page of ${suit.name}`, { top: 430, left: 400 - 80 });
     drawImage(context, `Ace of ${suit.name}`, { top: 430, left: 550 });
 
     context.globalAlpha = 0.65;

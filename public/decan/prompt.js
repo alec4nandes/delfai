@@ -1,6 +1,6 @@
 function getPrompt(info) {
     const { minor, zodiac, court, suit } = info,
-        sign = zodiac.sign,
+        { sign } = zodiac,
         zodiacEmojis = {
             Aries: "♈",
             Taurus: "♉",
@@ -16,20 +16,6 @@ function getPrompt(info) {
             Pisces: "♓",
         },
         major = zodiac.card_name,
-        majorEmojis = {
-            Emperor: "💎",
-            Hierophant: "⛪",
-            Lovers: "💞",
-            Chariot: "🚘",
-            Strength: "🦁",
-            Hermit: "🕯️",
-            Justice: "⚖️",
-            Death: "☠️",
-            Temperance: "☯️",
-            Devil: "😈",
-            Star: "🌟",
-            Moon: "🌔",
-        },
         courtCard = court.card_name,
         courtEmoji = courtCard.includes("Knight") ? "⚔️" : "👑",
         page = `Page of ${suit.name}`,
@@ -37,9 +23,8 @@ function getPrompt(info) {
         summary = {
             "📅 Days": `${minor.start_date} — ${minor.end_date}`,
             "🃏 Card": minor.card_name,
-            [`${zodiacEmojis[sign]} Zodiac Sign`]: sign,
-            [`${majorEmojis[major]} Major Arcana`]: major,
-            "🔭 Celestial": minor.astro,
+            [`${zodiacEmojis[sign]} Zodiac Sign`]: `${sign} (${major})`,
+            "🔭 Celestial": `${minor.astro.name} (${minor.astro.card_name})`,
             [`${courtEmoji} Court Card`]: courtCard,
             "📄 Page": page,
             "🏆 Ace": ace,
@@ -49,20 +34,18 @@ function getPrompt(info) {
         JSON.stringify(summary) +
         ". Then write a paragraph explaining what advice the " +
         minor.card_name +
-        " tarot card can give someone for the calendar days " +
+        " tarot card can give anyone for the calendar days " +
         `between ${minor.start_date} and ${minor.end_date}. ` +
-        `How can the astrological meanings for the celestial body "${minor.astro.name}" ` +
-        `and its card "${minor.astro.card_name}" ` +
-        "apply to this time period? " +
         `Mention the date range and the zodiac sign ${zodiac.sign} ` +
         "in this first paragraph. When talking about the zodiac sign, " +
         `connect it to the major arcana card "${zodiac.card_name}". ` +
-        "Then, in a second paragraph, briefly mention how the cards " +
-        `${courtCard}, ${page}, and ${ace} could also influence this timeframe. ` +
-        `This time period falls under the suit of ${suit.name}, which is ruled by the element of ${suit.element} ` +
-        `and the card "${suit.card_name}". How do these tie in? ` +
+        `This time period is ruled by the celestial body "${minor.astro.name}" ` +
+        `and its card "${minor.astro.card_name}". How do these tie in? ` +
+        "In a second paragraph, without mentioning any other cards, briefly mention how the cards " +
+        `${courtCard}, ${page}, and ${ace} could influence this timeframe. ` +
         "Finally, on a new line, add five to ten hashtags that only contain single words, " +
-        "not joined words. The hashtags must all be lowercase and about tarot, and should include #tarot and #tarotreading."
+        "not joined words or card names. The hashtags must all be lowercase and about tarot, " +
+        "and should include #tarot and #tarotreading."
     );
 }
 
