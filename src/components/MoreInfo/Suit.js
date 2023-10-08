@@ -10,8 +10,8 @@ export default function Suit({ card, isKabbalah }) {
             <p>
                 This card's suit of <strong>{suit}</strong> represents the
                 element <strong>{kabbalahSuits[suit].element}</strong> and the
-                world of <KabbalahLink name={kabbalahSuits[suit].world.name} />{" "}
-                on the Tree of Life.
+                world of <KabbalahLink name={kabbalahSuits[suit].name} /> on the
+                Tree of Life.
             </p>
         ) : (
             <p>

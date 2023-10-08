@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/css/style.css">
         <style>
             table {
-                width: 200px;
+                width: 230px;
             }
 
             td {
@@ -17,6 +17,7 @@
             td:first-child {
                 opacity: 0.75;
                 text-align: right;
+                white-space: nowrap;
             }
 
             td:nth-child(2) {
@@ -99,6 +100,8 @@
                             <tr><td>represents</td><td>${val.represents}</td></tr>
                             <tr><td>soul</td><td>${val.english}: ${val.hebrew} <em>(${val.latin.toLowerCase()})</em></td></tr>
                             <tr><td>sefirot</td><td>${Object.entries(sefirot).filter(([k, v]) => v.world === key).map(([k]) => `<a href="#${k.toLowerCase()}">${k}</a>`).join(", ")}</td></tr>
+                            <tr><td>element</td><td>${val.element} <em>(${val.suit})</em></td></tr>
+                            <tr><td>court cards</td><td>${val.court}</td></tr>
                         </table>
                     </div>
                     <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">

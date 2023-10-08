@@ -24,11 +24,14 @@ const kabbalahRanks = {
     King: { world: getWorld("Atziluth") },
 };
 
-const kabbalahSuits = {
-    Pentacles: { element: "Earth", world: getWorld("Assiah") },
-    Swords: { element: "Air", world: getWorld("Yetzirah") },
-    Cups: { element: "Water", world: getWorld("Briah") },
-    Wands: { element: "Fire", world: getWorld("Atziluth") },
-};
+const kabbalahSuits = Object.entries(worlds).reduce((acc, [key, val]) => {
+    const copy = { ...val },
+        { suit } = copy;
+    delete copy.suit;
+    return {
+        ...acc,
+        [suit]: { name: key, ...copy },
+    };
+}, {});
 
 export { kabbalahMajors, kabbalahRanks, kabbalahSuits };
