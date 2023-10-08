@@ -186,14 +186,14 @@ body {
     }
 }
 
-.hebrew-letter {
+.symbolize {
+    min-height: 40px;
     display: flex;
     flex-direction: column;
     gap: 6px;
     justify-content: center;
     font-size: 30px;
     font-weight: bold;
-    padding: 10px;
     color: var(--accent-color-2);
 
     span {

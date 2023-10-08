@@ -1,5 +1,5 @@
 import { getRankWords, getRankAndSuit } from "../../compare/data.js";
-import { sefirot } from "../../kabbalah.js";
+import { kabbalahRanks } from "../../kabbalah.js";
 
 export default function Rank({ card, isKabbalah }) {
     const { rank } = getRankAndSuit(card.name);
@@ -7,21 +7,13 @@ export default function Rank({ card, isKabbalah }) {
         return;
     }
     if (isKabbalah) {
-        const { sefira, world } = sefirot[rank],
-            link = (
-                <a
-                    href={getKabUrl(sefira || world)}
-                    target="_blank"
-                    rel="noopener"
-                >
-                    {sefira || world}
-                </a>
-            );
+        const { sefira, world } = kabbalahRanks[rank],
+            link = <KabbalahLink name={(sefira || world).name} />;
 
         return sefira ? (
             <p>
                 This card's rank of <strong>{rank}</strong> represents the
-                sephira <strong>{link}</strong> on the Tree of Life.
+                sefira <strong>{link}</strong> on the Tree of Life.
             </p>
         ) : (
             <p>
@@ -47,9 +39,16 @@ export default function Rank({ card, isKabbalah }) {
     );
 }
 
-function getKabUrl(str) {
-    str = str.includes("World") ? str.split("(")[1].replace(")", "") : str;
-    return `/kabbalah/#${str.toLowerCase()}`;
+function KabbalahLink({ name }) {
+    return (
+        <a href={getKabUrl(name)} target="_blank" rel="noopener">
+            {name}
+        </a>
+    );
+
+    function getKabUrl(str) {
+        return `/kabbalah/#${str.toLowerCase()}`;
+    }
 }
 
-export { getKabUrl };
+export { KabbalahLink };
