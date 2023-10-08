@@ -4,6 +4,7 @@ import Compare from "../../Compare/Compare";
 import NextButton from "../NextButton";
 import MoreInfo from "../../MoreInfo/MoreInfo";
 import KabbalahHeader from "../../KabbalahHeader";
+import TreeOfLife from "./TreeOfLife";
 
 export default function TimeSlide({
     cards,
@@ -47,6 +48,7 @@ export default function TimeSlide({
                     ))}
                 </ul>
                 <MoreInfo {...{ card, isKabbalah }} />
+                <TreeOfLife />
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
