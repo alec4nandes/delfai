@@ -2,8 +2,8 @@ import { getCardsId } from "../../CustomReading";
 import CardImage from "../../CardImage";
 import Compare from "../../Compare/Compare";
 import NextButton from "../NextButton";
-import Rank from "../../Rank";
-import Suit from "../../Suit";
+import MoreInfo from "../../MoreInfo/MoreInfo";
+import KabbalahHeader from "../../KabbalahHeader";
 
 export default function TimeSlide({
     cards,
@@ -38,7 +38,7 @@ export default function TimeSlide({
         <div id={timeframe.toLowerCase()} className="slide">
             <div className="slide-container">
                 <h2 className="bigger-header">{timeframe}</h2>
-                {isKabbalah && <h3>Kabbalah Focused</h3>}
+                <KabbalahHeader {...{ isKabbalah }} />
                 <h3>{card.name}</h3>
                 <CardImage card={card.name} />
                 <ul className="words-list">
@@ -46,8 +46,7 @@ export default function TimeSlide({
                         <li key={`${card.name}-${word}`}>{word}</li>
                     ))}
                 </ul>
-                <Rank {...{ card }} />
-                <Suit {...{ card }} />
+                <MoreInfo {...{ card, isKabbalah }} />
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...

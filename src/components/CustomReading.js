@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CardImages from "./CardImages";
 import CustomSelect from "./CustomSelect";
 import Compare from "./Compare/Compare";
+import KabbalahHeader from "./KabbalahHeader";
 
 export default function CustomReading({
     cards,
@@ -26,7 +27,7 @@ export default function CustomReading({
             <div id="custom-spread" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Custom Spread</h2>
-                {isKabbalah && <h3>Kabbalah Focused</h3>}
+                <KabbalahHeader {...{ isKabbalah }} />
                 {cards.question && <h3>Asking: "{cards.question}"</h3>}
                 <CustomSelect
                     {...{
@@ -42,7 +43,7 @@ export default function CustomReading({
                         isKabbalah,
                     }}
                 />
-                <CardImages spread={cards.spread} />
+                <CardImages {...{ spread: cards.spread, isKabbalah }} />
                 <Compare {...cards} />
                 <div className="wait" ref={customWaitRef}>
                     Reading... Please wait...

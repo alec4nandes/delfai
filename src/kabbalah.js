@@ -1,22 +1,27 @@
 const kabbalah = {
     Fool: {
         letter: "א",
+        translate: "aleph",
         element: "Air",
     },
     Magician: {
         letter: "ב",
+        translate: "beth",
         astro: "Mercury",
     },
     "High Priestess": {
         letter: "ג",
+        translate: "gimmel",
         astro: "Moon",
     },
     Empress: {
         letter: "ד",
+        translate: "daleth",
         astro: "Venus",
     },
     Emperor: {
         letter: "ה",
+        translate: "heh",
         zodiac: {
             sign: "Aries",
             start_date: "3/21",
@@ -25,6 +30,7 @@ const kabbalah = {
     },
     Hierophant: {
         letter: "ו",
+        translate: "vav",
         zodiac: {
             sign: "Taurus",
             start_date: "4/21",
@@ -33,6 +39,7 @@ const kabbalah = {
     },
     Lovers: {
         letter: "ז",
+        translate: "zayn",
         zodiac: {
             sign: "Gemini",
             start_date: "5/21",
@@ -41,6 +48,7 @@ const kabbalah = {
     },
     Chariot: {
         letter: "ח",
+        translate: "chet",
         zodiac: {
             sign: "Cancer",
             start_date: "6/21",
@@ -49,6 +57,7 @@ const kabbalah = {
     },
     Strength: {
         letter: "ט",
+        translate: "teth",
         zodiac: {
             sign: "Leo",
             start_date: "7/22",
@@ -57,6 +66,7 @@ const kabbalah = {
     },
     Hermit: {
         letter: "י",
+        translate: "yod",
         zodiac: {
             sign: "Virgo",
             start_date: "8/23",
@@ -65,10 +75,12 @@ const kabbalah = {
     },
     "Wheel of Fortune": {
         letter: "כ",
+        translate: "kaph",
         astro: "Jupiter",
     },
     Justice: {
         letter: "ל",
+        translate: "lamed",
         zodiac: {
             sign: "Libra",
             start_date: "9/23",
@@ -77,10 +89,12 @@ const kabbalah = {
     },
     "Hanged Man": {
         letter: "מ",
+        translate: "mem",
         element: "Water",
     },
     Death: {
         letter: "נ",
+        translate: "nun",
         zodiac: {
             sign: "Scorpio",
             start_date: "10/23",
@@ -89,6 +103,7 @@ const kabbalah = {
     },
     Temperance: {
         letter: "ס",
+        translate: "samekh",
         zodiac: {
             sign: "Sagittarius",
             start_date: "11/23",
@@ -97,6 +112,7 @@ const kabbalah = {
     },
     Devil: {
         letter: "ע",
+        translate: "ayin",
         zodiac: {
             sign: "Capricorn",
             start_date: "12/22",
@@ -105,10 +121,12 @@ const kabbalah = {
     },
     Tower: {
         letter: "פ",
+        translate: "peh",
         astro: "Mars",
     },
     Star: {
         letter: "צ",
+        translate: "tzaddi",
         zodiac: {
             sign: "Aquarius",
             start_date: "1/20",
@@ -117,6 +135,7 @@ const kabbalah = {
     },
     Moon: {
         letter: "ק",
+        translate: "koph",
         zodiac: {
             sign: "Pisces",
             start_date: "2/19",
@@ -125,14 +144,17 @@ const kabbalah = {
     },
     Sun: {
         letter: "ר",
+        translate: "rosh",
         astro: "Sun",
     },
     Judgement: {
         letter: "ש",
+        translate: "shin",
         element: "Fire",
     },
     World: {
         letter: "ת",
+        translate: "tav",
         astro: "Saturn",
     },
 };
@@ -150,7 +172,7 @@ const sefirot = {
     10: { sefira: "Malkuth" },
     Page: { world: "Material World (Assiah)" },
     Knight: { world: "Formative World (Yetzirah)" },
-    Queen: { world: "Creative Word (Briah)" },
+    Queen: { world: "Creative World (Briah)" },
     King: { world: "Archetypal World (Atziluth)" },
 };
 

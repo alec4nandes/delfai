@@ -1,5 +1,6 @@
 import CardImages from "../CardImages";
 import Compare from "../Compare/Compare";
+import KabbalahHeader from "../KabbalahHeader";
 import NextButton from "./NextButton";
 
 export default function Spread({ cards, isKabbalah }) {
@@ -11,9 +12,9 @@ export default function Spread({ cards, isKabbalah }) {
         <div id="spread" className="slide">
             <div className="slide-container">
                 <h2 className="bigger-header">3-Card Spread</h2>
-                {isKabbalah && <h3>Kabbalah Focused</h3>}
+                <KabbalahHeader {...{ isKabbalah }} />
                 {cards.question && <h3>Asking: "{cards.question}"</h3>}
-                <CardImages {...{ spread }} />
+                <CardImages {...{ spread, isKabbalah }} />
                 <Compare {...cards} />
                 <NextButton />
             </div>
