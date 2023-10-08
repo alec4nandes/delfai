@@ -136,3 +136,29 @@ const kabbalah = {
         astro: "Saturn",
     },
 };
+
+const sefirot = {
+    Ace: { sefira: "Kether" },
+    2: { sefira: "Chokmah" },
+    3: { sefira: "Binah" },
+    4: { sefira: "Chesed" },
+    5: { sefira: "Geburah" },
+    6: { sefira: "Tiphareth" },
+    7: { sefira: "Netzach" },
+    8: { sefira: "Hod" },
+    9: { sefira: "Yesod" },
+    10: { sefira: "Malkuth" },
+    Page: { world: "Material World (Assiah)" },
+    Knight: { world: "Formative World (Yetzirah)" },
+    Queen: { world: "Creative Word (Briah)" },
+    King: { world: "Archetypal World (Atziluth)" },
+};
+
+const suits = {
+    Pentacles: { element: "Earth", ...sefirot.Page },
+    Swords: { element: "Air", ...sefirot.Knight },
+    Cups: { element: "Water", ...sefirot.Queen },
+    Wands: { element: "Fire", ...sefirot.King },
+};
+
+export { kabbalah, sefirot, suits };
