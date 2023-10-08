@@ -11,7 +11,7 @@ export default function Advice({ elemRef, waitRef, cards, isKabbalah }) {
                     Reading... Please wait...
                 </div>
                 <div
-                    id={getCardsId(cards)}
+                    id={getCardsId(cards, isKabbalah)}
                     className="reading"
                     ref={elemRef}
                 ></div>

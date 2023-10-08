@@ -49,7 +49,7 @@ export default function CustomReading({
                     Reading... Please wait...
                 </div>
                 <div
-                    id={getCardsId(cards)}
+                    id={getCardsId(cards, isKabbalah)}
                     className="reading"
                     ref={customRef}
                 ></div>
@@ -64,17 +64,23 @@ export default function CustomReading({
     );
 }
 
-function getCardsId(cards) {
+function getCardsId(cards, isKabbalah) {
     const spread = Array.isArray(cards.spread)
-        ? cards.spread
-        : ["past", "present", "future"].map(
-              (timeframe) => cards.spread[timeframe]
-          );
-    return (
-        spread.map(({ name }) => name.replaceAll(" ", "-")).join("-") +
-        "-" +
-        cards.question
-    );
+            ? cards.spread
+            : ["past", "present", "future"].map(
+                  (timeframe) => cards.spread[timeframe]
+              ),
+        question = cards.question.replaceAll("?", "").trim(),
+        result = (
+            spread.map(({ name }) => name).join("-") +
+            "-" +
+            question +
+            (question ? "-" : "") +
+            (isKabbalah ? "kab" : "no-kab")
+        )
+            .replaceAll(" ", "-")
+            .toLowerCase();
+    return result;
 }
 
 export { getCardsId };

@@ -42,7 +42,14 @@ export default function App() {
             return;
         }
         if (isCustom) {
-            fillRef(cards, "custom spread", customWaitRef, customRef, true);
+            fillRef(
+                cards,
+                "custom spread",
+                customWaitRef,
+                customRef,
+                true,
+                isKabbalah
+            );
         } else {
             const elemRefs = {
                     past: pastRef,
@@ -61,11 +68,13 @@ export default function App() {
                     cards,
                     timeframe,
                     waitRefs[timeframe],
-                    elemRefs[timeframe]
+                    elemRefs[timeframe],
+                    false,
+                    isKabbalah
                 )
             );
         }
-    }, [cards, isCustom]);
+    }, [cards, isCustom, isKabbalah]);
 
     useEffect(() => {
         isTransition &&
