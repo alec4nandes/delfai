@@ -1,5 +1,5 @@
 import { kabbalahMajors } from "../../kabbalah.js";
-import Rank, { KabbalahLink } from "./Rank.js";
+import Rank from "./Rank.js";
 import Suit from "./Suit.js";
 
 export default function MoreInfo({ card, isKabbalah }) {
@@ -52,3 +52,17 @@ function MajorKabbalah({ major }) {
         </>
     );
 }
+
+function KabbalahLink({ name }) {
+    return (
+        <a href={getKabUrl(name)} target="_blank" rel="noopener">
+            {name}
+        </a>
+    );
+
+    function getKabUrl(str) {
+        return `/kabbalah/#${str.toLowerCase()}`;
+    }
+}
+
+export { KabbalahLink };

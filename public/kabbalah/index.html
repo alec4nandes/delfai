@@ -5,6 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kabbalah &mdash; Delfai Oracle</title>
         <link rel="stylesheet" href="/css/style.css">
+        <style>
+            table {
+                width: 200px;
+            }
+
+            td {
+                padding: 2px 5px;
+            }
+
+            td:first-child {
+                opacity: 0.75;
+                text-align: right;
+            }
+
+            td:nth-child(2) {
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
         <main>
@@ -15,7 +33,9 @@
                 <nav>
                     <a href="/">home</a>
                     &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="#contact">contact</a>
+                    <a href="#sefirot">sefirot</a>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="#worlds">worlds</a>
                 </nav>
 
                 <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
@@ -34,8 +54,58 @@
 
                 <p>These are very technical distinctions, but I believe they are important. In an era when we are actively addressing cultural appropriation, it’s vital to realign Tarot with traditional Kabbalah as practiced by the Jewish people, and not the Kabbalah adopted and warped by Western outsiders at the turn of the 20th century.</p>
 
+                <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+
+                <h2 id="sefirot">Sefirot of the Tree of Life</h2>
+
+                <div id="sefirot-info"></div>
+
+                <h2 id="worlds">Worlds of the Tree of Life</h2>
+
+                <div id="worlds-info"></div>
+
                 <p id="copyright">© Alec Fernandes 2023</p>
             </div>
         </main>
+
+        <script type="module">
+            const fetcher = async (fileName) => await(await fetch(`/kabbalah/json/${fileName}.json`)).json(),
+                sefirot = await fetcher("sefirot"),
+                worlds = await fetcher("worlds"),
+                sefElem = document.querySelector("#sefirot-info"),
+                worldsElem = document.querySelector("#worlds-info");
+            sefElem.innerHTML = Object
+                .entries(sefirot)
+                .map(([key, val]) => `
+                    <div id="${key.toLowerCase()}">
+                        <h3>${val.rank}. ${key} &mdash; ${val.hebrew}</h3>
+                        <table>
+                            <tr><td>represents</td><td>${val.represents}</td></tr>
+                            <tr><td>quality</td><td>${val.quality}</td></tr>
+                            <tr><td>bodypart</td><td>${val.bodypart || "n/a"}</td></tr>
+                            <tr><td>world</td><td><a href="#${val.world.toLowerCase()}">${val.world}</a></td></tr>
+                        </table>
+                    </div>
+                    <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+                `)
+                .join("");
+            worldsElem.innerHTML = Object
+                .entries(worlds)
+                .map(([key, val]) => `
+                    <div id="${key.toLowerCase()}">
+                        <h3 style="margin-bottom: 0">${key}</h3>
+                        <p style="margin-top: 0">${val.quality} World</p>
+                        <table>
+                            <tr><td>represents</td><td>${val.represents}</td></tr>
+                            <tr><td>soul</td><td>${val.english}: ${val.hebrew} <em>(${val.latin.toLowerCase()})</em></td></tr>
+                            <tr><td>sefirot</td><td>${Object.entries(sefirot).filter(([k, v]) => v.world === key).map(([k]) => `<a href="#${k.toLowerCase()}">${k}</a>`).join(", ")}</td></tr>
+                        </table>
+                    </div>
+                    <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+                `)
+                .join("");
+            const jump = window.location.href.split("#")[1];
+            jump && document.querySelector(`#${jump}`).scrollIntoView();
+        </script>
     </body>
 </html>

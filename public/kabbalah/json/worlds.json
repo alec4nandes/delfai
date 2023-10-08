@@ -1,0 +1,30 @@
+{
+    "Atziluth": {
+        "quality": "Archetypal",
+        "represents": "Living Being",
+        "hebrew": "חיה",
+        "latin": "Chiah",
+        "english": "life"
+    },
+    "Briah": {
+        "quality": "Creative",
+        "represents": "Awareness",
+        "hebrew": "נשמה",
+        "latin": "Neshamah",
+        "english": "breath"
+    },
+    "Yetzirah": {
+        "quality": "Formative",
+        "represents": "Morality",
+        "hebrew": "רוח",
+        "latin": "Ruach",
+        "english": "wind"
+    },
+    "Assiah": {
+        "quality": "Material",
+        "represents": "Instinct",
+        "hebrew": "נפש",
+        "latin": "Nephesh",
+        "english": "living being"
+    }
+}
