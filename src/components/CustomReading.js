@@ -13,6 +13,8 @@ export default function CustomReading({
     setIsCustom,
     user,
     setIsTransition,
+    setIsKabbalah,
+    isKabbalah,
 }) {
     useEffect(() => {
         customWaitRef.current.style.display = "block";
@@ -24,6 +26,7 @@ export default function CustomReading({
             <div id="custom-spread" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Custom Spread</h2>
+                {isKabbalah && <h3>Kabbalah Focused</h3>}
                 {cards.question && <h3>Asking: "{cards.question}"</h3>}
                 <CustomSelect
                     {...{
@@ -35,6 +38,8 @@ export default function CustomReading({
                         setIsCustom,
                         waitRef: customWaitRef,
                         setIsTransition,
+                        setIsKabbalah,
+                        isKabbalah,
                     }}
                 />
                 <CardImages spread={cards.spread} />

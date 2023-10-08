@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
 @import url("./colors.css");
 @font-face {
@@ -51,6 +52,37 @@ body textarea {
 }
 body button {
   text-align: center;
+}
+body input[type=checkbox]:hover,
+body label:hover,
+body select:hover {
+  cursor: pointer;
+}
+body input[type=checkbox] {
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+}
+body input[type=checkbox]:checked {
+  background-color: var(--accent-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body input[type=checkbox]:checked::before {
+  content: "✓";
+  font-weight: 700;
+  font-size: 15px;
+}
+body label {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  line-height: 0;
+  margin: auto;
 }
 body a[href^="mailto:"] {
   text-decoration: none;

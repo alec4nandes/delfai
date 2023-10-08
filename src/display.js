@@ -34,7 +34,7 @@ function fetchStream(cards, stream, timeframe, elemRef, waitRef) {
         // Result objects contain two properties:
         // done  - true if the stream has already given you all its data.
         // value - some data. Always undefined when done is true.
-        if (elemRef?.current.id === getCardsId(cards)) {
+        if (elemRef?.current?.id === getCardsId(cards)) {
             // check current id against cards. Sometimes a user might select a
             // new custom spread before the old one finishes reading.
             if (done) {

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("../css/colors.css");
 #custom-spread {
   display: flex;
@@ -20,37 +19,6 @@
   background-color: var(--text-color);
   box-sizing: border-box;
   margin: 0;
-}
-#custom-spread input[type=checkbox]:hover,
-#custom-spread label:hover,
-#custom-spread select:hover {
-  cursor: pointer;
-}
-#custom-spread label {
-  width: -moz-fit-content;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  line-height: 0;
-  margin: auto;
-}
-#custom-spread label input[type=checkbox] {
-  height: 15px;
-  width: 15px;
-  border-radius: 5px;
-}
-#custom-spread label input[type=checkbox]:checked {
-  background-color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#custom-spread label input[type=checkbox]:checked::before {
-  content: "✓";
-  font-weight: 700;
-  font-size: 15px;
 }
 #custom-spread select {
   height: 25px;

@@ -25,6 +25,7 @@ export default function App() {
         [isCustom, setIsCustom] = useState(false),
         [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
         [isTransition, setIsTransition] = useState(false),
+        [isKabbalah, setIsKabbalah] = useState(false),
         pastRef = useRef(),
         presentRef = useRef(),
         futureRef = useRef(),
@@ -103,13 +104,14 @@ export default function App() {
     }, []);
 
     const slides = [
-        <Spread {...{ cards, key: "spread" }} />,
+        <Spread {...{ cards, isKabbalah, key: "spread" }} />,
         <Past
             {...{
                 cards,
                 card: cards?.spread.past,
                 elemRef: pastRef,
                 waitRef: pastWaitRef,
+                isKabbalah,
                 key: "past",
             }}
         />,
@@ -119,6 +121,7 @@ export default function App() {
                 card: cards?.spread.present,
                 elemRef: presentRef,
                 waitRef: presentWaitRef,
+                isKabbalah,
                 key: "present",
             }}
         />,
@@ -128,6 +131,7 @@ export default function App() {
                 card: cards?.spread.future,
                 elemRef: futureRef,
                 waitRef: futureWaitRef,
+                isKabbalah,
                 key: "future",
             }}
         />,
@@ -136,6 +140,7 @@ export default function App() {
                 elemRef: adviceRef,
                 waitRef: adviceWaitRef,
                 cards,
+                isKabbalah,
                 key: "advice",
             }}
         />,
@@ -161,6 +166,8 @@ export default function App() {
                             setIsCustom,
                             user,
                             setIsTransition,
+                            setIsKabbalah,
+                            isKabbalah,
                         }}
                     />
                 ) : (
@@ -181,6 +188,8 @@ export default function App() {
                                         user,
                                         cards,
                                         setIsTransition,
+                                        setIsKabbalah,
+                                        isKabbalah,
                                     }}
                                 />
                             )}

@@ -10,7 +10,7 @@ const OpenAI = require("openai"),
 
 // CARD READING
 
-const IS_DEVELOPMENT = false,
+const IS_DEVELOPMENT = true,
     getCors = () =>
         cors({
             origin: IS_DEVELOPMENT

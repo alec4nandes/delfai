@@ -24,43 +24,6 @@
         margin: 0;
     }
 
-    input[type="checkbox"],
-    label,
-    select {
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    label {
-        width: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        line-height: 0;
-        margin: auto;
-
-        input[type="checkbox"] {
-            height: 15px;
-            width: 15px;
-            border-radius: 5px;
-
-            &:checked {
-                background-color: var(--accent-color);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                &::before {
-                    content: "✓";
-                    font-weight: 700;
-                    font-size: 15px;
-                }
-            }
-        }
-    }
-
     select {
         height: 25px;
         padding-left: 5px;

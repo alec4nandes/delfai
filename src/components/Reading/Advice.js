@@ -1,10 +1,11 @@
 import { getCardsId } from "../CustomReading";
 
-export default function Advice({ elemRef, waitRef, cards }) {
+export default function Advice({ elemRef, waitRef, cards, isKabbalah }) {
     return (
         <div id="advice" className="slide">
             <div className="slide-container">
                 <h2 className="bigger-header">Advice</h2>
+                {isKabbalah && <h3>Kabbalah Focused</h3>}
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
                 </div>

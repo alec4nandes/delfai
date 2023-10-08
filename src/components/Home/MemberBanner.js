@@ -10,6 +10,8 @@ export default function MemberBanner({
     setCards,
     cards,
     setIsTransition,
+    setIsKabbalah,
+    isKabbalah,
 }) {
     return (
         <>
@@ -49,6 +51,8 @@ export default function MemberBanner({
                         setCustom,
                         setIsCustom,
                         setIsTransition,
+                        setIsKabbalah,
+                        isKabbalah,
                     }}
                 />
             ) : (

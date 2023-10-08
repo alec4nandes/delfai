@@ -16,6 +16,8 @@ export default function Home({
     user,
     cards,
     setIsTransition,
+    setIsKabbalah,
+    isKabbalah,
 }) {
     return (
         <div
@@ -36,6 +38,8 @@ export default function Home({
                                 setCards,
                                 cards,
                                 setIsTransition,
+                                setIsKabbalah,
+                                isKabbalah,
                             }}
                         />
                         <Separator />
@@ -46,6 +50,8 @@ export default function Home({
                                     setCards,
                                     setUser,
                                     setIsTransition,
+                                    setIsKabbalah,
+                                    isKabbalah,
                                 }}
                             />
                         ) : (

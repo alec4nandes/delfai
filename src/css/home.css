@@ -24,6 +24,7 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  margin: auto;
 }
 #home #questions {
   gap: 35px;

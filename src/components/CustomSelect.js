@@ -4,6 +4,7 @@ import { getSpread } from "../compare/spread.js";
 import { allCards } from "../compare/data.js";
 import { compareCards } from "../compare/compare.js";
 import Subscribe from "./Home/Subscribe/Subscribe";
+import AskTextarea from "./AskTextarea";
 
 export default function CustomSelect({
     user,
@@ -14,6 +15,8 @@ export default function CustomSelect({
     setIsCustom,
     waitRef,
     setIsTransition,
+    setIsKabbalah,
+    isKabbalah,
 }) {
     const currentCards = cards?.spread.map(({ name }) => name) || [],
         question = cards?.question || "",
@@ -41,29 +44,32 @@ export default function CustomSelect({
                             ))}
                         </select>
                     </label>
-                    <form
-                        ref={formRef}
-                        onChange={() => {
-                            const cardNames = getCardNames().map(
-                                (name, i) =>
-                                    name || custom[i] || currentCards[i] || ""
-                            );
-                            setCustom(cardNames);
+                    <AskTextarea
+                        {...{
+                            onChangeHandler: () => {
+                                const cardNames = getCardNames().map(
+                                    (name, i) =>
+                                        name ||
+                                        custom[i] ||
+                                        currentCards[i] ||
+                                        ""
+                                );
+                                setCustom(cardNames);
+                            },
+                            onSubmitHandler: handleFormSubmit,
+                            user,
+                            formRef,
+                            custom: new Array(size)
+                                .fill(0)
+                                .map((_, i) => (
+                                    <SelectCard
+                                        {...{ i, key: `select-${i + 1}` }}
+                                    />
+                                )),
+                            setIsKabbalah,
+                            isKabbalah,
                         }}
-                        onSubmit={handleFormSubmit}
-                    >
-                        {new Array(size).fill(0).map((_, i) => (
-                            <SelectCard {...{ i, key: `select-${i + 1}` }} />
-                        ))}
-                        <textarea
-                            name="question"
-                            defaultValue={question}
-                            placeholder="Ask a question (optional)..."
-                        ></textarea>
-                        <button className="standard-btn" type="submit">
-                            read cards
-                        </button>
-                    </form>
+                    />
                 </div>
             ) : (
                 <>
@@ -110,7 +116,8 @@ export default function CustomSelect({
             isSameAsCurrent =
                 data.question.trim() === question.trim() &&
                 cardNames.length === currentCards.length &&
-                cardNames.every((card) => currentCards.includes(card));
+                cardNames.every((card) => currentCards.includes(card)) &&
+                e.target.kabbalah.checked === isKabbalah;
         if (isValid && !isSameAsCurrent) {
             setCards(
                 compareCards(getSpread(null, cardNames), data.question, true)

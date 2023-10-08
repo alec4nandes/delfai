@@ -11,6 +11,7 @@ export default function TimeSlide({
     timeframe,
     elemRef,
     waitRef,
+    isKabbalah,
 }) {
     function getMatchingForCard() {
         const result = Object.entries(cards.matching).filter(([_, cardNames]) =>
@@ -37,6 +38,7 @@ export default function TimeSlide({
         <div id={timeframe.toLowerCase()} className="slide">
             <div className="slide-container">
                 <h2 className="bigger-header">{timeframe}</h2>
+                {isKabbalah && <h3>Kabbalah Focused</h3>}
                 <h3>{card.name}</h3>
                 <CardImage card={card.name} />
                 <ul className="words-list">
