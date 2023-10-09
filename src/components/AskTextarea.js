@@ -27,7 +27,6 @@ export default function AskTextarea({
                         );
                         setShowSubscribe(true);
                     } else {
-                        setIsKabbalah(isChecked);
                         onSubmitHandler(e);
                     }
                 }}
@@ -47,8 +46,10 @@ export default function AskTextarea({
                         type="checkbox"
                         defaultChecked={isKabbalah}
                         onChange={(e) => {
-                            const isChecked = e.target.checked;
-                            setShowSubscribe(isChecked && !user.paid);
+                            const isChecked = e.target.checked,
+                                invalid = isChecked && !user.paid;
+                            setShowSubscribe(invalid);
+                            !invalid && setIsKabbalah(isChecked);
                         }}
                     />
                 </label>

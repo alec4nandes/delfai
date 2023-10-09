@@ -1,10 +1,22 @@
 import { getRankAndSuit } from "./data.js";
+import {
+    kabbalahMajors,
+    kabbalahRanks,
+    kabbalahSuits,
+    sefirot,
+} from "../kabbalah.js";
 
 // TIME FRAME QUERY
 
 import { getRankWords, allSuitWords } from "./data.js";
 
-function getTimeframeQueries(spread, question, matching, opposites) {
+function getTimeframeQueries(
+    spread,
+    question,
+    matching,
+    opposites,
+    isKabbalah
+) {
     // spread is a 3-card array
     const [past, present, future] = spread,
         timeframes = { past, present, future },
@@ -28,15 +40,30 @@ function getTimeframeQueries(spread, question, matching, opposites) {
                     timeframe,
                     question,
                     relevantMatching,
-                    relevantOpposites
+                    relevantOpposites,
+                    isKabbalah
                 ),
             };
         }, {});
-    result.advice = getAdviceQuery(spread, question, matching, opposites);
+    result.advice = getAdviceQuery(
+        spread,
+        question,
+        matching,
+        opposites,
+        isKabbalah
+    );
     return result;
 }
 
-function getTimeframeQuery(card, timeframe, question, matching, opposites) {
+function getTimeframeQuery(
+    card,
+    timeframe,
+    question,
+    matching,
+    opposites,
+    isKabbalah
+) {
+    let result;
     const intro = getIntro(card.name, timeframe, question),
         ending = getEnding(matching, opposites, 8, card.name, timeframe),
         isMinor = card.name.includes(" of ") && !card.name.includes("Wheel");
@@ -47,7 +74,7 @@ function getTimeframeQuery(card, timeframe, question, matching, opposites) {
         const isCourt = ["Page", "Knight", "Queen", "King"].includes(rank),
             // rankWords = getRankWords(rank, card.name.includes(" reversed")),
             suitWords = allSuitWords[suit];
-        return (
+        result =
             intro +
             (isCourt
                 ? `This card represents a person with the qualities of "${card.words.join(
@@ -59,17 +86,16 @@ function getTimeframeQuery(card, timeframe, question, matching, opposites) {
             // getRankLine(rank, rankWords) +
             getSuitLine(suit, suitWords) +
             `How do these meanings relate to my ${timeframe} situation? ` +
-            ending
-        );
+            ending;
     } else {
         // is Major Arcana
-        return (
+        result =
             intro +
             getWordsLine(card.words) +
             `What does this Major Arcana card say about my ${timeframe}? ` +
-            ending
-        );
+            ending;
     }
+    return isKabbalah ? kabbalahWrapper(result, [card]) : result;
 }
 
 function getIntro(cardName, timeframe, question) {
@@ -95,24 +121,88 @@ function getSuitLine(suit, suitWords) {
     )}. `;
 }
 
-function getAdviceQuery(spread, question, matching, opposites) {
-    return (
+function getAdviceQuery(spread, question, matching, opposites, isKabbalah) {
+    const result =
         getAllWordsLine(spread) +
         askQuestion(question) +
         `How could these cards represent my past, present, and future respectively? ` +
         getMultiRankAndSuit(spread) +
-        getEnding(matching, opposites, 20)
-    );
+        getEnding(matching, opposites, 20);
+    return isKabbalah ? kabbalahWrapper(result, spread) : result;
 }
 
 // CUSTOM SPREAD QUERY
 
-function getCustomSpreadQuery(spread, question, matching, opposites) {
-    return (
+function getCustomSpreadQuery(
+    spread,
+    question,
+    matching,
+    opposites,
+    isKabbalah
+) {
+    const result =
         getAllWordsLine(spread) +
         askQuestion(question) +
         getMultiRankAndSuit(spread) +
-        getEnding(matching, opposites, 20)
+        getEnding(matching, opposites, 20);
+    return isKabbalah ? kabbalahWrapper(result, spread) : result;
+}
+
+// KABBALAH QUERY (to be added onto other queries)
+
+function kabbalahWrapper(str, spread) {
+    return (
+        "This is a Tarot card reading that incorporates Kabbalah. " +
+        "You must address this at the very beginning of your response. " +
+        str +
+        getKabbalahQuery(spread)
+    );
+}
+
+function getKabbalahQuery(spread) {
+    return (
+        " Also reference Kabbalah in this reading. Throughout your answer, " +
+        "make reference to the following information where appropriate: " +
+        getKabbalahInfo(spread)
+    );
+}
+
+function getKabbalahInfo(spread) {
+    return spread.map(getCardKabbalah).join("");
+}
+
+function getCardKabbalah(card) {
+    const { name } = card,
+        upright = name.replace(" reversed", ""),
+        major = kabbalahMajors[upright];
+    if (major) {
+        const { from, to } = major.kabbalah.tree;
+        return (
+            `The Major Arcana card ${name} sits on the Tree of Life between the ` +
+            `sefirot ${from}, representing ${sefirot[from].quality}, and ${to}, ` +
+            `representing ${sefirot[to].quality}. `
+        );
+    }
+    const [cardRank, cardSuit] = upright.split(" of "),
+        rank = kabbalahRanks[cardRank],
+        suit = kabbalahSuits[cardSuit],
+        { sefira, world } = rank,
+        isCourt = !!world;
+    return (
+        `The card ${name} has a rank of ${cardRank}, which represents ` +
+        (isCourt
+            ? getWorldInfo(world)
+            : `sefira #${isNaN(+cardRank) ? 1 : cardRank}, ${sefira.name}. ` +
+              `This sefira represents ${sefira.quality}. `) +
+        `The card ${name} also has the suit ${cardSuit}, which represents ` +
+        getWorldInfo(suit)
+    );
+}
+
+function getWorldInfo(world) {
+    return (
+        `${world.name}, or the ${world.quality} World. This realm holds ` +
+        `the element of ${world.element} and represents "${world.represents}." `
     );
 }
 

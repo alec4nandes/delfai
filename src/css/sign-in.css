@@ -4,6 +4,10 @@
   width: 100%;
   overflow: auto;
 }
+#sign-in table#services {
+  box-shadow: 0 0 10px #999;
+  border-radius: 27px;
+}
 #sign-in .container {
   min-height: 100%;
   color: var(--text-color);

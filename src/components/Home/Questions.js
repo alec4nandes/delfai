@@ -52,7 +52,8 @@ export default function Questions({
                             setCards,
                             setUser,
                             user,
-                            setIsTransition
+                            setIsTransition,
+                            false // TODO: enable Kabbalah for these questions
                         )
                     }
                     type="submit"
@@ -73,8 +74,15 @@ export default function Questions({
     );
 }
 
-function handleQuestion(question, setCards, setUser, user, setIsTransition) {
-    const compare = compareCards(getSpread(), question);
+function handleQuestion(
+    question,
+    setCards,
+    setUser,
+    user,
+    setIsTransition,
+    isKabbalah
+) {
+    const compare = compareCards(getSpread(), question, false, isKabbalah);
     setCards(compare);
     setIsTransition(true);
     console.log(compare);

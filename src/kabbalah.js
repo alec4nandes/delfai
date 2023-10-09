@@ -34,4 +34,4 @@ const kabbalahSuits = Object.entries(worlds).reduce((acc, [key, val]) => {
     };
 }, {});
 
-export { kabbalahMajors, kabbalahRanks, kabbalahSuits };
+export { kabbalahMajors, kabbalahRanks, kabbalahSuits, sefirot };

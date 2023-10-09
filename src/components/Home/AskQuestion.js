@@ -54,7 +54,8 @@ function CustomQuestion({
             setCards,
             setUser,
             user,
-            setIsTransition
+            setIsTransition,
+            isKabbalah
         );
     }
 }

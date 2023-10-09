@@ -27,7 +27,8 @@ export default function MemberBanner({
                 >
                     settings
                 </button>
-                | <a href="/about">about</a> |
+                | <a href="/about">about</a> | <a href="/kabbalah">kabbalah</a>{" "}
+                |
                 <SignOut />
             </div>
             <p id="free-status">

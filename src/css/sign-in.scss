@@ -5,6 +5,11 @@
     width: 100%;
     overflow: auto;
 
+    table#services {
+        box-shadow: 0 0 10px #999;
+        border-radius: 27px;
+    }
+
     .container {
         min-height: 100%;
         color: var(--text-color);

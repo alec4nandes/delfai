@@ -120,7 +120,12 @@ export default function CustomSelect({
                 e.target.kabbalah.checked === isKabbalah;
         if (isValid && !isSameAsCurrent) {
             setCards(
-                compareCards(getSpread(null, cardNames), data.question, true)
+                compareCards(
+                    getSpread(null, cardNames),
+                    data.question,
+                    true,
+                    isKabbalah
+                )
             );
             setIsCustom(true);
             setIsTransition(true);
