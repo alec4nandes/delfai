@@ -50,7 +50,9 @@ export default function TimeSlide({
                     ))}
                 </ul>
                 <MoreInfo {...{ card, isKabbalah }} />
-                {major && <TreeOfLife highlight={major.kabbalah.letter.name} />}
+                {major && isKabbalah && (
+                    <TreeOfLife highlight={major.kabbalah.letter.name} />
+                )}
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...
