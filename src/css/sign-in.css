@@ -29,6 +29,11 @@
 #sign-in .container form #sign-in-btn {
   background-color: var(--text-color);
 }
+#sign-in .container label {
+  width: 100%;
+  display: inline-block;
+  text-align: right;
+}
 #sign-in .container #sign-in-error {
   color: lightcoral;
 }
