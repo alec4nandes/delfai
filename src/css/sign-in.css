@@ -29,6 +29,9 @@
 #sign-in .container form #sign-in-btn {
   background-color: var(--text-color);
 }
+#sign-in .container form #sign-in-btn:hover {
+  background-color: var(--accent-color-2);
+}
 #sign-in .container label {
   width: 100%;
   display: inline-block;
@@ -46,5 +49,5 @@
   text-decoration: underline;
 }
 #sign-in .container #reset-pw-btn:hover {
-  color: var(--text-color);
+  color: var(--accent-color-2);
 }/*# sourceMappingURL=sign-in.css.map */
