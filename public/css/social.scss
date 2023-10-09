@@ -1,0 +1,17 @@
+.social {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+
+    img {
+        height: 30px;
+        width: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #999;
+        margin-bottom: 20px;
+
+        &:hover {
+            filter: invert(1);
+        }
+    }
+}

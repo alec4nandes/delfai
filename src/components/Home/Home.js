@@ -5,6 +5,7 @@ import AskQuestion, { Separator } from "./AskQuestion";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../SignOut";
 import Subscribe from "./Subscribe/Subscribe";
+import Social from "../Social";
 
 export default function Home({
     custom,
@@ -62,6 +63,11 @@ export default function Home({
                     <Unverified {...{ user }} />
                 )}
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <Social />
         </div>
     );
 }

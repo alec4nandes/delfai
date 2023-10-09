@@ -8,6 +8,7 @@ import {
 import { doc, setDoc } from "firebase/firestore";
 import { IS_DEVELOPMENT, auth, db } from "../database.js";
 import ResetPassword from "./ResetPassword";
+import Social from "./Social";
 
 export default function Portal() {
     const [errorMessage, setErrorMessage] = useState(""),
@@ -147,6 +148,7 @@ export default function Portal() {
                     <ResetPassword email={loginEmail} />
                 </div>
                 <Services />
+                <Social />
             </div>
         </div>
     );

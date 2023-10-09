@@ -9,8 +9,10 @@ table#services {
 
         tr:first-child {
             td {
-                background-color: #525785;
+                background-color: #b8d7dc;
                 border-radius: 25px 25px 0 0;
+                color: #222;
+                font-size: 20px;
             }
         }
     }
@@ -35,16 +37,16 @@ table#services {
                     font-weight: bold;
 
                     &.slow {
-                        background-color: rgba(255, 255, 224, 0.8);
+                        background-color: #ccc;
                     }
 
                     &.stop {
-                        background-color: rgba(255, 182, 193, 0.8);
+                        background-color: #aaa;
                     }
                 }
 
                 &:last-child {
-                    background-color: rgba(179, 254, 179, 0.8);
+                    background-color: #f8bf6a;
                 }
             }
         }

@@ -1,0 +1,15 @@
+.social {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.social img {
+  height: 30px;
+  width: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #999;
+  margin-bottom: 20px;
+}
+.social img:hover {
+  filter: invert(1);
+}/*# sourceMappingURL=social.css.map */
