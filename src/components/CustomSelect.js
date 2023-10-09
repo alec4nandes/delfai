@@ -68,6 +68,7 @@ export default function CustomSelect({
                                 )),
                             setIsKabbalah,
                             isKabbalah,
+                            isCustom: true,
                         }}
                     />
                 </div>
@@ -102,7 +103,7 @@ export default function CustomSelect({
         return Object.fromEntries(formData);
     }
 
-    function handleFormSubmit(e) {
+    function handleFormSubmit(e, isCustomKabbalah) {
         e.preventDefault();
         waitRef && (waitRef.current.style.visibility = "visible");
         const cardNames = getCardNames().filter(Boolean),
@@ -124,7 +125,7 @@ export default function CustomSelect({
                     getSpread(null, cardNames),
                     data.question,
                     true,
-                    isKabbalah
+                    isCustomKabbalah
                 )
             );
             setIsCustom(true);
