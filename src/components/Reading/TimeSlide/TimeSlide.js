@@ -5,6 +5,7 @@ import NextButton from "../NextButton";
 import MoreInfo from "../../MoreInfo/MoreInfo";
 import KabbalahHeader from "../../KabbalahHeader";
 import TreeOfLife from "./TreeOfLife";
+import { kabbalahMajors } from "../../../kabbalah";
 
 export default function TimeSlide({
     cards,
@@ -33,7 +34,8 @@ export default function TimeSlide({
     }
 
     const matching = getMatchingForCard(),
-        opposites = getOppositesForCard();
+        opposites = getOppositesForCard(),
+        major = kabbalahMajors[card?.name.replace(" reversed", "")];
 
     return (
         <div id={timeframe.toLowerCase()} className="slide">
@@ -48,7 +50,7 @@ export default function TimeSlide({
                     ))}
                 </ul>
                 <MoreInfo {...{ card, isKabbalah }} />
-                <TreeOfLife />
+                {major && <TreeOfLife highlight={major.kabbalah.letter.name} />}
                 <Compare {...{ matching, opposites }} />
                 <div className="wait" ref={waitRef}>
                     Reading... Please wait...

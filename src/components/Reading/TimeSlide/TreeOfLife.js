@@ -1,6 +1,6 @@
-export default function TreeOfLife({ highlight, letter }) {
+export default function TreeOfLife({ highlight }) {
     const h = (sef) =>
-        `${highlight.toLowerCase() === sef ? "highlight " : ""}${sef}`;
+        `${highlight?.toLowerCase() === sef ? "highlight " : ""}${sef}`;
     return (
         <div className="tol">
             <div className={`sef ${h("kether")} center`}>1</div>

@@ -1,5 +1,5 @@
 .tol {
-  --width: 200px;
+  --width: clamp(150px, 30vh, 200px);
   --offset: calc(var(--width) * 0.04);
   --half-offset: calc(var(--offset) / 2);
   --height: calc(var(--width) * (9 / 5) + (var(--offset) * 2));
@@ -7,7 +7,7 @@
   --center: calc(50% - (var(--sef-dim) / 2));
   height: var(--height);
   width: var(--width);
-  background-color: #444;
+  margin: auto;
   position: relative;
 }
 .tol .sef,
@@ -32,7 +32,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(var(--width) / 10);
-  z-index: 4;
+  z-index: 5;
 }
 .tol .sef.center {
   left: var(--center);
@@ -70,6 +70,8 @@
   height: var(--path-height);
   width: var(--path-width);
   background-color: #000;
+  border: 0.5px solid #888;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +151,7 @@
 .tol .path.vertical.middle.daleth {
   width: calc(var(--path-width) * 2);
   top: calc(var(--sef-dim) / 2 + var(--half-offset));
-  z-index: 2;
+  z-index: 3;
 }
 .tol .path.vertical.middle.rosh {
   top: calc(var(--sef-dim) * 4.5 + var(--half-offset));
@@ -165,7 +167,7 @@
   width: var(--horiz-width);
   left: calc(50% - var(--horiz-width) / 2);
   transform-origin: center;
-  z-index: 3;
+  z-index: 4;
 }
 .tol .path.horizontal.shin {
   top: calc(var(--sef-dim) * 1.5 + var(--half-offset));
@@ -211,6 +213,7 @@
   --deg: 60deg;
   --push-text: calc(var(--path-height) * 3);
   width: calc(var(--path-width) * 1.75);
+  z-index: 2;
 }
 .tol .path.long-diag.ayin {
   transform: rotate(var(--deg));

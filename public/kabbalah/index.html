@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kabbalah &mdash; Delfai Oracle</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="css/tol.css">
         <style>
             table {
                 width: 230px;
@@ -70,6 +71,8 @@
         </main>
 
         <script type="module">
+            import TreeOfLife from "./scripts/TreeOfLife.js";
+
             const fetcher = async (fileName) => await(await fetch(`/kabbalah/json/${fileName}.json`)).json(),
                 sefirot = await fetcher("sefirot"),
                 worlds = await fetcher("worlds"),
@@ -79,7 +82,8 @@
                 .entries(sefirot)
                 .map(([key, val]) => `
                     <div id="${key.toLowerCase()}">
-                        <h3>${val.rank}. ${key} &mdash; ${val.hebrew}</h3>
+                        <h3>${val.rank}. ${key} </br> ${val.hebrew}</h3>
+                        ${TreeOfLife({highlight: key})}
                         <table>
                             <tr><td>represents</td><td>${val.represents}</td></tr>
                             <tr><td>quality</td><td>${val.quality}</td></tr>
