@@ -146,7 +146,54 @@ export default function Portal() {
                     &nbsp;&nbsp;|&nbsp;&nbsp;
                     <ResetPassword email={loginEmail} />
                 </div>
+                <Services />
             </div>
         </div>
+    );
+}
+
+function Services() {
+    return (
+        <table id="services">
+            <thead>
+                <tr>
+                    <td colSpan="3">
+                        New users get 5 free, instant Tarot readings!
+                    </td>
+                </tr>
+                <tr>
+                    <td>Feature</td>
+                    <td>Free Account</td>
+                    <td>Paid ($2.99/month)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3-card Readings</td>
+                    <td className="slow">5 readings</td>
+                    <td>unlimited</td>
+                </tr>
+                <tr>
+                    <td>Card of the Day</td>
+                    <td className="slow">current day only</td>
+                    <td>look up any day</td>
+                </tr>
+                <tr>
+                    <td>Custom Spread (1-10 cards)</td>
+                    <td className="stop">✗</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/kabbalah" target="_blank" rel="noopener">
+                            Kabbalah
+                        </a>{" "}
+                        Info
+                    </td>
+                    <td className="stop">✗</td>
+                    <td>✓</td>
+                </tr>
+            </tbody>
+        </table>
     );
 }

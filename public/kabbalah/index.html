@@ -119,6 +119,7 @@
                 sefElem = document.querySelector("#sefirot-info"),
                 worldsElem = document.querySelector("#worlds-info"),
                 groupsElem = document.querySelector("#letter-groups");
+
             sefElem.innerHTML = Object
                 .entries(sefirot)
                 .map(([key, val]) => `
@@ -136,6 +137,7 @@
                     <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
                 `)
                 .join("");
+
             worldsElem.innerHTML = Object
                 .entries(worlds)
                 .map(([key, val]) => {
@@ -157,6 +159,7 @@
                     <img class="separator" src="/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
                 `})
                 .join("");
+
             const jump = window.location.href.split("#")[1];
             jump && document.querySelector(`#${jump}`).scrollIntoView();
             groupsElem.innerHTML = `

@@ -1,0 +1,30 @@
+table#services td {
+  background-color: #3c406c;
+  padding: 5px 8px;
+}
+table#services thead {
+  font-weight: bold;
+}
+table#services thead tr:first-child td {
+  background-color: #525785;
+  border-radius: 25px 25px 0 0;
+}
+table#services tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 30px;
+}
+table#services tbody tr:last-child td:last-child {
+  border-radius: 0 0 30px 0;
+}
+table#services tbody tr td:not(:first-child) {
+  color: #222;
+  font-weight: bold;
+}
+table#services tbody tr td:not(:first-child).slow {
+  background-color: rgba(255, 255, 224, 0.8);
+}
+table#services tbody tr td:not(:first-child).stop {
+  background-color: rgba(255, 182, 193, 0.8);
+}
+table#services tbody tr td:last-child {
+  background-color: rgba(179, 254, 179, 0.8);
+}/*# sourceMappingURL=services.css.map */
