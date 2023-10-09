@@ -1,8 +1,69 @@
-export default function TreeOfLife({ highlight }) {
-    const h = (sef) =>
-        `${highlight?.toLowerCase() === sef ? "highlight " : ""}${sef}`;
+export default function TreeOfLife({
+    highlight,
+    showGroups,
+    isKircher,
+    kabbalahMajors,
+}) {
+    const letterGroups = {
+            mother: ["aleph", "mem", "shin"],
+            double: ["beth", "gimmel", "daleth", "kaph", "peh", "rosh", "tav"],
+        },
+        kircher = {
+            aleph: "teth",
+            beth: "vav",
+            gimmel: "chet",
+            daleth: "gimmel",
+            heh: "aleph",
+            vav: "beth",
+            zayn: "koph",
+            chet: "yod",
+            teth: "heh",
+            yod: "nun",
+            kaph: "kaph",
+            lamed: "rosh",
+            mem: "peh",
+            nun: "tzaddi",
+            samekh: "ayin",
+            ayin: "zayn",
+            peh: "mem",
+            tzaddi: "lamed",
+            koph: "shin",
+            rosh: "samekh",
+            shin: "daleth",
+            tav: "tav",
+        },
+        findGroup = (letter) =>
+            Object.entries(letterGroups).find(([key, val]) =>
+                val.includes(isKircher ? kircher[letter] : letter)
+            )?.[0],
+        h = (str) =>
+            `${
+                highlight &&
+                (Array.isArray(highlight)
+                    ? highlight.find((s) => s.toLowerCase() === str)
+                    : highlight.toLowerCase() === str)
+                    ? "highlight "
+                    : showGroups && (findGroup(str) || "other")
+            } ${str}`,
+        getLetter = (hebrew) => {
+            if (isKircher) {
+                const { kabbalah: k } =
+                    Object.values(kabbalahMajors).find(
+                        ({ kabbalah }) => hebrew === kabbalah.letter.hebrew
+                    ) || {};
+                const result =
+                    k &&
+                    Object.values(kabbalahMajors).find(
+                        ({ kabbalah }) =>
+                            kabbalah.letter.name === kircher[k.letter.name]
+                    )?.kabbalah.letter.hebrew;
+                return result || hebrew;
+            } else {
+                return hebrew;
+            }
+        };
     return `
-        <div class="tol">
+        <div class="tol${isKircher ? " kircher" : ""}">
             <div class="sef ${h("kether")} center">1</div>
             <div class="sef ${h("chokmah")} top-row right-side">2</div>
             <div class="sef ${h("binah")} top-row left-side">3</div>
@@ -15,70 +76,70 @@ export default function TreeOfLife({ highlight }) {
             <div class="sef ${h("malkuth")} center">10</div>
 
             <div class="path ${h("aleph")} horizontal">
-                <span>א</span>
+                <span>${getLetter("א")}</span>
             </div>
             <div class="path ${h("beth")} vertical">
-                <span>ב</span>
+                <span>${getLetter("ב")}</span>
             </div>
             <div class="path ${h("gimmel")} vertical">
-                <span>ג</span>
+                <span>${getLetter("ג")}</span>
             </div>
             <div class="path ${h("daleth")} vertical middle">
-                <span>ד</span>
+                <span>${getLetter("ד")}</span>
             </div>
             <div class="path ${h("heh")} diag trans-left">
-                <span>ה</span>
+                <span>${getLetter("ה")}</span>
             </div>
             <div class="path ${h("vav")} diag trans-right">
-                <span>ו</span>
+                <span>${getLetter("ו")}</span>
             </div>
             <div class="path ${h("zayn")} extra-long-diag">
-                <span>ז</span>
+                <span>${getLetter("ז")}</span>
             </div>
             <div class="path ${h("chet")} diag trans-right">
-                <span>ח</span>
+                <span>${getLetter("ח")}</span>
             </div>
             <div class="path ${h("teth")} long-diag">
-                <span>ט</span>
+                <span>${getLetter("ט")}</span>
             </div>
             <div class="path ${h("yod")} diag trans-left">
-                <span>י</span>
+                <span>${getLetter("י")}</span>
             </div>
             <div class="path ${h("kaph")} vertical">
-                <span>כ</span>
+                <span>${getLetter("כ")}</span>
             </div>
             <div class="path ${h("lamed")} diag trans-left">
-                <span>ל</span>
+                <span>${getLetter("ל")}</span>
             </div>
             <div class="path ${h("mem")} horizontal">
-                <span>מ</span>
+                <span>${getLetter("מ")}</span>
             </div>
             <div class="path ${h("nun")} diag trans-right">
-                <span>נ</span>
+                <span>${getLetter("נ")}</span>
             </div>
             <div class="path ${h("samekh")} diag trans-right">
-                <span>ס</span>
+                <span>${getLetter("ס")}</span>
             </div>
             <div class="path ${h("ayin")} long-diag">
-                <span>ע</span>
+                <span>${getLetter("ע")}</span>
             </div>
             <div class="path ${h("peh")} vertical">
-                <span>פ</span>
+                <span>${getLetter("פ")}</span>
             </div>
             <div class="path ${h("tzaddi")} diag trans-left">
-                <span>צ</span>
+                <span>${getLetter("צ")}</span>
             </div>
             <div class="path ${h("koph")} extra-long-diag">
-                <span>ק</span>
+                <span>${getLetter("ק")}</span>
             </div>
             <div class="path ${h("rosh")} vertical middle">
-                <span>ר</span>
+                <span>${getLetter("ר")}</span>
             </div>
             <div class="path ${h("shin")} horizontal">
-                <span>ש</span>
+                <span>${getLetter("ש")}</span>
             </div>
             <div class="path ${h("tav")} vertical middle">
-                <span>ת</span>
+                <span>${getLetter("ת")}</span>
             </div>
         </div>
     `;

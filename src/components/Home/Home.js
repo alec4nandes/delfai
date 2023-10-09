@@ -5,7 +5,6 @@ import AskQuestion, { Separator } from "./AskQuestion";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../SignOut";
 import Subscribe from "./Subscribe/Subscribe";
-import TreeOfLife from "../Reading/TimeSlide/TreeOfLife";
 
 export default function Home({
     custom,
@@ -26,7 +25,6 @@ export default function Home({
             className={`slide${user.emailVerified ? "" : " unverified"}`}
         >
             <div className="slide-container">
-                <TreeOfLife highlight="zayn" />
                 <h1>Delfai Oracle</h1>
                 {user.emailVerified ? (
                     <>
