@@ -10,7 +10,7 @@ const OpenAI = require("openai"),
 
 // CARD READING
 
-const IS_DEVELOPMENT = true,
+const IS_DEVELOPMENT = false,
     getCors = () =>
         cors({
             origin: IS_DEVELOPMENT
@@ -55,7 +55,7 @@ async function getStream(content) {
             },
             { role: "user", content },
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         stream: true,
         temperature: 0.7,
     });
@@ -71,7 +71,7 @@ async function getDecan(content) {
             },
             { role: "user", content },
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         temperature: 0.7,
     });
 }

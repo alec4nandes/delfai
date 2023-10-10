@@ -49,7 +49,7 @@ function getPrompt(info) {
     );
 }
 
-const IS_DEVELOPMENT = true,
+const IS_DEVELOPMENT = false,
     productionRoot = "https://us-central1-delfai.cloudfunctions.net",
     devRoot = "http://localhost:5000/delfai/us-central1",
     apiRoot = IS_DEVELOPMENT ? devRoot : productionRoot;
