@@ -40,6 +40,11 @@ export default function Decan({
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
+                        if (!user.paid) {
+                            setShowSubscribe(true);
+                            alert("You must subscribe to look up other dates.");
+                            return;
+                        }
                         const [year, month, day] = e.target.datetime.value
                                 .split("T")[0]
                                 .split("-"),

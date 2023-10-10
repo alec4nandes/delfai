@@ -43,6 +43,9 @@ export default function MemberBanner({
                     </>
                 )}
             </p>
+            <button className="standard-btn" onClick={() => setIsDecan(true)}>
+                Card of the Day
+            </button>
             {user.paid || user.free_draws > 0 ? (
                 <CustomSelect
                     {...{
@@ -60,9 +63,6 @@ export default function MemberBanner({
             ) : (
                 <></>
             )}
-            <button className="standard-btn" onClick={() => setIsDecan(true)}>
-                Card of the Day
-            </button>
         </>
     );
 }

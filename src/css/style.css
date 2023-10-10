@@ -333,6 +333,7 @@ details > summary::-webkit-details-marker {
 }
 
 .subscribe-form {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
