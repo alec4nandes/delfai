@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import CardImages from "./CardImages";
 import CustomSelect from "./CustomSelect";
 import Compare from "./Compare/Compare";
@@ -17,10 +16,6 @@ export default function CustomReading({
     setIsKabbalah,
     isKabbalah,
 }) {
-    useEffect(() => {
-        customWaitRef.current.style.display = "block";
-    }, [customWaitRef, cards]);
-
     return (
         <div id="alternative-page">
             <div id="custom-spread" className="container">

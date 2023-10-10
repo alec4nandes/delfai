@@ -174,8 +174,6 @@
                 `})
                 .join("");
 
-            const jump = window.location.href.split("#")[1];
-            jump && document.querySelector(`#${jump}`).scrollIntoView();
             groupsElem.innerHTML = `
                 <div id="trees">
                     <div>
@@ -188,6 +186,9 @@
                     </div>
                 </div>
             `;
+
+            const jump = window.location.href.split("#")[1];
+            jump && document.querySelector(`#${jump}`).scrollIntoView();
         </script>
     </body>
 </html>

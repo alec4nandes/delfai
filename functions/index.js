@@ -55,7 +55,7 @@ async function getStream(content) {
             },
             { role: "user", content },
         ],
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         stream: true,
         temperature: 0.7,
     });
@@ -71,7 +71,7 @@ async function getDecan(content) {
             },
             { role: "user", content },
         ],
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         temperature: 0.7,
     });
 }

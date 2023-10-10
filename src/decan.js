@@ -383,15 +383,16 @@ function finder(arr, date) {
 }
 
 function converter(dayInfo) {
-    const { minor, zodiac, court, suit } = dayInfo,
+    const { date, minor, zodiac, court, suit } = dayInfo,
         makeAcePage = (rank) => ({ card_name: `${rank} of ${suit.name}` }),
         page = makeAcePage("Page"),
         ace = makeAcePage("Ace"),
         spread = [minor, zodiac, court, page, ace].map(({ card_name }) => ({
             name: card_name,
             words: allCards[card_name],
-        }));
-    return compareCards(spread, "", true, false, getDecanPrompt(dayInfo));
+        })),
+        result = compareCards(spread, "", true, false, getDecanPrompt(dayInfo));
+    return { ...result, date };
 }
 
 function getDecanPrompt(info) {

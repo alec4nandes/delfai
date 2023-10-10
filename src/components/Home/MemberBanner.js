@@ -43,7 +43,13 @@ export default function MemberBanner({
                     </>
                 )}
             </p>
-            <button className="standard-btn" onClick={() => setIsDecan(true)}>
+            <button
+                className="standard-btn"
+                onClick={() => {
+                    setIsTransition(true);
+                    setIsDecan(true);
+                }}
+            >
                 Card of the Day
             </button>
             {user.paid || user.free_draws > 0 ? (

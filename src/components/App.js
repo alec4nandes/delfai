@@ -44,7 +44,7 @@ export default function App() {
         decanWaitRef = useRef();
 
     const getReading = useCallback(() => {
-        if (!cards) {
+        if (!cards && !decanCards) {
             return;
         }
         if (isCustom) {
@@ -55,6 +55,15 @@ export default function App() {
                 customRef,
                 true,
                 isKabbalah
+            );
+        } else if (isDecan) {
+            fillRef(
+                decanCards,
+                null,
+                decanWaitRef,
+                decanRef,
+                true,
+                false // TODO: enable Kabbalah for Decan
             );
         } else {
             const elemRefs = {
@@ -80,19 +89,7 @@ export default function App() {
                 )
             );
         }
-    }, [cards, isCustom, isKabbalah]);
-
-    useEffect(() => {
-        isDecan &&
-            fillRef(
-                decanCards,
-                null,
-                decanWaitRef,
-                decanRef,
-                true,
-                false // TODO: enable Kabbalah for Decan
-            );
-    }, [decanCards, isDecan]);
+    }, [cards, decanCards, isCustom, isDecan, isKabbalah]);
 
     useEffect(() => {
         isTransition &&
@@ -100,7 +97,7 @@ export default function App() {
                 setIsTransition(false);
                 getReading();
             }, 1950);
-    }, [isTransition, getReading]);
+    }, [getReading, isTransition]);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -205,6 +202,7 @@ export default function App() {
                             setDecanCards,
                             decanRef,
                             decanWaitRef,
+                            setIsTransition,
                         }}
                     />
                 ) : (

@@ -12,6 +12,7 @@ export default function Decan({
     setDecanCards,
     decanRef,
     decanWaitRef,
+    setIsTransition,
 }) {
     const [showSubscribe, setShowSubscribe] = useState(false),
         dateRef = useRef();
@@ -30,7 +31,7 @@ export default function Decan({
             <div id="decan" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Card of the Day</h2>
-                <h2 ref={dateRef}>{formatDateHeader(new Date())}</h2>
+                <h2 ref={dateRef}>{decanCards.date}</h2>
                 <p>
                     Use the{" "}
                     <a href="/assets/wheel.png" target="_blank" rel="noopener">
@@ -48,41 +49,11 @@ export default function Decan({
                         <Subscribe {...{ user }} />
                     </div>
                 )}
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        if (!user.paid) {
-                            setShowSubscribe(true);
-                            alert("You must subscribe to look up other dates.");
-                            return;
-                        }
-                        const dateString = e.target.datetime.value,
-                            [year, month, day] = dateString
-                                .split("T")[0]
-                                .split("-"),
-                            newCards = getDay(+month, +day),
-                            getCardNames = (spread) =>
-                                spread.map(({ name }) => name),
-                            newCardNames = getCardNames(newCards.spread),
-                            decanCardNames = getCardNames(decanCards.spread),
-                            isSameAsCurrent = decanCardNames.every((card) =>
-                                newCardNames.includes(card)
-                            );
-                        if (isSameAsCurrent) {
-                            alert(
-                                "This date has the same cards as the current reading. Try picking a new date at least 10 days before or after this one."
-                            );
-                        } else {
-                            dateRef.current.textContent =
-                                formatDateHeader(dateString);
-                            setDecanCards(newCards);
-                        }
-                    }}
-                >
+                <form onSubmit={handleDecanSubmit}>
                     <input
                         type="datetime-local"
                         name="datetime"
-                        defaultValue={formatDatetimeInputValue(new Date())}
+                        defaultValue={formatDatetimeInputValue(decanCards.date)}
                         onChange={() => !user.paid && setShowSubscribe(true)}
                     />
                     <button className="standard-btn" type="submit">
@@ -113,12 +84,38 @@ export default function Decan({
             </div>
         </div>
     );
+
+    function handleDecanSubmit(e) {
+        e.preventDefault();
+        if (!user.paid) {
+            setShowSubscribe(true);
+            alert("You must subscribe to look up other dates.");
+            return;
+        }
+        const dateString = e.target.datetime.value,
+            [year, month, day] = dateString.split("T")[0].split("-"),
+            newCards = getDay(+month, +day),
+            getCardNames = (spread) => spread.map(({ name }) => name),
+            newCardNames = getCardNames(newCards.spread),
+            decanCardNames = getCardNames(decanCards.spread),
+            isSameAsCurrent = decanCardNames.every((card) =>
+                newCardNames.includes(card)
+            );
+        if (isSameAsCurrent) {
+            alert(
+                "This date has the same cards as the current reading. Try picking a new date at least 10 days before or after this one."
+            );
+        } else {
+            dateRef.current.textContent = formatDateHeader(dateString);
+            setIsTransition(true);
+            setDecanCards(newCards);
+        }
+    }
 }
 
 function formatDatetimeInputValue(date) {
     const pad = (num) => (num + "").padStart(2, "0"),
-        year = date.getFullYear(),
-        month = pad(date.getMonth() + 1),
-        day = pad(date.getDate());
-    return `${year}-${month}-${day}T00:00`; // 2023-10-09T00:00
+        [month, day] = date.split("/"),
+        thisYear = new Date().getFullYear();
+    return `${thisYear}-${pad(month)}-${pad(day)}T00:00`; // 2023-10-09T00:00
 }
