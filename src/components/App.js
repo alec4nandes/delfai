@@ -47,48 +47,51 @@ export default function App() {
         if (!cards && !decanCards) {
             return;
         }
-        if (isCustom) {
-            fillRef(
-                cards,
-                "custom spread",
-                customWaitRef,
-                customRef,
-                true,
-                isKabbalah
-            );
-        } else if (isDecan) {
-            fillRef(
-                decanCards,
-                null,
-                decanWaitRef,
-                decanRef,
-                true,
-                false // TODO: enable Kabbalah for Decan
-            );
-        } else {
-            const elemRefs = {
-                    past: pastRef,
-                    present: presentRef,
-                    future: futureRef,
-                    advice: adviceRef,
-                },
-                waitRefs = {
-                    past: pastWaitRef,
-                    present: presentWaitRef,
-                    future: futureWaitRef,
-                    advice: adviceWaitRef,
-                };
-            Object.keys(elemRefs).forEach((timeframe) =>
+        // wait for components to load
+        setTimeout(() => {
+            if (isCustom) {
                 fillRef(
                     cards,
-                    timeframe,
-                    waitRefs[timeframe],
-                    elemRefs[timeframe],
-                    false,
+                    "custom spread",
+                    customWaitRef,
+                    customRef,
+                    true,
                     isKabbalah
-                )
-            );
-        }
+                );
+            } else if (isDecan) {
+                fillRef(
+                    decanCards,
+                    null,
+                    decanWaitRef,
+                    decanRef,
+                    true,
+                    false // TODO: enable Kabbalah for Decan
+                );
+            } else {
+                const elemRefs = {
+                        past: pastRef,
+                        present: presentRef,
+                        future: futureRef,
+                        advice: adviceRef,
+                    },
+                    waitRefs = {
+                        past: pastWaitRef,
+                        present: presentWaitRef,
+                        future: futureWaitRef,
+                        advice: adviceWaitRef,
+                    };
+                Object.keys(elemRefs).forEach((timeframe) =>
+                    fillRef(
+                        cards,
+                        timeframe,
+                        waitRefs[timeframe],
+                        elemRefs[timeframe],
+                        false,
+                        isKabbalah
+                    )
+                );
+            }
+        }, 500);
     }, [cards, decanCards, isCustom, isDecan, isKabbalah]);
 
     useEffect(() => {
