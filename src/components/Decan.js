@@ -1,5 +1,5 @@
 import "../css/decan.css";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { getDay } from "../decan.js";
 import { getCardsId } from "./CustomReading";
 import Subscribe from "./Home/Subscribe/Subscribe";
@@ -13,13 +13,24 @@ export default function Decan({
     decanRef,
     decanWaitRef,
 }) {
-    const [showSubscribe, setShowSubscribe] = useState(false);
+    const [showSubscribe, setShowSubscribe] = useState(false),
+        dateRef = useRef();
+
+    function formatDateHeader(date) {
+        if (typeof date === "string") {
+            const [year, month, day] = date.split("T")[0].split("-");
+            return `${+month}/${+day}`;
+        } else {
+            return `${date.getMonth() + 1}/${date.getDate()}`;
+        }
+    }
 
     return (
         <div id="alternative-page">
             <div id="decan" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Card of the Day</h2>
+                <h2 ref={dateRef}>{formatDateHeader(new Date())}</h2>
                 <p>
                     Use the{" "}
                     <a href="/assets/wheel.png" target="_blank" rel="noopener">
@@ -45,7 +56,8 @@ export default function Decan({
                             alert("You must subscribe to look up other dates.");
                             return;
                         }
-                        const [year, month, day] = e.target.datetime.value
+                        const dateString = e.target.datetime.value,
+                            [year, month, day] = dateString
                                 .split("T")[0]
                                 .split("-"),
                             newCards = getDay(+month, +day),
@@ -56,11 +68,15 @@ export default function Decan({
                             isSameAsCurrent = decanCardNames.every((card) =>
                                 newCardNames.includes(card)
                             );
-                        isSameAsCurrent
-                            ? alert(
-                                  "This date has the same cards as the current reading. Try picking a new date at least 10 days before or after this one."
-                              )
-                            : setDecanCards(newCards);
+                        if (isSameAsCurrent) {
+                            alert(
+                                "This date has the same cards as the current reading. Try picking a new date at least 10 days before or after this one."
+                            );
+                        } else {
+                            dateRef.current.textContent =
+                                formatDateHeader(dateString);
+                            setDecanCards(newCards);
+                        }
                     }}
                 >
                     <input
