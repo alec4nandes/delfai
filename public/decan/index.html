@@ -86,7 +86,6 @@
                 prompt = getPrompt(info);
             infoElem.textContent = json;
             promptElem.textContent = prompt;
-            // drawCanvas(canvasElem, info, previewElem);
             getPostBtn.onclick = handleReading;
             copyButton.onclick = handleCopy,
             drawButton.onclick = () => drawCanvas(canvasElem, info, previewElem);

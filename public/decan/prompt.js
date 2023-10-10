@@ -56,7 +56,7 @@ const IS_DEVELOPMENT = false,
 
 async function askPrompt(prompt) {
     try {
-        return await fetch(`${apiRoot}/reading/decan`, {
+        return await fetch(`${apiRoot}/decan`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

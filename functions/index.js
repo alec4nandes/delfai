@@ -1,6 +1,7 @@
 // Replace if using a different env file or config
 require("dotenv").config({ path: "./.env" });
-const express = require("express"),
+const OpenAI = require("openai"),
+    express = require("express"),
     bodyParser = require("body-parser"),
     cors = require("cors"),
     functions = require("firebase-functions"),
@@ -18,6 +19,36 @@ const IS_DEVELOPMENT = false,
         server.use(bodyParser.urlencoded({ extended: true }));
         server.use(getCors());
     };
+
+// DECAN
+
+const decan = express(),
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+setUpServer(decan);
+
+decan.post("/", async function (req, res) {
+    const { prompt } = req.body,
+        result = await getDecan(prompt);
+    res.send(result);
+});
+
+async function getDecan(content) {
+    return await openai.chat.completions.create({
+        messages: [
+            {
+                role: "system",
+                content:
+                    "You are a tarot card reader writing a social media post.",
+            },
+            { role: "user", content },
+        ],
+        model: "gpt-3.5-turbo",
+        temperature: 0.7,
+    });
+}
+
+module.exports.decan = functions.https.onRequest(decan);
 
 // PAYMENT
 
@@ -86,12 +117,12 @@ module.exports.payment = functions.https.onRequest(paymentServer);
 
 // SECRET KEY
 
-const openai = express();
+const openAiServer = express();
 
-setUpServer(openai);
+setUpServer(openAiServer);
 
-openai.post("/", async (req, res) => {
+openAiServer.post("/", async (req, res) => {
     res.send(process.env.OPENAI_API_KEY);
 });
 
-module.exports.openai = functions.https.onRequest(openai);
+module.exports.openai = functions.https.onRequest(openAiServer);
