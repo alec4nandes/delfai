@@ -51,7 +51,7 @@ export default function AskTextarea({
                             const isChecked = e.target.checked,
                                 invalid = isChecked && !user.paid;
                             setShowSubscribe(invalid);
-                            !isCustom && invalid && setIsKabbalah(isChecked);
+                            !isCustom && setIsKabbalah(isChecked);
                         }}
                     />
                 </label>
