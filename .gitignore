@@ -4,7 +4,6 @@
 firebase-debug.log
 
 .env
-/functions/openai-api-key.js
 /src/db-info.js
 
 # dependencies
