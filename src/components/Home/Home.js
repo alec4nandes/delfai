@@ -19,6 +19,7 @@ export default function Home({
     setIsTransition,
     setIsKabbalah,
     isKabbalah,
+    setIsDecan,
 }) {
     return (
         <div
@@ -41,6 +42,7 @@ export default function Home({
                                 setIsTransition,
                                 setIsKabbalah,
                                 isKabbalah,
+                                setIsDecan,
                             }}
                         />
                         <Separator />

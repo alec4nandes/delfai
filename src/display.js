@@ -10,6 +10,7 @@ export default async function fillRef(
     isKabbalah
 ) {
     try {
+        elemRef.current && (elemRef.current.innerHTML = "");
         const response = await fetch(`${apiRoot}/reading`, {
             method: "POST",
             headers: {

@@ -1,0 +1,9 @@
+#decan {
+  gap: 20px;
+}
+#decan form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}/*# sourceMappingURL=decan.css.map */

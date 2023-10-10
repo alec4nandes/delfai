@@ -1,7 +1,7 @@
 import { getTimeframeQueries, getCustomSpreadQuery } from "./prompts.js";
 import { getOppositeWords } from "./data.js";
 
-function compareCards(spread, question, isCustom, isKabbalah) {
+function compareCards(spread, question, isCustom, isKabbalah, prompt) {
     question = question.trim();
     const matching = {},
         opposites = {},
@@ -15,21 +15,23 @@ function compareCards(spread, question, isCustom, isKabbalah) {
     Object.values(opposites).forEach(condense);
     // group opposites keys
     condense(opposites);
-    const prompts = isCustom
-            ? getCustomSpreadQuery(
-                  spread,
-                  question,
-                  matching,
-                  opposites,
-                  isKabbalah
-              )
-            : getTimeframeQueries(
-                  spread,
-                  question,
-                  matching,
-                  opposites,
-                  isKabbalah
-              ),
+    const prompts =
+            prompt ||
+            (isCustom
+                ? getCustomSpreadQuery(
+                      spread,
+                      question,
+                      matching,
+                      opposites,
+                      isKabbalah
+                  )
+                : getTimeframeQueries(
+                      spread,
+                      question,
+                      matching,
+                      opposites,
+                      isKabbalah
+                  )),
         [past, present, future] = spread;
     return {
         matching,

@@ -19,8 +19,7 @@ export default function CustomReading({
 }) {
     useEffect(() => {
         customWaitRef.current.style.display = "block";
-        customRef.current.innerHTML = "";
-    }, [customRef, customWaitRef, cards]);
+    }, [customWaitRef, cards]);
 
     return (
         <div id="alternative-page">
@@ -70,7 +69,7 @@ function getCardsId(cards, isKabbalah) {
             : ["past", "present", "future"].map(
                   (timeframe) => cards.spread[timeframe]
               ),
-        question = cards.question.replaceAll("?", "").trim(),
+        question = cards.question?.replaceAll("?", "").trim() || "",
         result = (
             spread.map(({ name }) => name).join("-") +
             "-" +

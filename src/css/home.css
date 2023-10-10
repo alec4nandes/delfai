@@ -61,29 +61,4 @@
 }
 #home #questions .question-section button:hover h3 {
   color: var(--accent-color-2);
-}
-#home .payment-input-wrapper {
-  border-bottom: 2px solid #333;
-  margin-bottom: 12.5px;
-}
-#home .payment-input-wrapper:first-child input {
-  height: 19.2px;
-  padding: 0;
-}
-#home .payment-input-wrapper:first-child input:focus {
-  outline: none;
-}
-#home .payment-input-wrapper input {
-  width: 100%;
-  color: var(--text-color);
-  background-color: transparent;
-  font-size: 16px;
-  font-family: "Courier New";
-  text-align: center;
-}
-#home .payment-input-wrapper input::-moz-placeholder {
-  color: #888;
-}
-#home .payment-input-wrapper input::placeholder {
-  color: #888;
 }/*# sourceMappingURL=home.css.map */

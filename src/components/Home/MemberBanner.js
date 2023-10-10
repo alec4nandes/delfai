@@ -12,6 +12,7 @@ export default function MemberBanner({
     setIsTransition,
     setIsKabbalah,
     isKabbalah,
+    setIsDecan,
 }) {
     return (
         <>
@@ -59,6 +60,9 @@ export default function MemberBanner({
             ) : (
                 <></>
             )}
+            <button className="standard-btn" onClick={() => setIsDecan(true)}>
+                Card of the Day
+            </button>
         </>
     );
 }

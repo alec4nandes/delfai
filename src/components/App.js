@@ -3,6 +3,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
 import { getSpread } from "../compare/spread.js";
+import { allCards } from "../compare/data.js";
+import { getToday } from "../decan.js";
 import fillRef from "../display.js";
 import Portal from "./Portal";
 import Settings from "./Settings";
@@ -14,8 +16,8 @@ import Present from "./Reading/TimeSlide/Present";
 import Future from "./Reading/TimeSlide/Future";
 import Advice from "./Reading/Advice";
 import NavBar from "./Reading/Navbar";
-import Loading from "./Loading.js";
-import { allCards } from "../compare/data.js";
+import Loading from "./Loading";
+import Decan from "./Decan";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
@@ -26,16 +28,20 @@ export default function App() {
         [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
         [isTransition, setIsTransition] = useState(false),
         [isKabbalah, setIsKabbalah] = useState(false),
+        [isDecan, setIsDecan] = useState(false),
+        [decanCards, setDecanCards] = useState(getToday()),
         pastRef = useRef(),
         presentRef = useRef(),
         futureRef = useRef(),
         adviceRef = useRef(),
         customRef = useRef(),
+        decanRef = useRef(),
         pastWaitRef = useRef(),
         presentWaitRef = useRef(),
         futureWaitRef = useRef(),
         adviceWaitRef = useRef(),
-        customWaitRef = useRef();
+        customWaitRef = useRef(),
+        decanWaitRef = useRef();
 
     const getReading = useCallback(() => {
         if (!cards) {
@@ -75,6 +81,18 @@ export default function App() {
             );
         }
     }, [cards, isCustom, isKabbalah]);
+
+    useEffect(() => {
+        isDecan &&
+            fillRef(
+                decanCards,
+                null,
+                decanWaitRef,
+                decanRef,
+                true,
+                false // TODO: enable Kabbalah for Decan
+            );
+    }, [decanCards, isDecan]);
 
     useEffect(() => {
         isTransition &&
@@ -179,6 +197,16 @@ export default function App() {
                             isKabbalah,
                         }}
                     />
+                ) : isDecan ? (
+                    <Decan
+                        {...{
+                            user,
+                            decanCards,
+                            setDecanCards,
+                            decanRef,
+                            decanWaitRef,
+                        }}
+                    />
                 ) : (
                     <>
                         {cards ? <NavBar /> : <></>}
@@ -199,6 +227,7 @@ export default function App() {
                                         setIsTransition,
                                         setIsKabbalah,
                                         isKabbalah,
+                                        setIsDecan,
                                     }}
                                 />
                             )}

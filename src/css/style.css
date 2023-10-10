@@ -340,6 +340,31 @@ details > summary::-webkit-details-marker {
   width: 125px;
   margin-top: 20px;
 }
+.subscribe-form .payment-input-wrapper {
+  border-bottom: 2px solid #333;
+  margin-bottom: 12.5px;
+}
+.subscribe-form .payment-input-wrapper:first-child input {
+  height: 19.2px;
+  padding: 0;
+}
+.subscribe-form .payment-input-wrapper:first-child input:focus {
+  outline: none;
+}
+.subscribe-form .payment-input-wrapper input {
+  width: 100%;
+  color: var(--text-color);
+  background-color: transparent;
+  font-size: 16px;
+  font-family: "Courier New";
+  text-align: center;
+}
+.subscribe-form .payment-input-wrapper input::-moz-placeholder {
+  color: #888;
+}
+.subscribe-form .payment-input-wrapper input::placeholder {
+  color: #888;
+}
 
 ul.words-list {
   display: flex;
