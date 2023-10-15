@@ -384,13 +384,16 @@ function finder(arr, date) {
 
 function converter(dayInfo) {
     const { date, minor, zodiac, court, suit } = dayInfo,
+        ast = { card_name: astro[minor.astro] },
         makeAcePage = (rank) => ({ card_name: `${rank} of ${suit.name}` }),
         page = makeAcePage("Page"),
         ace = makeAcePage("Ace"),
-        spread = [minor, zodiac, court, page, ace].map(({ card_name }) => ({
-            name: card_name,
-            words: allCards[card_name],
-        })),
+        spread = [minor, zodiac, ast, court, page, ace].map(
+            ({ card_name }) => ({
+                name: card_name,
+                words: allCards[card_name],
+            })
+        ),
         result = compareCards(spread, "", true, false, getDecanPrompt(dayInfo));
     return { ...result, date };
 }

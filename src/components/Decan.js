@@ -31,7 +31,11 @@ export default function Decan({
             <div id="decan" className="container">
                 <h1>Delfai Oracle</h1>
                 <h2 className="bigger-header">Card of the Day</h2>
-                <h2 ref={dateRef}>{decanCards.date}</h2>
+                <h2 ref={dateRef}>
+                    {decanCards.date}
+                    <br />
+                    {decanCards.spread[0].name}
+                </h2>
                 <p>
                     Use the{" "}
                     <a href="/assets/wheel.png" target="_blank" rel="noopener">
