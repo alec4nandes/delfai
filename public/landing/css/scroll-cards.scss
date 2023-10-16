@@ -1,0 +1,27 @@
+.scroll-cards {
+    --card-width: clamp(100px, 20vw, 500px);
+    --card-offset: calc(var(--card-width) * (-1 / 4));
+
+    height: 100%;
+    width: var(--card-width);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    &#scroll-cards-left {
+        left: var(--card-offset);
+    }
+
+    &#scroll-cards-right {
+        right: var(--card-offset);
+    }
+
+    img {
+        width: 100%;
+        opacity: 0.5;
+    }
+}
