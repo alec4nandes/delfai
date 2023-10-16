@@ -17,9 +17,8 @@ export default function MemberBanner({
     return (
         <>
             <p className="description">
-                Explore how the Tarot cards relate to each other. Delfai Oracle
-                answers questions with three-card readings. Users can also enter
-                their own spreads for deeper insight.
+                A web app for Tarot lovers! Get instant readings for any
+                question.
             </p>
             <div id="user-options">
                 <button
