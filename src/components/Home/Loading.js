@@ -1,4 +1,4 @@
-import "../css/loading.css";
+import "../../css/loading.css";
 
 export default function Loading({ isTransition }) {
     return (

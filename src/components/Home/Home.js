@@ -1,128 +1,175 @@
 import "../../css/home.css";
-import { sendEmailVerification } from "firebase/auth";
-import { auth } from "../../database.js";
-import AskQuestion, { Separator } from "./AskQuestion";
-import MemberBanner from "./MemberBanner";
-import SignOut from "../SignOut";
-import Subscribe from "./Subscribe/Subscribe";
-import Social from "../Social";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { getSpread } from "../../compare/spread.js";
+import { allCards } from "../../compare/data.js";
+import { getToday } from "../../decan.js";
+import fillRef from "../../display.js";
+import CustomReading from "../CustomReading";
+import Dashboard from "./Dashboard";
+import Decan from "../Decan";
+import Loading from "./Loading";
+import Reading from "../Reading/Reading";
+import Settings from "../Settings";
 
-export default function Home({
-    custom,
-    setIsSettings,
-    setCustom,
-    setCards,
-    setIsCustom,
-    setUser,
-    user,
-    cards,
-    setIsTransition,
-    setIsKabbalah,
-    isKabbalah,
-    setIsDecan,
-}) {
-    return (
-        <div
-            id="home"
-            className={`slide${user.emailVerified ? "" : " unverified"}`}
-        >
-            <div className="slide-container">
-                <h1>Delfai Oracle</h1>
-                {user.emailVerified ? (
-                    <>
-                        <MemberBanner
-                            {...{
-                                user,
-                                custom,
-                                setIsSettings,
-                                setIsCustom,
-                                setCustom,
-                                setCards,
-                                cards,
-                                setIsTransition,
-                                setIsKabbalah,
-                                isKabbalah,
-                                setIsDecan,
-                            }}
-                        />
-                        <Separator />
-                        {user.paid || user.free_draws > 0 ? (
-                            <AskQuestion
-                                {...{
-                                    user,
-                                    setCards,
-                                    setUser,
-                                    setIsTransition,
-                                    setIsKabbalah,
-                                    isKabbalah,
-                                }}
-                            />
-                        ) : (
-                            <FreeTrialOver {...{ user }} />
-                        )}
-                    </>
-                ) : (
-                    <Unverified {...{ user }} />
-                )}
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <Social />
-        </div>
-    );
-}
+export default function Home({ user, setUser }) {
+    const [cards, setCards] = useState(),
+        [isSettings, setIsSettings] = useState(false),
+        [isCustom, setIsCustom] = useState(false),
+        [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
+        [isTransition, setIsTransition] = useState(false),
+        [isKabbalah, setIsKabbalah] = useState(false),
+        [isDecan, setIsDecan] = useState(false),
+        [decanCards, setDecanCards] = useState(getToday()),
+        pastRef = useRef(),
+        presentRef = useRef(),
+        futureRef = useRef(),
+        adviceRef = useRef(),
+        customRef = useRef(),
+        decanRef = useRef(),
+        pastWaitRef = useRef(),
+        presentWaitRef = useRef(),
+        futureWaitRef = useRef(),
+        adviceWaitRef = useRef(),
+        customWaitRef = useRef(),
+        decanWaitRef = useRef();
 
-function FreeTrialOver({ user }) {
-    return (
-        <>
-            <p>
-                Oh no! You're out of free readings. Please consider joining for
-                only $2.99 a month.
-            </p>
-            <Subscribe {...{ user }} />
-        </>
-    );
-}
-
-function Unverified({ user }) {
-    return (
-        <>
-            <p>
-                Please verify your email by clicking the link sent to{" "}
-                {user.email}
-            </p>
-            <div id="user-options">
-                <ResendVerify />
-                <button
-                    className="standard-btn"
-                    onClick={() => window.location.reload()}
-                >
-                    refresh page
-                </button>
-            </div>
-            <SignOut />
-        </>
-    );
-
-    function ResendVerify() {
-        return (
-            <button className="standard-btn" onClick={handleResendVerify}>
-                resend verification email
-            </button>
-        );
-
-        async function handleResendVerify() {
-            try {
-                await sendEmailVerification(auth.currentUser);
-                alert("Email sent.");
-            } catch (err) {
-                console.error(err);
-                alert(
-                    "Could not send email. Please try again and contact al@fern.haus if problem persists."
+    const getReading = useCallback(() => {
+        if (!cards && !decanCards) {
+            return;
+        }
+        // wait for components to load
+        setTimeout(() => {
+            if (isCustom) {
+                fillRef(
+                    cards,
+                    "custom spread",
+                    customWaitRef,
+                    customRef,
+                    true,
+                    isKabbalah
+                );
+            } else if (isDecan) {
+                fillRef(
+                    decanCards,
+                    null,
+                    decanWaitRef,
+                    decanRef,
+                    true,
+                    false // TODO: enable Kabbalah for Decan
+                );
+            } else {
+                const elemRefs = {
+                        past: pastRef,
+                        present: presentRef,
+                        future: futureRef,
+                        advice: adviceRef,
+                    },
+                    waitRefs = {
+                        past: pastWaitRef,
+                        present: presentWaitRef,
+                        future: futureWaitRef,
+                        advice: adviceWaitRef,
+                    };
+                Object.keys(elemRefs).forEach((timeframe) =>
+                    fillRef(
+                        cards,
+                        timeframe,
+                        waitRefs[timeframe],
+                        elemRefs[timeframe],
+                        false,
+                        isKabbalah
+                    )
                 );
             }
+        }, 500);
+    }, [cards, decanCards, isCustom, isDecan, isKabbalah]);
+
+    useEffect(() => {
+        isTransition &&
+            setTimeout(() => {
+                setIsTransition(false);
+                getReading();
+            }, 1950);
+    }, [getReading, isTransition]);
+
+    useEffect(() => {
+        preloadCardImages();
+
+        function preloadCardImages() {
+            Object.keys(allCards).forEach((cardName) => {
+                const img = new Image();
+                img.src = `/assets/cards/${cardName}.jpg`;
+            });
         }
-    }
+    }, []);
+
+    return (
+        <>
+            <Loading {...{ isTransition }} />
+            {isTransition ? (
+                <></>
+            ) : isSettings ? (
+                <Settings {...{ user }} />
+            ) : isCustom ? (
+                <CustomReading
+                    {...{
+                        cards,
+                        customWaitRef,
+                        customRef,
+                        custom,
+                        setCustom,
+                        setCards,
+                        setIsCustom,
+                        user,
+                        setIsTransition,
+                        setIsKabbalah,
+                        isKabbalah,
+                    }}
+                />
+            ) : isDecan ? (
+                <Decan
+                    {...{
+                        user,
+                        decanCards,
+                        setDecanCards,
+                        decanRef,
+                        decanWaitRef,
+                        setIsTransition,
+                    }}
+                />
+            ) : cards ? (
+                <Reading
+                    {...{
+                        cards,
+                        isKabbalah,
+                        pastRef,
+                        pastWaitRef,
+                        presentRef,
+                        presentWaitRef,
+                        futureRef,
+                        futureWaitRef,
+                        adviceRef,
+                        adviceWaitRef,
+                    }}
+                />
+            ) : (
+                <Dashboard
+                    {...{
+                        user,
+                        setUser,
+                        custom,
+                        setIsSettings,
+                        setIsCustom,
+                        setCustom,
+                        setCards,
+                        cards,
+                        setIsTransition,
+                        setIsKabbalah,
+                        isKabbalah,
+                        setIsDecan,
+                    }}
+                />
+            )}
+        </>
+    );
 }

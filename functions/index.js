@@ -7,7 +7,7 @@ const OpenAI = require("openai"),
     functions = require("firebase-functions"),
     stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const IS_DEVELOPMENT = false,
+const IS_DEVELOPMENT = true,
     getCors = () =>
         cors({
             origin: IS_DEVELOPMENT
