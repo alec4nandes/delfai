@@ -4,12 +4,12 @@ import { getSpread } from "../../compare/spread.js";
 import { allCards } from "../../compare/data.js";
 import { getToday } from "../../decan.js";
 import fillRef from "../../display.js";
-import CustomReading from "../CustomReading";
-import Dashboard from "./Dashboard";
-import Decan from "../Decan";
+import CustomReading from "./Sections/Ask/CustomReading";
+import Dashboard from "./Sections/Dashboard/Dashboard";
+import Decan from "./Sections/Decan/Decan";
 import Loading from "./Loading";
-import Reading from "../Reading/Reading";
-import Settings from "../Settings";
+import Reading from "./Sections/Ask/Reading/Reading";
+import Settings from "./Sections/Account/Settings";
 
 export default function Home({ user, setUser }) {
     const [cards, setCards] = useState(),
@@ -113,17 +113,17 @@ export default function Home({ user, setUser }) {
             ) : isCustom ? (
                 <CustomReading
                     {...{
+                        user,
+                        setUser,
                         cards,
-                        customWaitRef,
-                        customRef,
+                        setCards,
                         custom,
                         setCustom,
-                        setCards,
-                        setIsCustom,
-                        user,
                         setIsTransition,
                         setIsKabbalah,
                         isKabbalah,
+                        customWaitRef,
+                        customRef,
                     }}
                 />
             ) : isDecan ? (

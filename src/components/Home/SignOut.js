@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../database.js";
+import { auth } from "../../database.js";
 
 export default function SignOut() {
     return (

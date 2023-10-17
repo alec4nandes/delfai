@@ -1,5 +1,5 @@
 import CardImage from "./CardImage";
-import MoreInfo from "./MoreInfo/MoreInfo";
+import MoreInfo from "../MoreInfo/MoreInfo";
 
 export default function CardImages({ spread, isKabbalah }) {
     return (

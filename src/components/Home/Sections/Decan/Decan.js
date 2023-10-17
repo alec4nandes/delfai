@@ -1,10 +1,10 @@
-import "../css/decan.css";
+import "../../../../css/decan.css";
 import { useRef, useState } from "react";
-import { getDay } from "../decan.js";
-import { getCardsId } from "./CustomReading";
-import Subscribe from "./Home/Subscribe/Subscribe";
-import CardImages from "./CardImages";
-import Compare from "./Compare/Compare";
+import { getDay } from "../../../../decan.js";
+import { getCardsId } from "../Ask/CustomReading";
+import Subscribe from "../../Subscribe/Subscribe";
+import CardImages from "../../CardImages/CardImages";
+import Compare from "../../Compare/Compare";
 
 export default function Decan({
     user,

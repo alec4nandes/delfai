@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { allCards } from "../../compare/data.js";
-import { handleQuestion } from "./OtherQuestions";
-import Subscribe from "./Subscribe/Subscribe";
+import { allCards } from "../../../../compare/data.js";
+import { handleQuestion } from "./OtherQuestions.js";
+import Subscribe from "../../Subscribe/Subscribe.js";
 
 export default function AskQuestion({
     user,
@@ -9,6 +9,7 @@ export default function AskQuestion({
     cards,
     setCards,
     custom,
+    setCustom,
     setIsTransition,
     setIsKabbalah,
     isKabbalah,
@@ -41,7 +42,7 @@ export default function AskQuestion({
                     }
                 }}
             >
-                <Custom {...{ custom, user, size, setSize }} />
+                <SelectCards {...{ custom, setCustom, user, size, setSize }} />
                 <textarea
                     name="question"
                     placeholder="Ask a question (optional)..."
@@ -92,7 +93,7 @@ export default function AskQuestion({
     }
 }
 
-function Custom({ custom, user, size, setSize }) {
+function SelectCards({ custom, setCustom, user, size, setSize }) {
     return (
         <details>
             <summary className="standard-btn">Enter a Custom Spread</summary>
@@ -135,8 +136,11 @@ function Custom({ custom, user, size, setSize }) {
         return (
             <div className="custom-card-select">
                 <select
-                    name={`card_${i + 1}`}
+                    id={`card-${i + 1}`}
                     defaultValue={custom[i]?.replace(" reversed", "") || ""}
+                    onChange={() =>
+                        setCustom((custom) => setCustomHelper(custom, i))
+                    }
                 >
                     <option value="" disabled>
                         ---
@@ -149,13 +153,26 @@ function Custom({ custom, user, size, setSize }) {
                 </select>
                 <label>
                     <input
-                        name={`reversed_${i + 1}`}
+                        id={`reversed-${i + 1}`}
                         type="checkbox"
                         defaultChecked={custom[i]?.includes(" reversed")}
+                        onChange={() =>
+                            setCustom((custom) => setCustomHelper(custom, i))
+                        }
                     />{" "}
                     reversed
                 </label>
             </div>
         );
+
+        function setCustomHelper(custom, i) {
+            const rev = document.querySelector(`#reversed-${i + 1}`).checked
+                    ? " reversed"
+                    : "",
+                card = document.querySelector(`#card-${i + 1}`).value + rev;
+            custom.splice(i, 1, card);
+            console.log(custom);
+            return custom;
+        }
     }
 }

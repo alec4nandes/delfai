@@ -1,4 +1,4 @@
-import { getCardsId } from "./components/CustomReading.js";
+import { getCardsId } from "./components/Home/Sections/Ask/CustomReading";
 import { apiRoot } from "./database.js";
 
 export default async function fillRef(

@@ -1,20 +1,20 @@
-import CardImages from "./CardImages";
-import CustomSelect from "./CustomSelect";
-import Compare from "./Compare/Compare";
-import KabbalahHeader from "./KabbalahHeader";
+import CardImages from "../../CardImages/CardImages";
+import Compare from "../../Compare/Compare";
+import KabbalahHeader from "../../KabbalahHeader";
+import AskQuestion from "./AskQuestion";
 
 export default function CustomReading({
+    user,
+    setUser,
     cards,
-    customWaitRef,
-    customRef,
+    setCards,
     custom,
     setCustom,
-    setCards,
-    setIsCustom,
-    user,
     setIsTransition,
     setIsKabbalah,
     isKabbalah,
+    customWaitRef,
+    customRef,
 }) {
     return (
         <div id="alternative-page">
@@ -23,15 +23,14 @@ export default function CustomReading({
                 <h2 className="bigger-header">Custom Spread</h2>
                 <KabbalahHeader {...{ isKabbalah }} />
                 {cards.question && <h3>Asking: "{cards.question}"</h3>}
-                <CustomSelect
+                <AskQuestion
                     {...{
                         user,
+                        setUser,
                         cards,
                         setCards,
                         custom,
                         setCustom,
-                        setIsCustom,
-                        waitRef: customWaitRef,
                         setIsTransition,
                         setIsKabbalah,
                         isKabbalah,

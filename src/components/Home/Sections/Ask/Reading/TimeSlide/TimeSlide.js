@@ -1,11 +1,11 @@
+import { kabbalahMajors } from "../../../../../../kabbalah.js";
 import { getCardsId } from "../../CustomReading";
-import CardImage from "../../CardImage";
-import Compare from "../../Compare/Compare";
+import CardImage from "../../../../CardImages/CardImage";
+import Compare from "../../../../Compare/Compare";
 import NextButton from "../NextButton";
-import MoreInfo from "../../MoreInfo/MoreInfo";
-import KabbalahHeader from "../../KabbalahHeader";
+import MoreInfo from "../../../../MoreInfo/MoreInfo";
+import KabbalahHeader from "../../../../KabbalahHeader";
 import TreeOfLife from "./TreeOfLife";
-import { kabbalahMajors } from "../../../kabbalah";
 
 export default function TimeSlide({
     cards,

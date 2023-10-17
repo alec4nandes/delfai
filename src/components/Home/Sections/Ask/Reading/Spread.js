@@ -1,6 +1,6 @@
-import CardImages from "../CardImages";
-import Compare from "../Compare/Compare";
-import KabbalahHeader from "../KabbalahHeader";
+import CardImages from "../../../CardImages/CardImages";
+import Compare from "../../../Compare/Compare";
+import KabbalahHeader from "../../../KabbalahHeader";
 import NextButton from "./NextButton";
 
 export default function Spread({ cards, isKabbalah }) {

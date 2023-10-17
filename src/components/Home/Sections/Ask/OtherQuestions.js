@@ -1,7 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../database.js";
-import { compareCards } from "../../compare/compare.js";
-import { getSpread } from "../../compare/spread.js";
+import { db } from "../../../../database.js";
+import { compareCards } from "../../../../compare/compare.js";
+import { getSpread } from "../../../../compare/spread.js";
 
 export default function OtherQuestions({
     setCards,

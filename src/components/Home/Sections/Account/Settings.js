@@ -1,7 +1,7 @@
 import { doc, updateDoc } from "@firebase/firestore";
-import { db, apiRoot } from "../database.js";
-import SignOut from "./SignOut";
-import ResetPassword from "./ResetPassword";
+import { db, apiRoot } from "../../../../database.js";
+import ResetPassword from "../../../ResetPassword";
+import SignOut from "../../SignOut";
 
 export default function Settings({ user }) {
     return (

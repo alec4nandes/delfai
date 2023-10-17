@@ -1,4 +1,4 @@
-import { kabbalahMajors } from "../../kabbalah.js";
+import { kabbalahMajors } from "../../../kabbalah.js";
 import Rank from "./Rank.js";
 import Suit from "./Suit.js";
 

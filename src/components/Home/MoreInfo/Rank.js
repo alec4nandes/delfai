@@ -1,5 +1,5 @@
-import { getRankWords, getRankAndSuit } from "../../compare/data.js";
-import { kabbalahRanks } from "../../kabbalah.js";
+import { getRankWords, getRankAndSuit } from "../../../compare/data.js";
+import { kabbalahRanks } from "../../../kabbalah.js";
 import { KabbalahLink } from "./MoreInfo";
 
 export default function Rank({ card, isKabbalah }) {

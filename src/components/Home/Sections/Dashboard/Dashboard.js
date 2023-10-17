@@ -1,11 +1,11 @@
 import { sendEmailVerification } from "firebase/auth";
-import { auth } from "../../database.js";
-import AskQuestion from "./AskQuestion";
-import MemberBanner from "./MemberBanner";
-import OtherQuestions from "./OtherQuestions";
-import SignOut from "../SignOut";
-import Subscribe from "./Subscribe/Subscribe";
-import Social from "../Social";
+import { auth } from "../../../../database.js";
+import AskQuestion from "../Ask/AskQuestion.js";
+import MemberBanner from "./MemberBanner.js";
+import OtherQuestions from "../Ask/OtherQuestions.js";
+import SignOut from "../../SignOut.js";
+import Subscribe from "../../Subscribe/Subscribe.js";
+import Social from "../../../Social.js";
 
 export default function Dashboard({
     user,
@@ -68,6 +68,7 @@ export default function Dashboard({
                                             cards,
                                             setCards,
                                             custom,
+                                            setCustom,
                                             setIsTransition,
                                             setIsKabbalah,
                                             isKabbalah,

@@ -1,5 +1,5 @@
 import { getCardsId } from "../CustomReading";
-import KabbalahHeader from "../KabbalahHeader";
+import KabbalahHeader from "../../../KabbalahHeader";
 
 export default function Advice({ elemRef, waitRef, cards, isKabbalah }) {
     return (
