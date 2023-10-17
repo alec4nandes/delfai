@@ -8,6 +8,16 @@
     font-style: normal;
 }
 
+// TESTING
+
+section {
+    min-height: 100%;
+    width: 100%;
+    border: 5px solid purple;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
 // PAGE BODY
 
 body,

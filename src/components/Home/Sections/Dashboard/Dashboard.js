@@ -1,15 +1,13 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../../../database.js";
-import AskQuestion from "../Ask/AskQuestion.js";
-import MemberBanner from "./MemberBanner.js";
-import OtherQuestions from "../Ask/OtherQuestions.js";
+import Ask from "../Ask/Ask";
+import MemberBanner from "./MemberBanner";
 import SignOut from "../../SignOut.js";
 import Subscribe from "../../Subscribe/Subscribe.js";
 import Social from "../../../Social.js";
 
 export default function Dashboard({
     user,
-    setUser,
     custom,
     setIsSettings,
     setIsCustom,
@@ -20,7 +18,6 @@ export default function Dashboard({
     setIsKabbalah,
     isKabbalah,
     setIsDecan,
-    waitRef,
 }) {
     return (
         <main>
@@ -49,51 +46,12 @@ export default function Dashboard({
                                     setIsDecan,
                                 }}
                             />
-                            {user.paid || user.free_draws > 0 ? (
-                                <>
-                                    <button
-                                        className="standard-btn"
-                                        onClick={() => {
-                                            setIsTransition(true);
-                                            setIsDecan(true);
-                                        }}
-                                    >
-                                        Card of the Day
-                                    </button>
-                                    <Separator />
-                                    <AskQuestion
-                                        {...{
-                                            user,
-                                            setUser,
-                                            cards,
-                                            setCards,
-                                            custom,
-                                            setCustom,
-                                            setIsTransition,
-                                            setIsKabbalah,
-                                            isKabbalah,
-                                        }}
-                                    />
-                                    <Separator />
-                                    <OtherQuestions
-                                        {...{
-                                            setCards,
-                                            setUser,
-                                            user,
-                                            setIsTransition,
-                                        }}
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <Separator />
-                                    <FreeTrialOver {...{ user }} />
-                                </>
+                            <Separator />
+                            {!(user.paid || user.free_draws > 0) && (
+                                <FreeTrialOver {...{ user }} />
                             )}
                         </>
                     )}
-                    <br />
-                    <br />
                     <Social />
                 </div>
             </div>

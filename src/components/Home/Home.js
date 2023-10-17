@@ -4,12 +4,11 @@ import { getSpread } from "../../compare/spread.js";
 import { allCards } from "../../compare/data.js";
 import { getToday } from "../../decan.js";
 import fillRef from "../../display.js";
-import CustomReading from "./Sections/Ask/CustomReading";
 import Dashboard from "./Sections/Dashboard/Dashboard";
 import Decan from "./Sections/Decan/Decan";
 import Loading from "./Loading";
-import Reading from "./Sections/Ask/Reading/Reading";
 import Settings from "./Sections/Account/Settings";
+import Ask from "./Sections/Ask/Ask";
 
 export default function Home({ user, setUser }) {
     const [cards, setCards] = useState(),
@@ -106,53 +105,7 @@ export default function Home({ user, setUser }) {
     return (
         <>
             <Loading {...{ isTransition }} />
-            {isTransition ? (
-                <></>
-            ) : isSettings ? (
-                <Settings {...{ user }} />
-            ) : isCustom ? (
-                <CustomReading
-                    {...{
-                        user,
-                        setUser,
-                        cards,
-                        setCards,
-                        custom,
-                        setCustom,
-                        setIsTransition,
-                        setIsKabbalah,
-                        isKabbalah,
-                        customWaitRef,
-                        customRef,
-                    }}
-                />
-            ) : isDecan ? (
-                <Decan
-                    {...{
-                        user,
-                        decanCards,
-                        setDecanCards,
-                        decanRef,
-                        decanWaitRef,
-                        setIsTransition,
-                    }}
-                />
-            ) : cards ? (
-                <Reading
-                    {...{
-                        cards,
-                        isKabbalah,
-                        pastRef,
-                        pastWaitRef,
-                        presentRef,
-                        presentWaitRef,
-                        futureRef,
-                        futureWaitRef,
-                        adviceRef,
-                        adviceWaitRef,
-                    }}
-                />
-            ) : (
+            <section>
                 <Dashboard
                     {...{
                         user,
@@ -169,7 +122,37 @@ export default function Home({ user, setUser }) {
                         setIsDecan,
                     }}
                 />
-            )}
+            </section>
+            <section>
+                <Ask
+                    {...{
+                        user,
+                        setUser,
+                        cards,
+                        setCards,
+                        custom,
+                        setCustom,
+                        setIsTransition,
+                        setIsKabbalah,
+                        isKabbalah,
+                    }}
+                />{" "}
+            </section>
+            <section>
+                <Decan
+                    {...{
+                        user,
+                        decanCards,
+                        setDecanCards,
+                        decanRef,
+                        decanWaitRef,
+                        setIsTransition,
+                    }}
+                />
+            </section>
+            <section>
+                <Settings {...{ user }} />
+            </section>
         </>
     );
 }
