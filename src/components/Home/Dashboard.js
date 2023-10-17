@@ -1,7 +1,8 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../database.js";
-import AskQuestion, { Separator } from "./AskQuestion";
+import AskQuestion from "./AskQuestion";
 import MemberBanner from "./MemberBanner";
+import OtherQuestions from "./OtherQuestions";
 import SignOut from "../SignOut";
 import Subscribe from "./Subscribe/Subscribe";
 import Social from "../Social";
@@ -19,6 +20,7 @@ export default function Dashboard({
     setIsKabbalah,
     isKabbalah,
     setIsDecan,
+    waitRef,
 }) {
     return (
         <main>
@@ -28,7 +30,9 @@ export default function Dashboard({
             >
                 <div className="slide-container">
                     <h1>Delfai Oracle</h1>
-                    {user.emailVerified ? (
+                    {!user.emailVerified ? (
+                        <Unverified {...{ user }} />
+                    ) : (
                         <>
                             <MemberBanner
                                 {...{
@@ -45,31 +49,52 @@ export default function Dashboard({
                                     setIsDecan,
                                 }}
                             />
-                            <Separator />
                             {user.paid || user.free_draws > 0 ? (
-                                <AskQuestion
-                                    {...{
-                                        user,
-                                        setCards,
-                                        setUser,
-                                        setIsTransition,
-                                        setIsKabbalah,
-                                        isKabbalah,
-                                    }}
-                                />
+                                <>
+                                    <button
+                                        className="standard-btn"
+                                        onClick={() => {
+                                            setIsTransition(true);
+                                            setIsDecan(true);
+                                        }}
+                                    >
+                                        Card of the Day
+                                    </button>
+                                    <Separator />
+                                    <AskQuestion
+                                        {...{
+                                            user,
+                                            setUser,
+                                            cards,
+                                            setCards,
+                                            custom,
+                                            setIsTransition,
+                                            setIsKabbalah,
+                                            isKabbalah,
+                                        }}
+                                    />
+                                    <Separator />
+                                    <OtherQuestions
+                                        {...{
+                                            setCards,
+                                            setUser,
+                                            user,
+                                            setIsTransition,
+                                        }}
+                                    />
+                                </>
                             ) : (
-                                <FreeTrialOver {...{ user }} />
+                                <>
+                                    <Separator />
+                                    <FreeTrialOver {...{ user }} />
+                                </>
                             )}
                         </>
-                    ) : (
-                        <Unverified {...{ user }} />
                     )}
+                    <br />
+                    <br />
+                    <Social />
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <Social />
             </div>
         </main>
     );
@@ -127,3 +152,15 @@ function Unverified({ user }) {
         }
     }
 }
+
+function Separator() {
+    return (
+        <img
+            className="separator"
+            src="/assets/separator.png"
+            alt="decorative dividing line made up of square swirls in the Greek style."
+        />
+    );
+}
+
+export { Separator };

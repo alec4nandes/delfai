@@ -3,7 +3,7 @@ import { db } from "../../database.js";
 import { compareCards } from "../../compare/compare.js";
 import { getSpread } from "../../compare/spread.js";
 
-export default function Questions({
+export default function OtherQuestions({
     setCards,
     setUser,
     user,

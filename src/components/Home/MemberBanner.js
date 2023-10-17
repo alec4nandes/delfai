@@ -1,19 +1,6 @@
-import CustomSelect from "../CustomSelect";
 import SignOut from "../SignOut";
 
-export default function MemberBanner({
-    user,
-    custom,
-    setIsSettings,
-    setIsCustom,
-    setCustom,
-    setCards,
-    cards,
-    setIsTransition,
-    setIsKabbalah,
-    isKabbalah,
-    setIsDecan,
-}) {
+export default function MemberBanner({ user, setIsSettings }) {
     return (
         <>
             <p className="description">
@@ -42,32 +29,6 @@ export default function MemberBanner({
                     </>
                 )}
             </p>
-            <button
-                className="standard-btn"
-                onClick={() => {
-                    setIsTransition(true);
-                    setIsDecan(true);
-                }}
-            >
-                Card of the Day
-            </button>
-            {user.paid || user.free_draws > 0 ? (
-                <CustomSelect
-                    {...{
-                        user,
-                        cards,
-                        setCards,
-                        custom,
-                        setCustom,
-                        setIsCustom,
-                        setIsTransition,
-                        setIsKabbalah,
-                        isKabbalah,
-                    }}
-                />
-            ) : (
-                <></>
-            )}
         </>
     );
 }
