@@ -22,8 +22,16 @@ export default function NavBar({ isHome, setCards, user }) {
                         {title}
                     </li>
                 ))}
-                {setCards && (user.paid || user.free_draws > 0) && (
-                    <li onClick={() => setCards(null)}>New Spread</li>
+                {setCards && (
+                    <li
+                        onClick={() =>
+                            user.paid || user.free_draws > 0
+                                ? setCards(null)
+                                : handleJump("dashboard", true)
+                        }
+                    >
+                        New Spread
+                    </li>
                 )}
             </ul>
         </nav>
