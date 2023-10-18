@@ -45,7 +45,21 @@ export default function TimeSlide({ cards, card, timeframe, isKabbalah }) {
 
     const matching = getMatchingForCard(),
         opposites = getOppositesForCard(),
-        major = kabbalahMajors[card?.name.replace(" reversed", "")];
+        major = kabbalahMajors[card?.name.replace(" reversed", "")],
+        sefs = {
+            Ace: "kether",
+            2: "chokmah",
+            3: "binah",
+            4: "chesed",
+            5: "geburah",
+            6: "tiphareth",
+            7: "netzach",
+            8: "hod",
+            9: "yesod",
+            10: "malkuth",
+        },
+        rank = +card?.name.split(" ")[0],
+        numbered = sefs[rank];
 
     return (
         <div id={timeframe.toLowerCase()} className="slide">
@@ -58,9 +72,12 @@ export default function TimeSlide({ cards, card, timeframe, isKabbalah }) {
                     <li key={`${card.name}-${word}`}>{word}</li>
                 ))}
             </ul>
+            {isKabbalah && numbered && <TreeOfLife highlight={numbered} />}
             <MoreInfo {...{ card, isKabbalah }} />
-            {major && isKabbalah && (
-                <TreeOfLife highlight={major.kabbalah.letter.name} />
+            {isKabbalah && major && (
+                <TreeOfLife
+                    highlight={major?.kabbalah.letter.name || numbered}
+                />
             )}
             <Compare {...{ matching, opposites }} />
             <AiTextLoader

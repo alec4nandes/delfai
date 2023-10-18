@@ -21,7 +21,7 @@ export default function CustomReading({ cards, setCards, isKabbalah }) {
                 <ul>
                     <li>
                         <button onClick={() => setCards(null)}>
-                            new spread
+                            New Spread
                         </button>
                     </li>
                 </ul>

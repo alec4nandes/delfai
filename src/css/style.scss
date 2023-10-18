@@ -304,12 +304,21 @@ nav {
             align-items: center;
             justify-content: center;
             flex: 1;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 18px;
+
+            &,
+            button {
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 18px;
+            }
 
             &:hover {
                 cursor: pointer;
+            }
+
+            &.highlighted {
+                background-color: var(--questions-button-color) !important;
+                color: var(--text-color) !important;
             }
         }
     }
@@ -445,6 +454,10 @@ ul.words-list {
 }
 
 // MISC
+
+.tol {
+    flex: none;
+}
 
 .symbolize {
     min-height: 40px;

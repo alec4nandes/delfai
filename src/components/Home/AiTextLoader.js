@@ -19,7 +19,7 @@ export default function AiTextLoader({
         </>
     ) : (
         <button className="standard-btn" onClick={() => setIsReading(true)}>
-            get reading
+            Get Reading
         </button>
     );
 }

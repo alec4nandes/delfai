@@ -21,13 +21,11 @@ export default function Reading({ cards, setCards, isKabbalah, user }) {
             <div
                 id="reading"
                 onScroll={(e) =>
-                    handleScroll(e, [
-                        "spread",
-                        "past",
-                        "present",
-                        "future",
-                        "advice",
-                    ])
+                    handleScroll(
+                        e,
+                        ["spread", "past", "present", "future", "advice"],
+                        true
+                    )
                 }
             >
                 <Spread {...{ cards, isKabbalah }} />

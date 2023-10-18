@@ -52,11 +52,14 @@ export default function Home({ user, setUser }) {
     );
 }
 
-function handleScroll(e, ids) {
+function handleScroll(e, ids, isReadingSlide) {
     const getElem = (id) => document.querySelector(`#${id}`);
     ids.forEach((id) => {
         const elem = getElem(id),
-            left = elem.offsetLeft - e.target.scrollLeft,
+            left =
+                elem.offsetLeft -
+                e.target.scrollLeft -
+                (isReadingSlide ? e.target.parentElement.offsetLeft : 0),
             screenWidth = window.innerWidth,
             // 20px buffer
             isShowing = -20 <= left && left < screenWidth - 20;

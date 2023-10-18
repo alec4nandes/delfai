@@ -260,12 +260,19 @@ nav ul li {
   align-items: center;
   justify-content: center;
   flex: 1;
+}
+nav ul li,
+nav ul li button {
   font-size: 15px;
   font-weight: 700;
   line-height: 18px;
 }
 nav ul li:hover {
   cursor: pointer;
+}
+nav ul li.highlighted {
+  background-color: var(--questions-button-color) !important;
+  color: var(--text-color) !important;
 }
 
 #compare-tables {
@@ -370,6 +377,10 @@ ul.words-list li {
   display: flex;
   gap: 6px;
   justify-content: center;
+}
+
+.tol {
+  flex: none;
 }
 
 .symbolize {
