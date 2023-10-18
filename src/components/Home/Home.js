@@ -35,7 +35,7 @@ export default function Home({ user, setUser }) {
                     )
                 }
             >
-                <section id="dashboard">
+                <section id="dashboard" className="vertical-center">
                     <Dashboard {...{ user }} />
                 </section>
                 <section id="ask">
@@ -44,7 +44,7 @@ export default function Home({ user, setUser }) {
                 <section id="decan">
                     <Decan {...{ user }} />
                 </section>
-                <section id="account">
+                <section id="account" className="vertical-center">
                     <Settings {...{ user }} />
                 </section>
             </div>

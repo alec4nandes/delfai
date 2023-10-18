@@ -5,12 +5,12 @@ import SignOut from "../../SignOut";
 
 export default function Settings({ user }) {
     return (
-        <>
+        <div className="container">
             <h2 className="bigger-header">User Settings</h2>
             <ResetPassword email={user.email} />
             <Unsubscribe {...{ user }} />
             <SignOut />
-        </>
+        </div>
     );
 }
 

@@ -7,7 +7,7 @@ import Social from "../../../Social.js";
 
 export default function Dashboard({ user }) {
     return (
-        <>
+        <div className="container">
             <h1>Delfai Oracle</h1>
             {!user.emailVerified ? (
                 <Unverified {...{ user }} />
@@ -15,13 +15,31 @@ export default function Dashboard({ user }) {
                 <>
                     <MemberBanner {...{ user }} />
                     <Separator />
+                    <div>
+                        <a href="/about" target="_blank" rel="noopener">
+                            About
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/kabbalah" target="_blank" rel="noopener">
+                            Kabbalah
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a
+                            href="/assets/wheel.png"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Decan Wheel
+                        </a>
+                    </div>
+                    <Separator />
                     {!(user.paid || user.free_draws > 0) && (
                         <FreeTrialOver {...{ user }} />
                     )}
                 </>
             )}
             <Social />
-        </>
+        </div>
     );
 }
 
