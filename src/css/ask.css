@@ -1,0 +1,41 @@
+@import "./colors.css";
+#ask #ask-features {
+  display: flex;
+  gap: 20px;
+}
+#ask form#typed-question {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#ask form#typed-question textarea {
+  height: 80px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: auto;
+}
+#ask #questions {
+  width: 100%;
+}
+#ask #questions .question-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+}
+#ask #questions .question-section h2 {
+  margin-bottom: 8px;
+}
+#ask #questions .question-section button {
+  height: 70px;
+  width: 100%;
+  background-color: var(--questions-button-color);
+  color: #eee;
+  margin: 5px auto;
+}
+#ask #questions .question-section button:hover {
+  background-color: var(--accent-color);
+  color: #222;
+}/*# sourceMappingURL=ask.css.map */

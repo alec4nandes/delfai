@@ -17,27 +17,37 @@ export default function CustomReading({ cards, setCards, isKabbalah }) {
 
     return (
         <>
-            <h2 className="bigger-header">Custom Spread</h2>
-            <button onClick={() => setCards(null)}>new spread</button>
-            <KabbalahHeader {...{ isKabbalah }} />
-            {cards.question && <h3>Asking: "{cards.question}"</h3>}
-            <CardImages
-                {...{
-                    spread: cards.spread,
-                    isKabbalah,
-                }}
-            />
-            <Compare {...cards} />
-            <AiTextLoader
-                {...{
-                    isReading,
-                    setIsReading,
-                    waitRef,
-                    elemRef,
-                    cards,
-                    isKabbalah,
-                }}
-            />
+            <nav id="reading-menu">
+                <ul>
+                    <li>
+                        <button onClick={() => setCards(null)}>
+                            new spread
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div className="slide">
+                <h2 className="bigger-header">Custom Spread</h2>
+                <KabbalahHeader {...{ isKabbalah }} />
+                {cards.question && <h3>Asking: "{cards.question}"</h3>}
+                <CardImages
+                    {...{
+                        spread: cards.spread,
+                        isKabbalah,
+                    }}
+                />
+                <Compare {...cards} />
+                <AiTextLoader
+                    {...{
+                        isReading,
+                        setIsReading,
+                        waitRef,
+                        elemRef,
+                        cards,
+                        isKabbalah,
+                    }}
+                />
+            </div>
         </>
     );
 }

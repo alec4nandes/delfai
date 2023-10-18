@@ -6,7 +6,7 @@ import SignOut from "../../SignOut";
 export default function Settings({ user }) {
     return (
         <>
-            <h2>User Settings</h2>
+            <h2 className="bigger-header">User Settings</h2>
             <ResetPassword email={user.email} />
             <Unsubscribe {...{ user }} />
             <SignOut />

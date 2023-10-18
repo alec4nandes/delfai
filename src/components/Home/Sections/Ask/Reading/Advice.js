@@ -15,20 +15,18 @@ export default function Advice({ cards, isKabbalah }) {
 
     return (
         <div id="advice" className="slide">
-            <div className="slide-container">
-                <h2 className="bigger-header">Advice</h2>
-                <KabbalahHeader {...{ isKabbalah }} />
-                <AiTextLoader
-                    {...{
-                        isReading,
-                        setIsReading,
-                        waitRef,
-                        elemRef,
-                        cards,
-                        isKabbalah,
-                    }}
-                />
-            </div>
+            <h2 className="bigger-header">Advice</h2>
+            <KabbalahHeader {...{ isKabbalah }} />
+            <AiTextLoader
+                {...{
+                    isReading,
+                    setIsReading,
+                    waitRef,
+                    elemRef,
+                    cards,
+                    isKabbalah,
+                }}
+            />
         </div>
     );
 }

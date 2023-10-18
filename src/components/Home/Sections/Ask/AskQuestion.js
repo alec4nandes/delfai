@@ -17,7 +17,7 @@ export default function AskQuestion({
                 reflection, rather than for providing definitive answers.
             </p>
 
-            <form onSubmit={handleFormSubmit}>
+            <form id="typed-question" onSubmit={handleFormSubmit}>
                 <textarea
                     name="question"
                     placeholder="Ask a question (optional)..."

@@ -1,3 +1,4 @@
+import "../../../../css/ask.css";
 import { useState } from "react";
 import { getSpread } from "../../../../compare/spread.js";
 import { doc, updateDoc } from "firebase/firestore";
@@ -25,42 +26,52 @@ export default function Ask({ user, setUser }) {
                 isCustom ? (
                     <CustomReading {...{ cards, setCards, isKabbalah }} />
                 ) : (
-                    <Reading {...{ cards, setCards, isKabbalah }} />
+                    <Reading {...{ cards, setCards, isKabbalah, user }} />
                 )
             ) : (
-                <>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={isKabbalah}
-                            onChange={(e) => {
-                                const isChecked = e.target.checked,
-                                    invalid = isChecked && !user.paid;
-                                setShowSubscribe(invalid);
-                                setIsKabbalah(isChecked);
-                                invalid && isCustom && setIsCustom(false);
-                            }}
-                        />
-                        <a href="/kabbalah" target="_blank" rel="noopener">
-                            Kabbalah
-                        </a>
-                        focused
-                    </label>
+                <div className="slide">
+                    <div id="ask-features">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={isKabbalah}
+                                onChange={(e) => {
+                                    const isChecked = e.target.checked,
+                                        invalid = isChecked && !user.paid;
+                                    setShowSubscribe(invalid);
+                                    setIsKabbalah(isChecked);
+                                    invalid && isCustom && setIsCustom(false);
+                                }}
+                            />
+                            <span>
+                                <a
+                                    href="/kabbalah"
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    Kabbalah
+                                </a>{" "}
+                                focused
+                            </span>
+                        </label>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={isCustom}
-                            onChange={(e) => {
-                                const isChecked = e.target.checked,
-                                    invalid = isChecked && !user.paid;
-                                setShowSubscribe(invalid);
-                                setIsCustom(isChecked);
-                                invalid && isKabbalah && setIsKabbalah(false);
-                            }}
-                        />
-                        Enter a Custom Spread
-                    </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={isCustom}
+                                onChange={(e) => {
+                                    const isChecked = e.target.checked,
+                                        invalid = isChecked && !user.paid;
+                                    setShowSubscribe(invalid);
+                                    setIsCustom(isChecked);
+                                    invalid &&
+                                        isKabbalah &&
+                                        setIsKabbalah(false);
+                                }}
+                            />
+                            enter a custom spread
+                        </label>
+                    </div>
 
                     {isCustom && !showSubscribe && (
                         <SelectCustomSpread
@@ -114,7 +125,7 @@ export default function Ask({ user, setUser }) {
                             size,
                         }}
                     />
-                </>
+                </div>
             )}
         </>
     );

@@ -1,11 +1,16 @@
 import { handleJump } from "../../display.js";
 
-export default function NavBar({ isHome, setCards }) {
+export default function NavBar({ isHome, setCards, user }) {
     return (
-        <nav>
+        <nav id={isHome ? "home-menu" : "reading-menu"}>
             <ul>
                 {(isHome
-                    ? ["Dashboard", "Ask", "Decan", "Account"]
+                    ? [
+                          "Dashboard",
+                          (user.paid || user.free_draws > 0) && "Ask",
+                          "Decan",
+                          "Account",
+                      ].filter(Boolean)
                     : ["Spread", "Past", "Present", "Future", "Advice"]
                 ).map((title, i) => (
                     <li
@@ -17,7 +22,9 @@ export default function NavBar({ isHome, setCards }) {
                         {title}
                     </li>
                 ))}
-                {setCards && <li onClick={() => setCards(null)}>New Spread</li>}
+                {setCards && (user.paid || user.free_draws > 0) && (
+                    <li onClick={() => setCards(null)}>New Spread</li>
+                )}
             </ul>
         </nav>
     );

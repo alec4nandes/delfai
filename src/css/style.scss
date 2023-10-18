@@ -8,16 +8,7 @@
     font-style: normal;
 }
 
-// NAV MENUS
-
-nav {
-    ul {
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-}
+$gap: 6px;
 
 // PAGE BODY
 
@@ -38,11 +29,65 @@ body {
     color: var(--text-color);
     margin: 0;
 
+    &,
+    button,
+    input,
+    select,
+    textarea {
+        font-family: "PT Sans Narrow", Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.5rem;
+    }
+
+    a {
+        color: var(--accent-color);
+    }
+
+    button,
+    p,
+    .response,
+    #questions,
+    ul.words-list {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     #root {
         display: flex;
         flex-direction: column;
+        position: relative;
     }
 }
+
+// HEADINGS
+
+h1,
+h2 {
+    font-family: "Norse Bold", "Times New Roman", Times, serif;
+    margin: 0;
+}
+
+h1 {
+    color: var(--accent-color-2);
+    font-size: 3rem;
+    line-height: 3rem;
+    text-align: center;
+}
+
+h2 {
+    color: var(--accent-color);
+    font-size: 1.7rem;
+    line-height: 2rem;
+
+    &.bigger-header {
+        font-size: 2.4rem;
+        line-height: 2.7rem;
+    }
+}
+
+// SCROLLING & SLIDES
 
 #home,
 #reading {
@@ -53,33 +98,367 @@ body {
     scroll-snap-type: x mandatory;
 }
 
-#home section,
-#reading .slide {
-    max-width: 100%;
-    min-width: 100%;
-    box-sizing: border-box;
-    color: #eee;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-snap-align: start;
-}
-
 #home {
     section {
         &#ask {
             display: flex;
             flex-direction: column;
+            margin-top: $gap;
         }
     }
 }
 
-#root,
-#reading {
-    position: relative;
+#home section,
+.slide {
+    max-width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-align: start;
+    text-align: center;
 
-    nav {
-        position: sticky;
-        top: 0;
+    &:not(#ask) {
+        padding: 50px 15px;
+        gap: 35px;
+    }
+
+    h1,
+    h2,
+    h3,
+    & > p {
+        margin: 0;
+    }
+}
+
+// BUTTONS AND INPUTS
+
+button,
+input[type="checkbox"],
+label,
+select {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+button {
+    appearance: none;
+    border: 0;
+    box-sizing: border-box;
+    padding: 5px 3px;
+
+    &.standard-btn {
+        min-height: 35px;
+        min-width: 90px;
+        background-color: var(--accent-color);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        padding: 0 12px;
+        text-align: center;
+
+        &:hover {
+            background-color: var(--accent-color-2);
+        }
+    }
+}
+
+input[type="checkbox"] {
+    height: 15px;
+    width: 15px;
+    appearance: none;
+    background-color: #eee;
+    border-radius: 5px;
+
+    &:checked {
+        background-color: var(--accent-color);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &::before {
+            content: "✓";
+            font-weight: 700;
+            font-size: 15px;
+        }
+    }
+}
+
+#account .standard-btn {
+    width: 200px;
+}
+
+#decan form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// IMAGES
+
+img {
+    &.separator {
+        height: auto;
+        width: 150px;
+    }
+}
+
+#card-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    .card-info {
+        width: 120px;
+        background-color: var(--box-bg-color);
+        font-size: 14px;
+        line-height: 18px;
+        padding: 5px;
+
+        .card-name {
+            font-weight: 700;
+        }
+    }
+}
+
+.card-image {
+    height: 200px;
+    max-width: 120px;
+    width: 100%;
+
+    &.reversed {
+        transform: rotate(180deg);
+    }
+}
+
+// NAV MENUS
+
+nav {
+    width: 100%;
+    position: sticky;
+    top: 0;
+
+    &#home-menu {
+        ul {
+            li {
+                background-color: var(--home-menu-color);
+
+                &:hover {
+                    background-color: var(--accent-color);
+                    color: #222;
+                }
+            }
+        }
+    }
+
+    &#reading-menu {
+        ul {
+            li {
+                background-color: var(--accent-color);
+                color: #222;
+
+                &,
+                button {
+                    &:hover {
+                        background-color: var(--home-menu-color);
+                        color: #eee;
+                    }
+                }
+
+                button {
+                    height: 100%;
+                    width: 100%;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    ul {
+        height: 40px;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        gap: $gap;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 18px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// COMPARE TABLES
+
+#compare-tables {
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+
+    .compare {
+        max-width: 320px;
+        box-sizing: border-box;
+        flex: 1;
+
+        &#opposites {
+            .spacer-row {
+                height: 8px;
+                background-color: transparent;
+            }
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+
+            td {
+                background-color: var(--box-bg-color);
+                padding: 2px 5px;
+
+                &:first-child {
+                    font-weight: 700;
+                }
+
+                &.unlike-row {
+                    background-color: rgba(250, 250, 250, 0.6);
+                    color: var(--bg-color);
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+// PAYMENT FORM
+
+.subscribe-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img.stripe-logo {
+        width: 125px;
+        margin-top: 20px;
+    }
+
+    .payment-input-wrapper {
+        border-bottom: 2px solid #333;
+        margin-bottom: 12.5px;
+
+        &:first-child {
+            input {
+                height: 19.2px;
+                padding: 0;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        input {
+            width: 100%;
+            color: var(--text-color);
+            background-color: transparent;
+            font-size: 16px;
+            font-family: "Courier New";
+            text-align: center;
+
+            &::placeholder {
+                color: #888;
+            }
+        }
+    }
+}
+
+// SINGLE CARD (STANDARD READING PAST/PRESENT/FUTURE)
+
+ul.words-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+
+    li {
+        background-color: var(--box-bg-color);
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        font-weight: 700;
+        padding: 5px 10px;
+    }
+}
+
+// CUSTOM SPREAD
+
+#custom-spread {
+    max-width: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    label:first-child {
+        gap: 10px;
+        margin: auto;
+    }
+
+    .custom-card-select {
+        display: flex;
+        gap: $gap;
+        justify-content: center;
+    }
+}
+
+// MISC
+
+.symbolize {
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--accent-color-2);
+
+    span {
+        font-size: initial;
+        font-weight: normal;
     }
 }
 

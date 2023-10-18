@@ -49,32 +49,30 @@ export default function TimeSlide({ cards, card, timeframe, isKabbalah }) {
 
     return (
         <div id={timeframe.toLowerCase()} className="slide">
-            <div className="slide-container">
-                <h2 className="bigger-header">{timeframe}</h2>
-                <KabbalahHeader {...{ isKabbalah }} />
-                <h3>{card.name}</h3>
-                <CardImage card={card.name} />
-                <ul className="words-list">
-                    {card.words.map((word) => (
-                        <li key={`${card.name}-${word}`}>{word}</li>
-                    ))}
-                </ul>
-                <MoreInfo {...{ card, isKabbalah }} />
-                {major && isKabbalah && (
-                    <TreeOfLife highlight={major.kabbalah.letter.name} />
-                )}
-                <Compare {...{ matching, opposites }} />
-                <AiTextLoader
-                    {...{
-                        isReading,
-                        setIsReading,
-                        waitRef,
-                        elemRef,
-                        cards,
-                        isKabbalah,
-                    }}
-                />
-            </div>
+            <h2 className="bigger-header">{timeframe}</h2>
+            <KabbalahHeader {...{ isKabbalah }} />
+            <h3>{card.name}</h3>
+            <CardImage card={card.name} />
+            <ul className="words-list">
+                {card.words.map((word) => (
+                    <li key={`${card.name}-${word}`}>{word}</li>
+                ))}
+            </ul>
+            <MoreInfo {...{ card, isKabbalah }} />
+            {major && isKabbalah && (
+                <TreeOfLife highlight={major.kabbalah.letter.name} />
+            )}
+            <Compare {...{ matching, opposites }} />
+            <AiTextLoader
+                {...{
+                    isReading,
+                    setIsReading,
+                    waitRef,
+                    elemRef,
+                    cards,
+                    isKabbalah,
+                }}
+            />
         </div>
     );
 }

@@ -13,12 +13,14 @@ export default function AiTextLoader({
             </div>
             <div
                 id={getCardsId(cards, isKabbalah)}
-                className="reading"
+                className="response"
                 ref={elemRef}
             ></div>
         </>
     ) : (
-        <button onClick={() => setIsReading(true)}>get reading</button>
+        <button className="standard-btn" onClick={() => setIsReading(true)}>
+            get reading
+        </button>
     );
 }
 

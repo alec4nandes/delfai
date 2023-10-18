@@ -4,7 +4,7 @@ import NavBar from "../../../Navbar";
 import Spread from "./Spread";
 import TimeSlide from "./TimeSlide";
 
-export default function Reading({ cards, setCards, isKabbalah }) {
+export default function Reading({ cards, setCards, isKabbalah, user }) {
     const Slide = ({ timeframe }) => (
         <TimeSlide
             {...{
@@ -17,7 +17,7 @@ export default function Reading({ cards, setCards, isKabbalah }) {
     );
     return (
         <>
-            <NavBar {...{ setCards }} />
+            <NavBar {...{ setCards, user }} />
             <div
                 id="reading"
                 onScroll={(e) =>

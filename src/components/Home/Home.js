@@ -20,11 +20,19 @@ export default function Home({ user, setUser }) {
 
     return (
         <>
-            <NavBar isHome={true} />
+            <NavBar {...{ isHome: true, user }} />
             <div
                 id="home"
                 onScroll={(e) =>
-                    handleScroll(e, ["dashboard", "ask", "decan", "account"])
+                    handleScroll(
+                        e,
+                        [
+                            "dashboard",
+                            (user.paid || user.free_draws > 0) && "ask",
+                            "decan",
+                            "account",
+                        ].filter(Boolean)
+                    )
                 }
             >
                 <section id="dashboard">
