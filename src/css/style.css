@@ -91,7 +91,7 @@ h2.bigger-header {
   display: flex;
 }
 .vertical-center#dashboard .container {
-  gap: 35px;
+  gap: 40px;
 }
 .vertical-center#dashboard .container > * {
   margin: 0 auto;
@@ -420,7 +420,6 @@ ul.words-list li {
   font-size: 18px;
   font-weight: 700;
   line-height: 1.5rem;
-  margin: 15px auto;
   padding: 15px;
 }
 
