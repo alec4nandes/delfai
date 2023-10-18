@@ -1,20 +1,30 @@
-import { kabbalahMajors } from "../../../../../../kabbalah.js";
-import { getCardsId } from "../../CustomReading";
-import CardImage from "../../../../CardImages/CardImage";
-import Compare from "../../../../Compare/Compare";
-import NextButton from "../NextButton";
-import MoreInfo from "../../../../MoreInfo/MoreInfo";
-import KabbalahHeader from "../../../../KabbalahHeader";
-import TreeOfLife from "./TreeOfLife";
+import { useEffect, useRef, useState } from "react";
+import { kabbalahMajors } from "../../../../../kabbalah.js";
+import fillRef from "../../../../../display.js";
+import AiTextLoader from "../../../AiTextLoader.js";
+import CardImage from "../../../CardImages/CardImage.js";
+import Compare from "../../../Compare/Compare.js";
+import KabbalahHeader from "../../../KabbalahHeader.js";
+import MoreInfo from "../../../MoreInfo/MoreInfo.js";
+import TreeOfLife from "../../../TreeOfLife.js";
 
-export default function TimeSlide({
-    cards,
-    card,
-    timeframe,
-    elemRef,
-    waitRef,
-    isKabbalah,
-}) {
+export default function TimeSlide({ cards, card, timeframe, isKabbalah }) {
+    const [isReading, setIsReading] = useState(false),
+        waitRef = useRef(),
+        elemRef = useRef();
+
+    useEffect(() => {
+        isReading &&
+            fillRef(
+                cards,
+                timeframe.toLowerCase(),
+                waitRef,
+                elemRef,
+                false,
+                isKabbalah
+            );
+    }, [cards, isKabbalah, isReading, timeframe]);
+
     function getMatchingForCard() {
         const result = Object.entries(cards.matching).filter(([_, cardNames]) =>
             cardNames.includes(card.name)
@@ -54,15 +64,16 @@ export default function TimeSlide({
                     <TreeOfLife highlight={major.kabbalah.letter.name} />
                 )}
                 <Compare {...{ matching, opposites }} />
-                <div className="wait" ref={waitRef}>
-                    Reading... Please wait...
-                </div>
-                <div
-                    id={getCardsId(cards, isKabbalah)}
-                    className="reading"
-                    ref={elemRef}
-                ></div>
-                <NextButton />
+                <AiTextLoader
+                    {...{
+                        isReading,
+                        setIsReading,
+                        waitRef,
+                        elemRef,
+                        cards,
+                        isKabbalah,
+                    }}
+                />
             </div>
         </div>
     );

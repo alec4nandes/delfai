@@ -1,13 +1,13 @@
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../database.js";
-import { compareCards } from "../../../../compare/compare.js";
-import { getSpread } from "../../../../compare/spread.js";
+import { handleQuestion, getCustomSpread } from "./Ask";
 
 export default function OtherQuestions({
     setCards,
     setUser,
     user,
-    setIsTransition,
+    isCustom,
+    custom,
+    isKabbalah,
+    size,
 }) {
     const questions = {
         Love: [
@@ -48,15 +48,15 @@ export default function OtherQuestions({
                     name="question"
                     onClick={(e) =>
                         handleQuestion(
+                            isCustom && getCustomSpread(size, custom),
                             e.target.value,
                             setCards,
                             setUser,
                             user,
-                            setIsTransition,
-                            false // TODO: enable Kabbalah for these questions
+                            isKabbalah,
+                            isCustom
                         )
                     }
-                    type="submit"
                     value={question}
                     key={question}
                 >
@@ -73,25 +73,3 @@ export default function OtherQuestions({
         </div>
     );
 }
-
-function handleQuestion(
-    question,
-    setCards,
-    setUser,
-    user,
-    setIsTransition,
-    isKabbalah
-) {
-    const compare = compareCards(getSpread(), question, false, isKabbalah);
-    setCards(compare);
-    setIsTransition(true);
-    console.log(compare);
-    if (!user.paid) {
-        setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
-        updateDoc(doc(db, "users", user.email), {
-            free_draws: user.free_draws - 1,
-        });
-    }
-}
-
-export { handleQuestion };

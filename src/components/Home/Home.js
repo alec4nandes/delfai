@@ -1,96 +1,12 @@
-import "../../css/home.css";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { getSpread } from "../../compare/spread.js";
+import { useEffect } from "react";
 import { allCards } from "../../compare/data.js";
-import { getToday } from "../../decan.js";
-import fillRef from "../../display.js";
+import Ask from "./Sections/Ask/Ask";
 import Dashboard from "./Sections/Dashboard/Dashboard";
 import Decan from "./Sections/Decan/Decan";
-import Loading from "./Loading";
+import NavBar from "./Navbar";
 import Settings from "./Sections/Account/Settings";
-import Ask from "./Sections/Ask/Ask";
 
 export default function Home({ user, setUser }) {
-    const [cards, setCards] = useState(),
-        [isSettings, setIsSettings] = useState(false),
-        [isCustom, setIsCustom] = useState(false),
-        [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
-        [isTransition, setIsTransition] = useState(false),
-        [isKabbalah, setIsKabbalah] = useState(false),
-        [isDecan, setIsDecan] = useState(false),
-        [decanCards, setDecanCards] = useState(getToday()),
-        pastRef = useRef(),
-        presentRef = useRef(),
-        futureRef = useRef(),
-        adviceRef = useRef(),
-        customRef = useRef(),
-        decanRef = useRef(),
-        pastWaitRef = useRef(),
-        presentWaitRef = useRef(),
-        futureWaitRef = useRef(),
-        adviceWaitRef = useRef(),
-        customWaitRef = useRef(),
-        decanWaitRef = useRef();
-
-    const getReading = useCallback(() => {
-        if (!cards && !decanCards) {
-            return;
-        }
-        // wait for components to load
-        setTimeout(() => {
-            if (isCustom) {
-                fillRef(
-                    cards,
-                    "custom spread",
-                    customWaitRef,
-                    customRef,
-                    true,
-                    isKabbalah
-                );
-            } else if (isDecan) {
-                fillRef(
-                    decanCards,
-                    null,
-                    decanWaitRef,
-                    decanRef,
-                    true,
-                    false // TODO: enable Kabbalah for Decan
-                );
-            } else {
-                const elemRefs = {
-                        past: pastRef,
-                        present: presentRef,
-                        future: futureRef,
-                        advice: adviceRef,
-                    },
-                    waitRefs = {
-                        past: pastWaitRef,
-                        present: presentWaitRef,
-                        future: futureWaitRef,
-                        advice: adviceWaitRef,
-                    };
-                Object.keys(elemRefs).forEach((timeframe) =>
-                    fillRef(
-                        cards,
-                        timeframe,
-                        waitRefs[timeframe],
-                        elemRefs[timeframe],
-                        false,
-                        isKabbalah
-                    )
-                );
-            }
-        }, 500);
-    }, [cards, decanCards, isCustom, isDecan, isKabbalah]);
-
-    useEffect(() => {
-        isTransition &&
-            setTimeout(() => {
-                setIsTransition(false);
-                getReading();
-            }, 1950);
-    }, [getReading, isTransition]);
-
     useEffect(() => {
         preloadCardImages();
 
@@ -104,55 +20,47 @@ export default function Home({ user, setUser }) {
 
     return (
         <>
-            <Loading {...{ isTransition }} />
-            <section>
-                <Dashboard
-                    {...{
-                        user,
-                        setUser,
-                        custom,
-                        setIsSettings,
-                        setIsCustom,
-                        setCustom,
-                        setCards,
-                        cards,
-                        setIsTransition,
-                        setIsKabbalah,
-                        isKabbalah,
-                        setIsDecan,
-                    }}
-                />
-            </section>
-            <section>
-                <Ask
-                    {...{
-                        user,
-                        setUser,
-                        cards,
-                        setCards,
-                        custom,
-                        setCustom,
-                        setIsTransition,
-                        setIsKabbalah,
-                        isKabbalah,
-                    }}
-                />{" "}
-            </section>
-            <section>
-                <Decan
-                    {...{
-                        user,
-                        decanCards,
-                        setDecanCards,
-                        decanRef,
-                        decanWaitRef,
-                        setIsTransition,
-                    }}
-                />
-            </section>
-            <section>
-                <Settings {...{ user }} />
-            </section>
+            <NavBar isHome={true} />
+            <div
+                id="home"
+                onScroll={(e) =>
+                    handleScroll(e, ["dashboard", "ask", "decan", "account"])
+                }
+            >
+                <section id="dashboard">
+                    <Dashboard {...{ user }} />
+                </section>
+                <section id="ask">
+                    <Ask {...{ user, setUser }} />
+                </section>
+                <section id="decan">
+                    <Decan {...{ user }} />
+                </section>
+                <section id="account">
+                    <Settings {...{ user }} />
+                </section>
+            </div>
         </>
     );
 }
+
+function handleScroll(e, ids) {
+    const getElem = (id) => document.querySelector(`#${id}`);
+    ids.forEach((id) => {
+        const elem = getElem(id),
+            left = elem.offsetLeft - e.target.scrollLeft,
+            screenWidth = window.innerWidth,
+            // 20px buffer
+            isShowing = -20 <= left && left < screenWidth - 20;
+        if (isShowing) {
+            const getNavItem = (id) => getElem(`nav-${id}`),
+                navItems = ids.map(getNavItem),
+                navItem = getNavItem(id);
+            navItems.forEach((ni) =>
+                ni.classList[ni === navItem ? "add" : "remove"]("highlighted")
+            );
+        }
+    });
+}
+
+export { handleScroll };

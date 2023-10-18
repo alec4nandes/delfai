@@ -1,4 +1,4 @@
-import { getCardsId } from "./components/Home/Sections/Ask/CustomReading";
+import { getCardsId } from "./components/Home/AiTextLoader";
 import { apiRoot } from "./database.js";
 
 export default async function fillRef(
@@ -107,16 +107,16 @@ function parseDecoded(decoded, elemRef) {
     }
 }
 
-function handleJump(id) {
+function handleJump(id, isHome) {
     if (id) {
         const elem = document.querySelector(`#${id}`);
-        elem.scrollTo({ top: 0 });
         elem.scrollIntoView({ behavior: "smooth" });
     } else {
-        const scrollElem = document.querySelector("main");
+        const scrollElem = document.querySelector(
+            isHome ? "#home" : "#reading"
+        );
         scrollElem.scrollTo({
             left: scrollElem.scrollLeft + window.innerWidth,
-            top: 0,
             behavior: "smooth",
         });
     }

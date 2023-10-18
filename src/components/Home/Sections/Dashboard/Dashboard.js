@@ -1,61 +1,27 @@
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../../../../database.js";
-import Ask from "../Ask/Ask";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../../SignOut.js";
 import Subscribe from "../../Subscribe/Subscribe.js";
 import Social from "../../../Social.js";
 
-export default function Dashboard({
-    user,
-    custom,
-    setIsSettings,
-    setIsCustom,
-    setCustom,
-    setCards,
-    cards,
-    setIsTransition,
-    setIsKabbalah,
-    isKabbalah,
-    setIsDecan,
-}) {
+export default function Dashboard({ user }) {
     return (
-        <main>
-            <div
-                id="home"
-                className={`slide${user.emailVerified ? "" : " unverified"}`}
-            >
-                <div className="slide-container">
-                    <h1>Delfai Oracle</h1>
-                    {!user.emailVerified ? (
-                        <Unverified {...{ user }} />
-                    ) : (
-                        <>
-                            <MemberBanner
-                                {...{
-                                    user,
-                                    custom,
-                                    setIsSettings,
-                                    setIsCustom,
-                                    setCustom,
-                                    setCards,
-                                    cards,
-                                    setIsTransition,
-                                    setIsKabbalah,
-                                    isKabbalah,
-                                    setIsDecan,
-                                }}
-                            />
-                            <Separator />
-                            {!(user.paid || user.free_draws > 0) && (
-                                <FreeTrialOver {...{ user }} />
-                            )}
-                        </>
+        <>
+            <h1>Delfai Oracle</h1>
+            {!user.emailVerified ? (
+                <Unverified {...{ user }} />
+            ) : (
+                <>
+                    <MemberBanner {...{ user }} />
+                    <Separator />
+                    {!(user.paid || user.free_draws > 0) && (
+                        <FreeTrialOver {...{ user }} />
                     )}
-                    <Social />
-                </div>
-            </div>
-        </main>
+                </>
+            )}
+            <Social />
+        </>
     );
 }
 
