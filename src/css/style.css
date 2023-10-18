@@ -33,8 +33,21 @@ body textarea {
   font-weight: normal;
   line-height: 1.5rem;
 }
-body a {
+body a[href^="mailto:"] {
+  text-decoration: none;
+}
+body a,
+body .link-btn {
+  background-color: transparent;
   color: var(--accent-color);
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 0;
+}
+body a:hover,
+body .link-btn:hover {
+  color: var(--accent-color-2);
+  cursor: pointer;
 }
 body button,
 body p,

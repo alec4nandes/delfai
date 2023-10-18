@@ -1,3 +1,28 @@
+body,
+html,
+main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+body {
+    background-image: none;
+
+    header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    main {
+        overflow: auto;
+    }
+}
+
 .scroll-cards {
     --card-width: clamp(100px, 20vw, 500px);
     --card-offset: calc(var(--card-width) * (-1 / 4));

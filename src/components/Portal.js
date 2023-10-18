@@ -1,3 +1,4 @@
+import "../css/portal.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
     createUserWithEmailAndPassword,
@@ -83,118 +84,91 @@ export default function Portal() {
     }
 
     return (
-        <div id="sign-in">
-            <div className="container">
-                <h1>Delfai Oracle</h1>
-                <h2>Tarot Card Readings</h2>
-                <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label htmlFor="email">email:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        name="email"
-                                        type="email"
-                                        id="email"
-                                        onChange={(e) =>
-                                            setLoginEmail(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label htmlFor="password">password:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        name="password"
-                                        type="password"
-                                        id="password"
-                                        required
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan={2}>
-                                    <div id="user-options">
-                                        <button
-                                            id="sign-up-btn"
-                                            className="standard-btn"
-                                        >
-                                            sign up
-                                        </button>
-                                        <button
-                                            id="sign-in-btn"
-                                            className="standard-btn"
-                                        >
-                                            sign in instead
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p id="sign-in-error">{errorMessage}</p>
-                </form>
-                <div>
-                    <a href="/about">about</a>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <ResetPassword email={loginEmail} />
+        <>
+            <header style={{ zIndex: 0 }}>
+                <div id="scroll-cards-left" className="scroll-cards"></div>
+                <div id="scroll-cards-right" className="scroll-cards"></div>
+            </header>
+            <main style={{ zIndex: 1 }}>
+                <div id="portal">
+                    <div className="container">
+                        <h1>Delfai Oracle</h1>
+                        <h2>Tarot Card Readings</h2>
+                        <form
+                            ref={formRef}
+                            onSubmit={(e) => e.preventDefault()}
+                        >
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label htmlFor="email">
+                                                email:
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input
+                                                name="email"
+                                                type="email"
+                                                id="email"
+                                                onChange={(e) =>
+                                                    setLoginEmail(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                required
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label htmlFor="password">
+                                                password:
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input
+                                                name="password"
+                                                type="password"
+                                                id="password"
+                                                required
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={2}>
+                                            <div id="user-options">
+                                                <button
+                                                    id="sign-up-btn"
+                                                    className="standard-btn"
+                                                >
+                                                    sign up
+                                                </button>
+                                                <button
+                                                    id="sign-in-btn"
+                                                    className="standard-btn"
+                                                >
+                                                    sign in instead
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div>
+                            <a href="/about">about</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                            <ResetPassword
+                                email={loginEmail}
+                                isLinkButton={true}
+                            />
+                        </div>
+                        <p id="sign-in-error">{errorMessage}</p>
+                        <Social />
+                    </div>
                 </div>
-                <Services />
-                <Social />
-            </div>
-        </div>
-    );
-}
-
-function Services() {
-    return (
-        <table id="services">
-            <thead>
-                <tr>
-                    <td colSpan="3">
-                        New users get 5 free, instant Tarot readings!
-                    </td>
-                </tr>
-                <tr>
-                    <td>Feature</td>
-                    <td>Free Account</td>
-                    <td>Paid ($2.99/month)</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>3-card Readings</td>
-                    <td className="slow">5 readings</td>
-                    <td>unlimited</td>
-                </tr>
-                <tr>
-                    <td>Card of the Day</td>
-                    <td className="slow">current day only</td>
-                    <td>look up any day</td>
-                </tr>
-                <tr>
-                    <td>Custom Spread (1-10 cards)</td>
-                    <td className="stop">✗</td>
-                    <td>✓</td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="/kabbalah" target="_blank" rel="noopener">
-                            Kabbalah
-                        </a>{" "}
-                        Info
-                    </td>
-                    <td className="stop">✗</td>
-                    <td>✓</td>
-                </tr>
-            </tbody>
-        </table>
+            </main>
+        </>
     );
 }

@@ -40,8 +40,22 @@ body {
         line-height: 1.5rem;
     }
 
-    a {
+    a[href^="mailto:"] {
+        text-decoration: none;
+    }
+
+    a,
+    .link-btn {
+        background-color: transparent;
         color: var(--accent-color);
+        font-weight: 700;
+        text-decoration: underline;
+        padding: 0;
+
+        &:hover {
+            color: var(--accent-color-2);
+            cursor: pointer;
+        }
     }
 
     button,

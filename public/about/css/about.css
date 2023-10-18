@@ -3,29 +3,6 @@
   --box-color: #324f96;
 }
 
-body,
-html,
-main {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-body {
-  background-image: none;
-}
-body header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-body main {
-  overflow: auto;
-}
-
 h1 {
   color: var(--link-color);
 }

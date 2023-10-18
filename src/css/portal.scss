@@ -1,0 +1,44 @@
+#portal {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+
+    .container,
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        gap: 20px;
+        margin: auto;
+        padding: 50px 15px;
+    }
+
+    form {
+        gap: 10px;
+
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+
+            label {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            #user-options {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+
+                button {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

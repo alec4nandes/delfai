@@ -1,11 +1,11 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../database.js";
 
-export default function ResetPassword({ email }) {
+export default function ResetPassword({ email, isLinkButton }) {
     return (
         <button
             id="reset-pw-btn"
-            className="standard-btn"
+            className={isLinkButton ? "link-btn" : "standard-btn"}
             onClick={() => handleResetPassword(email)}
         >
             reset password
