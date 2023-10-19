@@ -1,6 +1,7 @@
 body {
   height: auto;
   min-height: 100%;
+  box-sizing: border-box;
   overflow-x: hidden;
   padding: 80px 15px;
   text-align: center;

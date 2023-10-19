@@ -156,7 +156,13 @@ export default function Portal() {
                             </table>
                         </form>
                         <div>
-                            <a href={IS_DEVELOPMENT ? "http://localhost:5000" : ""}>
+                            <a
+                                href={
+                                    IS_DEVELOPMENT
+                                        ? "http://localhost:5000"
+                                        : "/"
+                                }
+                            >
                                 about
                             </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;

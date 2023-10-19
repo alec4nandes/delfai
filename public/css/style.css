@@ -58,6 +58,9 @@ body ul.words-list {
   margin-left: auto;
   margin-right: auto;
 }
+body button {
+  color: #222;
+}
 body #root {
   display: flex;
   flex-direction: column;
@@ -192,6 +195,7 @@ input[type=checkbox] {
           appearance: none;
   background-color: #eee;
   border-radius: 5px;
+  margin-right: 6px;
 }
 input[type=checkbox]:checked {
   background-color: var(--accent-color);
