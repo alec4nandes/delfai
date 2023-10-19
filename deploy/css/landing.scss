@@ -1,0 +1,91 @@
+@import "../home/css/colors.css";
+
+h1 {
+    color: var(--accent-color);
+
+    span {
+        font-size: 0.7em;
+    }
+}
+
+.social {
+    a {
+        display: flex;
+    }
+
+    img {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}
+
+#disclaimer p,
+#intro p,
+#unpaid-vs-paid td,
+#unpaid-vs-paid th {
+    border: 1px solid #222;
+    box-sizing: border-box;
+}
+
+#disclaimer,
+#intro,
+#unpaid-vs-paid {
+    width: 100%;
+    max-width: 500px !important;
+}
+
+#disclaimer p,
+#intro p,
+#unpaid-vs-paid td {
+    background-color: var(--home-menu-color);
+    color: #eee;
+}
+
+#disclaimer p,
+#intro p {
+    box-sizing: border-box;
+    padding: 15px 10px;
+    margin: 0 5px;
+}
+
+img {
+    &.separator {
+        margin: 40px auto;
+    }
+}
+
+#intro p {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+nav {
+    button {
+        margin-top: 30px;
+    }
+}
+
+#unpaid-vs-paid {
+    border-collapse: separate;
+    border-spacing: 5px;
+
+    td,
+    th {
+        height: 40px;
+        width: 50%;
+    }
+
+    th {
+        background-color: var(--accent-color-2);
+        color: var(--home-menu-color);
+    }
+}
+
+small {
+    display: inline-block;
+    line-height: 20px;
+}
+
+.social {
+    padding-top: 8px;
+}

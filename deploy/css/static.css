@@ -1,0 +1,29 @@
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  padding: 80px 15px;
+  text-align: center;
+}
+body main .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+body main .container h3 {
+  margin-top: 30px;
+}
+body main .container img.separator {
+  margin: 40px auto;
+}
+body main .container p {
+  margin: 0 auto;
+}
+body main .container table {
+  margin: 0 auto 30px;
+}
+
+nav {
+  position: relative;
+}/*# sourceMappingURL=static.css.map */

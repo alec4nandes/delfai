@@ -1,0 +1,36 @@
+body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    padding: 80px 15px;
+    text-align: center;
+
+    main {
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+
+            h3 {
+                margin-top: 30px;
+            }
+
+            img.separator {
+                margin: 40px auto;
+            }
+
+            p {
+                margin: 0 auto;
+            }
+
+            table {
+                margin: 0 auto 30px;
+            }
+        }
+    }
+}
+
+nav {
+    position: relative;
+}
