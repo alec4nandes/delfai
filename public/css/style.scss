@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: "Norse Bold";
-    src: url("../../public/fonts/Norsebold.otf") format("opentype");
+    src: url("../fonts/Norsebold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
 }
@@ -21,8 +21,8 @@ html,
 body {
     background-attachment: fixed;
     background-color: var(--bg-color);
-    background-image: url("../../public/assets/pythia-bg2.png"),
-        url("../../public/assets/pythia-bg.png");
+    background-image: url("../assets/pythia-bg2.png"),
+        url("../assets/pythia-bg.png");
     background-position: center left 6vw, center right 6vw;
     background-repeat: no-repeat;
     background-size: auto clamp(400px, 60vh, 800px);
@@ -145,7 +145,10 @@ h2 {
         &#ask {
             display: flex;
             flex-direction: column;
-            margin-top: $gap;
+
+            #reading-menu {
+                margin-top: $gap;
+            }
         }
     }
 }

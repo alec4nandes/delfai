@@ -1,4 +1,3 @@
-import "../css/portal.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
     createUserWithEmailAndPassword,
@@ -157,7 +156,9 @@ export default function Portal() {
                             </table>
                         </form>
                         <div>
-                            <a href="/about">about</a>
+                            <a href={IS_DEVELOPMENT ? "http://localhost:5000" : ""}>
+                                about
+                            </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
                             <ResetPassword
                                 email={loginEmail}

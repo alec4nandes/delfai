@@ -1,8 +1,7 @@
-import "../../../../css/ask.css";
 import { useState } from "react";
 import { getSpread } from "../../../../compare/spread.js";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../database.js";
+import { IS_DEVELOPMENT, db } from "../../../../database.js";
 import { compareCards } from "../../../../compare/compare.js";
 import AskQuestion from "./AskQuestion";
 import CustomReading from "./CustomReading";
@@ -45,7 +44,9 @@ export default function Ask({ user, setUser }) {
                             />
                             <span>
                                 <a
-                                    href="/kabbalah"
+                                    href={`${
+                                        IS_DEVELOPMENT ? "http://localhost:5000" : ""
+                                    }/kabbalah`}
                                     target="_blank"
                                     rel="noopener"
                                 >

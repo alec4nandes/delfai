@@ -1,5 +1,5 @@
 import { sendEmailVerification } from "firebase/auth";
-import { auth } from "../../../../database.js";
+import { IS_DEVELOPMENT, auth } from "../../../../database.js";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../../SignOut.js";
 import Subscribe from "../../Subscribe/Subscribe.js";
@@ -16,11 +16,21 @@ export default function Dashboard({ user }) {
                     <MemberBanner {...{ user }} />
                     <Separator />
                     <div>
-                        <a href="/" target="_blank" rel="noopener">
+                        <a
+                            href={IS_DEVELOPMENT ? "http://localhost:5000" : "/"}
+                            target="_blank"
+                            rel="noopener"
+                        >
                             About
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/kabbalah" target="_blank" rel="noopener">
+                        <a
+                            href={`${
+                                IS_DEVELOPMENT ? "http://localhost:5000" : ""
+                            }/kabbalah`}
+                            target="_blank"
+                            rel="noopener"
+                        >
                             Kabbalah
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;

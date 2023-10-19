@@ -1,9 +1,13 @@
-setTimeout(() => {
+const getScrollCardsElems = () => {
     const headerElem = document.querySelector("header"),
         scrollCardsElems = [
             ...(headerElem?.querySelectorAll(".scroll-cards") || []),
         ];
+    return scrollCardsElems;
+};
 
+setTimeout(() => {
+    const scrollCardsElems = getScrollCardsElems();
     if (scrollCardsElems.length) {
         const cardNames = [
                 "Fool",
@@ -20,10 +24,11 @@ setTimeout(() => {
                     )
                     .join(""),
             addCardImgs = (elem, i) => (elem.innerHTML += getCardImgs(!!i));
-
+        const intervals = new Array(scrollCardsElems.length).fill(0);
         scrollCardsElems.forEach((elem, i) => {
             addCardImgs(elem, i);
-            setInterval(() => {
+            intervals[i] = setInterval(() => {
+                !getScrollCardsElems().length && clearInterval(intervals[i]);
                 const oldTop = elem.scrollTop;
                 elem.scrollTop += 1;
                 if (elem.scrollTop === oldTop) {
@@ -34,4 +39,4 @@ setTimeout(() => {
             }, i * 5 + 25);
         });
     }
-}, 500);
+}, 1000);
