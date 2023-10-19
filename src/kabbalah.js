@@ -1,5 +1,5 @@
 const fetcher = async (fileName) =>
-        await (await fetch(`/kabbalah/json/${fileName}.json`)).json(),
+        await (await fetch(`/home/kabbalah/json/${fileName}.json`)).json(),
     kabbalahMajors = await fetcher("majors"),
     sefirot = await fetcher("sefirot"),
     worlds = await fetcher("worlds"),

@@ -16,7 +16,7 @@ setTimeout(() => {
                 (isReversed ? [...cardNames].reverse() : cardNames)
                     .map(
                         (cardName) =>
-                            `<img src="/assets/cards/${cardName}.jpg"/>`
+                            `<img src="/home/assets/cards/${cardName}.jpg"/>`
                     )
                     .join(""),
             addCardImgs = (elem, i) => (elem.innerHTML += getCardImgs(!!i));

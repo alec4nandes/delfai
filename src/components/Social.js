@@ -6,7 +6,7 @@ export default function Social() {
                 target="_blank"
                 rel="noopener"
             >
-                <img src="/assets/icons/social/tiktok.png" alt="TikTok logo" />
+                <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo" />
             </a>
             <a
                 href="https://instagram.com/delfaioracle"
@@ -14,12 +14,12 @@ export default function Social() {
                 rel="noopener"
             >
                 <img
-                    src="/assets/icons/social/instagram.png"
+                    src="/home/assets/icons/social/instagram.png"
                     alt="Instagram logo"
                 />
             </a>
             <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
-                <img src="/assets/icons/social/x.png" alt="X logo" />
+                <img src="/home/assets/icons/social/x.png" alt="X logo" />
             </a>
         </div>
     );

@@ -20,7 +20,7 @@ export default function drawCanvas(canvas, info, previewElem) {
 
     context.globalAlpha = 0.15;
     const image = new Image();
-    image.src = "/assets/wheel.png";
+    image.src = "/home/assets/wheel.png";
     context.drawImage(image, 0, 0, 800, 800);
     context.globalAlpha = 1;
 
@@ -52,6 +52,6 @@ export default function drawCanvas(canvas, info, previewElem) {
 function drawImage(context, cardName, position) {
     const image = new Image(),
         { top, left } = position;
-    image.src = `/assets/cards/${cardName}.jpg`;
+    image.src = `/home/assets/cards/${cardName}.jpg`;
     context.drawImage(image, left, top, 160, 280);
 }

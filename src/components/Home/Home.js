@@ -13,7 +13,7 @@ export default function Home({ user, setUser }) {
         function preloadCardImages() {
             Object.keys(allCards).forEach((cardName) => {
                 const img = new Image();
-                img.src = `/assets/cards/${cardName}.jpg`;
+                img.src = `/home/assets/cards/${cardName}.jpg`;
             });
         }
     }, []);

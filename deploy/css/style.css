@@ -16,7 +16,7 @@ html,
 body {
   background-attachment: fixed;
   background-color: var(--bg-color);
-  background-image: url("/assets/pythia-bg2.png"), url("/assets/pythia-bg.png");
+  background-image: url("/home/assets/pythia-bg2.png"), url("/home/assets/pythia-bg.png");
   background-position: center left 6vw, center right 6vw;
   background-repeat: no-repeat;
   background-size: auto clamp(400px, 60vh, 800px);

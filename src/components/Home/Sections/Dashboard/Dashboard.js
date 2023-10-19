@@ -25,7 +25,7 @@ export default function Dashboard({ user }) {
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
                         <a
-                            href="/assets/wheel.png"
+                            href="/home/assets/wheel.png"
                             target="_blank"
                             rel="noopener"
                         >
@@ -100,7 +100,7 @@ function Separator() {
     return (
         <img
             className="separator"
-            src="/assets/separator.png"
+            src="/home/assets/separator.png"
             alt="decorative dividing line made up of square swirls in the Greek style."
         />
     );

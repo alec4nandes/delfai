@@ -74,7 +74,7 @@ function CheckoutForm({ user }) {
                     </div>
                     <a href="https://stripe.com" target="_blank" rel="noopener">
                         <img
-                            src="/assets/stripe.png"
+                            src="/home/assets/stripe.png"
                             className="stripe-logo"
                             alt="payments powered by Stripe"
                         />

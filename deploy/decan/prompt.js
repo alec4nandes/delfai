@@ -51,7 +51,7 @@ function getPrompt(info) {
 
 const IS_DEVELOPMENT = true,
     productionRoot = "https://us-central1-delfai.cloudfunctions.net",
-    devRoot = "http://localhost:5000/delfai/us-central1",
+    devRoot = "http://localhost:5001/delfai/us-central1",
     apiRoot = IS_DEVELOPMENT ? devRoot : productionRoot;
 
 async function askPrompt(prompt) {

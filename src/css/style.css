@@ -427,6 +427,10 @@ ul.words-list li {
   flex: none;
 }
 
+#sign-in-error {
+  color: salmon;
+}
+
 .symbolize {
   min-height: 40px;
   display: flex;

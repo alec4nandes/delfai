@@ -48,6 +48,12 @@ h1 {
     margin: 0 5px;
 }
 
+img {
+    &.separator {
+        margin: 40px auto;
+    }
+}
+
 #intro p {
     font-size: 1.4rem;
     font-weight: 700;
@@ -72,19 +78,4 @@ h1 {
 small {
     display: inline-block;
     line-height: 20px;
-}
-
-.link-btn {
-    background-color: #eee;
-    color: var(--home-menu-color);
-    display: inline-block;
-    padding: 15px;
-    border: 1px solid #222;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-
-    &:hover {
-        background-color: var(--accent-color);
-        color: var(--home-menu-color);
-    }
 }
