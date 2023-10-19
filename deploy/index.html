@@ -48,9 +48,25 @@
             <div id="scroll-cards-left" class="scroll-cards"></div>
             <div id="scroll-cards-right" class="scroll-cards"></div>
         </header>
+        <nav>
+            <ul>
+                <li>
+                    <a class="log-in-btn" href="/home">LOG IN</a>
+                </li>
+                <li>
+                    <a href="/#contact">CONTACT</a>
+                </li>
+                <li>
+                    <a href="/#privacy">PRIVACY & REFUNDS</a>
+                </li>
+                <li>
+                    <a href="/#disclaimer">DISCLAIMER</a>
+                </li>
+            </ul>
+        </nav>
         <main style="z-index:1">
             <div class="container">
-                <nav>
+                <div>
                     <h1>
                         <span>Welcome to</span>
                         <br/>
@@ -67,8 +83,7 @@
                             <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
                         </a>
                     </div>
-                    <button class="log-in-btn standard-btn">LOG IN</a>
-                </nav>
+                </div>
 
                 <div id="intro">
                     <p>                        
@@ -81,14 +96,18 @@
                 <table id="unpaid-vs-paid">
                     <thead>
                         <tr>
-                            <th>Free accounts get:</th>
-                            <th>Paid accounts get:</th>
+                            <th>
+                                FREE PLAN
+                            </th>
+                            <th>
+                                PAID PLAN
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                5 free instant Tarot readings
+                                5 free and instant Tarot readings
                             </td>
                             <td>unlimited instant readings</td>
                         </tr>
@@ -118,38 +137,98 @@
                                 all info for <a href="/kabbalah" target="_blank" rel="noopener">Tarot and Kabbalah</a>
                             </td>
                         </tr>
+                        <tr id="pricing">
+                            <td>
+                                Start your free trial today <em>with no payment info!</em>
+                                <button class="log-in-btn standard-btn">Begin Free Trial</button>
+                            </td>
+                            <td>
+                                Unlock all features for just
+                                <br/>
+                                <strong>
+                                    $2.99 a month!
+                                </strong>
+                                <button class="standard-btn">SUBSCRIBE</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <button class="log-in-btn standard-btn">
-                    Sign up for your FREE instant reading today!
-                </button>
-
                 <img class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
 
-                <div id="disclaimer">
-                    <h4 style="margin:0 auto 12px">Disclaimer</h4>
-                    <p>
-                        <small>
-                            <em>This web app is restricted to users aged 18+. We are legally obligated to say this website is for personal reflection and entertainment purposes only, and not for definitively ascertaining unknown past, present, or future events. Using Tarot cards for divination in jurisdictions where it is illegal is by definition a crime, and Delfai Oracle does not promote or endorse divination in these regions.</em>
-                        </small>
-                    </p>
+                <div id="privacy" class="landing-section">
+                    <h2>Privacy Policy</h2>
+                    <div class="container">
+                        <p>
+                            <small>
+                                <em>
+                                Delfai Oracle does not save users’ questions, spreads or readings in any way.
+                            </em>
+                            </small>
+                        </p>
+                        <p>
+                            <small>
+                                <em>
+                                Delfai Oracle collects no information from users other than their email addresses in order to identify each account. These email addresses are never shared with third parties, but users may periodically receive email marketing campaigns from Delfai Oracle. Users can easily unsubscribe from these campaigns via a link at the bottom of each message.
+                            </em>
+                            </small>
+                        </p>
+                    </div>
                 </div>
 
-                <img class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+                <div id="refunds" class="landing-section">
+                    <h2>Refund Policy</h2>
+                    <div class="container">
+                        <p>
+                            <small>
+                                <em>
+                                    Delfai Oracle does not offer refunds for monthly subscriptions of $2.99. Paid users may cancel their subscriptions at any time under the "Account" section after signing in.
+                                </em>
+                            </small>
+                        </p>
+                        <p>
+                            <small>
+                                <em>
+                                    Cancellations take effect immediately, and Delfai Oracle does not prorate the days remaining in the monthly subscription.
+                                </em>
+                            </small>
+                        </p>
+                    </div>
+                </div>
 
-                <p id="copyright">&copy; Alec Fernandes 2023</p>
+                <div id="disclaimer" class="landing-section">
+                    <h2>Disclaimer</h2>
+                    <div class="container">
+                        <p>
+                            <small>
+                                <em>This web app is restricted to users aged 18+. We are legally obligated to say this website is for personal reflection and entertainment purposes only, and not for definitively ascertaining unknown past, present, or future events. Using Tarot cards for divination in jurisdictions where it is illegal is by definition a crime, and Delfai Oracle does not promote or endorse divination in these regions.</em>
+                            </small>
+                        </p>
+                    </div>
+                </div>
+
+                <div id="contact" class="landing-section">
+                    <h2>Contact</h2>
+                    <div class="container">
+                        <p>
+                        For any questions or concerns regarding this web application, please contact <a href="mailto:al@fern.haus">al@fern.haus</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <script src="/home/scrolling-cards.js"></script>
+        <script src="/home/scrolling-cards.js" defer></script>
 
         <script>
-            const IS_DEVELOPMENT = false;
+            const IS_DEVELOPMENT = true;
             [...document.querySelectorAll(".log-in-btn")].forEach(elem => {
-                elem.onclick = () => window.location.href = `${IS_DEVELOPMENT
+                const url = `${IS_DEVELOPMENT
                     ? "http://localhost:3000"
-                    : ""}/home`
+                    : ""}/home`;
+                elem.href
+                    ? elem.href = url
+                    : elem.onclick = () => (window.location.href = url);
             })
         </script>
     </body>

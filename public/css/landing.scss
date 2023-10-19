@@ -19,7 +19,7 @@ h1 {
     }
 }
 
-#disclaimer p,
+.landing-section p,
 #intro p,
 #unpaid-vs-paid td,
 #unpaid-vs-paid th {
@@ -27,21 +27,21 @@ h1 {
     box-sizing: border-box;
 }
 
-#disclaimer,
+.landing-section,
 #intro,
 #unpaid-vs-paid {
     width: 100%;
     max-width: 500px !important;
 }
 
-#disclaimer p,
+.landing-section p,
 #intro p,
 #unpaid-vs-paid td {
     background-color: var(--home-menu-color);
     color: #eee;
 }
 
-#disclaimer p,
+.landing-section p,
 #intro p {
     box-sizing: border-box;
     padding: 15px 10px;

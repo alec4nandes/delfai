@@ -8,6 +8,10 @@ h1 {
     }
 }
 
+h2 {
+    margin: 0 auto 10px;
+}
+
 .social {
     a {
         display: flex;
@@ -19,33 +23,42 @@ h1 {
     }
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p,
 #unpaid-vs-paid td,
 #unpaid-vs-paid th {
-    border: 1px solid #222;
     box-sizing: border-box;
+
+    &:not(th) {
+        border: 1px solid #222;
+    }
 }
 
-#disclaimer,
+.landing-section,
 #intro,
 #unpaid-vs-paid {
     width: 100%;
     max-width: 500px !important;
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p,
 #unpaid-vs-paid td {
     background-color: var(--home-menu-color);
     color: #eee;
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p {
     box-sizing: border-box;
     padding: 15px 10px;
     margin: 0 5px;
+}
+
+.landing-section {
+    .container {
+        gap: 10px;
+    }
 }
 
 img {
@@ -60,24 +73,67 @@ img {
 }
 
 nav {
-    button {
-        margin-top: 30px;
+    ul {
+        background-color: var(--bg-color);
+        display: flex;
+        gap: 6px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+
+        li {
+            background-color: var(--accent-color);
+            flex: 1;
+            padding: 2px 5px;
+
+            &:hover {
+                background-color: var(--home-menu-color);
+            }
+
+            a {
+                height: 100%;
+                width: 100%;
+                color: #222;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+            }
+        }
     }
 }
 
 #unpaid-vs-paid {
     border-collapse: separate;
     border-spacing: 5px;
+    margin: 0;
 
-    td,
-    th {
-        height: 40px;
-        width: 50%;
-    }
+    tr {
+        &#pricing {
+            button {
+                margin: 5px auto;
+            }
+        }
 
-    th {
-        background-color: var(--accent-color-2);
-        color: var(--home-menu-color);
+        td,
+        th {
+            height: 40px;
+            width: 50%;
+
+            strong {
+                color: var(--accent-color-2);
+            }
+        }
+
+        th {
+            background-color: var(--accent-color-2);
+            color: var(--home-menu-color);
+
+            button {
+                width: 100%;
+            }
+        }
     }
 }
 

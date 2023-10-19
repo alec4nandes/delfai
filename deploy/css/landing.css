@@ -6,6 +6,10 @@ h1 span {
   font-size: 0.7em;
 }
 
+h2 {
+  margin: 0 auto 10px;
+}
+
 .social a {
   display: flex;
 }
@@ -14,33 +18,42 @@ h1 span {
   margin-bottom: 0;
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p,
 #unpaid-vs-paid td,
 #unpaid-vs-paid th {
-  border: 1px solid #222;
   box-sizing: border-box;
 }
+.landing-section .container:not(th),
+#intro p:not(th),
+#unpaid-vs-paid td:not(th),
+#unpaid-vs-paid th:not(th) {
+  border: 1px solid #222;
+}
 
-#disclaimer,
+.landing-section,
 #intro,
 #unpaid-vs-paid {
   width: 100%;
   max-width: 500px !important;
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p,
 #unpaid-vs-paid td {
   background-color: var(--home-menu-color);
   color: #eee;
 }
 
-#disclaimer p,
+.landing-section .container,
 #intro p {
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 0 5px;
+}
+
+.landing-section .container {
+  gap: 10px;
 }
 
 img.separator {
@@ -52,22 +65,56 @@ img.separator {
   font-weight: 700;
 }
 
-nav button {
-  margin-top: 30px;
+nav ul {
+  background-color: var(--bg-color);
+  display: flex;
+  gap: 6px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+nav ul li {
+  background-color: var(--accent-color);
+  flex: 1;
+  padding: 2px 5px;
+}
+nav ul li:hover {
+  background-color: var(--home-menu-color);
+}
+nav ul li a {
+  height: 100%;
+  width: 100%;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 #unpaid-vs-paid {
   border-collapse: separate;
   border-spacing: 5px;
+  margin: 0;
 }
-#unpaid-vs-paid td,
-#unpaid-vs-paid th {
+#unpaid-vs-paid tr#pricing button {
+  margin: 5px auto;
+}
+#unpaid-vs-paid tr td,
+#unpaid-vs-paid tr th {
   height: 40px;
   width: 50%;
 }
-#unpaid-vs-paid th {
+#unpaid-vs-paid tr td strong,
+#unpaid-vs-paid tr th strong {
+  color: var(--accent-color-2);
+}
+#unpaid-vs-paid tr th {
   background-color: var(--accent-color-2);
   color: var(--home-menu-color);
+}
+#unpaid-vs-paid tr th button {
+  width: 100%;
 }
 
 small {

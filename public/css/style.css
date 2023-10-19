@@ -33,9 +33,6 @@ body textarea {
   font-weight: normal;
   line-height: 1.5rem;
 }
-body a[href^="mailto:"] {
-  text-decoration: none;
-}
 body a,
 body .link-btn {
   background-color: transparent;
