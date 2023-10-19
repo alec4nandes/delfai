@@ -1,0 +1,90 @@
+@import "./colors.css";
+
+h1 {
+    color: var(--accent-color);
+
+    span {
+        font-size: 0.7em;
+    }
+}
+
+.social {
+    a {
+        display: flex;
+    }
+
+    img {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}
+
+#disclaimer p,
+#intro p,
+#unpaid-vs-paid td,
+#unpaid-vs-paid th {
+    border: 1px solid #222;
+    box-sizing: border-box;
+}
+
+#disclaimer,
+#intro,
+#unpaid-vs-paid {
+    width: 100%;
+    max-width: 500px !important;
+}
+
+#disclaimer p,
+#intro p,
+#unpaid-vs-paid td {
+    background-color: var(--home-menu-color);
+    color: #eee;
+}
+
+#disclaimer p,
+#intro p {
+    box-sizing: border-box;
+    padding: 15px 10px;
+    margin: 0 5px;
+}
+
+#intro p {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#unpaid-vs-paid {
+    border-collapse: separate;
+    border-spacing: 5px;
+
+    td,
+    th {
+        height: 40px;
+        width: 50%;
+    }
+
+    th {
+        background-color: var(--accent-color);
+        color: var(--home-menu-color);
+    }
+}
+
+small {
+    display: inline-block;
+    line-height: 20px;
+}
+
+.link-btn {
+    background-color: #eee;
+    color: var(--home-menu-color);
+    display: inline-block;
+    padding: 15px;
+    border: 1px solid #222;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+
+    &:hover {
+        background-color: var(--accent-color);
+        color: var(--home-menu-color);
+    }
+}

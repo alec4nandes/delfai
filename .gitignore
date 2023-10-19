@@ -15,7 +15,7 @@ firebase-debug.log
 /coverage
 
 # production
-/build
+/deploy/home
 
 # misc
 .DS_Store

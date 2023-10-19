@@ -16,7 +16,7 @@ export default function Dashboard({ user }) {
                     <MemberBanner {...{ user }} />
                     <Separator />
                     <div>
-                        <a href="/about" target="_blank" rel="noopener">
+                        <a href="/" target="_blank" rel="noopener">
                             About
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
