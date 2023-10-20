@@ -1,3 +1,5 @@
+import { IS_DEVELOPMENT } from "../database";
+
 export default function AgeLocationVerify({ cookieKey, setHasAgeCookie }) {
     return (
         <div id="verify-age-location">
@@ -15,7 +17,9 @@ export default function AgeLocationVerify({ cookieKey, setHasAgeCookie }) {
                         className="standard-btn"
                         onClick={() => {
                             // add age & location verification cookie
-                            document.cookie = `${cookieKey}=1`;
+                            document.cookie = `${cookieKey}=1;path=/${
+                                IS_DEVELOPMENT ? "" : ";domain=delfai.web.app"
+                            }`;
                             setHasAgeCookie(true);
                         }}
                     >
