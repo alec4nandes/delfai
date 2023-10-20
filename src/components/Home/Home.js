@@ -21,20 +21,7 @@ export default function Home({ user, setUser }) {
     return (
         <>
             <NavBar {...{ isHome: true, user }} />
-            <div
-                id="home"
-                onScroll={(e) =>
-                    handleScroll(
-                        e,
-                        [
-                            "dashboard",
-                            (user.paid || user.free_draws > 0) && "ask",
-                            "decan",
-                            "account",
-                        ].filter(Boolean)
-                    )
-                }
-            >
+            <div id="home">
                 <section id="dashboard" className="main-and-footer">
                     <Dashboard {...{ user }} />
                 </section>
@@ -51,27 +38,3 @@ export default function Home({ user, setUser }) {
         </>
     );
 }
-
-function handleScroll(e, ids, isReadingSlide) {
-    const getElem = (id) => document.querySelector(`#${id}`);
-    ids.forEach((id) => {
-        const elem = getElem(id),
-            left =
-                elem.offsetLeft -
-                e.target.scrollLeft -
-                (isReadingSlide ? e.target.parentElement.offsetLeft : 0),
-            screenWidth = window.innerWidth,
-            // 20px buffer
-            isShowing = -20 <= left && left < screenWidth - 20;
-        if (isShowing) {
-            const getNavItem = (id) => getElem(`nav-${id}`),
-                navItems = ids.map(getNavItem),
-                navItem = getNavItem(id);
-            navItems.forEach((ni) =>
-                ni.classList[ni === navItem ? "add" : "remove"]("highlighted")
-            );
-        }
-    });
-}
-
-export { handleScroll };

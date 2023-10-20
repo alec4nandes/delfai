@@ -17,7 +17,6 @@ export default function NavBar({ isHome, setCards, user }) {
                     return (
                         <li
                             id={`nav-${id.toLowerCase()}`}
-                            className={i ? "" : "highlighted"}
                             onClick={() => handleJump(id.toLowerCase(), isHome)}
                             key={`nav-${id}`}
                         >

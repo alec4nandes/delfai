@@ -375,11 +375,6 @@ nav {
             &:hover {
                 cursor: pointer;
             }
-
-            &.highlighted {
-                background-color: var(--questions-button-color) !important;
-                color: var(--text-color) !important;
-            }
         }
     }
 }

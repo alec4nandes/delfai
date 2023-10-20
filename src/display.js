@@ -110,14 +110,13 @@ function parseDecoded(decoded, elemRef) {
 function handleJump(id, isHome) {
     if (id) {
         const elem = document.querySelector(`#${id}`);
-        elem.scrollIntoView({ behavior: "smooth" });
+        elem.scrollIntoView();
     } else {
         const scrollElem = document.querySelector(
             isHome ? "#home" : "#reading"
         );
         scrollElem.scrollTo({
             left: scrollElem.scrollLeft + window.innerWidth,
-            behavior: "smooth",
         });
     }
 }

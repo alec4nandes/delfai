@@ -326,10 +326,6 @@ nav ul li button {
 nav ul li:hover {
   cursor: pointer;
 }
-nav ul li.highlighted {
-  background-color: var(--questions-button-color) !important;
-  color: var(--text-color) !important;
-}
 
 #compare-tables {
   width: 100%;

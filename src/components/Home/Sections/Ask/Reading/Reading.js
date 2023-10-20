@@ -1,4 +1,3 @@
-import { handleScroll } from "../../../Home";
 import Advice from "./Advice";
 import NavBar from "../../../Navbar";
 import Spread from "./Spread";
@@ -18,16 +17,7 @@ export default function Reading({ cards, setCards, isKabbalah, user }) {
     return (
         <>
             <NavBar {...{ setCards, user }} />
-            <div
-                id="reading"
-                onScroll={(e) =>
-                    handleScroll(
-                        e,
-                        ["spread", "past", "present", "future", "advice"],
-                        true
-                    )
-                }
-            >
+            <div id="reading">
                 <Spread {...{ cards, isKabbalah }} />
                 <Slide timeframe="Past" />
                 <Slide timeframe="Present" />
