@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="/home/css/style.css">
         <link rel="stylesheet" href="/home/css/tol.css">
         <link rel="stylesheet" href="/home/css/social.css">
+        <link rel="stylesheet" href="/css/nav.css">
         <link rel="stylesheet" href="/home/css/footer.css">
         <link rel="stylesheet" href="/css/static.css">
         <style>
@@ -65,6 +66,10 @@
                 flex-wrap: wrap;
                 gap: 20px;
                 justify-content: center;
+            }
+
+            .social a img {
+                margin-bottom: 0;
             }
         </style>
     </head>
@@ -93,28 +98,44 @@
             </div>
         </div>
         <div class="static-container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#traditional">TRADITIONAL</a>
+                    </li>
+                    <li>
+                        <a href="#sefirot">SEFIROT</a>
+                    </li>
+                    <li>
+                        <a href="#worlds">WORLDS</a>
+                    </li>
+                </ul>
+            </nav>
             <main>
                 <h1>Delfai Oracle</h1>
-                <h2>Realigning Kabbalah in Tarot with Jewish Mysticism</h2>
 
-                <nav>
-                    <div class="social">
-                        <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
-                            <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
-                        </a>
-                        <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
-                            <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
-                        </a>
-                        <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
-                            <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
-                        </a>
-                    </div>
-                    <a href="/">home</a>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="#sefirot">sefirot</a>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="#worlds">worlds</a>
-                </nav>
+                <div class="social">
+                    <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
+                        <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
+                    </a>
+                    <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
+                        <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
+                    </a>
+                    <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
+                        <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
+                    </a>
+                </div>
+
+                <h2>Tarot and Kabbala</h2>
+
+                <p>Lorem ipsum...</p>
+
+                <img id="traditional" class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+
+                <h2>Realigning Kabbalah in Tarot with Jewish Mysticism</h2>
 
                 <img class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
 
@@ -132,13 +153,13 @@
 
                 <p>These are very technical distinctions, but I believe they are important. In an era when we are actively addressing cultural appropriation, it’s vital to realign Tarot with traditional Kabbalah as practiced by the Jewish people, and not the Kabbalah adopted and warped by Western outsiders at the turn of the 20th century.</p>
 
-                <img class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+                <img id="sefirot" class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
 
-                <h2 id="sefirot">Sefirot of the Tree of Life</h2>
+                <h2>Sefirot of the Tree of Life</h2>
 
                 <div id="sefirot-info"></div>
 
-                <h2 id="worlds">Worlds of the Tree of Life</h2>
+                <h2>Worlds of the Tree of Life</h2>
 
                 <div id="worlds-info"></div>
                 <br/>
@@ -193,7 +214,7 @@
 
             sefElem.innerHTML = Object
                 .entries(sefirot)
-                .map(([key, val]) => `
+                .map(([key, val], i, a) => `
                     <div id="${key.toLowerCase()}">
                         <h3>${val.rank}. ${key} </br> ${val.hebrew}</h3>
                         ${TreeOfLife({highlight: key})}
@@ -205,7 +226,11 @@
                             <tr><td>world</td><td><a href="#${val.world.toLowerCase()}">${val.world}</a></td></tr>
                         </table>
                     </div>
-                    <img class="separator" src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style.">
+                    <img
+                        ${i === a.length -1 ? "id=\"worlds\"" : ""}
+                        class="separator"
+                        src="/home/assets/separator.png" alt="decorative dividing line made up of square swirls in the Greek style."
+                    >
                 `)
                 .join("");
 

@@ -72,38 +72,6 @@ img {
     font-weight: 700;
 }
 
-nav {
-    ul {
-        background-color: var(--bg-color);
-        display: flex;
-        gap: 6px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-
-        li {
-            background-color: var(--accent-color);
-            flex: 1;
-            padding: 2px 5px;
-
-            &:hover {
-                background-color: var(--home-menu-color);
-            }
-
-            a {
-                height: 100%;
-                width: 100%;
-                color: #222;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-decoration: none;
-            }
-        }
-    }
-}
-
 #unpaid-vs-paid {
     border-collapse: separate;
     border-spacing: 5px;
