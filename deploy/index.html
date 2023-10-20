@@ -44,6 +44,29 @@
         <link rel="stylesheet" href="/css/static.css">
     </head>
     <body>
+        <div id="verify-age-location">
+            <div id="verify-container">
+                <h1>Delfai Oracle</h1>
+                <h2>Tarot Card Readings</h2>
+                <p>
+                    This website is restricted to people aged 18+ and living in
+                    areas where Tarot card reading and related activities are
+                    not explicitly banned. By clicking “Enter” you are agreeing
+                    to these terms.
+                </p>
+                <div id="verify-buttons">
+                    <button id="enter-btn" class="standard-btn">
+                        ENTER
+                    </button>
+                    <button
+                        class="standard-btn"
+                        onclick="window.location.href='https://google.com'"
+                    >
+                        LEAVE
+                    </button>
+                </div>
+            </div>
+        </div>
         <header style="z-index:0">
             <!-- scrolling cards go here -->
             <div id="scroll-cards-left" class="scroll-cards"></div>
@@ -254,7 +277,8 @@
             </footer>
         </div>
 
-        <script src="/add-events.js" defer></script>
+        <script src="/scripts/verify-age-location.js"></script>
+        <script src="/scripts/add-events.js" defer></script>
         <script src="/home/scrolling-cards.js" defer></script>
     </body>
 </html>
