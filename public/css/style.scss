@@ -512,6 +512,34 @@ ul.words-list {
 
 // MISC
 
+#verify-age-location {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+
+    #verify-container {
+        min-height: 100%;
+        background-color: rgba(10, 10, 10, 0.95);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 25px;
+        overflow: auto;
+        padding: 50px 15px;
+        text-align: center;
+
+        #verify-buttons {
+            display: flex;
+            gap: 20px;
+        }
+    }
+}
+
 .description {
     max-width: 650px;
     background-color: rgba(255, 255, 255, 0.7);
