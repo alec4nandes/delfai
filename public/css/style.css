@@ -454,6 +454,9 @@ ul.words-list li {
   padding: 50px 15px;
   text-align: center;
 }
+#verify-age-location #verify-container p {
+  max-width: 500px;
+}
 #verify-age-location #verify-container #verify-buttons {
   display: flex;
   gap: 20px;

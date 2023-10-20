@@ -533,6 +533,10 @@ ul.words-list {
         padding: 50px 15px;
         text-align: center;
 
+        p {
+            max-width: 500px;
+        }
+
         #verify-buttons {
             display: flex;
             gap: 20px;
