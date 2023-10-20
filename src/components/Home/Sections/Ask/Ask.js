@@ -20,7 +20,7 @@ export default function Ask({ user, setUser }) {
         [showSubscribe, setShowSubscribe] = useState(false);
 
     return (
-        <>
+        <div className={`slide${cards ? " reading-slide" : ""}`}>
             {cards ? (
                 isCustom ? (
                     <CustomReading {...{ cards, setCards, isKabbalah }} />
@@ -28,7 +28,15 @@ export default function Ask({ user, setUser }) {
                     <Reading {...{ cards, setCards, isKabbalah, user }} />
                 )
             ) : (
-                <div className="slide">
+                <>
+                    <h2 className="bigger-header">Ask a Question</h2>
+                    <div className="description">
+                        Here you can enter any question for the Tarot cards, or
+                        select a qestion about love, career, health, or your
+                        social life. <a>Paid users</a> can also include Kabbalah
+                        in their readings and can enter any spread for any
+                        question.
+                    </div>
                     <div id="ask-features">
                         <label>
                             <input
@@ -45,7 +53,9 @@ export default function Ask({ user, setUser }) {
                             <span>
                                 <a
                                     href={`${
-                                        IS_DEVELOPMENT ? "http://localhost:5000" : ""
+                                        IS_DEVELOPMENT
+                                            ? "http://localhost:5000"
+                                            : ""
                                     }/kabbalah`}
                                     target="_blank"
                                     rel="noopener"
@@ -76,7 +86,13 @@ export default function Ask({ user, setUser }) {
 
                     {isCustom && !showSubscribe && (
                         <SelectCustomSpread
-                            {...{ isCustom, custom, setCustom, size, setSize }}
+                            {...{
+                                isCustom,
+                                custom,
+                                setCustom,
+                                size,
+                                setSize,
+                            }}
                         />
                     )}
 
@@ -126,9 +142,9 @@ export default function Ask({ user, setUser }) {
                             size,
                         }}
                     />
-                </div>
+                </>
             )}
-        </>
+        </div>
     );
 }
 

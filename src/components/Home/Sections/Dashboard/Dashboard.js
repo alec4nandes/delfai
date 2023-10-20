@@ -3,52 +3,62 @@ import { IS_DEVELOPMENT, auth } from "../../../../database.js";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../../SignOut.js";
 import Subscribe from "../../Subscribe/Subscribe.js";
-import Social from "../../../Social.js";
+import Footer from "../../../Footer.js";
 
 export default function Dashboard({ user }) {
     return (
         <div className="container">
-            <h1>Delfai Oracle</h1>
-            {!user.emailVerified ? (
-                <Unverified {...{ user }} />
-            ) : (
-                <>
-                    <MemberBanner {...{ user }} />
-                    <Separator />
-                    <div>
-                        <a
-                            href={IS_DEVELOPMENT ? "http://localhost:5000" : "/"}
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            About
-                        </a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a
-                            href={`${
-                                IS_DEVELOPMENT ? "http://localhost:5000" : ""
-                            }/kabbalah`}
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            Kabbalah
-                        </a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a
-                            href="/home/assets/wheel.png"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            Decan Wheel
-                        </a>
-                    </div>
-                    <Separator />
-                    {!(user.paid || user.free_draws > 0) && (
-                        <FreeTrialOver {...{ user }} />
+            <main>
+                <div className="vertical-center">
+                    <h1>Delfai Oracle</h1>
+                    {!user.emailVerified ? (
+                        <Unverified {...{ user }} />
+                    ) : (
+                        <>
+                            <MemberBanner {...{ user }} />
+                            <Separator />
+                            <div>
+                                <a
+                                    href={
+                                        IS_DEVELOPMENT
+                                            ? "http://localhost:5000"
+                                            : "/"
+                                    }
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    About
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a
+                                    href={`${
+                                        IS_DEVELOPMENT
+                                            ? "http://localhost:5000"
+                                            : ""
+                                    }/kabbalah`}
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    Kabbalah
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a
+                                    href="/home/assets/wheel.png"
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    Decan Wheel
+                                </a>
+                            </div>
+                            <Separator />
+                            {!(user.paid || user.free_draws > 0) && (
+                                <FreeTrialOver {...{ user }} />
+                            )}
+                        </>
                     )}
-                </>
-            )}
-            <Social />
+                </div>
+            </main>
+            <Footer />
         </div>
     );
 }

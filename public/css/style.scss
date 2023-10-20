@@ -68,6 +68,10 @@ body {
         color: #222;
     }
 
+    main {
+        position: relative;
+    }
+
     #root {
         display: flex;
         flex-direction: column;
@@ -103,31 +107,44 @@ h2 {
 
 // SCROLLING & SLIDES
 
-.vertical-center {
-    display: flex;
-
-    &#dashboard {
-        .container {
-            gap: 40px;
-
-            & > * {
-                margin: 0 auto;
-            }
-        }
-    }
-
-    &#account {
-        .container {
-            gap: 30px;
+.main-and-footer {
+    &,
+    .container {
+        &,
+        main,
+        .vertical-center {
+            display: flex;
+            flex-direction: column;
         }
     }
 
     .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+
+        & > main {
+            width: 100%;
+            box-sizing: border-box;
+            gap: 35px;
+            padding: 50px 15px;
+
+            &,
+            .vertical-center {
+                flex: 1;
+            }
+
+            .vertical-center {
+                align-items: center;
+                justify-content: center;
+                gap: 35px;
+            }
+
+            img.separator,
+            p {
+                margin: 0 auto;
+            }
+        }
     }
 }
 
@@ -138,19 +155,6 @@ h2 {
     display: flex;
     overflow: hidden;
     scroll-snap-type: x mandatory;
-}
-
-#home {
-    section {
-        &#ask {
-            display: flex;
-            flex-direction: column;
-
-            #reading-menu {
-                margin-top: $gap;
-            }
-        }
-    }
 }
 
 #home section,
@@ -167,16 +171,21 @@ h2 {
     scroll-snap-align: start;
     text-align: center;
 
-    &:not(#ask) {
-        padding: 50px 15px;
-        gap: 35px;
-    }
-
     h1,
     h2,
     h3,
     & > p {
         margin: 0;
+    }
+}
+
+.slide {
+    gap: 35px;
+    padding: 50px 15px;
+
+    &.reading-slide {
+        gap: 0;
+        padding: 0;
     }
 }
 
@@ -296,8 +305,10 @@ img {
 
 nav {
     width: 100%;
+    background-color: var(--bg-color);
     position: sticky;
     top: 0;
+    z-index: 10;
 
     &#home-menu {
         ul {
@@ -314,6 +325,8 @@ nav {
 
     &#reading-menu {
         ul {
+            border-top: $gap solid var(--bg-color);
+
             li {
                 background-color: var(--accent-color);
                 color: #222;
@@ -375,11 +388,13 @@ nav {
 #compare-tables {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
     justify-content: center;
 
     .compare {
         max-width: 320px;
+        min-width: 200px;
         box-sizing: border-box;
         flex: 1;
 
@@ -510,6 +525,14 @@ ul.words-list {
     font-weight: 700;
     line-height: 1.5rem;
     padding: 15px;
+
+    a {
+        color: var(--home-menu-color);
+
+        &:hover {
+            color: var(--accent-color);
+        }
+    }
 }
 
 .tol {

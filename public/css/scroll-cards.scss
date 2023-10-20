@@ -1,14 +1,11 @@
 body,
-html,
-main {
+html {
     height: 100%;
     width: 100%;
     position: relative;
 }
 
 body {
-    background-image: none;
-
     header {
         position: absolute;
         top: 0;
@@ -18,7 +15,7 @@ body {
         overflow: hidden;
     }
 
-    main {
+    .main-and-footer {
         overflow: auto;
     }
 }

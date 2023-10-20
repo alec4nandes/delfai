@@ -58,6 +58,9 @@ body ul.words-list {
 body button {
   color: #222;
 }
+body main {
+  position: relative;
+}
 body #root {
   display: flex;
   flex-direction: column;
@@ -87,24 +90,38 @@ h2.bigger-header {
   line-height: 2.7rem;
 }
 
-.vertical-center {
-  display: flex;
-}
-.vertical-center#dashboard .container {
-  gap: 40px;
-}
-.vertical-center#dashboard .container > * {
-  margin: 0 auto;
-}
-.vertical-center#account .container {
-  gap: 30px;
-}
-.vertical-center .container {
+.main-and-footer,
+.main-and-footer main,
+.main-and-footer .vertical-center,
+.main-and-footer .container,
+.main-and-footer .container main,
+.main-and-footer .container .vertical-center {
   display: flex;
   flex-direction: column;
+}
+.main-and-footer .container {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+.main-and-footer .container > main {
+  width: 100%;
+  box-sizing: border-box;
+  gap: 35px;
+  padding: 50px 15px;
+}
+.main-and-footer .container > main,
+.main-and-footer .container > main .vertical-center {
+  flex: 1;
+}
+.main-and-footer .container > main .vertical-center {
   align-items: center;
   justify-content: center;
-  flex: 1;
+  gap: 35px;
+}
+.main-and-footer .container > main img.separator,
+.main-and-footer .container > main p {
+  margin: 0 auto;
 }
 
 #home,
@@ -114,14 +131,6 @@ h2.bigger-header {
   display: flex;
   overflow: hidden;
   scroll-snap-type: x mandatory;
-}
-
-#home section#ask {
-  display: flex;
-  flex-direction: column;
-}
-#home section#ask #reading-menu {
-  margin-top: 6px;
 }
 
 #home section,
@@ -138,11 +147,6 @@ h2.bigger-header {
   scroll-snap-align: start;
   text-align: center;
 }
-#home section:not(#ask),
-.slide:not(#ask) {
-  padding: 50px 15px;
-  gap: 35px;
-}
 #home section h1,
 #home section h2,
 #home section h3, #home section > p,
@@ -151,6 +155,15 @@ h2.bigger-header {
 .slide h3,
 .slide > p {
   margin: 0;
+}
+
+.slide {
+  gap: 35px;
+  padding: 50px 15px;
+}
+.slide.reading-slide {
+  gap: 0;
+  padding: 0;
 }
 
 button:hover,
@@ -257,8 +270,10 @@ img.separator {
 
 nav {
   width: 100%;
+  background-color: var(--bg-color);
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 nav#home-menu ul li {
   background-color: var(--home-menu-color);
@@ -266,6 +281,9 @@ nav#home-menu ul li {
 nav#home-menu ul li:hover {
   background-color: var(--accent-color);
   color: #222;
+}
+nav#reading-menu ul {
+  border-top: 6px solid var(--bg-color);
 }
 nav#reading-menu ul li {
   background-color: var(--accent-color);
@@ -314,11 +332,13 @@ nav ul li.highlighted {
 #compare-tables {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
 }
 #compare-tables .compare {
   max-width: 320px;
+  min-width: 200px;
   box-sizing: border-box;
   flex: 1;
 }
@@ -424,6 +444,12 @@ ul.words-list li {
   font-weight: 700;
   line-height: 1.5rem;
   padding: 15px;
+}
+.description a {
+  color: var(--home-menu-color);
+}
+.description a:hover {
+  color: var(--accent-color);
 }
 
 .tol {

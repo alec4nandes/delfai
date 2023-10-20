@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { getDay, getToday } from "../../../../decan.js";
 import fillRef from "../../../../display.js";
 import AiTextLoader from "../../AiTextLoader";
-import Subscribe from "../../Subscribe/Subscribe";
 import CardImages from "../../CardImages/CardImages";
 import Compare from "../../Compare/Compare";
+import Subscribe from "../../Subscribe/Subscribe";
 
 export default function Decan({ user }) {
     const [decanCards, setDecanCards] = useState(getToday()),
@@ -29,8 +29,13 @@ export default function Decan({ user }) {
     }
 
     return (
-        <>
+        <div className="slide">
             <h2 className="bigger-header">Card of the Day</h2>
+            <div className="description">
+                Did you know that each day of the year is connected to certain
+                Tarot cards? This section reads each day like a specific spread.{" "}
+                <a>Paid users</a> can look up cards for any date.
+            </div>
             <h2 ref={dateRef}>
                 {decanCards.date}
                 <br />
@@ -81,7 +86,7 @@ export default function Decan({ user }) {
                     isKabbalah: false,
                 }}
             />
-        </>
+        </div>
     );
 
     function handleDecanSubmit(e) {

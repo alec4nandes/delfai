@@ -1,15 +1,21 @@
 import { doc, updateDoc } from "@firebase/firestore";
 import { db, apiRoot } from "../../../../database.js";
+import Footer from "../../../Footer";
 import ResetPassword from "../../../ResetPassword";
 import SignOut from "../../SignOut";
 
 export default function Settings({ user }) {
     return (
         <div className="container">
-            <h2 className="bigger-header">User Settings</h2>
-            <ResetPassword email={user.email} />
-            <Unsubscribe {...{ user }} />
-            <SignOut />
+            <main>
+                <div className="vertical-center">
+                    <h2 className="bigger-header">User Settings</h2>
+                    <ResetPassword email={user.email} />
+                    <Unsubscribe {...{ user }} />
+                    <SignOut />
+                </div>
+            </main>
+            <Footer />
         </div>
     );
 }

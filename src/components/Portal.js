@@ -6,8 +6,8 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { IS_DEVELOPMENT, auth, db } from "../database.js";
+import Footer from "./Footer";
 import ResetPassword from "./ResetPassword";
-import Social from "./Social";
 
 export default function Portal() {
     const [errorMessage, setErrorMessage] = useState(""),
@@ -88,94 +88,98 @@ export default function Portal() {
                 <div id="scroll-cards-left" className="scroll-cards"></div>
                 <div id="scroll-cards-right" className="scroll-cards"></div>
             </header>
-            <main style={{ zIndex: 1 }}>
-                <div id="portal">
-                    <div className="container">
-                        <h1>Delfai Oracle</h1>
-                        <h2>Tarot Card Readings</h2>
-                        <form
-                            ref={formRef}
-                            onSubmit={(e) => e.preventDefault()}
-                        >
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label htmlFor="email">
-                                                email:
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <input
-                                                name="email"
-                                                type="email"
-                                                id="email"
-                                                onChange={(e) =>
-                                                    setLoginEmail(
-                                                        e.target.value
-                                                    )
-                                                }
-                                                required
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label htmlFor="password">
-                                                password:
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <input
-                                                name="password"
-                                                type="password"
-                                                id="password"
-                                                required
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan={2}>
-                                            <div id="user-options">
-                                                <button
-                                                    id="sign-up-btn"
-                                                    className="standard-btn"
-                                                >
-                                                    sign up
-                                                </button>
-                                                <button
-                                                    id="sign-in-btn"
-                                                    className="standard-btn"
-                                                >
-                                                    sign in instead
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                        <div>
-                            <a
-                                href={
-                                    IS_DEVELOPMENT
-                                        ? "http://localhost:5000"
-                                        : "/"
-                                }
+            <div id="portal" className="main-and-footer">
+                <div className="container">
+                    <main style={{ zIndex: 1 }}>
+                        <div className="vertical-center">
+                            <h1>Delfai Oracle</h1>
+                            <h2>Tarot Card Readings</h2>
+                            <form
+                                ref={formRef}
+                                onSubmit={(e) => e.preventDefault()}
                             >
-                                about
-                            </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-                            <ResetPassword
-                                email={loginEmail}
-                                isLinkButton={true}
-                            />
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="email">
+                                                    email:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="email"
+                                                    type="email"
+                                                    id="email"
+                                                    onChange={(e) =>
+                                                        setLoginEmail(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="password">
+                                                    password:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="password"
+                                                    type="password"
+                                                    id="password"
+                                                    required
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan={2}>
+                                                <div id="user-options">
+                                                    <button
+                                                        id="sign-up-btn"
+                                                        className="standard-btn"
+                                                    >
+                                                        sign up
+                                                    </button>
+                                                    <button
+                                                        id="sign-in-btn"
+                                                        className="standard-btn"
+                                                    >
+                                                        sign in instead
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <div>
+                                <a
+                                    href={
+                                        IS_DEVELOPMENT
+                                            ? "http://localhost:5000"
+                                            : "/"
+                                    }
+                                >
+                                    about
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                                <ResetPassword
+                                    email={loginEmail}
+                                    isLinkButton={true}
+                                />
+                            </div>
+                            {errorMessage && (
+                                <p id="sign-in-error">{errorMessage}</p>
+                            )}
                         </div>
-                        <p id="sign-in-error">{errorMessage}</p>
-                        <Social />
-                    </div>
+                    </main>
+                    <Footer />
                 </div>
-            </main>
+            </div>
         </>
     );
 }
