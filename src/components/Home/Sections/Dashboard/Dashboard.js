@@ -82,7 +82,15 @@ function Unverified({ user }) {
                 Please verify your email by clicking the link sent to{" "}
                 {user.email}
             </p>
-            <div id="user-options">
+            <div
+                id="user-options"
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flexWrap: "wrap",
+                    gap: "35px",
+                }}
+            >
                 <ResendVerify />
                 <button
                     className="standard-btn"
@@ -90,8 +98,8 @@ function Unverified({ user }) {
                 >
                     refresh page
                 </button>
+                <SignOut />
             </div>
-            <SignOut />
         </>
     );
 

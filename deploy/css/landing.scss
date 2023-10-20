@@ -23,7 +23,7 @@ h2 {
     }
 }
 
-.landing-section .container,
+.landing-section .info-container,
 #intro p,
 #unpaid-vs-paid td,
 #unpaid-vs-paid th {
@@ -41,14 +41,14 @@ h2 {
     max-width: 500px !important;
 }
 
-.landing-section .container,
+.landing-section .info-container,
 #intro p,
 #unpaid-vs-paid td {
     background-color: var(--home-menu-color);
     color: #eee;
 }
 
-.landing-section .container,
+.landing-section .info-container,
 #intro p {
     box-sizing: border-box;
     padding: 15px 10px;
@@ -60,7 +60,9 @@ h2 {
         margin-bottom: 80px;
     }
 
-    .container {
+    .info-container {
+        display: flex;
+        flex-direction: column;
         gap: 10px;
     }
 }

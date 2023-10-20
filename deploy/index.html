@@ -49,24 +49,24 @@
             <div id="scroll-cards-left" class="scroll-cards"></div>
             <div id="scroll-cards-right" class="scroll-cards"></div>
         </header>
-        <nav>
-            <ul>
-                <li>
-                    <a class="log-in-btn" href="/home">LOG IN</a>
-                </li>
-                <li>
-                    <a href="/#contact">CONTACT</a>
-                </li>
-                <li>
-                    <a href="/#privacy">PRIVACY & REFUNDS</a>
-                </li>
-                <li>
-                    <a href="/#disclaimer">DISCLAIMER</a>
-                </li>
-            </ul>
-        </nav>
-        <main style="z-index:1">
-            <div class="container">
+        <div class="static-container">
+            <nav>
+                <ul>
+                    <li>
+                        <a class="log-in-btn" href="/home">LOG IN</a>
+                    </li>
+                    <li>
+                        <a href="/#contact">CONTACT</a>
+                    </li>
+                    <li>
+                        <a href="/#privacy">PRIVACY & REFUNDS</a>
+                    </li>
+                    <li>
+                        <a href="/#disclaimer">DISCLAIMER</a>
+                    </li>
+                </ul>
+            </nav>
+            <main style="z-index:1">
                 <div>
                     <h1>
                         <span>Welcome to</span>
@@ -149,7 +149,7 @@
                                 <strong>
                                     $2.99 a month!
                                 </strong>
-                                <button class="standard-btn">SUBSCRIBE</button>
+                                <button class="standard-btn subscribe-btn">SUBSCRIBE</button>
                             </td>
                         </tr>
                     </tbody>
@@ -159,7 +159,7 @@
 
                 <div id="privacy" class="landing-section">
                     <h2>Privacy Policy</h2>
-                    <div class="container">
+                    <div class="info-container">
                         <p>
                             <small>
                                 <em>
@@ -179,7 +179,7 @@
 
                 <div id="refunds" class="landing-section">
                     <h2>Refund Policy</h2>
-                    <div class="container">
+                    <div class="info-container">
                         <p>
                             <small>
                                 <em>
@@ -199,7 +199,7 @@
 
                 <div id="disclaimer" class="landing-section">
                     <h2>Disclaimer</h2>
-                    <div class="container">
+                    <div class="info-container">
                         <p>
                             <small>
                                 <em>This web app is restricted to users aged 18+. We are legally obligated to say this website is for personal reflection and entertainment purposes only, and not for definitively ascertaining unknown past, present, or future events. Using Tarot cards for divination in jurisdictions where it is illegal is by definition a crime, and Delfai Oracle does not promote or endorse divination in these regions.</em>
@@ -210,62 +210,51 @@
 
                 <div id="contact" class="landing-section">
                     <h2>Contact</h2>
-                    <div class="container">
+                    <div class="info-container">
                         <p>
                         For any questions or concerns regarding this web application, please contact <a href="mailto:al@fern.haus">al@fern.haus</a>
                         </p>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-        <footer>
-            <div id="footer-container">
-                <ul>
-                    <li>
-                        <a>Subscribe</a>
-                    &nbsp; | &nbsp;
-                    <a href="/#refunds">Refund Policy</a>
-                    </li>
-                    <li>
-                        <a href="/#privacy">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="/#disclaimer">Disclaimer</a>
-                    </li>
-                    <li>
-                        <a href="/#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a href="/">Home</a> &nbsp;|&nbsp; <a href="/kabbalah">Kabbalah</a> &nbsp;|&nbsp; <a href="https://fern.haus" target="_blank" rel="noopener">&copy; Fern Haus</a>
-                    </li>
-                </ul>
-                <div class="social">
-                    <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
-                    </a>
-                    <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
-                    </a>
-                    <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
-                    </a>
+            <footer>
+                <div id="footer-container">
+                    <ul>
+                        <li>
+                            <a class="subscribe-btn">Subscribe</a>
+                            &nbsp; | &nbsp;
+                            <a href="/#refunds">Refund Policy</a>
+                        </li>
+                        <li>
+                            <a href="/#privacy">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="/#disclaimer">Disclaimer</a>
+                        </li>
+                        <li>
+                            <a href="/#contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/">Home</a> &nbsp;|&nbsp; <a href="/kabbalah">Kabbalah</a> &nbsp;|&nbsp; <a href="https://fern.haus" target="_blank" rel="noopener">&copy; Fern Haus</a>
+                        </li>
+                    </ul>
+                    <div class="social">
+                        <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
+                        </a>
+                        <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
+                        </a>
+                        <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
 
+        <script src="/add-events.js" defer></script>
         <script src="/home/scrolling-cards.js" defer></script>
-
-        <script>
-            const IS_DEVELOPMENT = true;
-            [...document.querySelectorAll(".log-in-btn")].forEach(elem => {
-                const url = `${IS_DEVELOPMENT
-                    ? "http://localhost:3000"
-                    : ""}/home`;
-                elem.href
-                    ? elem.href = url
-                    : elem.onclick = () => (window.location.href = url);
-            })
-        </script>
     </body>
 </html>

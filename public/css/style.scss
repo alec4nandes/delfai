@@ -305,7 +305,6 @@ img {
 
 nav {
     width: 100%;
-    background-color: var(--bg-color);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -324,6 +323,8 @@ nav {
     }
 
     &#reading-menu {
+        background-color: var(--bg-color);
+
         ul {
             border-top: $gap solid var(--bg-color);
 

@@ -33,9 +33,10 @@ export default function Ask({ user, setUser }) {
                     <div className="description">
                         Here you can enter any question for the Tarot cards, or
                         select a qestion about love, career, health, or your
-                        social life. <a>Paid users</a> can also include Kabbalah
-                        in their readings and can enter any spread for any
-                        question.
+                        social life.{" "}
+                        <a href="/home/?page=subscribe">Paid users</a> can also
+                        include Kabbalah in their readings and can enter any
+                        spread for any question.
                     </div>
                     <div id="ask-features">
                         <label>

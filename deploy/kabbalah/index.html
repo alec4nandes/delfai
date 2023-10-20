@@ -69,8 +69,8 @@
         </style>
     </head>
     <body>
-        <main>
-            <div id="kabbalah-container" class="container">
+        <div class="static-container">
+            <main>
                 <h1>Delfai Oracle</h1>
                 <h2>Realigning Kabbalah in Tarot with Jewish Mysticism</h2>
 
@@ -119,43 +119,43 @@
 
                 <div id="worlds-info"></div>
                 <br/>
-            </div>
-        </main>
+            </main>
 
-        <footer>
-            <div id="footer-container">
-                <ul>
-                    <li>
-                        <a>Subscribe</a>
-                    &nbsp; | &nbsp;
-                    <a href="/#refunds">Refund Policy</a>
-                    </li>
-                    <li>
-                        <a href="/#privacy">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="/#disclaimer">Disclaimer</a>
-                    </li>
-                    <li>
-                        <a href="/#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a href="/">Home</a> &nbsp;|&nbsp; <a href="/kabbalah">Kabbalah</a> &nbsp;|&nbsp; <a href="https://fern.haus" target="_blank" rel="noopener">&copy; Fern Haus</a>
-                    </li>
-                </ul>
-                <div class="social">
-                    <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
-                    </a>
-                    <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
-                    </a>
-                    <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
-                        <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
-                    </a>
+            <footer>
+                <div id="footer-container">
+                    <ul>
+                        <li>
+                            <a class="subscribe-btn">Subscribe</a>
+                            &nbsp; | &nbsp;
+                            <a href="/#refunds">Refund Policy</a>
+                        </li>
+                        <li>
+                            <a href="/#privacy">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="/#disclaimer">Disclaimer</a>
+                        </li>
+                        <li>
+                            <a href="/#contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/">Home</a> &nbsp;|&nbsp; <a href="/kabbalah">Kabbalah</a> &nbsp;|&nbsp; <a href="https://fern.haus" target="_blank" rel="noopener">&copy; Fern Haus</a>
+                        </li>
+                    </ul>
+                    <div class="social">
+                        <a href="https://tiktok.com/@delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/tiktok.png" alt="TikTok logo"/>
+                        </a>
+                        <a href="https://instagram.com/delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/instagram.png" alt="Instagram logo"/>
+                        </a>
+                        <a href="https://x.com/delfaioracle" target="_blank" rel="noopener">
+                            <img src="/home/assets/icons/social/x.png" alt ="X logo"/>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
 
         <script type="module">
             import TreeOfLife from "./scripts/TreeOfLife.js";
@@ -224,5 +224,7 @@
             const jump = window.location.href.split("#")[1];
             jump && document.querySelector(`#${jump}`).scrollIntoView();
         </script>
+
+        <script src="/add-events.js" defer></script>
     </body>
 </html>

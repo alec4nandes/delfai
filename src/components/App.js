@@ -4,14 +4,19 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
 import Home from "./Home/Home";
 import Portal from "./Portal";
+import SubscribePage from "./SubscribePage";
 
 export default function App() {
     const [loaded, setLoaded] = useState(false),
+        [isSubscribePage, setIsSubscribePage] = useState(false),
         [user, setUser] = useState(null);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             user && setUser(await getUserData(user));
+            const urlParams = new URLSearchParams(window.location.search),
+                pageParam = urlParams.get("page");
+            setIsSubscribePage(pageParam === "subscribe");
             setLoaded(true);
         });
 
@@ -28,5 +33,17 @@ export default function App() {
         }
     }, []);
 
-    return loaded ? user ? <Home {...{ user, setUser }} /> : <Portal /> : <></>;
+    return loaded ? (
+        user ? (
+            isSubscribePage ? (
+                <SubscribePage {...{ user }} />
+            ) : (
+                <Home {...{ user, setUser }} />
+            )
+        ) : (
+            <Portal />
+        )
+    ) : (
+        <></>
+    );
 }

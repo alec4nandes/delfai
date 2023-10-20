@@ -8,20 +8,23 @@ export default function NavBar({ isHome, setCards, user }) {
                     ? [
                           "Dashboard",
                           (user.paid || user.free_draws > 0) && "Ask",
-                          "Decan",
+                          "Daily Cards",
                           "Account",
                       ].filter(Boolean)
                     : ["Spread", "Past", "Present", "Future", "Advice"]
-                ).map((title, i) => (
-                    <li
-                        id={`nav-${title.toLowerCase()}`}
-                        className={i ? "" : "highlighted"}
-                        onClick={(e) => handleJump(title.toLowerCase(), isHome)}
-                        key={`nav-${title}`}
-                    >
-                        {title}
-                    </li>
-                ))}
+                ).map((title, i) => {
+                    const id = title === "Daily Cards" ? "Decan" : title;
+                    return (
+                        <li
+                            id={`nav-${id.toLowerCase()}`}
+                            className={i ? "" : "highlighted"}
+                            onClick={() => handleJump(id.toLowerCase(), isHome)}
+                            key={`nav-${id}`}
+                        >
+                            {title}
+                        </li>
+                    );
+                })}
                 {setCards && (
                     <li
                         onClick={() =>

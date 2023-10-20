@@ -1,13 +1,18 @@
 body {
-    height: auto;
-    min-height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
     padding: 0;
     text-align: center;
 
-    main {
-        .container {
+    .static-container {
+        height: 100%;
+        overflow: auto;
+
+        nav {
+            position: relative;
+        }
+
+        main {
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -32,10 +37,6 @@ body {
             }
         }
     }
-}
-
-nav {
-    position: relative;
 }
 
 @media only screen and (max-width: 300px) {

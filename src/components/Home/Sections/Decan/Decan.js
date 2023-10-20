@@ -30,24 +30,21 @@ export default function Decan({ user }) {
 
     return (
         <div className="slide">
-            <h2 className="bigger-header">Card of the Day</h2>
+            <h2 className="bigger-header">Daily Cards</h2>
             <div className="description">
-                Did you know that each day of the year is connected to certain
-                Tarot cards? This section reads each day like a specific spread.{" "}
-                <a>Paid users</a> can look up cards for any date.
+                Did you know that each day of the year is connected to{" "}
+                <a href="/home/assets/wheel.png" target="_blank" rel="noopener">
+                    certain Tarot cards
+                </a>
+                ? This section reads each day like a specific spread.{" "}
+                <a href="/home/?page=subscribe">Paid users</a> can look up cards
+                for any date.
             </div>
             <h2 ref={dateRef}>
                 {decanCards.date}
                 <br />
                 {decanCards.spread[0].name}
             </h2>
-            <p>
-                Use the{" "}
-                <a href="/assets/wheel.png" target="_blank" rel="noopener">
-                    Decan Wheel
-                </a>{" "}
-                to see which Tarot cards apply to each day.
-            </p>
             {showSubscribe && (
                 <div>
                     <p>

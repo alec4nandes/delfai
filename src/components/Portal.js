@@ -41,8 +41,8 @@ export default function Portal() {
                     );
                     await sendEmailVerification(user, {
                         url: IS_DEVELOPMENT
-                            ? "http://localhost:3000"
-                            : "https://delfai.web.app",
+                            ? "http://localhost:3000/home"
+                            : "https://delfai.web.app/home",
                     });
                     await setDoc(doc(db, "users", email), {
                         paid: false,

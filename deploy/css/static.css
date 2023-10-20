@@ -1,12 +1,17 @@
 body {
-  height: auto;
-  min-height: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
   padding: 0;
   text-align: center;
 }
-body main .container {
+body .static-container {
+  height: 100%;
+  overflow: auto;
+}
+body .static-container nav {
+  position: relative;
+}
+body .static-container main {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -14,21 +19,17 @@ body main .container {
   gap: 35px;
   padding: 80px 15px 0;
 }
-body main .container h3 {
+body .static-container main h3 {
   margin-top: 30px;
 }
-body main .container img.separator {
+body .static-container main img.separator {
   margin: 40px auto;
 }
-body main .container p {
+body .static-container main p {
   margin: 0 auto;
 }
-body main .container table {
+body .static-container main table {
   margin: 0 auto 30px;
-}
-
-nav {
-  position: relative;
 }
 
 @media only screen and (max-width: 300px) {

@@ -9,7 +9,7 @@ export default function Settings({ user }) {
         <div className="container">
             <main>
                 <div className="vertical-center">
-                    <h2 className="bigger-header">User Settings</h2>
+                    <h2 className="bigger-header">Account</h2>
                     <ResetPassword email={user.email} />
                     <Unsubscribe {...{ user }} />
                     <SignOut />

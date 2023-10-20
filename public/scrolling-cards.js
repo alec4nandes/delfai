@@ -13,8 +13,8 @@ setTimeout(() => {
                 "Fool",
                 "High Priestess",
                 "Wheel of Fortune",
-                "Star",
-                "World",
+                "Temperance",
+                "10 of Cups",
             ],
             getCardImgs = (isReversed) =>
                 (isReversed ? [...cardNames].reverse() : cardNames)
