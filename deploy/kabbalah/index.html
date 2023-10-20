@@ -43,6 +43,14 @@
         <link rel="stylesheet" href="/home/css/footer.css">
         <link rel="stylesheet" href="/css/static.css">
         <style>
+            img.separator {
+                display: flex;
+            }
+
+            .social a img {
+                margin-bottom: 0;
+            }
+
             table {
                 width: 230px;
             }
@@ -66,10 +74,6 @@
                 flex-wrap: wrap;
                 gap: 20px;
                 justify-content: center;
-            }
-
-            .social a img {
-                margin-bottom: 0;
             }
         </style>
     </head>
@@ -240,6 +244,7 @@
                     <div id="${key.toLowerCase()}">
                         <h3 style="margin-bottom: 0">${key}</h3>
                         <p style="margin-top: 0">${val.quality} World</p>
+                        <br/>
                         ${TreeOfLife({highlight: sefsContained})}
                         <br/>
                         <table>
