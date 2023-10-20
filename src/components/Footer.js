@@ -25,7 +25,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <a href={root}>Home</a> &nbsp;|&nbsp;{" "}
-                        <a href={`${root}/kabbalah`}>Kabbalah</a> &nbsp;|&nbsp;{" "}
+                        <a href={`${root}kabbalah`}>Kabbalah</a> &nbsp;|&nbsp;{" "}
                         <a
                             href="https://fern.haus"
                             target="_blank"
