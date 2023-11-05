@@ -60,7 +60,10 @@ export default function Decan({ user }) {
                     type="datetime-local"
                     name="datetime"
                     defaultValue={formatDatetimeInputValue(decanCards.date)}
-                    onChange={() => !user.paid && setShowSubscribe(true)}
+                    onChange={() => {
+                        // NO MORE PAYWALL:
+                        // !user.paid && setShowSubscribe(true);
+                    }}
                 />
                 <button className="standard-btn" type="submit">
                     look up
@@ -88,11 +91,12 @@ export default function Decan({ user }) {
 
     function handleDecanSubmit(e) {
         e.preventDefault();
-        if (!user.paid) {
-            setShowSubscribe(true);
-            alert("You must subscribe to look up other dates.");
-            return;
-        }
+        // NO MORE PAYWALL:
+        // if (!user.paid) {
+        //     setShowSubscribe(true);
+        //     alert("You must subscribe to look up other dates.");
+        //     return;
+        // }
         const dateString = e.target.datetime.value,
             { month, day } = getMonthAndDay(dateString),
             newCards = getDay(+month, +day),

@@ -44,11 +44,12 @@ export default function Ask({ user, setUser }) {
                                 type="checkbox"
                                 checked={isKabbalah}
                                 onChange={(e) => {
-                                    const isChecked = e.target.checked,
-                                        invalid = isChecked && !user.paid;
-                                    setShowSubscribe(invalid);
+                                    const isChecked = e.target.checked;
                                     setIsKabbalah(isChecked);
-                                    invalid && isCustom && setIsCustom(false);
+                                    // NO MORE PAYWALL:
+                                    // const invalid = isChecked && !user.paid;
+                                    // setShowSubscribe(invalid);
+                                    // invalid && isCustom && setIsCustom(false);
                                 }}
                             />
                             <span>
@@ -72,13 +73,14 @@ export default function Ask({ user, setUser }) {
                                 type="checkbox"
                                 checked={isCustom}
                                 onChange={(e) => {
-                                    const isChecked = e.target.checked,
-                                        invalid = isChecked && !user.paid;
-                                    setShowSubscribe(invalid);
+                                    const isChecked = e.target.checked;
                                     setIsCustom(isChecked);
-                                    invalid &&
-                                        isKabbalah &&
-                                        setIsKabbalah(false);
+                                    // NO MORE PAYWALL:
+                                    // const invalid = isChecked && !user.paid;
+                                    // setShowSubscribe(invalid);
+                                    // invalid &&
+                                    //     isKabbalah &&
+                                    //     setIsKabbalah(false);
                                 }}
                             />
                             enter a custom spread
@@ -158,10 +160,11 @@ function handleQuestion(
     isKabbalah,
     isCustom
 ) {
-    if (!user.paid && (isKabbalah || isCustom)) {
-        alert("Please unselect the paid features.");
-        return;
-    }
+    // NO MORE PAYWALL:
+    // if (!user.paid && (isKabbalah || isCustom)) {
+    //     alert("Please unselect the paid features.");
+    //     return;
+    // }
     const compare = compareCards(
         spread || getSpread(),
         question,
@@ -170,12 +173,13 @@ function handleQuestion(
     );
     setCards(compare);
     console.log(compare);
-    if (!user.paid) {
-        setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
-        updateDoc(doc(db, "users", user.email), {
-            free_draws: user.free_draws - 1,
-        });
-    }
+    // NO MORE PAYWALL:
+    // if (!user.paid) {
+    //     setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
+    //     updateDoc(doc(db, "users", user.email), {
+    //         free_draws: user.free_draws - 1,
+    //     });
+    // }
 }
 
 function getCustomSpread(size, custom) {

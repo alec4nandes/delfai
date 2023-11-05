@@ -50,9 +50,14 @@ export default function Dashboard({ user }) {
                                     Decan Wheel
                                 </a>
                             </div>
-                            <Separator />
-                            {!(user.paid || user.free_draws > 0) && (
-                                <FreeTrialOver {...{ user }} />
+                            {/* NO MORE PAYWALL: */}
+                            {false && (
+                                <>
+                                    <Separator />
+                                    {!(user.paid || user.free_draws > 0) && (
+                                        <FreeTrialOver {...{ user }} />
+                                    )}
+                                </>
                             )}
                         </>
                     )}

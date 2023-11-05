@@ -8,7 +8,7 @@ h1 {
 
 .social {
     a {
-        display: flex;
+        // display: flex;
     }
 
     img {
@@ -68,8 +68,15 @@ img {
 }
 
 #intro p {
-    font-size: 1.4rem;
-    font-weight: 700;
+    &:not(#inspotarot) {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    &#inspotarot {
+        background-color: #506fbb;
+        margin-top: 15px;
+    }
 }
 
 #unpaid-vs-paid {

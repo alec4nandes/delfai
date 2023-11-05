@@ -45,7 +45,8 @@ export default function App() {
             user && setUser(await getUserData(user));
             const urlParams = new URLSearchParams(window.location.search),
                 pageParam = urlParams.get("page");
-            setIsSubscribePage(pageParam === "subscribe");
+            // NO MORE PAYWALL:
+            // setIsSubscribePage(pageParam === "subscribe");
             setLoaded(true);
         });
 

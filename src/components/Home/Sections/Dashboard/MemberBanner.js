@@ -6,15 +6,19 @@ export default function MemberBanner({ user }) {
                 question.
             </p>
             <p id="free-status">
-                Hi, {user.email}! <br />
-                {user.paid ? (
-                    <>Thanks for being a paid member!</>
-                ) : (
-                    <>
-                        You have {user.free_draws} free reading
-                        {user.free_draws === 1 ? "" : "s"} left.
-                    </>
-                )}
+                Hi, {user.email}!{/* <br /> */}
+                {
+                    /* NO MORE PAYWALL: */
+                    false &&
+                        (user.paid ? (
+                            <>Thanks for being a paid member!</>
+                        ) : (
+                            <>
+                                You have {user.free_draws} free reading
+                                {user.free_draws === 1 ? "" : "s"} left.
+                            </>
+                        ))
+                }
             </p>
         </>
     );

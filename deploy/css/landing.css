@@ -3,9 +3,6 @@ h1 span {
   font-size: 0.7em;
 }
 
-.social a {
-  display: flex;
-}
 .social img {
   margin-top: 10px;
   margin-bottom: 0;
@@ -58,9 +55,13 @@ img.separator {
   margin: 40px auto;
 }
 
-#intro p {
+#intro p:not(#inspotarot) {
   font-size: 1.4rem;
   font-weight: 700;
+}
+#intro p#inspotarot {
+  background-color: #506fbb;
+  margin-top: 15px;
 }
 
 #unpaid-vs-paid {
