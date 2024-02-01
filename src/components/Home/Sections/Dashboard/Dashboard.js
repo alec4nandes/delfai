@@ -2,7 +2,6 @@ import { sendEmailVerification } from "firebase/auth";
 import { IS_DEVELOPMENT, auth } from "../../../../database.js";
 import MemberBanner from "./MemberBanner";
 import SignOut from "../../SignOut.js";
-import Subscribe from "../../Subscribe/Subscribe.js";
 import Footer from "../../../Footer.js";
 
 export default function Dashboard({ user }) {
@@ -50,33 +49,12 @@ export default function Dashboard({ user }) {
                                     Decan Wheel
                                 </a>
                             </div>
-                            {/* NO MORE PAYWALL: */}
-                            {false && (
-                                <>
-                                    <Separator />
-                                    {!(user.paid || user.free_draws > 0) && (
-                                        <FreeTrialOver {...{ user }} />
-                                    )}
-                                </>
-                            )}
                         </>
                     )}
                 </div>
             </main>
             <Footer />
         </div>
-    );
-}
-
-function FreeTrialOver({ user }) {
-    return (
-        <>
-            <p>
-                Oh no! You're out of free readings. Please consider joining for
-                only $2.99 a month.
-            </p>
-            <Subscribe {...{ user }} />
-        </>
     );
 }
 

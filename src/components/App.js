@@ -4,7 +4,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../database.js";
 import Home from "./Home/Home";
 import Portal from "./Portal";
-import SubscribePage from "./SubscribePage";
 import AgeLocationVerify from "./AgeLocationVerify.js";
 
 const cookieKey = "age_location_verified";
@@ -12,7 +11,6 @@ const cookieKey = "age_location_verified";
 export default function App() {
     const [loaded, setLoaded] = useState(false),
         [hasAgeCookie, setHasAgeCookie] = useState(false),
-        [isSubscribePage, setIsSubscribePage] = useState(false),
         [user, setUser] = useState(null);
 
     // VERIFY AGE AND LOCATION
@@ -43,10 +41,6 @@ export default function App() {
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             user && setUser(await getUserData(user));
-            const urlParams = new URLSearchParams(window.location.search),
-                pageParam = urlParams.get("page");
-            // NO MORE PAYWALL:
-            // setIsSubscribePage(pageParam === "subscribe");
             setLoaded(true);
         });
 
@@ -70,11 +64,7 @@ export default function App() {
             )}
             {loaded ? (
                 user ? (
-                    isSubscribePage ? (
-                        <SubscribePage {...{ user }} />
-                    ) : (
-                        <Home {...{ user, setUser }} />
-                    )
+                    <Home {...{ user, setUser }} />
                 ) : (
                     <Portal />
                 )

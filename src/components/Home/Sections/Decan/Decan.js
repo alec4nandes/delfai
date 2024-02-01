@@ -4,11 +4,9 @@ import fillRef from "../../../../display.js";
 import AiTextLoader from "../../AiTextLoader";
 import CardImages from "../../CardImages/CardImages";
 import Compare from "../../Compare/Compare";
-import Subscribe from "../../Subscribe/Subscribe";
 
 export default function Decan({ user }) {
     const [decanCards, setDecanCards] = useState(getToday()),
-        [showSubscribe, setShowSubscribe] = useState(false),
         [isReading, setIsReading] = useState(false),
         dateRef = useRef(),
         decanRef = useRef(),
@@ -45,25 +43,11 @@ export default function Decan({ user }) {
                 <br />
                 {decanCards.spread[0].name}
             </h2>
-            {showSubscribe && (
-                <div>
-                    <p>
-                        Decan calendar searches are only available for paid
-                        users. Please consider joining for only{" "}
-                        <strong>$2.99/month</strong>.
-                    </p>
-                    <Subscribe {...{ user }} />
-                </div>
-            )}
             <form onSubmit={handleDecanSubmit}>
                 <input
                     type="datetime-local"
                     name="datetime"
                     defaultValue={formatDatetimeInputValue(decanCards.date)}
-                    onChange={() => {
-                        // NO MORE PAYWALL:
-                        // !user.paid && setShowSubscribe(true);
-                    }}
                 />
                 <button className="standard-btn" type="submit">
                     look up
@@ -91,12 +75,6 @@ export default function Decan({ user }) {
 
     function handleDecanSubmit(e) {
         e.preventDefault();
-        // NO MORE PAYWALL:
-        // if (!user.paid) {
-        //     setShowSubscribe(true);
-        //     alert("You must subscribe to look up other dates.");
-        //     return;
-        // }
         const dateString = e.target.datetime.value,
             { month, day } = getMonthAndDay(dateString),
             newCards = getDay(+month, +day),

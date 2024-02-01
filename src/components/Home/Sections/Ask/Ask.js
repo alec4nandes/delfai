@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getSpread } from "../../../../compare/spread.js";
-import { doc, updateDoc } from "firebase/firestore";
-import { IS_DEVELOPMENT, db } from "../../../../database.js";
+import { IS_DEVELOPMENT } from "../../../../database.js";
 import { compareCards } from "../../../../compare/compare.js";
 import AskQuestion from "./AskQuestion";
 import CustomReading from "./CustomReading";
@@ -9,15 +8,13 @@ import OtherQuestions from "./OtherQuestions";
 import Reading from "./Reading/Reading";
 import SelectCustomSpread from "./SelectCustomSpread.js";
 import { Separator } from "../Dashboard/Dashboard";
-import Subscribe from "../../Subscribe/Subscribe.js";
 
 export default function Ask({ user, setUser }) {
     const [cards, setCards] = useState(),
         [custom, setCustom] = useState(getSpread().map(({ name }) => name)),
         [isCustom, setIsCustom] = useState(false),
         [size, setSize] = useState(3),
-        [isKabbalah, setIsKabbalah] = useState(false),
-        [showSubscribe, setShowSubscribe] = useState(false);
+        [isKabbalah, setIsKabbalah] = useState(false);
 
     return (
         <div className={`slide${cards ? " reading-slide" : ""}`}>
@@ -75,19 +72,13 @@ export default function Ask({ user, setUser }) {
                                 onChange={(e) => {
                                     const isChecked = e.target.checked;
                                     setIsCustom(isChecked);
-                                    // NO MORE PAYWALL:
-                                    // const invalid = isChecked && !user.paid;
-                                    // setShowSubscribe(invalid);
-                                    // invalid &&
-                                    //     isKabbalah &&
-                                    //     setIsKabbalah(false);
                                 }}
                             />
                             enter a custom spread
                         </label>
                     </div>
 
-                    {isCustom && !showSubscribe && (
+                    {isCustom && (
                         <SelectCustomSpread
                             {...{
                                 isCustom,
@@ -97,27 +88,6 @@ export default function Ask({ user, setUser }) {
                                 setSize,
                             }}
                         />
-                    )}
-
-                    {showSubscribe && (
-                        <div>
-                            {isKabbalah ? (
-                                <p>
-                                    Kabbalah readings are only available for
-                                    paid users. Please consider joining for only{" "}
-                                    <strong>$2.99/month</strong>.
-                                </p>
-                            ) : (
-                                isCustom && (
-                                    <p>
-                                        Only paid members can enter custom
-                                        spreads. Please consider joining for
-                                        only $2.99 a month.
-                                    </p>
-                                )
-                            )}
-                            <Subscribe {...{ user }} />
-                        </div>
                     )}
 
                     <AskQuestion
@@ -160,11 +130,6 @@ function handleQuestion(
     isKabbalah,
     isCustom
 ) {
-    // NO MORE PAYWALL:
-    // if (!user.paid && (isKabbalah || isCustom)) {
-    //     alert("Please unselect the paid features.");
-    //     return;
-    // }
     const compare = compareCards(
         spread || getSpread(),
         question,
@@ -173,13 +138,6 @@ function handleQuestion(
     );
     setCards(compare);
     console.log(compare);
-    // NO MORE PAYWALL:
-    // if (!user.paid) {
-    //     setUser((user) => ({ ...user, free_draws: user.free_draws - 1 }));
-    //     updateDoc(doc(db, "users", user.email), {
-    //         free_draws: user.free_draws - 1,
-    //     });
-    // }
 }
 
 function getCustomSpread(size, custom) {
