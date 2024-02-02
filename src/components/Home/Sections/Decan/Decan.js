@@ -34,9 +34,8 @@ export default function Decan({ user }) {
                 <a href="/home/assets/wheel.png" target="_blank" rel="noopener">
                     certain Tarot cards
                 </a>
-                ? This section reads each day like a specific spread.{" "}
-                <a href="/home/?page=subscribe">Paid users</a> can look up cards
-                for any date.
+                ? This section reads each day like a specific spread. Look up
+                cards for any date!
             </div>
             <h2 ref={dateRef}>
                 {decanCards.date}

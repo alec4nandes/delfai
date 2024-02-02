@@ -10,11 +10,6 @@ export default function Footer() {
             <div id="footer-container">
                 <ul>
                     <li>
-                        <a href="/home/?page=subscribe">Subscribe</a>
-                        &nbsp; | &nbsp;
-                        <a href={getSectionURL("refunds")}>Refund Policy</a>
-                    </li>
-                    <li>
                         <a href={getSectionURL("privacy")}>Privacy Policy</a>
                     </li>
                     <li>

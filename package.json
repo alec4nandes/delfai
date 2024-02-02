@@ -21,8 +21,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "client": "npm run start",
-        "server": "firebase serve --only functions",
-        "firebase": "firebase serve --only \"functions,hosting\"",
+        "firebase": "firebase serve --only hosting",
         "deploy": "deploy.bat"
     },
     "eslintConfig": {
