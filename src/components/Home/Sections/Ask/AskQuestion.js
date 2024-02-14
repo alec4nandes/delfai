@@ -21,6 +21,7 @@ export default function AskQuestion({
                 <textarea
                     name="question"
                     placeholder="Ask a question (optional)..."
+                    maxlength="200"
                 ></textarea>
                 <button className="standard-btn" type="submit">
                     ask
