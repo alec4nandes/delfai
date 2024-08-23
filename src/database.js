@@ -3,10 +3,10 @@ import { getFirestore } from "@firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import config from "./db-info.js";
+import config, { devConfig } from "./db-info.js";
 
 const IS_DEVELOPMENT = false,
-    app = initializeApp(config),
+    app = initializeApp(IS_DEVELOPMENT ? devConfig : config),
     auth = getAuth(app),
     db = getFirestore(app),
     analytics = getAnalytics(app);
