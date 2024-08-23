@@ -38,7 +38,7 @@ async function getData(prompt) {
             },
         ],
         temperature: 0.7,
-        apiKeyName: "OPENAI_API_KEY_DELFAI",
+        projectId: "DELFAI",
         token: await auth.currentUser.getIdToken(true),
     };
 }
