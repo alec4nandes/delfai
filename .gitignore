@@ -4,7 +4,7 @@
 firebase-debug.log
 
 .env
-/src/db-info.js
+/src/db-dev.mjs
 
 # dependencies
 /node_modules

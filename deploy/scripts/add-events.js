@@ -1,4 +1,4 @@
-const IS_DEVELOPMENT = false,
+const IS_DEVELOPMENT = true,
     addEvents = (className, suffix) =>
         [...document.querySelectorAll(`.${className}`)].forEach((elem) => {
             const url = `${

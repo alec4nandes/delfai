@@ -1,12 +1,11 @@
-// Import the functions you need from the SDKs you need
-import { getFirestore } from "@firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import config, { devConfig } from "./db-info.js";
+import config from "./db-dev.mjs";
 
-const IS_DEVELOPMENT = false,
-    app = initializeApp(IS_DEVELOPMENT ? devConfig : config),
+const IS_DEVELOPMENT = true,
+    app = initializeApp(config),
     auth = getAuth(app),
     db = getFirestore(app),
     analytics = getAnalytics(app);
